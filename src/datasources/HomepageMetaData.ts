@@ -90,12 +90,12 @@ export const workExperienceMetaData = [
 				location: "Bangkok, Thailand",
 				title: "Cloud DevOps Engineer",
 				subRole: "Low-Cost Airline",
-				period: "2024 - Present",
+				period: "2023 - Present",
 			},
 			{
 				title: "Software Engineer",
 				subRole: "Low-Cost Airline",
-				period: "2022 - 2024",
+				period: "2022 - 2023",
 			},
 			{
 				title: "Graduate Developer",

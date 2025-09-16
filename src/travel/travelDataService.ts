@@ -60,6 +60,10 @@ export const addToWatchedVideosStorage = (link: string) => {
 		watchedVideos.push(link);
 		localStorage.setItem("watchedVideos", JSON.stringify(watchedVideos));
 	}
+
+	if (watchedVideos.length >= travelVideoMetaData.length) {
+		localStorage.removeItem("watchedVideos");
+	}
 };
 
 export const getTravelMetaDataIndex = (
