@@ -208,7 +208,7 @@ export const SalaryExpectationsSection = () => {
 							checked={workLifeBalance}
 							onChange={() => setWorkLifeBalance(!workLifeBalance)}
 							description={
-								"Employees are not expected to work outside of salaried hours and are encouraged to take breaks & holidays"
+								"Employees are not regularly expected to work outside of salaried hours and are encouraged to take breaks & holidays"
 							}
 						/>
 						<SalarySwitch
@@ -224,7 +224,7 @@ export const SalaryExpectationsSection = () => {
 							checked={flatHierarchy}
 							onChange={() => setFlatHierarchy(!flatHierarchy)}
 							description={
-								"An organization with few or no levels of management between staff and executives"
+								"An organization with few or no levels of management between staff and executives or it's easy to communicate with the CEO/CTO"
 							}
 						/>
 						<SalarySwitch

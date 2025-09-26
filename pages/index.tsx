@@ -1,53 +1,16 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { PageContainer } from "../src/global/PageContainer";
 import { HomeFooterImage } from "../src/homepage/homeFooter/HomeFooterImage";
 import { ParallaxArt } from "../src/homepage/parallax-art/ParallaxArt";
 import { Footer } from "../utils/footer/Footer";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import styles from "../src/homepage/homepage.module.scss";
-import { useEffect, useState } from "react";
 import { BioDescription } from "../src/homepage/biography/BioDescription";
-import { projectMetaData } from "../src/datasources/ProjectMetaData";
-import { ProjectItem } from "../src/projects/ProjectItem";
 import Portfolio from "../src/homepage/Portfolio";
-import Folio from "../src/folio/Skills";
 import { tabsData } from "../src/datasources/NavBarMetaData";
 
 const Home: NextPage = () => {
-	const enum FolioKey {
-		Portfolio = "portfolio",
-		Projects = "projects",
-	}
-
-	const portfolioOptions = [FolioKey.Portfolio, FolioKey.Projects];
-
-	const [alignment, setAlignment] = useState("portfolio");
-
-	useEffect(() => {
-		const searchParams = new URLSearchParams(window.location.search);
-		const optionParam = searchParams.get("option");
-		if (optionParam && portfolioOptions.includes(optionParam as FolioKey)) {
-			setAlignment(optionParam);
-		}
-	}, []);
-
-	const handleChange = (
-		event: React.MouseEvent<HTMLElement>,
-		newAlignment: string,
-	) => {
-		setAlignment(newAlignment);
-
-		const searchParams = new URLSearchParams(window.location.search);
-		searchParams.set("option", newAlignment);
-
-		window.history.replaceState(
-			null,
-			"",
-			`${window.location.pathname}?${searchParams.toString()}`,
-		);
-	};
-
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "Person",
@@ -57,25 +20,10 @@ const Home: NextPage = () => {
 		description: tabsData[0].pageDescription,
 		sameAs: [
 			"https://www.instagram.com/franklin.v.moon",
-			"https://github.com/OperationFman",
+			"https://github.com/Franklin-v-moon",
 			"https://www.linkedin.com/in/franklin-von-moon-23572518a/",
 			"https://www.facebook.com/frank.moon.731/",
 		],
-	};
-
-	const SubPage = () => {
-		switch (alignment) {
-			case "portfolio":
-				return <Portfolio />;
-			case "projects":
-				return (
-					<div className={styles.projects}>
-						{projectMetaData.map((dataItem, index) => {
-							return <ProjectItem metaData={dataItem} key={index} />;
-						})}
-					</div>
-				);
-		}
 	};
 
 	return (
@@ -102,18 +50,18 @@ const Home: NextPage = () => {
 			<ParallaxArt />
 			<PageContainer>
 				<>
-					<BioDescription />
-					<div className={styles.pageToggle}>
-						<ToggleButtonGroup
-							color='primary'
-							value={alignment}
-							exclusive
-							onChange={handleChange}>
-							<ToggleButton value='portfolio'>Portfolio</ToggleButton>
-							<ToggleButton value='projects'>Projects</ToggleButton>
-						</ToggleButtonGroup>
+					<div className={styles.headshotContainer}>
+						<Image
+							src={"/homepage/headshot.png"}
+							alt='Franklin Von Moon Personal Professional Headshot Photo'
+							width={115}
+							height={115}
+							className={styles.headshot}
+						/>
 					</div>
-					<SubPage />
+					<BioDescription />
+
+					<Portfolio />
 				</>
 			</PageContainer>
 			<HomeFooterImage />

@@ -4,7 +4,7 @@
 .container {
 	position: sticky;
 	top: 0;
-	z-index: 2;
+	z-index: 5;
 	background-color: $darkGrey;
 	box-shadow: $defaultShadow;
 
@@ -36,7 +36,7 @@
 		padding-left: 25px;
 		top: 24px;
 		position: absolute;
-		z-index: 3;
+		z-index: 6;
 		display: flex;
 		flex-direction: column;
 	}
@@ -46,7 +46,7 @@
 	display: inline;
 	padding-left: 15px;
 	margin-top: 24px;
-	z-index: 3;
+	z-index: 6;
 	font-weight: bold;
 
 	@include breakpoint(medium) {

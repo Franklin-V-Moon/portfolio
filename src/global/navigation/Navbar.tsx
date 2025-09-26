@@ -55,6 +55,7 @@ export const Navbar = () => {
 	return (
 		<>
 			<h1 className={styles.behindNav}>{tabsData[tabIndex].pageDescription}</h1>
+
 			<nav role='navigation' aria-label='Main navigation'>
 				<div className={styles.logotypeDesktopContainer}>
 					<span

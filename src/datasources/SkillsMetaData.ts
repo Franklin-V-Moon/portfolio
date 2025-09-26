@@ -10,7 +10,7 @@ const Description = {
 	Proficient:
 		"I've worked with it, I've gone into depth, and I'm comfortable guiding others. I can pair with other developers and influence at my peer level and with folks I'm guiding.",
 	HighlyProficient:
-		"Can lead pairing on a project no matter who the pair is. Very comfortable with the language/tool and can teach others at different folio levels and in different project situations.",
+		"Can lead pairing on a project no matter who the pair is. Very comfortable with the language/tool and can teach others at different skill levels and in different project situations.",
 };
 
 export const languagesMetaData: ColumnData[] = [

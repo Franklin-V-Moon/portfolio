@@ -18,8 +18,7 @@ export const Contact = () => {
 					<Grid item>
 						<ContactCard
 							contactMethod={"Instagram"}
-							link={"https://www.instagram.com/franklin.v.moon"}
-							>
+							link={"https://www.instagram.com/franklin.v.moon"}>
 							<InstagramIcon color={"primary"} fontSize={"large"} />
 						</ContactCard>
 					</Grid>
@@ -35,7 +34,7 @@ export const Contact = () => {
 					<Grid item>
 						<ContactCard
 							contactMethod={"Github"}
-							link={"https://github.com/OperationFman"}>
+							link={"https://github.com/Franklin-v-moon"}>
 							<GitHubIcon color={"primary"} fontSize={"large"} />
 						</ContactCard>
 					</Grid>
