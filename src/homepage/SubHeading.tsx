@@ -7,9 +7,7 @@ export const SubHeading = ({ text }: { text: string }) => {
 		<div className={styles.container}>
 			<h2 className={styles.title}>
 				{text}
-				<div className={styles.lineContainer}>
-					<div className={styles.line} />
-				</div>
+				
 			</h2>
 		</div>
 	);
