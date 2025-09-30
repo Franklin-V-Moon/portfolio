@@ -3203,6 +3203,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1go-otWd7v6xXLtbt0UFKk5_ZtEZRgjEH?usp=sharing",
 		extras: {
 			countries: ["china"],
+			trailer: "china2trailer",
 			scorecard: {
 				beauty: [7],
 				affordability: [9],
@@ -3319,6 +3320,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 	// 	newestVideo: true,
 	// 	extras: {
 	// 		countries: [ ""],
+	//		trailer: "",
 	// 		scorecard: {
 	// 			affordability: [],
 	// 			food: [],

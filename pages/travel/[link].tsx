@@ -14,6 +14,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import InfoIcon from "@mui/icons-material/Info";
 import WarningIcon from "@mui/icons-material/Warning";
+import LockIcon from "@mui/icons-material/Lock";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import {
 	getTravelMetaDataIndex,
@@ -164,6 +165,20 @@ const VideoContent = ({
 		},
 	};
 
+	const Trailer = () => {
+		return (
+			<ReactPlayer
+				url={`${publicCDNVideoUrl}${extras?.trailer}.mp4`}
+				playing={true}
+				loop={true}
+				muted={true}
+				controls={false}
+				width='90%'
+				height='90%'
+			/>
+		);
+	};
+
 	return (
 		<>
 			<Head>
@@ -209,6 +224,7 @@ const VideoContent = ({
 							height='100%'
 							width='100%'
 							id='player'
+							light={extras?.trailer && <Trailer />}
 							onDuration={(s) => setDurationISO(secondsToISO(s))}
 						/>
 						<div className={styles.subVideoInteraction}>
@@ -264,15 +280,24 @@ const VideoContent = ({
 					</>
 				) : (
 					<div className={styles.comingSoon}>
-						<Image
-							src={"/travel/editingAstronaut.png"}
-							alt={"No video placeholder image"}
-							height={300}
-							width={640}
-							object-fit='cover'
-							layout='responsive'
-							className={styles.noVideoImage}
-						/>
+						{extras?.trailer ? (
+							<div className={styles.lockedTrailerContainer}>
+								<div className={styles.lockedTrailer}>
+									<LockIcon style={{ fontSize: "60px" }} />
+								</div>
+								<Trailer />
+							</div>
+						) : (
+							<Image
+								src={"/travel/editingAstronaut.png"}
+								alt={"No video placeholder image"}
+								height={300}
+								width={640}
+								object-fit='cover'
+								layout='responsive'
+								className={styles.noVideoImage}
+							/>
+						)}
 						<div className={styles.protectedVideoContainer}>
 							<h5 className={styles.restrictedVideo}>
 								Video Locked, Know The Password?
