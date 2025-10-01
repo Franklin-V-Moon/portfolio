@@ -657,6 +657,20 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				link: "https://www.smartraveller.gov.au/destinations/middle-east/united-arab-emirates",
 				advice: Advisory.Level2,
 			},
+			highlights: [
+				{
+					title: "DevSlam (1m 3s)",
+					timecode: 63,
+				},
+				{
+					title: "Sand Surfing (4m 30s)",
+					timecode: 270,
+				},
+				{
+					title: "Skiing (5m 12s)",
+					timecode: 312,
+				},
+			],
 			music: [
 				{
 					title: "I Really Want to Stay At Your House - Cyberpunk 2077",
@@ -716,20 +730,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				link: "https://www.smartraveller.gov.au/destinations/pacific/fiji",
 				advice: Advisory.Level1,
 			},
-			highlights: [
-				{
-					title: "DevSlam (1m 3s)",
-					timecode: 63,
-				},
-				{
-					title: "Sand Surfing (4m 30s)",
-					timecode: 270,
-				},
-				{
-					title: "Skiing (5m 12s)",
-					timecode: 312,
-				},
-			],
+
 			music: [
 				{
 					title: "Mona Lisa - Mxmtoon",
@@ -2535,6 +2536,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/14vEAX2n-dlTqZ59ywDNLbIte6FeClEV4?usp=sharing",
 		extras: {
 			countries: ["pakistan"],
+			trailer: "pakistantrailer",
 			scorecard: {
 				beauty: [3],
 				affordability: [10],
@@ -2646,6 +2648,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/13u7UC_NTr1cXDKtclfhxyl-nokepTDjW?usp=sharing",
 		extras: {
 			countries: ["afghanistan"],
+			trailer: "afghanistantrailer",
 			scorecard: {
 				beauty: [4],
 				affordability: [8],
@@ -2938,6 +2941,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1jS1RladwBgOPzbq58GO8oHMkTeNdjtUY?usp=sharing",
 		extras: {
 			countries: ["myanmar"],
+			trailer: "myanmartrailer",
 			scorecard: {
 				beauty: [4],
 				affordability: [8],
@@ -3109,6 +3113,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["mongolia"],
+			trailer: "mongoliatrailer",
 			scorecard: {
 				beauty: [8],
 				affordability: [3],
@@ -3199,6 +3204,10 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		hostedLink: "china2",
 		link: "china-2",
 		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DOGUooLiXaC/?hl=en&img_index=1",
+			"https://www.instagram.com/p/DOVwtzhCZHZ/?hl=en&img_index=1",
+		],
 		backupLink:
 			"https://drive.google.com/drive/folders/1go-otWd7v6xXLtbt0UFKk5_ZtEZRgjEH?usp=sharing",
 		extras: {
