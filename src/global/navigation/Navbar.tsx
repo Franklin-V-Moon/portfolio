@@ -7,19 +7,6 @@ import styles from "./NavBar.module.scss";
 export const Navbar = () => {
 	const router = useRouter();
 
-	const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-	useEffect(() => {
-		const checkScreenSize = () => {
-			setIsSmallScreen(window.innerWidth < 900);
-		};
-
-		checkScreenSize();
-		window.addEventListener("resize", checkScreenSize);
-
-		return () => window.removeEventListener("resize", checkScreenSize);
-	}, []);
-
 	const initialTab = () => {
 		const currentBrowserRoute = router.pathname;
 
@@ -46,11 +33,6 @@ export const Navbar = () => {
 	useEffect(() => {
 		setTabIndex(initialTab());
 	}, [router, initialTab]);
-
-	const ensureTabsFit = (index: number) => {
-		const largeScreenTab = index === 0 ? "9.475rem" : "7.7rem";
-		return { minWidth: isSmallScreen ? "5rem" : largeScreenTab };
-	};
 
 	return (
 		<>
@@ -98,8 +80,6 @@ export const Navbar = () => {
 						},
 					}}>
 					{tabsData.map((item, index) => {
-						const tabStyles = ensureTabsFit(index);
-
 						if (item.disabled) {
 							return;
 						}
@@ -112,12 +92,14 @@ export const Navbar = () => {
 									)
 								}
 								icon={item.icon(tabIndex)}
-								className={`${styles.tab} ${styles.hover}`}
+								className={`${styles.tab} ${styles.hover} ${
+									styles.baseTabSize
+								} ${
+									index === 0 ? styles.firstTabDesktop : styles.otherTabsDesktop
+								}`}
 								style={{
 									order: item.order,
-									fontSize: isSmallScreen ? "0.7rem" : "0.9rem",
 									padding: "0.4375rem",
-									...tabStyles,
 								}}
 								key={index}
 								tabIndex={index + 1}

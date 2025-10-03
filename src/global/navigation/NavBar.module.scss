@@ -110,6 +110,27 @@
 	border: 0;
 }
 
+.baseTabSize {
+	font-size: 0.7rem;
+	min-width: 5rem;
+
+	@include breakpoint(medium) {
+		font-size: 0.9rem;
+	}
+}
+
+.firstTabDesktop {
+	@include breakpoint(medium) {
+		min-width: 9.475rem !important;
+	}
+}
+
+.otherTabsDesktop {
+	@include breakpoint(medium) {
+		min-width: 7.7rem !important;
+	}
+}
+
 .darkModeToggle {
 	display: flex;
 	justify-content: right;
