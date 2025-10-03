@@ -2,6 +2,17 @@ import { Languages, Tags, Topic, GuideMetaData } from "../guides/types";
 
 export const guideMetaData: GuideMetaData[] = [
 	{
+		title: "Build an Internal Developer Portal with Backstage",
+		link: "backstage-idp-guide",
+		notionPage: "281e32d0081180a193a3ed0b110b6572",
+		created: 1759471915,
+		thumbnail: "/guides/backstage.png",
+		subTitle:
+			"Architecting a Backstage deployment for enterprise organisations",
+		topic: Topic.Infrastructure,
+		tags: [Tags.StepByStep],
+	},
+	{
 		title: "Build a Serverless Email Notification Service",
 		link: "watch-drop-serverless-email-notifications",
 		notionPage: "20de32d0081180b18659e19ba19b26ff",
