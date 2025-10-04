@@ -70,7 +70,7 @@ const Travel: NextPage<Props> = ({ sortedMetaData, initialSortBy }) => {
 				sortFunctions[sortSelection as keyof typeof sortFunctions]();
 			setVideos(sortedData);
 		}
-	}, [sortSelection, searchingText]);
+	}, [sortSelection, searchingText, sortFunctions]);
 
 	const InvisibleImageButton = styled(ButtonBase)(({ theme }) => ({
 		position: "absolute",
@@ -206,7 +206,7 @@ const Travel: NextPage<Props> = ({ sortedMetaData, initialSortBy }) => {
 								<h2 className={styles.yearHeadingText}>
 									{metaData.heading === "Tags" ? (
 										<span>
-											Travel with: "<em>{searchingText}</em>"
+											Travel with: &quot;<em>{searchingText}</em>&quot;
 										</span>
 									) : (
 										metaData.heading
