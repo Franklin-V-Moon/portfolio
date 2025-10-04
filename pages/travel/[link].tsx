@@ -69,10 +69,13 @@ const VideoContent = ({
 	const router = useRouter();
 
 	const [durationISO, setDurationISO] = useState<string>();
+	const [isPlayerReady, setIsPlayerReady] = useState(false);
 
 	useEffect(() => {
-		handleTimecodeOnLoad();
-	}, []);
+		if (isPlayerReady) {
+			handleTimecodeOnLoad();
+		}
+	}, [isPlayerReady, router.query]);
 
 	const adviceKeyData: any = {
 		travelLength: "Trip Duration",
@@ -126,19 +129,15 @@ const VideoContent = ({
 	};
 
 	const handleTimecodeOnLoad = () => {
-		const timer = setTimeout(() => {
-			const timecodeParam = router.query.timecode;
-			if (
-				timecodeParam &&
-				typeof timecodeParam === "string" &&
-				!isNaN(parseInt(timecodeParam))
-			) {
-				const timeInSeconds = parseInt(timecodeParam);
-				skipTo(timeInSeconds);
-			}
-		}, 500);
-
-		return () => clearTimeout(timer);
+		const timecodeParam = router.query.timecode;
+		if (
+			timecodeParam &&
+			typeof timecodeParam === "string" &&
+			!isNaN(parseInt(timecodeParam))
+		) {
+			const timeInSeconds = parseInt(timecodeParam);
+			skipTo(timeInSeconds);
+		}
 	};
 
 	const secondsToISO = (s: number) => {
@@ -226,6 +225,7 @@ const VideoContent = ({
 							id='player'
 							light={extras?.trailer && <Trailer />}
 							onDuration={(s) => setDurationISO(secondsToISO(s))}
+							onReady={() => setIsPlayerReady(true)}
 						/>
 						<div className={styles.subVideoInteraction}>
 							<div className={styles.skipToContainer}>
