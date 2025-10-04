@@ -2416,7 +2416,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		instagramLinks: [
 			"https://www.instagram.com/p/DEyptuVJGbk/?hl=en&img_index=1",
 			"https://www.instagram.com/p/DE6s6JFpJ6L/?hl=en&img_index=1",
-			"https://www.instagram.com/p/DFE9V62J79b/?hl=en&img_index=1",
 		],
 		backupLink:
 			"https://drive.google.com/drive/folders/1z5GgatabgWeQEKrbZkZZDSOCS_xuEV6r?usp=sharing",

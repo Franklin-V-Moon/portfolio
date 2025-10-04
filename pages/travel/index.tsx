@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import Image from "next/image";
 import Head from "next/head";
 import { PageContainer } from "../../src/global/PageContainer";
@@ -20,20 +20,38 @@ import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
 import { VideoLibrary } from "../../src/travel/VideoLibrary";
 import { ButtonBase, styled } from "@mui/material";
 import { useEffect, useState } from "react";
-import { SortBy } from "../../src/travel/types";
+import { SortBy, TravelVideoMetaData } from "../../src/travel/types";
 import { TravelSort } from "../../src/travel/components/TravelSort";
 import { SearchBar } from "../../src/travel/components/SearchBar";
 import { travelVideoMetaData } from "../../src/datasources/TravelMetaData";
-import { isClientSide } from "../../utils/isClientSide";
 import router from "next/router";
 import { tabsData } from "../../src/datasources/NavBarMetaData";
 
-const Travel: NextPage = () => {
-	const [sortedMetaData, setSortedMetaData] = useState(allOldestFirst());
-	const [sortSelection, setSortSelection] = useState(SortBy.Newest);
-	const [searchingText, setSearchingText] = useState<string>("");
+type GroupedVideos = {
+	heading: string;
+	grouping: TravelVideoMetaData[];
+};
 
-	const sortFunctions = {
+type ServerSideContext = {
+	query: {
+		SortBy?: string;
+	};
+};
+
+type Props = {
+	sortedMetaData: GroupedVideos[];
+	initialSortBy: SortBy;
+};
+
+const Travel: NextPage<Props> = ({ sortedMetaData, initialSortBy }) => {
+	const [sortSelection, setSortSelection] = useState(initialSortBy);
+	const [searchingText, setSearchingText] = useState("");
+	const [videos, setVideos] = useState(sortedMetaData);
+
+	const sortFunctions: Record<
+		Exclude<SortBy, SortBy.Searching>,
+		() => GroupedVideos[]
+	> = {
 		[SortBy.Newest]: allNewestFirst,
 		[SortBy.Oldest]: allOldestFirst,
 		[SortBy.Best]: allByBest,
@@ -41,33 +59,18 @@ const Travel: NextPage = () => {
 		[SortBy.Food]: allByFood,
 		[SortBy.Danger]: allByDanger,
 		[SortBy.Funniest]: funniestOnly,
-		[SortBy.Searching]: () => searchResult(searchingText),
 	};
 
 	useEffect(() => {
-		setSortedMetaData(sortFunctions[sortSelection]());
-	}, [sortSelection, searchingText]);
-
-	useEffect(() => {
-		setSortSelection(searchingText ? SortBy.Searching : SortBy.Newest);
-	}, [searchingText]);
-
-	useEffect(() => {
-		if (isClientSide()) {
-			const searchParams = new URLSearchParams(window.location.search);
-			const sortParam = searchParams.get("SortBy");
-
-			if (sortParam) {
-				const sortEnum = Object.values(SortBy).find(
-					(enumValue) => enumValue.toLowerCase() === sortParam.toLowerCase(),
-				);
-
-				if (sortEnum) {
-					setSortSelection(sortEnum);
-				}
-			}
+		if (searchingText) {
+			const results = searchResult(searchingText);
+			setVideos(results);
+		} else {
+			const sortedData =
+				sortFunctions[sortSelection as keyof typeof sortFunctions]();
+			setVideos(sortedData);
 		}
-	}, []);
+	}, [sortSelection, searchingText]);
 
 	const InvisibleImageButton = styled(ButtonBase)(({ theme }) => ({
 		position: "absolute",
@@ -183,7 +186,7 @@ const Travel: NextPage = () => {
 					</div>
 				</div>
 
-				{sortedMetaData.map((metaData, index) => (
+				{videos.map((metaData, index) => (
 					<div
 						key={`Videos from ${metaData.heading}`}
 						className={styles.libraryContainer}
@@ -200,7 +203,15 @@ const Travel: NextPage = () => {
 										width: "2.5rem",
 									}}
 								/>
-								<h2 className={styles.yearHeadingText}>{metaData.heading}</h2>
+								<h2 className={styles.yearHeadingText}>
+									{metaData.heading === "Tags" ? (
+										<span>
+											Travel with: "<em>{searchingText}</em>"
+										</span>
+									) : (
+										metaData.heading
+									)}
+								</h2>
 							</div>
 						</div>
 						<VideoLibrary videoMetaData={metaData.grouping} />
@@ -210,6 +221,43 @@ const Travel: NextPage = () => {
 			<Footer />
 		</div>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps<Props> = async (
+	context,
+) => {
+	const sortParam = context.query.SortBy;
+	let initialSortBy: SortBy = SortBy.Newest;
+
+	if (sortParam && typeof sortParam === "string") {
+		const sortEnum = Object.values(SortBy).find(
+			(enumValue) => enumValue.toLowerCase() === sortParam.toLowerCase(),
+		);
+
+		if (sortEnum) {
+			initialSortBy = sortEnum;
+		}
+	}
+
+	const sortFunctions = {
+		[SortBy.Newest]: allNewestFirst,
+		[SortBy.Oldest]: allOldestFirst,
+		[SortBy.Best]: allByBest,
+		[SortBy.Worst]: allByWorst,
+		[SortBy.Food]: allByFood,
+		[SortBy.Danger]: allByDanger,
+		[SortBy.Funniest]: funniestOnly,
+	};
+
+	const sortedData =
+		sortFunctions[initialSortBy as keyof typeof sortFunctions]();
+
+	return {
+		props: {
+			sortedMetaData: sortedData,
+			initialSortBy: initialSortBy,
+		},
+	};
 };
 
 export default Travel;
