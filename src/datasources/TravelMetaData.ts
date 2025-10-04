@@ -2,7 +2,7 @@ import { Advisory } from "./../travel/types";
 import { TravelVideoMetaData } from "../travel/types";
 
 export const publicCDNVideoUrl = "https://d3atatnx15erez.cloudfront.net/";
-export const insecureRestrictionKey = "adventuretime";
+export const insecureRestrictionKey = "helloworld";
 export const scorecardColorsPrimary = ["#ffeb3b", "#2781e7", "#cf32eb"];
 export const scorecardColorsSecondary = [
 	"rgb(255, 232, 59)",
@@ -2485,40 +2485,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 		},
 	},
-	// {
-	// 	title: "Thailand 2",
-	// 	year: 2024,
-	// 	hostedLink: "thailand2",
-	// 	link: "thailand-2",
-	// 	restricted: false,
-	// 	instagramLinks: [
-	// 		"https://www.instagram.com/p/CyasF5_rtLn/?hl=en",
-	// 		"https://www.instagram.com/p/C1eWSFRL36K/?hl=en",
-	// 		"https://www.instagram.com/p/C4U0p9jr5WA/?hl=en",
-	// 		"https://www.instagram.com/p/C4s0esMJkUU/?hl=en",
-	// 		"https://www.instagram.com/p/C5ESnw0S7F4/?hl=en",
-	// 		"https://www.instagram.com/p/C5oEtdJp60R/?hl=en",
-	// 		"https://www.instagram.com/p/C5qQMkhJXJY/?hl=en",
-	// 		"https://www.instagram.com/p/C52q31MJEuK/?hl=en",
-	// 		"https://www.instagram.com/p/C55IykNJlLO/?hl=en",
-	// 		"https://www.instagram.com/p/C5_B99MJq5h/?hl=en",
-	// 		"https://www.instagram.com/p/C6BpSSMJ7zT/?hl=en",
-	// 		"https://www.instagram.com/p/C6BwrTnJNvM/?hl=en",
-	// 		"https://www.instagram.com/p/C6ioC21LNqh/?hl=en",
-	// 		"https://www.instagram.com/p/C6rcbsuyXP_/?hl=en",
-	// 		"https://www.instagram.com/p/C6x3PapLWaB/?hl=en",
-	// 		"https://www.instagram.com/p/C68-j4Up45C/?hl=en",
-	// 		"https://www.instagram.com/p/C7AwcDPpTKa/?hl=en",
-	// 		"https://www.instagram.com/p/C7I7WJzLR-H/?hl=en",
-	// 		"https://www.instagram.com/p/C7TXuGQL4iI/?hl=en",
-	// 		"https://www.instagram.com/p/C7hO0S9Jaca/?hl=en",
-	// 		"https://www.instagram.com/p/C7j1aAcvwrb/?hl=en",
-	// 		"https://www.instagram.com/p/C7n9BygJuDh/?hl=en",
-	// 		"https://www.instagram.com/p/C8r1bCISBje/?hl=en",
-	// 		"https://www.instagram.com/p/C9w2JPtzGcm/?hl=en",
-	// 		"https://www.instagram.com/p/C-mRiXHzW4i/?hl=en",
-	// 	],
-	// },
 	{
 		title: "Pakistan",
 		year: 2025,
@@ -3309,6 +3275,171 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				},
 			],
 			tags: ["Adam Melander", "Claire Dubouilh Marino"],
+		},
+	},
+	{
+		title: "Thailand 2",
+		year: 2025,
+		hostedLink: "thailand2",
+		link: "thailand-2",
+		restricted: true,
+		// instagramLinks: [
+		// 	"https://www.instagram.com/p/CyasF5_rtLn/?hl=en",
+		// 	"https://www.instagram.com/p/C1eWSFRL36K/?hl=en",
+		// 	"https://www.instagram.com/p/C4U0p9jr5WA/?hl=en",
+		// 	"https://www.instagram.com/p/C4s0esMJkUU/?hl=en",
+		// 	"https://www.instagram.com/p/C5ESnw0S7F4/?hl=en",
+		// 	"https://www.instagram.com/p/C5oEtdJp60R/?hl=en",
+		// 	"https://www.instagram.com/p/C5qQMkhJXJY/?hl=en",
+		// 	"https://www.instagram.com/p/C52q31MJEuK/?hl=en",
+		// 	"https://www.instagram.com/p/C55IykNJlLO/?hl=en",
+		// 	"https://www.instagram.com/p/C5_B99MJq5h/?hl=en",
+		// 	"https://www.instagram.com/p/C6BpSSMJ7zT/?hl=en",
+		// 	"https://www.instagram.com/p/C6BwrTnJNvM/?hl=en",
+		// 	"https://www.instagram.com/p/C6ioC21LNqh/?hl=en",
+		// 	"https://www.instagram.com/p/C6rcbsuyXP_/?hl=en",
+		// 	"https://www.instagram.com/p/C6x3PapLWaB/?hl=en",
+		// 	"https://www.instagram.com/p/C68-j4Up45C/?hl=en",
+		// 	"https://www.instagram.com/p/C7AwcDPpTKa/?hl=en",
+		// 	"https://www.instagram.com/p/C7I7WJzLR-H/?hl=en",
+		// 	"https://www.instagram.com/p/C7TXuGQL4iI/?hl=en",
+		// 	"https://www.instagram.com/p/C7hO0S9Jaca/?hl=en",
+		// 	"https://www.instagram.com/p/C7j1aAcvwrb/?hl=en",
+		// 	"https://www.instagram.com/p/C7n9BygJuDh/?hl=en",
+		// 	"https://www.instagram.com/p/C8r1bCISBje/?hl=en",
+		// 	"https://www.instagram.com/p/C9w2JPtzGcm/?hl=en",
+		// 	"https://www.instagram.com/p/C-mRiXHzW4i/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/C_-zbRVhvFA/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/DA0GcqiJMZ0/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/DDECJC1pWtS/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/DDG0Vjnpo7v/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/DJhWKcdh_ex/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/DJzFgbxJ70H/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/DKEcavDJ_bA/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/DLhClt4p_Cs/?hl=en",
+		// 	"https://www.instagram.com/franklin.v.moon/p/DLxSKmKpPwn/?hl=en",
+		// ],
+		backupLink:
+			"https://drive.google.com/drive/folders/11N29YAqMzBw8FpRz4ar-qyZrfLQT4Zz7?usp=sharing",
+		newestVideo: false,
+		extras: {
+			deductCountryCount: 1,
+			countries: ["Thailand"],
+			trailer: "thailand2trailer",
+			scorecard: {
+				affordability: [8],
+				food: [6],
+				hospitality: [8],
+				safety: [10],
+				accessibility: [10],
+				video: [9],
+				beauty: [8],
+			},
+			finalScore: 8,
+			summary: [
+				"Sun-kissed beaches, ancient golden temples, bustling street food markets brimming with exotic flavors, and lush jungles hiding hidden waterfalls, all woven together in the land of smiles.",
+				"Here for 2 years on a long-term assignment I got to see and do it all.",
+				"It really is the gateway to asia I think everyone should visit once in their life, theirs a reason Thailand is one of the most popular tourist destinations in the world.",
+			],
+			challenges: [
+				"Police are something different, not a worry if you have cash in your pocket but just hope you don't need their help",
+			],
+			dos: [
+				"Rent a motorbike, it's surprisingly easy and safe, don't drink and drive",
+				"Travel during a festival. Thailand has so many unique, fun and engaging ones to choose.",
+				"Come in the shoulder seasons, yes it will rain but usually not for long and you get all the discounts and no queues",
+			],
+			donts: [
+				"Just stick to Chiang Mai or Phuket, there a so many satellite towns and islands that do it better without the crowds",
+			],
+			advice: {
+				travelLength: "1 Month",
+				currency: "Thai Baht THB",
+				season: "Jan - July",
+				dailyBudget: "$30usd",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/asia/thailand",
+				advice: Advisory.Level2,
+			},
+			music: [
+				{
+					title: "เมร่อน - จ๊ะ นงผณี x GUNNER",
+					link: "https://music.youtube.com/watch?v=WaDqXCwLf2Y&si=rWhWKaHsXb_oSgVR",
+				},
+				{
+					title: "All Star - Smash Mouth",
+					link: "https://music.youtube.com/watch?v=8ay_BkRuv-o&si=8D2BHLv3xdP4xoF-",
+				},
+				{
+					title: "I See The Light - Mandy Moore",
+					link: "https://music.youtube.com/watch?v=h9SAUq5-V7o&si=BcLAUzG1UEfXufmO",
+				},
+				{
+					title: "Colonel Bogey March - John Williams",
+					link: "https://music.youtube.com/watch?v=Mx96NLBAahk&si=iCdEcqsS5PPU8Z_t",
+				},
+				{
+					title: "Postcards - Jeremy Loops",
+					link: "https://music.youtube.com/watch?v=rv8qPReqd9w&si=TU1byjb61TLtfmpu",
+				},
+				{
+					title: "Let Me Hit It - Sporty-O",
+					link: "https://music.youtube.com/watch?v=AfLLzxYROF4&si=3C26vyxX_8SIixJD",
+				},
+				{
+					title: "Rubberband Man - The Spinners",
+					link: "https://music.youtube.com/watch?v=OMb7-upU3Fc&si=XShDCg7mW2qv6Ecw",
+				},
+				{
+					title: "Wonderwall - Oasis",
+					link: "https://music.youtube.com/watch?v=rj5wZqReXQE&si=wKjLBMcsxg-HfYni",
+				},
+				{
+					title: "Stuck At The Bottom - Hogni",
+					link: "https://music.youtube.com/watch?v=G5uqe_tvNfY&si=6fc16Gegkl9j8cOF",
+				},
+				{
+					title: "Bad Boy - Bbno$",
+					link: "https://music.youtube.com/watch?v=euYS4ldiMjc&si=N-mXrr4K_M3D9iTu",
+				},
+				{
+					title: "New Divide - Linkin Park",
+					link: "https://music.youtube.com/watch?v=8ZBnwBVjwOk&si=fJmajmOnwcO6vkPi",
+				},
+			],
+			highlights: [
+				{
+					title: "Songkran Water Festival (7m 10s)",
+					timecode: 430,
+				},
+				{
+					title: "Lantern Festival (9m 42s)",
+					timecode: 582,
+				},
+
+				{
+					title: "Full Moon Party (17m 26s)",
+					timecode: 1046,
+				},
+				{
+					title: "Joining a Band (20m 35s)",
+					timecode: 1235,
+				},
+				{
+					title: "Advanced Diving (23m 13s)",
+					timecode: 1393,
+				},
+				{
+					title: "Muay Thai Beatdown (29m 25s)",
+					timecode: 1765,
+				},
+				{
+					title: "Bonus: Ha Giang Loop (30m)",
+					timecode: 1799,
+				},
+			],
+			tags: ["Phillip Sgardelis", "Claire Dubouilh Marino"],
 		},
 	},
 	// {

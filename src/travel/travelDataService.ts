@@ -22,7 +22,7 @@ export const enhancedTravelVideoMetaData = () => {
 
 export const hasRestrictionBypass = () => {
 	if (isClientSide()) {
-		return localStorage.getItem("restriction-bypass") === "true";
+		return localStorage.getItem("restriction-bypass-v2") === "true";
 	}
 	return false;
 };
@@ -41,7 +41,7 @@ export const videoEnabled = (videoMetaData: TravelVideoMetaData) => {
 		);
 
 		if (prompt === insecureRestrictionKey) {
-			localStorage.setItem("restriction-bypass", "true");
+			localStorage.setItem("restriction-bypass-v2", "true");
 			window.location.reload();
 		} else {
 			window.alert("Password Incorrect");
