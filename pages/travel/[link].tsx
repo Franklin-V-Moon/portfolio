@@ -223,6 +223,7 @@ const VideoContent = ({
 							height='100%'
 							width='100%'
 							id='player'
+							playing={!!extras?.trailer}
 							light={extras?.trailer && <Trailer />}
 							onDuration={(s) => setDurationISO(secondsToISO(s))}
 							onReady={() => setIsPlayerReady(true)}

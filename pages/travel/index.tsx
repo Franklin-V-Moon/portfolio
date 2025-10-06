@@ -200,7 +200,15 @@ const Travel: NextPage = () => {
 										width: "2.5rem",
 									}}
 								/>
-								<h2 className={styles.yearHeadingText}>{metaData.heading}</h2>
+								<h2 className={styles.yearHeadingText}>
+									{metaData.heading === "Tags" ? (
+										<span>
+											Travel with: &quot;<em>{searchingText}</em>&quot;
+										</span>
+									) : (
+										metaData.heading
+									)}
+								</h2>
 							</div>
 						</div>
 						<VideoLibrary videoMetaData={metaData.grouping} />
