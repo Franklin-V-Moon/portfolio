@@ -88,7 +88,7 @@ const AssetsStore: NextPage = () => {
 							</Carousel>
 						</Box>
 					</div>
-					<AssetSearchBar />
+					{/* <AssetSearchBar /> */}
 					<h1>Stock Footage Store</h1>
 					<div className={styles.assetCollectionsContainer}>
 						<div className={styles.assetCollectionsGrid}>

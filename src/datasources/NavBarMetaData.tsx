@@ -8,8 +8,6 @@ const setColor = (tab: number, id: number, color: string) => {
 	return tab === id ? color : colors.brightGrey;
 };
 
-const isAssetsStoreEnabled = false;
-
 export const tabsData: {
 	label?: string;
 	color: string;
@@ -77,7 +75,6 @@ export const tabsData: {
 			/>
 		),
 		order: 4,
-		disabled: !isAssetsStoreEnabled,
 		pageDescription:
 			"Assets of digital products, stock footage and free wallpaper I've collected available for purchase",
 	},
