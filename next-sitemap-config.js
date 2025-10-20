@@ -1,6 +1,7 @@
 const travelMetaData = require("./utils/sitemap-meta/TravelMetaData.json");
 const guideMetaData = require("./utils/sitemap-meta/GuideMetaData.json");
-const siteUrl = "https://franklin-v-moon.dev"; 
+const assetMetaData = require("./utils/sitemap-meta/AssetMetaData.json");
+const siteUrl = "https://franklin-v-moon.dev";
 
 const normalizeTravelSlug = (slug) => {
 	if (!slug) return null;
@@ -18,6 +19,29 @@ const normalizeGuideSlug = (slug) => {
 		.replace(/^\/+|\/+$/g, "")
 		.toLowerCase();
 	return `/guides/${cleaned}`;
+};
+
+const normalizeAssetPageSlug = (slug) => {
+	if (!slug) return null;
+	const cleaned = String(slug)
+		.trim()
+		.replace(/^\/+|\/+$/g, "")
+		.toLowerCase();
+	return `/assets-store/${cleaned}`;
+};
+
+const generateWallpaperUrls = (hostedLink, wallpapers) => {
+	if (!hostedLink || !Array.isArray(wallpapers) || wallpapers.length === 0)
+		return [];
+	const baseDir = hostedLink
+		.trim()
+		.replace(/^\/+|\/+$/g, "")
+		.toLowerCase();
+	return wallpapers.map((wallpaper) => ({
+		loc: `${siteUrl}/assets/${baseDir}/${wallpaper}`,
+		changefreq: "yearly",
+		priority: 0.4,
+	}));
 };
 
 module.exports = {
@@ -59,8 +83,9 @@ module.exports = {
 				seen.add(loc);
 
 				paths.push({
+					loc,
 					changefreq: "yearly",
-					priority: 0.6,
+					priority: 0.5,
 				});
 			}
 		}
@@ -72,10 +97,35 @@ module.exports = {
 				seen.add(loc);
 
 				paths.push({
-					loc, 
+					loc,
 					changefreq: "yearly",
 					priority: 0.5,
 				});
+			}
+		}
+
+		if (Array.isArray(assetMetaData)) {
+			for (const asset of assetMetaData) {
+				const loc = normalizeAssetPageSlug(asset.hostedLink);
+				if (loc && !seen.has(loc)) {
+					seen.add(loc);
+					paths.push({
+						loc,
+						changefreq: "monthly",
+						priority: 0.5,
+					});
+				}
+
+				const wallpaperUrls = generateWallpaperUrls(
+					asset.hostedLink,
+					asset.wallpapers,
+				);
+				for (const wallpaperPath of wallpaperUrls) {
+					if (!seen.has(wallpaperPath.loc)) {
+						seen.add(wallpaperPath.loc);
+						paths.push(wallpaperPath);
+					}
+				}
 			}
 		}
 
