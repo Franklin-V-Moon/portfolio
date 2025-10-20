@@ -42,7 +42,6 @@ export const getFeaturedItems = (
 		wallpaper: string;
 		collection: AssetCollectionMetaData;
 	}[] = [];
-
 	collections.forEach((collection) => {
 		collection.wallpapers.forEach((wallpaper) => {
 			allWallpapers.push({ wallpaper, collection });
@@ -55,7 +54,7 @@ export const getFeaturedItems = (
 		const { item, collection } = allAssetItems.splice(randomIndex, 1)[0];
 		selectedAssetItems.push({
 			...item,
-			title: `${collection.title} Clip ${item.isPack ? "Collection" : ""}`,
+			title: collection.title,
 		});
 	}
 
@@ -64,7 +63,7 @@ export const getFeaturedItems = (
 		const randomIndex = Math.floor(wallpaperRand() * allWallpapers.length);
 		const { wallpaper, collection } = allWallpapers.splice(randomIndex, 1)[0];
 		selectedWallpaperItems.push({
-			title: `${collection.title} Wallpapers`,
+			title: collection.title,
 			price: null,
 			thumbnail: `${collection.hostedLink}/${wallpaper}`,
 			link: `assets-store/${collection.hostedLink}`,

@@ -5,7 +5,6 @@ import {
 	CardMedia,
 	Typography,
 } from "@mui/material";
-import PermMediaIcon from "@mui/icons-material/PermMedia";
 
 import styles from "./assetitem.module.scss";
 import { AssetItemMetaData } from "../../types";
@@ -36,6 +35,9 @@ export const AssetItem = ({
 					image={`/assets/${item.thumbnail}`}
 					style={{
 						borderRadius: "5px",
+						boxShadow: item.isPack
+							? "-1px -1px 1px 1px rgb(83, 83, 83), -4px -4px 1px 1px rgb(58, 58, 58)"
+							: "none",
 					}}
 					alt={item.title}
 				/>
@@ -56,11 +58,6 @@ export const AssetItem = ({
 							sx={{ fontWeight: "bold", fontSize: "70%" }}>
 							{item.length}s
 						</Typography>
-					</Box>
-				)}
-				{item.isPack && (
-					<Box className={styles.videoLengthTag}>
-						<PermMediaIcon sx={{ fontSize: 12 }} />
 					</Box>
 				)}
 			</CardActionArea>
