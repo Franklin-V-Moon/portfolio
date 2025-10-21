@@ -3410,17 +3410,17 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			highlights: [
 				{
-					title: "Songkran Water Festiva",
-					timecode: 430,
+					title: "Songkran Water Festival",
+					timecode: 436,
 				},
 				{
-					title: "Lantern Festiva",
-					timecode: 582,
+					title: "Lantern Festival",
+					timecode: 586,
 				},
 
 				{
 					title: "Full Moon Party",
-					timecode: 1046,
+					timecode: 1052,
 				},
 				{
 					title: "Joining a Band",
@@ -3432,11 +3432,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				},
 				{
 					title: "Muay Thai Beatdown",
-					timecode: 1765,
+					timecode: 1774,
 				},
 				{
 					title: "Bonus: Ha Giang Loop",
-					timecode: 1799,
+					timecode: 1827,
 				},
 			],
 			tags: ["Phillip Sgardelis", "Claire Dubouilh Marino"],
