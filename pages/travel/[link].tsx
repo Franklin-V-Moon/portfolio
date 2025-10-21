@@ -167,14 +167,27 @@ const VideoContent = ({
 	const Trailer = () => {
 		return (
 			<div className={styles.trailerPlayerWrapper}>
-				<div className={styles.trailerLabel}>TRAILER</div>
+				<div
+					className={styles.trailerLabel}
+					style={{
+						animation: "fadeOut 10000ms ease-in",
+						opacity: 0,
+					}}>
+					TRAILER
+				</div>
 				<div
 					className={styles.trailerCTA}
 					style={{
-						animation: "fadeIn 1000ms ease-in-out",
-						opacity: 1,
+						animation: "fadeOut 10000ms ease-in",
+						opacity: 0,
 					}}>
-					FULL VIDEO
+					<div
+						style={{
+							animation: "fadeIn 500ms ease-out",
+							opacity: 1,
+						}}>
+						FULL VIDEO
+					</div>
 				</div>
 				<ReactPlayer
 					url={`${publicCDNVideoUrl}${extras?.trailer}.mp4`}
