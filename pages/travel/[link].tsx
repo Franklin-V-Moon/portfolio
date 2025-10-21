@@ -166,15 +166,19 @@ const VideoContent = ({
 
 	const Trailer = () => {
 		return (
-			<ReactPlayer
-				url={`${publicCDNVideoUrl}${extras?.trailer}.mp4`}
-				playing={true}
-				loop={true}
-				muted={true}
-				controls={false}
-				width='100%'
-				height='100%'
-			/>
+			<div className={styles.trailerPlayerWrapper}>
+				<div className={styles.trailerLabel}>TRAILER</div>
+				<div className={styles.trailerCTA}>FULL VIDEO</div>
+				<ReactPlayer
+					url={`${publicCDNVideoUrl}${extras?.trailer}.mp4`}
+					playing={true}
+					loop={true}
+					muted={true}
+					controls={false}
+					width='100%'
+					height='100%'
+				/>
+			</div>
 		);
 	};
 
@@ -232,9 +236,7 @@ const VideoContent = ({
 							<div className={styles.skipToContainer}>
 								{extras && extras.highlights && (
 									<>
-										<h5 className={styles.skipToText}>
-											Highlight{extras.highlights.length > 1 ? "s" : ""}:
-										</h5>
+										<h5 className={styles.skipToText}>Skip to:</h5>
 										<div>
 											{extras.highlights.map((item) => (
 												<Tooltip
@@ -301,7 +303,7 @@ const VideoContent = ({
 						)}
 						<div className={styles.protectedVideoContainer}>
 							<h5 className={styles.restrictedVideo}>
-								Video Locked, Know The Password?
+								Full Video Locked, Know The Password?
 							</h5>
 							<h5
 								onClick={() => videoEnabled(metaData)}
@@ -599,29 +601,30 @@ const VideoContent = ({
 							</div>
 						)}
 
-						{extras.extraVideos && (
-							<div className={styles.extraVideos}>
-								<h2>Bonus Videos</h2>
-								<div className={styles.videoCardsContainer}>
-									{extras.extraVideos.map((linkItem) => (
-										<div key={linkItem.title} className={styles.videoCard}>
-											<h4 className={styles.videoCardTitle}>
-												{linkItem.title}
-											</h4>
-											<ReactPlayer
-												url={`${publicCDNVideoUrl}${linkItem.hostedLink}.mp4`}
-												controls
-												pip
-												playing={false}
-												volume={0.3}
-												height='100%'
-												width='100%'
-											/>
-										</div>
-									))}
+						{extras.extraVideos &&
+							(hasRestrictionBypass() || !metaData.restricted) && (
+								<div className={styles.extraVideos}>
+									<h2>Bonus Videos</h2>
+									<div className={styles.videoCardsContainer}>
+										{extras.extraVideos.map((linkItem) => (
+											<div key={linkItem.title} className={styles.videoCard}>
+												<h4 className={styles.videoCardTitle}>
+													{linkItem.title}
+												</h4>
+												<ReactPlayer
+													url={`${publicCDNVideoUrl}${linkItem.hostedLink}.mp4`}
+													controls
+													pip
+													playing={false}
+													volume={0.3}
+													height='100%'
+													width='100%'
+												/>
+											</div>
+										))}
+									</div>
 								</div>
-							</div>
-						)}
+							)}
 
 						<div className={styles.extrasContainer}>
 							{extras.music && (

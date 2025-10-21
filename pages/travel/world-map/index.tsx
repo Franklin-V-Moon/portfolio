@@ -39,7 +39,7 @@ const WorldMapPage: NextPage = () => {
 					animation: "fadeIn 2000ms ease-in-out",
 					opacity: 1,
 				}}>
-				Where did I go...
+				Where did we go...
 			</h1>
 
 			<div className={styles.mapReturnContainer}>

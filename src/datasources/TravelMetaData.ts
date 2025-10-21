@@ -212,7 +212,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "White Water Rafting (1m 11s)",
+					title: "White Water Rafting",
 					timecode: 71,
 				},
 			],
@@ -226,6 +226,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					link: "https://music.youtube.com/watch?v=yp1OfqMGktk&si=9L3Z9FM4UWS4OWV2",
 				},
 			],
+			tags: ["Keegan Guidotti"],
 		},
 	},
 	{
@@ -299,6 +300,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					hostedLink: "registeredShapeCutter",
 				},
 			],
+			tags: ["Keegan Guidotti"],
 		},
 	},
 	{
@@ -348,7 +350,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Driving a Haagland (11m 51s)",
+					title: "Driving a Haagland",
 					timecode: 711,
 				},
 			],
@@ -417,11 +419,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "On The News (15m)",
+					title: "On The News",
 					timecode: 900,
 				},
 				{
-					title: "Flying Home In COVID (28m 54s)",
+					title: "Flying Home In COVID",
 					timecode: 1734,
 				},
 			],
@@ -465,6 +467,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					link: "https://japanrailpass.net/en/",
 				},
 			],
+			tags: ["Keegan Guidotti"],
 		},
 	},
 	// {
@@ -538,7 +541,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					link: "https://music.youtube.com/watch?v=kb9fbX2Ahpc&si=axlYM6lCJLlmjJSU",
 				},
 			],
-			tags: ["Phillip Sgardelis"],
+			tags: ["Phillip Sgardelis", "Keegan Guidotti"],
 		},
 	},
 	{
@@ -586,11 +589,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Abandoned Theme Park (5m 33s)",
+					title: "Abandoned Theme Park",
 					timecode: 333,
 				},
 				{
-					title: "Demilitarized Zone (7m 14s)",
+					title: "Demilitarized Zone",
 					timecode: 434,
 				},
 			],
@@ -659,15 +662,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "DevSlam (1m 3s)",
+					title: "DevSlam",
 					timecode: 63,
 				},
 				{
-					title: "Sand Surfing (4m 30s)",
+					title: "Sand Surfing",
 					timecode: 270,
 				},
 				{
-					title: "Skiing (5m 12s)",
+					title: "Skiing",
 					timecode: 312,
 				},
 			],
@@ -741,6 +744,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					link: "https://music.youtube.com/watch?v=SfYCVetiL30&si=w9zfpQakvakeaBFl",
 				},
 			],
+			tags: ["Keegan Guidotti"],
 		},
 	},
 	{
@@ -804,11 +808,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Train Street (8m 13s)",
+					title: "Train Street",
 					timecode: 493,
 				},
 				{
-					title: "Chu Chi Tunnels (12m 41s)",
+					title: "Chu Chi Tunnels",
 					timecode: 761,
 				},
 			],
@@ -973,15 +977,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Kalaripayattu Martial Arts (4m 31s)",
+					title: "Kalaripayattu Martial Arts",
 					timecode: 271,
 				},
 				{
-					title: "Cooking Class (5m 6s)",
+					title: "Cooking Class",
 					timecode: 306,
 				},
 				{
-					title: "Ant Soldier (14m 50s)",
+					title: "Ant Soldier ",
 					timecode: 890,
 				},
 			],
@@ -1132,7 +1136,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Meet the Kurdish Democratic Party (2m 35s)",
+					title: "Meet the Kurdish Democratic Party",
 					timecode: 155,
 				},
 			],
@@ -1208,15 +1212,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Wadi Rum (3m 16s)",
+					title: "Wadi Rum",
 					timecode: 196,
 				},
 				{
-					title: "Arab Freedom Fighters Attack Heritage Train (5m 55s)",
+					title: "Arab Freedom Fighters Attack Heritage Train",
 					timecode: 355,
 				},
 				{
-					title: "Petra (8m 31s)",
+					title: "Petra",
 					timecode: 511,
 				},
 			],
@@ -1302,7 +1306,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Indoor Skydiving (12m 5s)",
+					title: "Indoor Skydiving",
 					timecode: 725,
 				},
 			],
@@ -1383,15 +1387,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Pro-Hijab Protests (1m 51s)",
+					title: "Pro-Hijab Protests",
 					timecode: 111,
 				},
 				{
-					title: "6 Cents Per Litre (6m 13s)",
+					title: "6 Cents Per Litre",
 					timecode: 373,
 				},
 				{
-					title: "ZDF Interview (15m 29s)",
+					title: "ZDF Interview",
 					timecode: 929,
 				},
 			],
@@ -1501,23 +1505,23 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Bad Date (2m 31s)",
+					title: "Bad Date",
 					timecode: 151,
 				},
 				{
-					title: "Palestine & Australian National Anthems (6m 7s)",
+					title: "Palestine & Australian National Anthem",
 					timecode: 367,
 				},
 				{
-					title: "Stalin's House (10m 27s)",
+					title: "Stalin's House",
 					timecode: 627,
 				},
 				{
-					title: "Tskaltubo - Abandoned Palaces (15m 27s)",
+					title: "Tskaltubo - Abandoned Palaces",
 					timecode: 927,
 				},
 				{
-					title: "Mud Volcanoes (18m 54s)",
+					title: "Mud Volcanoes",
 					timecode: 1134,
 				},
 			],
@@ -1612,15 +1616,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Crete Nightlife (4m 39s)",
+					title: "Crete Nightlife",
 					timecode: 279,
 				},
 				{
-					title: "Frankie Jr. (6m 17s)",
+					title: "Frankie Jr.",
 					timecode: 377,
 				},
 				{
-					title: "Santorini (9m 50s)",
+					title: "Santorini",
 					timecode: 590,
 				},
 			],
@@ -1703,15 +1707,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Taxi Driver Brawl (4m 10s)",
+					title: "Taxi Driver Brawl",
 					timecode: 250,
 				},
 				{
-					title: "Gallipoli (6m 42s)",
+					title: "Gallipoli",
 					timecode: 402,
 				},
 				{
-					title: "Hot Air Balloons (11m 17s)",
+					title: "Hot Air Balloons",
 					timecode: 677,
 				},
 			],
@@ -1794,7 +1798,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Meet Hezbollah (4m 16s)",
+					title: "Meet Hezbollah",
 					timecode: 256,
 				},
 			],
@@ -1859,23 +1863,23 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Lost in Damascus (3m 34s)",
+					title: "Lost in Damascus",
 					timecode: 214,
 				},
 				{
-					title: "Aramaic - Jesus Native Language (5m 59s)",
+					title: "Aramaic - Jesus Native Language",
 					timecode: 359,
 				},
 				{
-					title: "Maramarita Festival (7m 42s)",
+					title: "Maramarita Festival",
 					timecode: 462,
 				},
 				{
-					title: "Aleppo (9m 31s)",
+					title: "Aleppo",
 					timecode: 571,
 				},
 				{
-					title: "Taylor Swift Concert (12m 10s)",
+					title: "Taylor Swift Concert",
 					timecode: 730,
 				},
 			],
@@ -1951,11 +1955,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Wind Surfing (36s)",
+					title: "Wind Surfing",
 					timecode: 36,
 				},
 				{
-					title: "Ghost City (1m 52s)",
+					title: "Ghost City",
 					timecode: 112,
 				},
 			],
@@ -1993,7 +1997,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				hospitality: [3, 6],
 				safety: [7, 6],
 				accessibility: [8, 3],
-				video: [9, 9],
+				video: [8, 8],
 			},
 			finalScore: 8,
 			summary: [
@@ -2023,15 +2027,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Bethlehem (2m 14s)",
+					title: "Bethlehem",
 					timecode: 134,
 				},
 				{
-					title: "How The Sun Works (6m 5s)",
+					title: "How The Sun Works",
 					timecode: 365,
 				},
 				{
-					title: "Mount Temptation (8m 15s)",
+					title: "Mount Temptation",
 					timecode: 495,
 				},
 			],
@@ -2151,7 +2155,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				hospitality: [7],
 				safety: [7],
 				accessibility: [3],
-				video: [9],
+				video: [8],
 			},
 			finalScore: 6,
 			summary: [
@@ -2178,15 +2182,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Rural Breakdown (5m 18s)",
+					title: "Rural Breakdown",
 					timecode: 318,
 				},
 				{
-					title: "Atauro Flight (6m 59s)",
+					title: "Atauro Flight",
 					timecode: 419,
 				},
 				{
-					title: "Crab Rave (8m 15s)",
+					title: "Crab Rave",
 					timecode: 495,
 				},
 			],
@@ -2271,19 +2275,19 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Sexually Harassed (5m 31s)",
+					title: "Sexually Harassed",
 					timecode: 331,
 				},
 				{
-					title: "Truck Hitchhiking (6m 13s)",
+					title: "Truck Hitchhiking",
 					timecode: 373,
 				},
 				{
-					title: "Barishal University Presentation (8m 34s)",
+					title: "Barishal University Presentation",
 					timecode: 514,
 				},
 				{
-					title: "Train Surfing (14m 26s)",
+					title: "Train Surfing",
 					timecode: 866,
 				},
 			],
@@ -2370,15 +2374,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Diwali Festival (3m 39s)",
+					title: "Diwali Festival",
 					timecode: 219,
 				},
 				{
-					title: "National Archery Competition (8m 31s)",
+					title: "National Archery Competition",
 					timecode: 511,
 				},
 				{
-					title: "First Tattoo (12m 53s)",
+					title: "First Tattoo",
 					timecode: 773,
 				},
 			],
@@ -2457,15 +2461,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Swimming with Sharks (3m 9s)",
+					title: "Swimming with Shark",
 					timecode: 189,
 				},
 				{
-					title: "Eating a Fly (9m 28s)",
+					title: "Eating a Fly",
 					timecode: 568,
 				},
 				{
-					title: "Excessive Fireworks (12m 6s)",
+					title: "Excessive Fireworks",
 					timecode: 726,
 				},
 			],
@@ -2541,11 +2545,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Car Crash (7m 13s)",
+					title: "Car Crash",
 					timecode: 433,
 				},
 				{
-					title: "Wagah Border Ceremony (14m 49s)",
+					title: "Wagah Border Ceremony",
 					timecode: 889,
 				},
 			],
@@ -2654,15 +2658,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Taliban Interview (4m 42s)",
+					title: "Taliban Interview",
 					timecode: 282,
 				},
 				{
-					title: "Trying Mascara (8m 54s)",
+					title: "Trying Mascara",
 					timecode: 534,
 				},
 				{
-					title: "Failing Ramadan (12m 9s)",
+					title: "Failing Ramadan",
 					timecode: 729,
 				},
 			],
@@ -2945,11 +2949,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Thingyan Water Festival (3m 38s)",
+					title: "Thingyan Water Festival",
 					timecode: 218,
 				},
 				{
-					title: "Kalaw Earthquake (7m 11s)",
+					title: "Kalaw Earthquake",
 					timecode: 431,
 				},
 			],
@@ -3148,15 +3152,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			highlights: [
 				{
-					title: "Climbing a 100m Sand Dune (9m 57s)",
+					title: "Climbing a 100m Sand Dune",
 					timecode: 597,
 				},
 				{
-					title: "Sandstorm (12m 41s)",
+					title: "Sandstorm",
 					timecode: 761,
 				},
 				{
-					title: "Gobi Desert Breakdown (16m 43s)",
+					title: "Gobi Desert Breakdown",
 					timecode: 1003,
 				},
 			],
@@ -3262,15 +3266,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			highlights: [
 				{
-					title: "Tianman Square (3m 12s)",
+					title: "Tianman Square",
 					timecode: 197,
 				},
 				{
-					title: "Terracotta Warriors (15m 39s)",
+					title: "Terracotta Warriors",
 					timecode: 939,
 				},
 				{
-					title: "Rock, Paper Scissors (20m 59s)",
+					title: "Rock, Paper Scissors",
 					timecode: 1259,
 				},
 			],
@@ -3285,9 +3289,9 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		restricted: true,
 		instagramLinks: [
 			"https://www.instagram.com/p/CyasF5_rtLn/?hl=en",
-			"https://www.instagram.com/p/C5qQMkhJXJY/?hl=en",
-			"https://www.instagram.com/p/C6rcbsuyXP_/?hl=en",
+			"https://www.instagram.com/p/C6BwrTnJNvM/?hl=en&img_index=1",
 			"https://www.instagram.com/p/C7j1aAcvwrb/?hl=en",
+			"https://www.instagram.com/p/DC3HcY_J6jo/?hl=en&img_index=1",
 			"https://www.instagram.com/franklin.v.moon/p/C_-zbRVhvFA/?hl=en",
 			"https://www.instagram.com/franklin.v.moon/p/DLxSKmKpPwn/?hl=en",
 		],
@@ -3406,32 +3410,32 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			highlights: [
 				{
-					title: "Songkran Water Festival (7m 10s)",
+					title: "Songkran Water Festiva",
 					timecode: 430,
 				},
 				{
-					title: "Lantern Festival (9m 42s)",
+					title: "Lantern Festiva",
 					timecode: 582,
 				},
 
 				{
-					title: "Full Moon Party (17m 26s)",
+					title: "Full Moon Party",
 					timecode: 1046,
 				},
 				{
-					title: "Joining a Band (20m 35s)",
+					title: "Joining a Band",
 					timecode: 1235,
 				},
 				{
-					title: "Advanced Diving (23m 13s)",
+					title: "Advanced Diving",
 					timecode: 1393,
 				},
 				{
-					title: "Muay Thai Beatdown (29m 25s)",
+					title: "Muay Thai Beatdown",
 					timecode: 1765,
 				},
 				{
-					title: "Bonus: Ha Giang Loop (30m)",
+					title: "Bonus: Ha Giang Loop",
 					timecode: 1799,
 				},
 			],
@@ -3507,11 +3511,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 	// 		],
 	// highlights: [
 	// 	{
-	// 		title: " (0m 0s)",
+	// 		title: "",
 	// 		timecode: 123,
 	// 	},
 	// 	{
-	// 		title: " (0m 0s)",
+	// 		title: "",
 	// 		timecode: 123,
 	// 	},
 	// ],
