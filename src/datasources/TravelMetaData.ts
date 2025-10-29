@@ -3286,6 +3286,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		year: 2025,
 		hostedLink: "thailand2",
 		link: "thailand-2",
+		restricted: false,
 		instagramLinks: [
 			"https://www.instagram.com/p/CyasF5_rtLn/?hl=en",
 			"https://www.instagram.com/p/C6BwrTnJNvM/?hl=en&img_index=1",
