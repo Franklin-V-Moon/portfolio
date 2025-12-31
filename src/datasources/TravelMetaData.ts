@@ -2461,7 +2461,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			highlights: [
 				{
-					title: "Swimming with Shark",
+					title: "Swimming with Sharks",
 					timecode: 189,
 				},
 				{
@@ -2469,7 +2469,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					timecode: 568,
 				},
 				{
-					title: "Excessive Fireworks",
+					title: "Firework Whoops",
 					timecode: 726,
 				},
 			],
