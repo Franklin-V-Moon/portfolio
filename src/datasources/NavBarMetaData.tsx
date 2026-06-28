@@ -63,19 +63,19 @@ export const tabsData: {
 		pageDescription:
 			"Videos from dozens of countries, world map of visited places, and stories of culture, risks, and adventure.",
 	},
-	{
-		label: "ASSETS",
-		color: "#ce93d8",
-		gradient: "defaultPurpleGradient",
-		route: "/assets-store",
-		icon: (tab: number) => (
-			<ShoppingCartOutlinedIcon
-				className={setColor(tab, 3, colors.defaultPurple)}
-				style={{ height: "20px", width: "20px" }}
-			/>
-		),
-		order: 4,
-		pageDescription:
-			"Assets of digital products, stock footage and free wallpaper I've collected available for purchase",
-	},
+	// {
+	// 	label: "ASSETS",
+	// 	color: "#ce93d8",
+	// 	gradient: "defaultPurpleGradient",
+	// 	route: "/assets-store",
+	// 	icon: (tab: number) => (
+	// 		<ShoppingCartOutlinedIcon
+	// 			className={setColor(tab, 3, colors.defaultPurple)}
+	// 			style={{ height: "20px", width: "20px" }}
+	// 		/>
+	// 	),
+	// 	order: 4,
+	// 	pageDescription:
+	// 		"Assets of digital products, stock footage and free wallpaper I've collected available for purchase",
+	// },
 ];
