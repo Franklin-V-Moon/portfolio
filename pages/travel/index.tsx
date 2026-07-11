@@ -146,8 +146,9 @@ const Travel: NextPage = () => {
 						alt='A dotted world map marking all countries visited by Franklin Von Moon'
 						width={3840}
 						height={1878}
-						layout='responsive'
+						sizes='100vw'
 						className={styles.worldMap}
+						style={{ width: "100%", height: "auto" }}
 					/>
 					<InvisibleImageButton
 						focusRipple

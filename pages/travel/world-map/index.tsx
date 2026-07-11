@@ -63,7 +63,8 @@ const WorldMapPage: NextPage = () => {
 					alt='A full map of the world with everywhere I have been marked'
 					width={3840}
 					height={1878}
-					layout='responsive'
+					sizes='100vw'
+					style={{ width: "100%", height: "auto" }}
 				/>
 			</div>
 			<div className={styles.mapGesture}>

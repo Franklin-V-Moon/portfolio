@@ -75,7 +75,8 @@ const AssetCollection = ({
 									alt={`Wallpaper: ${wallpaper}`}
 									width={3840}
 									height={2160}
-									layout='responsive'
+									sizes='100vw'
+									style={{ width: "100%", height: "auto" }}
 								/>
 							</div>
 						))}

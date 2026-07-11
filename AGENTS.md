@@ -64,6 +64,7 @@ See `.ai/README.md` for the full rationale.
 4. Do not add comments to the code
 5. IMPORTANT: When hitting issues, always identify root cause before trying a fix. Do not guess. Prove with evidence, then fix the root cause.
 6. Don't write or create commits unless instructed to do so
+7. For unit tests, try to do TDD and mock as little as possible while still being clean. Never worry about code coverage, just go for quality tests that test functionality in a logical reasonable way
 
 ## Command Explainer
 
