@@ -31,10 +31,11 @@ Everything else is either dead code (safe, mechanical deletions) or a well-under
 
 These are high priority bugs. Fix before or alongside anything else, since they undermine trust in the rest of the toolchain.
 
-### P0.1 — Test suite cannot run
+### FIXED P0.1 — Test suite cannot run — RESOLVED (2026-07-12)
 **Files:** `jest.config.js:9`, `package.json` (devDependencies)
 `testEnvironment: "jest-environment-jsdom"` is configured but the `jest-environment-jsdom` package is **not installed** (absent from `package.json`, `yarn.lock`, and `node_modules`). Jest ≥28 stopped bundling jsdom by default, so this fails immediately with `Test environment jest-environment-jsdom cannot be found` on a clean install.
 **Action:** `yarn add -D jest-environment-jsdom` (pin to a version compatible with the installed `jest@^29.7.0`, or do this as part of the Jest 29→30 bump in P1).
+**Resolution:** Ran `yarn add --dev jest-environment-jsdom`, which also surfaced and required fixing two related install-state bugs: stale `node_modules` hoisting (a full `rm -rf node_modules && yarn install` was needed — incremental reinstalls weren't sufficient) and a missing `@testing-library/dom` peer dependency of `@testing-library/react@16`. `yarn test` now runs; 15 of 20 suites pass. Remaining failures are unrelated application/test bugs (P0.2 covers `Navbar.test.tsx`; `textFormatter.test.ts`, `SalaryExpectationsSection.test.tsx`, `BioDescription.test.tsx`, `ContactCard.test.tsx` are not yet triaged).
 
 ### P0.2 — Stale test asserts a removed component API
 **File:** `src/global/navigation/Navbar.test.tsx:17,23-28`
