@@ -23,8 +23,5 @@
 		"src/homepage/contact",
 		"src/**/*"
 	],
-	"exclude": ["node_modules"],
-	"paths": {
-		"react": ["./node_modules/@types/react"]
-	}
+	"exclude": ["node_modules"]
 }

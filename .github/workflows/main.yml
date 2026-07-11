@@ -1,4 +1,4 @@
-name: Run Unit Tests
+name: CI
 
 on:
   push:
@@ -12,20 +12,27 @@ on:
 
 jobs:
   test:
-    name: Running Tests
+    name: Lint, Build & Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get Node...
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.14.0
-
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Get Node...
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: "yarn"
 
       - name: Add Dependencies
         run: yarn
 
+      - name: Lint
+        run: yarn lint
+
       - name: Run Tests
         run: yarn test
+
+      - name: Build
+        run: yarn build

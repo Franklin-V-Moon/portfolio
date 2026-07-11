@@ -53,15 +53,15 @@ module.exports = nextConfig;   // <-- overwrites the object above; webpack() nev
 Verified via `node -e "require('./next.config.js')"`: the resolved config has no `webpack` key. `@svgr/webpack` is installed and documented in `AGENTS.md` ("SVGs are imported as React components via `@svgr/webpack`") but **is not functioning** — a repo-wide grep found zero `import X from "*.svg"` component-style imports; every SVG is referenced as a plain URL string. So this has probably been broken/unused for a long time with no user-facing symptom.
 **Resolution:** User chose option (b) — deleted the dead `webpack()` block from `next.config.js` (now a single `module.exports = nextConfig`), ran `yarn remove @svgr/webpack` to drop it from `package.json`/`yarn.lock`, and corrected the `AGENTS.md` claim to state SVGs are referenced as plain URL strings, not imported as components. Verified: resolved config is `{ reactStrictMode: true, images: { unoptimized: true } }`, `svgr` no longer appears in `package.json`/`yarn.lock`, and `yarn lint` shows only the same pre-existing unrelated warnings.
 
-### P0.4 — `tsconfig.json` `paths` mapping silently ignored
+### FIXED P0.4 — `tsconfig.json` `paths` mapping silently ignored
 **File:** `tsconfig.json:27-29`
 ```json
 "paths": { "react": ["./node_modules/@types/react"] }
 ```
 This is a **top-level sibling key**, not nested inside `compilerOptions` — TypeScript only honors `paths` inside `compilerOptions`, so this has never taken effect. Whatever duplicate-React-types problem this was meant to paper over is currently unaddressed by config (may or may not still be a live issue — verify after fixing).
-**Action:** Move inside `compilerOptions` (if still needed after checking `yarn why @types/react` for duplicates) or delete it entirely if it's vestigial.
+**Resolution:** `yarn why @types/react` confirmed nested duplicate copies do exist (`@types/react@17.0.39` pulled in transitively by `@types/react-dom`, `@types/material-ui`, and MUI's `react-transition-group` types, alongside the hoisted `@types/react@18.3.3`), but `npx tsc --noEmit` produces an identical error count (168, all pre-existing/unrelated missing-`@types/jest` errors) whether the `paths` mapping is active or not — proven by temporarily moving it into `compilerOptions` and diffing output. TypeScript already resolves the single hoisted `@types/react` for app code by default, and `skipLibCheck` suppresses conflicts from the nested copies, so the remap was a genuine no-op. Deleted the vestigial `paths` key entirely; typecheck output unchanged.
 
-### P0.5 — CI is not a real quality gate
+### FIXED P0.5 — CI is not a real quality gate
 **File:** `.github/workflows/main.yml`
 ```yaml
 - uses: actions/setup-node@v1        # unsupported major, current is v4
@@ -71,7 +71,7 @@ This is a **top-level sibling key**, not nested inside `compilerOptions` — Typ
 - run: yarn test                     # currently fails per P0.1
 ```
 No `yarn lint`, no `yarn build`/typecheck step — `tsc` only runs implicitly inside `next build`, and `next build` never runs in CI, so **type errors and lint failures can merge to `main` undetected**. The postbuild sitemap pipeline (`export-meta.ts` + `next-sitemap`) is also never exercised.
-**Action:** Bump to `actions/checkout@v4` + `actions/setup-node@v4` with a current Node LTS (matching a real `engines` field, see P1.9), add `yarn lint` and `yarn build` steps, enable `cache: 'yarn'`.
+**Resolution:** Bumped to `actions/checkout@v4` + `actions/setup-node@v4` (checkout now runs first, before toolchain setup), pinned `node-version: 24` (matches the observed local dev baseline noted in P1.13; formal `engines`/`.nvmrc` reconciliation is still deferred to P1.13), enabled `cache: "yarn"`, and added `yarn lint` and `yarn build` steps alongside `yarn test`. Verified locally: `yarn lint` passes (pre-existing warnings only), `yarn build` (including the postbuild sitemap pipeline) succeeds. `yarn test` still fails on 4 suites (`textFormatter`, `SalaryExpectationsSection`, `BioDescription`, `ContactCard`) — these are the same pre-existing, untriaged failures flagged in P0.1's resolution, not a regression from this change; CI will now correctly surface them instead of masking them behind a broken Node 16/missing-step pipeline.
 
 ### P0.6 - Fix all failing unit tests
 Since fixing P0.1, we now see 7 failing unit tests that need to be reviewed and potentially fixed
