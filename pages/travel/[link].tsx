@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { InferGetServerSidePropsType } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 import Head from "next/head";
 import { ErrorContent } from "../../utils/error/ErrorContent";
@@ -46,14 +46,10 @@ import { ProgressBar } from "../../src/travel/components/ProgressBar";
 import { useEffect, useRef, useState } from "react";
 import { InstagramEmbed } from "react-social-media-embed/dist/components/embeds/InstagramEmbed";
 
-type ServerSideContext = {
-	params: { link: string | string[] | undefined };
-};
-
 const VideoContent = ({
 	metaData,
 	upNext,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const {
 		title,
 		year,
@@ -718,12 +714,29 @@ const VideoContent = ({
 	);
 };
 
-export const getServerSideProps = async (context: ServerSideContext) => {
-	const { link } = context.params;
+type Params = {
+	link: string;
+};
 
-	if (typeof link !== "string") {
-		throw new Error("Link param is invalid");
-	}
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
+	const paths = travelVideoMetaData.map((video) => ({
+		params: { link: video.link },
+	}));
+
+	return {
+		paths,
+		fallback: false,
+	};
+};
+
+export const getStaticProps: GetStaticProps<
+	{
+		metaData: TravelVideoMetaData;
+		upNext: TravelVideoMetaData[];
+	},
+	Params
+> = async ({ params }) => {
+	const { link } = params as Params;
 
 	const metaDataIndex = getTravelMetaDataIndex(link);
 
