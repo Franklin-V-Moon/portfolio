@@ -20,9 +20,6 @@
 	margin-top: 40px;
 	font-size: 40px;
 	font-weight: bold;
-	@extend .defaultBlueGradient;
-}
-.salaryNumberDark {
 	@extend .defaultDarkBlueGradient;
 }
 
@@ -30,9 +27,6 @@
 	text-align: left;
 	margin-top: 65px;
 	font-weight: bolder;
-	color: #1176d4;
-}
-.salaryCurrencyDark {
 	color: #90caf9;
 }
 

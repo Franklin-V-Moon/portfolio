@@ -131,48 +131,6 @@
 	}
 }
 
-.darkModeToggle {
-	display: flex;
-	justify-content: right;
-	border-radius: 0;
-	cursor: pointer;
-	padding-right: 0.625rem;
-	margin-left: 0.9375rem;
-	transition: ease-in-out 500ms;
-
-	@include breakpoint(small) {
-		padding: 0 0.9375rem;
-	}
-
-	@include breakpoint(medium) {
-		margin-left: 4.375rem;
-	}
-
-	@include breakpoint(xLarge) {
-		margin-left: 7.5rem;
-	}
-
-	@extend .hover;
-}
-
 .spacer {
 	flex-grow: 1;
-}
-
-.iconDim,
-.iconBright {
-	all: unset;
-	margin-top: 0.5rem;
-}
-
-.iconDim {
-	color: $brightGrey;
-}
-
-.iconBright {
-	color: $white;
-}
-
-.colorDefault {
-	color: $brightGrey;
 }

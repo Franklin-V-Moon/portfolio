@@ -49,13 +49,11 @@
 	font-weight: bold;
 	margin-top: 15px;
 	margin: 0 10px;
+	color: $defaultLightBlue;
 
 	@include breakpoint(small) {
 		margin-top: 25px;
 	}
-}
-.contactMethodDark {
-	color: $defaultLightBlue;
 }
 
 .link {

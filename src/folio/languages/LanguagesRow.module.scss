@@ -13,13 +13,10 @@
 	padding-top: 12px;
 	cursor: pointer;
 
-	color: $darkGrey;
+	color: $dimmerWhite;
 
 	&:hover,
 	&:focus {
 		@extend .defaultDarkBlueGradient;
 	}
-}
-.rowItemDark {
-	color: $dimmerWhite;
 }
