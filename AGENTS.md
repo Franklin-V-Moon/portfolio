@@ -63,3 +63,4 @@ See `.ai/README.md` for the full rationale.
 3. Be concise. Keep README minimal. IMPORTANT: no emojis ever
 4. Do not add comments to the code
 5. IMPORTANT: When hitting issues, always identify root cause before trying a fix. Do not guess. Prove with evidence, then fix the root cause.
+6. Don't write or create commits unless instructed to do so
