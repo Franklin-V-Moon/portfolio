@@ -8,10 +8,6 @@ import { GlobalTheme } from "../themes/GlobalTheme";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	if (typeof window !== "undefined") {
-		document.body.style.overflowX = "hidden";
-	}
-
 	return (
 		<>
 			<Head>
