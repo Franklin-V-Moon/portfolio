@@ -6,6 +6,8 @@ import { Navbar } from "../src/global/navigation/Navbar";
 import "../themes/globals.css";
 import { GlobalTheme } from "../themes/GlobalTheme";
 import Head from "next/head";
+import Script from "next/script";
+import { montserrat } from "../themes/fonts";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
@@ -16,12 +18,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 					content='ugeNmMBQZxzx7DdAB7Yiai60hQrDteHxAD_SCugJd94'
 				/>
 			</Head>
-			<GlobalTheme>
-				<div style={{ height: "70px" }}></div>
-				<Analytics />
-				<Component {...pageProps} />
-				<Navbar />
-			</GlobalTheme>
+			<div className={montserrat.className}>
+				<GlobalTheme>
+					<div style={{ height: "70px" }}></div>
+					<Analytics />
+					<Component {...pageProps} />
+					<Navbar />
+				</GlobalTheme>
+			</div>
+			<Script src='https://gumroad.com/js/gumroad.js' strategy='lazyOnload' />
 		</>
 	);
 }
