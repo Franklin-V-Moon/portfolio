@@ -8,11 +8,9 @@
 
 ## Executive Summary
 
-The project is **functionally sound but architecturally frozen at its Next 14 / React 18 / MUI 5 starting point**, with several artifacts from earlier project phases (a removed light-mode toggle, MUI v4-era SSR plumbing, a broken SVGR config) never cleaned up as the code around them changed. Three findings stand out as more than "modernization nice-to-haves":
+The project is **functionally sound but architecturally frozen at its Next 14 / React 18 / MUI 5 starting point**, with several artifacts from earlier project phases (a removed light-mode toggle, MUI v4-era SSR plumbing) never cleaned up as the code around them changed. The broken/blocking issues that once undermined trust in the toolchain (test infra, CI gate, `next.config.js` self-overwrite, dead `tsconfig.json` paths, and all failing unit tests) have been fully resolved — `yarn test`, `yarn lint`, and `yarn build` all pass cleanly, and CI is a real quality gate again. The standout remaining finding:
 
-1. **The test suite cannot currently run** — `jest-environment-jsdom` is referenced in `jest.config.js` but not installed, and at least one test (`Navbar.test.tsx`) asserts against a component API that no longer exists. Tests may have been silently broken for a while.
-2. **CI is not a real safety net** — it runs on Node 16 (EOL), never runs `yarn build` or `yarn lint`, so type errors and lint failures can land on `main` undetected.
-3. **223 MB of images are served fully unoptimized** (`images.unoptimized: true` in `next.config.js`) despite `next/image` being used in 13 files — this is the single biggest available Lighthouse/performance win, and the project's own README names Lighthouse score as a stated priority.
+**223 MB of images are served fully unoptimized** (`images.unoptimized: true` in `next.config.js`) despite `next/image` being used in 13 files — this is the single biggest available Lighthouse/performance win, and the project's own README names Lighthouse score as a stated priority.
 
 Everything else is either dead code (safe, mechanical deletions) or a well-understood Next.js modernization (SSG/ISR conversion, `next/font`, `next/script`) that can be done incrementally without a framework-major-version jump.
 
@@ -20,62 +18,9 @@ Everything else is either dead code (safe, mechanical deletions) or a well-under
 
 | Priority | Theme | Count |
 |---|---|---|
-| **P0 — Fix now (broken/blocking)** | Broken test infra, broken CI gate, `next.config.js` self-overwrite bug, dead `paths` in `tsconfig.json` | 4 |
 | **P1 — High-value modernization** | Image optimization, SSG/ISR conversion, `next/font`+`next/script`, dead dark-mode system removal, `@mui/styles` removal, Next/React/MUI major upgrades | ~10 |
 | **P2 — Medium cleanup** | Sass `@import`→`@use`, card-component duplication, a11y fixes, `any` sweep, config drift | ~10 |
 | **P3 — Low / opportunistic** | Filename casing, ESLint flat-config, minor version bumps | ~8 |
-
----
-
-## P0 — Fix First (broken or actively misleading)
-
-These are high priority bugs. Fix before or alongside anything else, since they undermine trust in the rest of the toolchain.
-
-### FIXED P0.1 — Test suite cannot run
-**Files:** `jest.config.js:9`, `package.json` (devDependencies)
-`testEnvironment: "jest-environment-jsdom"` is configured but the `jest-environment-jsdom` package is **not installed** (absent from `package.json`, `yarn.lock`, and `node_modules`). Jest ≥28 stopped bundling jsdom by default, so this fails immediately with `Test environment jest-environment-jsdom cannot be found` on a clean install.
-**Action:** `yarn add -D jest-environment-jsdom` (pin to a version compatible with the installed `jest@^29.7.0`, or do this as part of the Jest 29→30 bump in P1).
-**Resolution:** Ran `yarn add --dev jest-environment-jsdom`, which also surfaced and required fixing two related install-state bugs: stale `node_modules` hoisting (a full `rm -rf node_modules && yarn install` was needed — incremental reinstalls weren't sufficient) and a missing `@testing-library/dom` peer dependency of `@testing-library/react@16`. `yarn test` now runs; 15 of 20 suites pass. Remaining failures are unrelated application/test bugs (P0.2 covers `Navbar.test.tsx`; `textFormatter.test.ts`, `SalaryExpectationsSection.test.tsx`, `BioDescription.test.tsx`, `ContactCard.test.tsx` are not yet triaged).
-
-### FIXED P0.2 — Stale test asserts a removed component API
-**File:** `src/global/navigation/Navbar.test.tsx:17,23-28`
-Renders `<Navbar setDarkMode={...} />` and asserts `getByLabelText("Dark Mode")` triggers the setter — but `Navbar.tsx` takes **no props** and has no dark-mode toggle at all (light mode was intentionally removed). This test has been silently rotten, likely since before P0.1 was noticed, meaning nobody has seen a green test run in a while.
-**Resolution:** Confirmed both tests failed for real reasons (`yarn jest src/global/navigation/Navbar.test.tsx`): the dark-mode toggle test found no `"Dark Mode"` label since no toggle exists, and the render test asserted stale tab labels (`FOLIO`, `PROJECTS`) that no longer exist in `NavBarMetaData.tsx` (current tabs are the home tab — rendered as hidden text `PORTFOLIO` since its `label` is `""` — plus `GUIDES` and `TRAVEL`; `PROJECTS` isn't a nav tab at all). Rewrote `Navbar.test.tsx` to render `<Navbar />` with no props and assert against the current tab labels; removed the dead dark-mode-toggle test and the now-unused `fireEvent` import. Suite passes; `yarn lint` shows no new issues.
-
-### FIXED P0.3 — `next.config.js` self-overwrite: SVGR config is dead
-**File:** `next.config.js:1-21`
-```js
-module.exports = {
-  webpack(config) { config.module.rules.push({ test: /\.svg$/, use: ["@svgr/webpack"] }); return config; },
-};
-module.exports = nextConfig;   // <-- overwrites the object above; webpack() never runs
-```
-Verified via `node -e "require('./next.config.js')"`: the resolved config has no `webpack` key. `@svgr/webpack` is installed and documented in `AGENTS.md` ("SVGs are imported as React components via `@svgr/webpack`") but **is not functioning** — a repo-wide grep found zero `import X from "*.svg"` component-style imports; every SVG is referenced as a plain URL string. So this has probably been broken/unused for a long time with no user-facing symptom.
-**Resolution:** User chose option (b) — deleted the dead `webpack()` block from `next.config.js` (now a single `module.exports = nextConfig`), ran `yarn remove @svgr/webpack` to drop it from `package.json`/`yarn.lock`, and corrected the `AGENTS.md` claim to state SVGs are referenced as plain URL strings, not imported as components. Verified: resolved config is `{ reactStrictMode: true, images: { unoptimized: true } }`, `svgr` no longer appears in `package.json`/`yarn.lock`, and `yarn lint` shows only the same pre-existing unrelated warnings.
-
-### FIXED P0.4 — `tsconfig.json` `paths` mapping silently ignored
-**File:** `tsconfig.json:27-29`
-```json
-"paths": { "react": ["./node_modules/@types/react"] }
-```
-This is a **top-level sibling key**, not nested inside `compilerOptions` — TypeScript only honors `paths` inside `compilerOptions`, so this has never taken effect. Whatever duplicate-React-types problem this was meant to paper over is currently unaddressed by config (may or may not still be a live issue — verify after fixing).
-**Resolution:** `yarn why @types/react` confirmed nested duplicate copies do exist (`@types/react@17.0.39` pulled in transitively by `@types/react-dom`, `@types/material-ui`, and MUI's `react-transition-group` types, alongside the hoisted `@types/react@18.3.3`), but `npx tsc --noEmit` produces an identical error count (168, all pre-existing/unrelated missing-`@types/jest` errors) whether the `paths` mapping is active or not — proven by temporarily moving it into `compilerOptions` and diffing output. TypeScript already resolves the single hoisted `@types/react` for app code by default, and `skipLibCheck` suppresses conflicts from the nested copies, so the remap was a genuine no-op. Deleted the vestigial `paths` key entirely; typecheck output unchanged.
-
-### FIXED P0.5 — CI is not a real quality gate
-**File:** `.github/workflows/main.yml`
-```yaml
-- uses: actions/setup-node@v1        # unsupported major, current is v4
-  with: { node-version: 16.14.0 }    # EOL since Sept 2023
-- uses: actions/checkout@v2          # unsupported major, current is v4
-- run: yarn
-- run: yarn test                     # currently fails per P0.1
-```
-No `yarn lint`, no `yarn build`/typecheck step — `tsc` only runs implicitly inside `next build`, and `next build` never runs in CI, so **type errors and lint failures can merge to `main` undetected**. The postbuild sitemap pipeline (`export-meta.ts` + `next-sitemap`) is also never exercised.
-**Resolution:** Bumped to `actions/checkout@v4` + `actions/setup-node@v4` (checkout now runs first, before toolchain setup), pinned `node-version: 24` (matches the observed local dev baseline noted in P1.13; formal `engines`/`.nvmrc` reconciliation is still deferred to P1.13), enabled `cache: "yarn"`, and added `yarn lint` and `yarn build` steps alongside `yarn test`. Verified locally: `yarn lint` passes (pre-existing warnings only), `yarn build` (including the postbuild sitemap pipeline) succeeds. `yarn test` still fails on 4 suites (`textFormatter`, `SalaryExpectationsSection`, `BioDescription`, `ContactCard`) — these are the same pre-existing, untriaged failures flagged in P0.1's resolution, not a regression from this change; CI will now correctly surface them instead of masking them behind a broken Node 16/missing-step pipeline.
-
-### P0.6 - Fix all failing unit tests
-Since fixing P0.1, we now see 7 failing unit tests that need to be reviewed and potentially fixed
-
 
 ---
 
@@ -136,14 +81,14 @@ Since light mode was intentionally removed, the `DarkMode` React context (`creat
 - `themes/lightMode.ts` is imported once (`GlobalTheme.tsx:4`) and never used — `GlobalTheme.tsx:25` hardcodes `darkTheme`. 100% dead file, plus it duplicates a Sass-color module-augmentation block verbatim from `darkMode.ts`.
 - `themes/GlobalTheme.tsx:17-22` has a `useEffect` cleaning up a `#jss-server-side` DOM node — leftover MUI v4/JSS SSR boilerplate; a no-op under the current emotion-based styling (see P1.10).
 - `utils/configureCss/configureCss.ts`'s `setDark(styles, selector)` helper always resolves to `styles[selector] + " " + styles[selector + "Dark"]` now, at 12 call sites — mechanically replaceable with the plain class name once the corresponding `*Dark` SCSS classes are merged into their base classes.
-- `NavBar.module.scss:134-174` still defines `.darkModeToggle`/`.iconDim`/`.iconBright`/`.colorDefault` for a toggle button that no longer exists in `Navbar.tsx` (see P0.2).
+- `NavBar.module.scss:134-174` still defines `.darkModeToggle`/`.iconDim`/`.iconBright`/`.colorDefault` for a toggle button that no longer exists in `Navbar.tsx`.
 
 **Action (sequenced):**
 1. Merge each `XDark` SCSS class into its base class across the ~12 affected `.module.scss` files (verify no visual diff since dark was already the only rendered state).
 2. Replace `setDark(styles, "x")` call sites with plain `styles.x`.
 3. Delete `utils/configureCss/configureCss.ts` and its test.
 4. Delete `themes/lightMode.ts`, the `DarkMode` context, the `useState`/`setDarkMode` in `pages/_app.tsx`, the `useContext(DarkMode)` reads in `ParallaxArt.tsx`/`pages/guides/[link].tsx`, and the dead JSS cleanup effect.
-5. Delete the dead `.darkModeToggle`/`.iconDim`/`.iconBright` CSS and fix `Navbar.test.tsx` (P0.2).
+5. Delete the dead `.darkModeToggle`/`.iconDim`/`.iconBright` CSS (`Navbar.test.tsx` no longer references it).
 
 Net effect: smaller bundle, one less context provider in the render tree, and removal of the most repetitive dead pattern in the codebase — no behavior change since the app has been unconditionally dark for a while.
 
@@ -170,7 +115,7 @@ Currently `next: "14"` (resolves to 14.2.5) and `react`/`react-dom: ^18.3.1` —
 #### P1.13 — Node version reconciliation
 **Files:** `.github/workflows/main.yml` (Node 16.14.0, EOL), `package.json` (no `engines` field), no `.nvmrc`
 Three different Node baselines are in play with nothing reconciling them: CI pins an EOL Node 16, local dev observed at Node 24, `@types/node` targets `^22.4.1`, and Vercel's runtime is unpinned (no `vercel.json`). This is a correctness risk, not just staleness — CI testing against Node 16 while shipping on a materially different Node major can mask real incompatibilities.
-**Action:** Add an `engines` field to `package.json` and an `.nvmrc` pinning a current Node LTS, update CI to match (bundled into P0.5).
+**Action:** Add an `engines` field to `package.json` and an `.nvmrc` pinning a current Node LTS to match; CI is already pinned to Node 24.
 
 #### P1.14 — MUI v5 → current major (blocked on P1.10)
 **File:** `package.json:16,18-19`
@@ -232,7 +177,7 @@ ESLint 9+ deprecated `.eslintrc.*` in favor of `eslint.config.js` flat config, a
 #### P2.10 — Postbuild pipeline fragility
 **Files:** `next-sitemap-config.js:1-3`, `utils/export-meta.ts`
 `next-sitemap-config.js` does a top-level `require("./utils/sitemap-meta/*.json")` — if `export-meta` hasn't run first, this throws an opaque `MODULE_NOT_FOUND` rather than a descriptive error. `export-meta.ts` runs via `ts-node --transpile-only` (type errors in it or the datasources it imports are silently skipped).
-**Action:** Low urgency — add a clearer error/guard if the JSON files are missing; consider dropping `--transpile-only` now that this runs in CI (once P0.5 adds a build step) so type errors surface. Note: if this project ever migrates to the App Router, this entire pipeline (`export-meta.ts` → JSON → `next-sitemap`) could be replaced by a single native `app/sitemap.ts` — out of scope for now, flagged only.
+**Action:** Low urgency — add a clearer error/guard if the JSON files are missing; consider dropping `--transpile-only` now that a build step runs in CI so type errors surface. Note: if this project ever migrates to the App Router, this entire pipeline (`export-meta.ts` → JSON → `next-sitemap`) could be replaced by a single native `app/sitemap.ts` — out of scope for now, flagged only.
 
 ---
 
@@ -253,12 +198,11 @@ ESLint 9+ deprecated `.eslintrc.*` in favor of `eslint.config.js` flat config, a
 
 This is sequenced to avoid tangling unrelated diffs and to unblock later phases:
 
-1. **Phase 0 (safety net):** P0.1–P0.5. Get tests running and CI actually gating `main` before touching anything else — every subsequent phase needs a working safety net to verify against.
-2. **Phase 1 (dead code removal):** P1.9 (dark-mode system) + P1.10 (`@mui/styles`) + P1.11 (DOM mutation). Zero behavior change, shrinks the diff surface for everything after.
-3. **Phase 2 (performance):** P1.4–P1.8 (images, fonts, scripts) + P2.1 (rAF bug). Highest user-visible payoff, independent of the dependency upgrades below.
-4. **Phase 3 (routing):** P1.1–P1.3 (SSG/ISR conversions). Independent of Phase 2, can run in parallel.
-5. **Phase 4 (dependency majors):** P1.12 (Next/React) + P1.14 (MUI, after P1.10) + P2.8 (ESLint flat config) + P1.13 (Node version) — batch these together since they're mutually coupled, and do them *after* Phases 1–3 so the upgrade PR is clean.
-6. **Phase 5 (polish):** P2.2–P2.7, P2.9–P2.10, P3.* — opportunistic, can be picked up incrementally alongside feature work.
+1. **Phase 1 (dead code removal):** P1.9 (dark-mode system) + P1.10 (`@mui/styles`) + P1.11 (DOM mutation). Zero behavior change, shrinks the diff surface for everything after.
+2. **Phase 2 (performance):** P1.4–P1.8 (images, fonts, scripts) + P2.1 (rAF bug). Highest user-visible payoff, independent of the dependency upgrades below.
+3. **Phase 3 (routing):** P1.1–P1.3 (SSG/ISR conversions). Independent of Phase 2, can run in parallel.
+4. **Phase 4 (dependency majors):** P1.12 (Next/React) + P1.14 (MUI, after P1.10) + P2.8 (ESLint flat config) + P1.13 (Node version) — batch these together since they're mutually coupled, and do them *after* Phases 1–3 so the upgrade PR is clean.
+5. **Phase 5 (polish):** P2.2–P2.7, P2.9–P2.10, P3.* — opportunistic, can be picked up incrementally alongside feature work.
 
 ---
 

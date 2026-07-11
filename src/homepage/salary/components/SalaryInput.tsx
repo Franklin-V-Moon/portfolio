@@ -42,9 +42,9 @@ export const MoneyInput = ({
 				</div>
 			</Tooltip>{" "}
 			<div>
-				<InputLabel htmlFor='outlined-adornment-amount'>{title}</InputLabel>
+				<InputLabel htmlFor={`${name}-input-field`}>{title}</InputLabel>
 				<OutlinedInput
-					id='outlined-adornment-amount'
+					id={`${name}-input-field`}
 					name={name}
 					value={value}
 					onChange={onChange}

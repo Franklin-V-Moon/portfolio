@@ -6,7 +6,7 @@ describe("SalaryExpectationsSection", () => {
 	it("renders initial elements correctly", () => {
 		const { getByText } = render(<SalaryExpectationsSection />);
 
-		expect(getByText("$65,000")).toBeDefined();
+		expect(getByText("$83,000")).toBeDefined();
 		expect(getByText("Proposed Annual Salary")).toBeDefined();
 		expect(getByText("Fully Remote")).toBeDefined();
 		expect(getByText("Hybrid Remote")).toBeDefined();
@@ -20,7 +20,7 @@ describe("SalaryExpectationsSection", () => {
 
 		fireEvent.change(trainingInput, { target: { value: "5000" } });
 
-		expect(getByText("$62,500")).toBeDefined();
+		expect(getByText("$80,300")).toBeDefined();
 	});
 
 	it("sets all toggles as undefined when clear all button pressed", () => {
