@@ -76,8 +76,9 @@ export const VideoLibrary = ({
 										className={styles.videoCardImage}
 										height={300}
 										width={200}
-										layout='responsive'
+										sizes='(max-width: 500px) 50vw, 200px'
 										priority={videoIndex < 2}
+										style={{ width: "100%", height: "auto" }}
 									/>
 
 									<div className={styles.loadingContainer}>

@@ -303,9 +303,9 @@ const VideoContent = ({
 								alt={"No video placeholder image"}
 								height={300}
 								width={640}
-								object-fit='cover'
-								layout='responsive'
+								sizes='100vw'
 								className={styles.noVideoImage}
+								style={{ width: "100%", height: "auto", objectFit: "cover" }}
 							/>
 						)}
 						<div className={styles.protectedVideoContainer}>
@@ -496,9 +496,10 @@ const VideoContent = ({
 											<Image
 												src={`/travel/itineraries/${itinerary.mapImage}.png`}
 												alt={`Map of ${title} for ${itinerary.title} itinerary`}
-												width='1000'
-												height='1000'
-												layout='responsive'
+												width={1000}
+												height={1000}
+												sizes='100vw'
+												style={{ width: "100%", height: "auto" }}
 											/>
 										</div>
 
@@ -590,9 +591,10 @@ const VideoContent = ({
 																			<Image
 																				src={`/travel/itineraries/${detail.image}.png`}
 																				alt={`Picture of ${detail.image}`}
-																				width='1000'
-																				height='1000'
-																				layout='responsive'
+																				width={1000}
+																				height={1000}
+																				sizes='100vw'
+																				style={{ width: "100%", height: "auto" }}
 																			/>
 																		)}
 																	</div>
