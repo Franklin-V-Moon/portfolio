@@ -42,7 +42,7 @@ These are high priority bugs. Fix before or alongside anything else, since they 
 Renders `<Navbar setDarkMode={...} />` and asserts `getByLabelText("Dark Mode")` triggers the setter — but `Navbar.tsx` takes **no props** and has no dark-mode toggle at all (light mode was intentionally removed). This test has been silently rotten, likely since before P0.1 was noticed, meaning nobody has seen a green test run in a while.
 **Resolution:** Confirmed both tests failed for real reasons (`yarn jest src/global/navigation/Navbar.test.tsx`): the dark-mode toggle test found no `"Dark Mode"` label since no toggle exists, and the render test asserted stale tab labels (`FOLIO`, `PROJECTS`) that no longer exist in `NavBarMetaData.tsx` (current tabs are the home tab — rendered as hidden text `PORTFOLIO` since its `label` is `""` — plus `GUIDES` and `TRAVEL`; `PROJECTS` isn't a nav tab at all). Rewrote `Navbar.test.tsx` to render `<Navbar />` with no props and assert against the current tab labels; removed the dead dark-mode-toggle test and the now-unused `fireEvent` import. Suite passes; `yarn lint` shows no new issues.
 
-### P0.3 — `next.config.js` self-overwrite: SVGR config is dead
+### FIXED P0.3 — `next.config.js` self-overwrite: SVGR config is dead
 **File:** `next.config.js:1-21`
 ```js
 module.exports = {
@@ -51,7 +51,7 @@ module.exports = {
 module.exports = nextConfig;   // <-- overwrites the object above; webpack() never runs
 ```
 Verified via `node -e "require('./next.config.js')"`: the resolved config has no `webpack` key. `@svgr/webpack` is installed and documented in `AGENTS.md` ("SVGs are imported as React components via `@svgr/webpack`") but **is not functioning** — a repo-wide grep found zero `import X from "*.svg"` component-style imports; every SVG is referenced as a plain URL string. So this has probably been broken/unused for a long time with no user-facing symptom.
-**Action:** Either (a) merge the two exports into one object and start actually using SVGR for icon-style SVGs, or (b) delete `@svgr/webpack` and correct the `AGENTS.md` claim. Given zero current usage, **(b) is the lower-risk default** unless there's a near-term plan to use SVG-as-component.
+**Resolution:** User chose option (b) — deleted the dead `webpack()` block from `next.config.js` (now a single `module.exports = nextConfig`), ran `yarn remove @svgr/webpack` to drop it from `package.json`/`yarn.lock`, and corrected the `AGENTS.md` claim to state SVGs are referenced as plain URL strings, not imported as components. Verified: resolved config is `{ reactStrictMode: true, images: { unoptimized: true } }`, `svgr` no longer appears in `package.json`/`yarn.lock`, and `yarn lint` shows only the same pre-existing unrelated warnings.
 
 ### P0.4 — `tsconfig.json` `paths` mapping silently ignored
 **File:** `tsconfig.json:27-29`

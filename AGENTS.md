@@ -38,7 +38,7 @@ Tests are colocated with source as `*.test.ts`/`*.test.tsx` next to the file und
 
 **Styling**: Sass CSS Modules per-component (`Component.module.scss` next to `Component.tsx`), plus MUI for interactive primitives (`Tab`, `Button`, `Container`, etc.). No CSS-in-JS beyond MUI's own `sx`/theme usage. The README explicitly favors minimal npm deps and raw CSS for performance (Lighthouse score is a stated priority).
 
-**Images**: Next/Image optimization is currently disabled (`images: { unoptimized: true }` in `next.config.js`) — this needs to be changed to optimized. SVGs are imported as React components via `@svgr/webpack`.
+**Images**: Next/Image optimization is currently disabled (`images: { unoptimized: true }` in `next.config.js`) — this needs to be changed to optimized. SVGs are referenced as plain URL strings, not imported as React components.
 
 ## Content editing workflows
 
