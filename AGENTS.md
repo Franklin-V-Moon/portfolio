@@ -64,3 +64,9 @@ See `.ai/README.md` for the full rationale.
 4. Do not add comments to the code
 5. IMPORTANT: When hitting issues, always identify root cause before trying a fix. Do not guess. Prove with evidence, then fix the root cause.
 6. Don't write or create commits unless instructed to do so
+
+## Command Explainer
+
+When calling the Bash tool, treat these as safe/obvious and use a short label as the `description` (no need to spell out effects): `cd`, `ls`, `pwd`, `echo`, `cat`, `mv`, `cp`, `mkdir`, `touch`, and simple git commands (`git status`, `git add`, `git diff`, `git log`, `git branch`, `git show`).
+
+For anything else — package installs/removals, piped or chained commands, destructive or state-changing commands, unfamiliar flags, version pins — write the `description` as a plain-English explanation of what the command will concretely do, in 20 words or fewer. Name the specific thing being changed (package, file, version) rather than just restating the command verb. E.g. "Adds jest-environment-jsdom pinned to 29.7.x as a dev dependency" rather than "Install jest-environment-jsdom".
