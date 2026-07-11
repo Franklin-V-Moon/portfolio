@@ -8,9 +8,9 @@
 
 ## Executive Summary
 
-The project is **functionally sound but architecturally frozen at its Next 14 / React 18 / MUI 5 starting point**, with several artifacts from earlier project phases (a removed light-mode toggle, MUI v4-era SSR plumbing) never cleaned up as the code around them changed. The broken/blocking issues that once undermined trust in the toolchain (test infra, CI gate, `next.config.js` self-overwrite, dead `tsconfig.json` paths, and all failing unit tests) have been fully resolved — `yarn test`, `yarn lint`, and `yarn build` all pass cleanly, and CI is a real quality gate again. The standout remaining finding:
+The project is **functionally sound but architecturally frozen at its Next 14 / React 18 / MUI 5 starting point**, with several artifacts from earlier project phases (a removed light-mode toggle, MUI v4-era SSR plumbing) never cleaned up as the code around them changed. The broken/blocking issues that once undermined trust in the toolchain (test infra, CI gate, `next.config.js` self-overwrite, dead `tsconfig.json` paths, and all failing unit tests) have been fully resolved — `yarn test`, `yarn lint`, and `yarn build` all pass cleanly, and CI is a real quality gate again.
 
-**223 MB of images are served fully unoptimized** (`images.unoptimized: true` in `next.config.js`) despite `next/image` being used in 13 files — this is the single biggest available Lighthouse/performance win, and the project's own README names Lighthouse score as a stated priority.
+Image optimization has since been enabled (`images.unoptimized: true` removed), the deprecated `next/image` prop cleanup is done, and priority hints are in place on above-the-fold images — see P1.8 below for the one remaining piece (the Assets Store gallery still uses un-optimized `CardMedia`).
 
 Everything else is either dead code (safe, mechanical deletions) or a well-understood Next.js modernization (SSG/ISR conversion, `next/font`, `next/script`) that can be done incrementally without a framework-major-version jump.
 
@@ -18,7 +18,7 @@ Everything else is either dead code (safe, mechanical deletions) or a well-under
 
 | Priority | Theme | Count |
 |---|---|---|
-| **P1 — High-value modernization** | Image optimization, SSG/ISR conversion, `next/font`+`next/script`, dead dark-mode system removal, `@mui/styles` removal, Next/React/MUI major upgrades | ~10 |
+| **P1 — High-value modernization** | SSG/ISR conversion, `next/font`+`next/script`, dead dark-mode system removal, `@mui/styles` removal, Next/React/MUI major upgrades, Assets Store gallery optimization | ~7 |
 | **P2 — Medium cleanup** | Sass `@import`→`@use`, card-component duplication, a11y fixes, `any` sweep, config drift | ~10 |
 | **P3 — Low / opportunistic** | Filename casing, ESLint flat-config, minor version bumps | ~8 |
 
@@ -45,21 +45,6 @@ Reads `?SortBy=` from `window.location.search` inside a `useEffect` (post-hydrat
 
 ### Images, Fonts & Static Assets
 
-#### P1.4 — Image optimization disabled entirely
-**File:** `next.config.js:4-6` (`images: { unoptimized: true }`)
-`public/` totals **223 MB** (153 PNG, 82 JPG, 35 SVG, 8 JPEG). Concrete examples: homepage headshot is a 1.1 MB PNG displayed at 115×115px (`pages/index.tsx:54`); `public/assets/` alone is 121 MB, served via un-lazy `CardMedia component='img'` in `AssetItem.tsx`/`AssetCollection.tsx` with no `loading="lazy"`. With optimization off, none of the 13 files already using `next/image` get any benefit — no resizing, no AVIF/WebP conversion, no responsive srcset.
-**Action:** Remove `unoptimized: true`. This is the single largest Lighthouse lever in the codebase (confirmed as a stated priority in the project's own README). Do this together with P1.6 (deprecated `layout` prop cleanup) since Next's optimizer errors are more visible once real optimization is enabled. If Vercel's included optimization quota is a cost concern, note that before flipping the flag — otherwise there's no technical reason to keep it off.
-
-#### P1.5 — Missing `priority` on above-the-fold images
-**Files:** `pages/index.tsx:54` (headshot), `src/homepage/parallax-art/ParallaxArt.tsx` (16-layer hero)
-`priority` is used exactly once in the entire codebase (`src/travel/VideoLibrary.tsx:80`) — meanwhile the likely largest-contentful-paint elements (homepage headshot, parallax hero) are lazy-loaded by default.
-**Action:** Add `priority` to the headshot and the top parallax layers; audit for other LCP candidates once P1.4 lands.
-
-#### P1.6 — Deprecated `next/image` props firing runtime warnings
-**Files:** `pages/assets-store/[link].tsx:78`, `pages/travel/[link].tsx:306-307,501,595`, `pages/travel/index.tsx:149`, `pages/travel/world-map/index.tsx:66`, `src/travel/VideoLibrary.tsx:79`
-All use the removed `layout`/`objectFit` API (kept only for backward-compat, fires a "did you forget to run the codemod?" console warning on every render). Also: string-literal numeric props (`width='0' height='0'` ×16 in `ParallaxArt.tsx`, similar in `WorkExpListItem.tsx`/`VolunteerListItem.tsx`/`pages/travel/[link].tsx`) should be real numbers per the typed API.
-**Action:** Run/hand-apply Next's `next-image-experimental`/`built-in-next-font` codemods where applicable, or manually migrate each to `fill` + `sizes` or explicit numeric `width`/`height`.
-
 #### P1.7 — Double render-blocking font fetch + sync 3rd-party script, no `next/font`
 **Files:** `pages/_document.tsx:10-19`, `themes/globals.css:5`
 Montserrat is fetched from `fonts.cdnfonts.com` **twice** — once via a render-blocking `<link>` in `_document.tsx:10-13`, again via `@import` in `themes/globals.css:5` — plus `animate.css` from a third-party CDN, plus a **synchronous** `<script src='gumroad.js'>` (line 17-19, with a deliberate `eslint-disable @next/next/no-sync-scripts` — the "correct" fix was known and explicitly bypassed).
@@ -67,8 +52,10 @@ Montserrat is fetched from `fonts.cdnfonts.com` **twice** — once via a render-
 
 #### P1.8 — Assets Store gallery uses un-optimized, un-lazy `<img>` against the largest media directory
 **Files:** `src/assets/components/AssetItem/AssetItem.tsx:33-41`, `src/assets/components/AssetCollection/AssetCollection.tsx:25-30`
-Both use MUI `CardMedia component='img'` (a real `<img>` under the hood) with no `loading="lazy"`, no explicit dimensions (CLS risk), against `public/assets/` — the single largest media directory in the repo (121 MB). Contrast with `GuideCard.tsx:33-40`, which already does this correctly (`loading='lazy'`, `decoding='async'`).
-**Action:** Migrate both to `next/image` (once P1.4 lands) or at minimum add `loading="lazy"` + explicit dimensions matching `GuideCard.tsx`'s existing pattern.
+Both use MUI `CardMedia component='img'` (a real `<img>` under the hood) with no `loading="lazy"`, no explicit dimensions (CLS risk), against `public/assets/`. Contrast with `GuideCard.tsx:33-40`, which already does this correctly (`loading='lazy'`, `decoding='async'`).
+
+A `next/image` migration of both components was attempted and reverted — it broke the gallery, and the page is currently unlinked/hidden, so it's lower priority. The source thumbnails in `public/assets/` were still resized/recompressed directly (121 MB → ~10 MB, all downscaled to a sane thumbnail resolution), so the un-optimized `<img>` tags are now at least serving reasonably-sized files rather than multi-MB originals.
+**Action:** Revisit the `next/image` migration separately with more room to debug, or at minimum add `loading="lazy"` + explicit dimensions matching `GuideCard.tsx`'s existing pattern.
 
 ### Theming & Styling (dead dark-mode system)
 
@@ -199,7 +186,7 @@ ESLint 9+ deprecated `.eslintrc.*` in favor of `eslint.config.js` flat config, a
 This is sequenced to avoid tangling unrelated diffs and to unblock later phases:
 
 1. **Phase 1 (dead code removal):** P1.9 (dark-mode system) + P1.10 (`@mui/styles`) + P1.11 (DOM mutation). Zero behavior change, shrinks the diff surface for everything after.
-2. **Phase 2 (performance):** P1.4–P1.8 (images, fonts, scripts) + P2.1 (rAF bug). Highest user-visible payoff, independent of the dependency upgrades below.
+2. **Phase 2 (performance):** P1.7–P1.8 (fonts, scripts, Assets Store gallery) + P2.1 (rAF bug). Highest user-visible payoff, independent of the dependency upgrades below. (Image optimization, priority hints, and deprecated `next/image` prop cleanup — formerly P1.4–P1.6 — are done.)
 3. **Phase 3 (routing):** P1.1–P1.3 (SSG/ISR conversions). Independent of Phase 2, can run in parallel.
 4. **Phase 4 (dependency majors):** P1.12 (Next/React) + P1.14 (MUI, after P1.10) + P2.8 (ESLint flat config) + P1.13 (Node version) — batch these together since they're mutually coupled, and do them *after* Phases 1–3 so the upgrade PR is clean.
 5. **Phase 5 (polish):** P2.2–P2.7, P2.9–P2.10, P3.* — opportunistic, can be picked up incrementally alongside feature work.

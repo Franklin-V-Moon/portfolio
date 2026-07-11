@@ -57,6 +57,7 @@ const Home: NextPage = () => {
 							width={115}
 							height={115}
 							className={styles.headshot}
+							priority
 						/>
 					</div>
 					<BioDescription />
