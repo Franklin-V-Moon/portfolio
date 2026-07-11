@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { montserrat } from "./fonts";
 
 declare module "@mui/material/styles" {
 	interface Palette {
@@ -55,7 +54,6 @@ export const darkTheme = createTheme({
 		},
 	},
 	typography: {
-		fontFamily: montserrat.style.fontFamily,
 		button: {
 			textTransform: "none",
 		},
