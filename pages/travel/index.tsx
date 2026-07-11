@@ -29,7 +29,9 @@ import router from "next/router";
 import { tabsData } from "../../src/datasources/NavBarMetaData";
 
 const Travel: NextPage = () => {
-	const [sortedMetaData, setSortedMetaData] = useState(allOldestFirst());
+	const [sortedMetaData, setSortedMetaData] = useState(() =>
+		allOldestFirst(false),
+	);
 	const [sortSelection, setSortSelection] = useState(SortBy.Newest);
 	const [searchingText, setSearchingText] = useState<string>("");
 

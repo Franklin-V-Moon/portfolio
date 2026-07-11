@@ -5,8 +5,10 @@ import {
 } from "../datasources/TravelMetaData";
 import { Advisory, TravelVideoMetaData } from "./types";
 
-export const enhancedTravelVideoMetaData = () => {
-	if (!isClientSide()) return travelVideoMetaData;
+export const enhancedTravelVideoMetaData = (
+	applyWatchedStatus = isClientSide(),
+) => {
+	if (!applyWatchedStatus) return travelVideoMetaData;
 
 	const watchedVideos = JSON.parse(
 		localStorage.getItem("watchedVideos") || "[]",
@@ -109,10 +111,10 @@ export const countTotalCountries = () => {
 // Premixed Filters:
 // ~~~~~~~~~~~~~~~~
 
-export const allNewestFirst = () => {
+export const allNewestFirst = (applyWatchedStatus = isClientSide()) => {
 	const groupedVideos: { [year: number]: TravelVideoMetaData[] } = {};
 
-	for (const video of enhancedTravelVideoMetaData()) {
+	for (const video of enhancedTravelVideoMetaData(applyWatchedStatus)) {
 		const year = video.year;
 
 		if (!groupedVideos[year]) {
@@ -129,8 +131,8 @@ export const allNewestFirst = () => {
 	return result.reverse();
 };
 
-export const allOldestFirst = () => {
-	return allNewestFirst().reverse();
+export const allOldestFirst = (applyWatchedStatus = isClientSide()) => {
+	return allNewestFirst(applyWatchedStatus).reverse();
 };
 
 export const allByBest = () => {
