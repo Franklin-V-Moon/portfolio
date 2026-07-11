@@ -11,8 +11,6 @@ import { GuideMetaData } from "../../src/guides/types";
 import { ErrorContent } from "../../utils/error/ErrorContent";
 
 import styles from "../../src/guides/index.module.scss";
-import { useContext } from "react";
-import { DarkMode } from "../../themes/GlobalTheme";
 import { Footer } from "../../utils/footer/Footer";
 import router from "next/router";
 
@@ -28,8 +26,6 @@ const PageContent = ({
 	notionPage,
 	metaData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-	const darkMode = useContext(DarkMode);
-
 	if (!notionPage || notionPage === "undefined" || !metaData) {
 		return <ErrorContent />;
 	}
@@ -80,7 +76,7 @@ const PageContent = ({
 					<NotionRenderer
 						recordMap={notionPage}
 						fullPage={true}
-						darkMode={darkMode}
+						darkMode={true}
 						components={{ Code }}
 					/>
 				</div>
