@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { setDark } from "../../../utils/configureCss/configureCss";
 import { splitStringAtFullStop } from "../../../utils/split-string/splitStringAtFullStop";
 
 import styles from "./ForYouCard.module.scss";
@@ -18,7 +17,7 @@ export const ForYouCard = ({
 	return (
 		<div className={styles.container}>
 			<div className={styles.innerContainer}>
-				<h2 className={setDark(styles, "title")}>{title}</h2>
+				<h2 className={styles.title}>{title}</h2>
 
 				<div className={styles.content}>
 					{paragraphArray.map((sentence, index) => {

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { setDark } from "../../../utils/configureCss/configureCss";
 
 import styles from "./QualificationCard.module.scss";
 
@@ -24,7 +23,7 @@ export const QualificationCard = ({
 
 			<div className={styles.title}>{title}</div>
 
-			<div className={setDark(styles, "location")}>{location}</div>
+			<div className={styles.location}>{location}</div>
 		</div>
 	);
 };

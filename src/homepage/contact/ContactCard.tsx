@@ -1,5 +1,4 @@
 import { Card } from "@mui/material";
-import { setDark } from "../../../utils/configureCss/configureCss";
 
 import styles from "./Contact.module.scss";
 import Link from "next/link";
@@ -22,10 +21,10 @@ export const ContactCard = ({
 			target='_blank'
 			rel='noopener noreferrer'
 			className={styles.link}>
-			<Card className={setDark(styles, "cardContainer")}>
+			<Card className={styles.cardContainer}>
 				<div className={styles.cardContent}>
 					{children}
-						<div className={setDark(styles, "contactMethod")}>
+						<div className={styles.contactMethod}>
 						{contactMethod}
 					</div>
 					{value && <div className={styles.contactSubtitle}>{value}</div>}

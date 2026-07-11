@@ -1,6 +1,5 @@
 import { Button, Card, FormGroup, InputLabel } from "@mui/material";
 import { useEffect, useState } from "react";
-import { setDark } from "../../../utils/configureCss/configureCss";
 import {
 	countryScaler,
 	EXPECTED_SALARY_WITH_NO_BENEFITS,
@@ -165,10 +164,10 @@ export const SalaryExpectationsSection = () => {
 	return (
 		<Card className={styles.cardContainer}>
 			<div className={styles.heading}>
-				<div className={setDark(styles, "salaryNumber")}>
+				<div className={styles.salaryNumber}>
 					${commaSeparate(expectedSalary)}
 				</div>
-				<div className={setDark(styles, "salaryCurrency")}>USD</div>
+				<div className={styles.salaryCurrency}>USD</div>
 			</div>
 
 			<div className={styles.subHeading}>Proposed Annual Salary</div>

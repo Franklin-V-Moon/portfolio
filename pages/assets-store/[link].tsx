@@ -5,19 +5,15 @@ import styles from "../../src/assets/index.module.scss";
 import { Button } from "@mui/material";
 import router from "next/router";
 import { stockFootageMetaData } from "../../src/datasources/AssetMetaData";
-import { InferGetServerSidePropsType } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { ErrorContent } from "../../utils/error/ErrorContent";
 import AssetItem from "../../src/assets/components/AssetItem/AssetItem";
 import { Footer } from "../../utils/footer/Footer";
 import Image from "next/image";
 
-type ServerSideContext = {
-	params: { link: string | string[] | undefined };
-};
-
 const AssetCollection = ({
 	collectionData,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
 	if (!collectionData) {
 		return <ErrorContent />;
 	}
@@ -88,12 +84,26 @@ const AssetCollection = ({
 	);
 };
 
-export const getServerSideProps = async (context: ServerSideContext) => {
-	const { link } = context.params;
+type Params = {
+	link: string;
+};
 
-	if (typeof link !== "string") {
-		throw new Error("Link param is invalid");
-	}
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
+	const paths = stockFootageMetaData.map((collection) => ({
+		params: { link: collection.hostedLink },
+	}));
+
+	return {
+		paths,
+		fallback: false,
+	};
+};
+
+export const getStaticProps: GetStaticProps<
+	{ collectionData: (typeof stockFootageMetaData)[number] | undefined },
+	Params
+> = async ({ params }) => {
+	const { link } = params as Params;
 
 	const collectionData = stockFootageMetaData.find(
 		(collection) => collection.hostedLink === link,

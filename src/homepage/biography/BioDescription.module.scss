@@ -23,9 +23,6 @@
 }
 
 .gradient {
-	@extend .defaultBlueGradient;
-}
-.gradientDark {
 	@extend .defaultDarkBlueGradient;
 }
 
@@ -58,12 +55,9 @@
 	font-size: 18px;
 	margin: 45px 0;
 	line-height: 1.6;
-	color: $darkGrey;
+	color: $dimmerWhite;
 
 	@include breakpoint(medium) {
 		margin-top: 75px;
 	}
-}
-.blurbDark {
-	color: $dimmerWhite;
 }

@@ -2,7 +2,7 @@
 @import "../../../../themes/breakpoints";
 
 .lineIcon {
-	background-color: $lightBackground;
+	background-color: $darkBackground;
 
 	@include breakpoint(small) {
 		position: static;
@@ -10,10 +10,6 @@
 		margin: 5px -16px 0px 0px;
 		color: $defaultDarkBlue;
 	}
-}
-
-.lineIconDark {
-	background-color: $darkBackground;
 }
 
 .itemContainer {

@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Image from "next/image";
 import Head from "next/head";
 import { PageContainer } from "../../src/global/PageContainer";
@@ -24,15 +24,12 @@ import { SortBy } from "../../src/travel/types";
 import { TravelSort } from "../../src/travel/components/TravelSort";
 import { SearchBar } from "../../src/travel/components/SearchBar";
 import { travelVideoMetaData } from "../../src/datasources/TravelMetaData";
-import { isClientSide } from "../../utils/isClientSide";
 import router from "next/router";
 import { tabsData } from "../../src/datasources/NavBarMetaData";
 
-const Travel: NextPage = () => {
-	const [sortedMetaData, setSortedMetaData] = useState(() =>
-		allOldestFirst(false),
-	);
-	const [sortSelection, setSortSelection] = useState(SortBy.Newest);
+const Travel = ({
+	initialSortBy,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const [searchingText, setSearchingText] = useState<string>("");
 
 	const sortFunctions = {
@@ -46,6 +43,13 @@ const Travel: NextPage = () => {
 		[SortBy.Searching]: () => searchResult(searchingText),
 	};
 
+	const initialSortSelection = initialSortBy ?? SortBy.Newest;
+
+	const [sortSelection, setSortSelection] = useState(initialSortSelection);
+	const [sortedMetaData, setSortedMetaData] = useState(() =>
+		sortFunctions[initialSortSelection](false),
+	);
+
 	useEffect(() => {
 		setSortedMetaData(sortFunctions[sortSelection]());
 	}, [sortSelection, searchingText]);
@@ -53,23 +57,6 @@ const Travel: NextPage = () => {
 	useEffect(() => {
 		setSortSelection(searchingText ? SortBy.Searching : SortBy.Newest);
 	}, [searchingText]);
-
-	useEffect(() => {
-		if (isClientSide()) {
-			const searchParams = new URLSearchParams(window.location.search);
-			const sortParam = searchParams.get("SortBy");
-
-			if (sortParam) {
-				const sortEnum = Object.values(SortBy).find(
-					(enumValue) => enumValue.toLowerCase() === sortParam.toLowerCase(),
-				);
-
-				if (sortEnum) {
-					setSortSelection(sortEnum);
-				}
-			}
-		}
-	}, []);
 
 	const InvisibleImageButton = styled(ButtonBase)(({ theme }) => ({
 		position: "absolute",
@@ -221,6 +208,24 @@ const Travel: NextPage = () => {
 			<Footer />
 		</div>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps<{
+	initialSortBy: SortBy | null;
+}> = async (context) => {
+	const sortByParam = context.query.SortBy;
+	const sortByValue = Array.isArray(sortByParam) ? sortByParam[0] : sortByParam;
+
+	const initialSortBy =
+		Object.values(SortBy).find(
+			(enumValue) => enumValue.toLowerCase() === sortByValue?.toLowerCase(),
+		) ?? null;
+
+	return {
+		props: {
+			initialSortBy,
+		},
+	};
 };
 
 export default Travel;

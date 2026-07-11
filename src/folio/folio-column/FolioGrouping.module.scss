@@ -24,13 +24,10 @@
 	padding-right: 20px;
 	cursor: pointer;
 
-	color: $darkGrey;
+	color: $dimmerWhite;
 
 	&:hover,
 	&:focus {
 		@extend .defaultDarkBlueGradient;
 	}
-}
-.folioItemDark {
-	color: $dimmerWhite;
 }

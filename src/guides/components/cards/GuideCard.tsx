@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
-import { setDark } from "../../../../utils/configureCss/configureCss";
 import { GuideMetaData } from "../../types";
 import { subTitleShortener, titleShortener } from "./textFormatter";
 import styles from "./GuideCard.module.scss";
@@ -40,7 +39,7 @@ export const GuideCard = ({
 					/>
 					<CardContent>
 						<div className={styles.cardContent}>
-							<h5 className={setDark(styles, "topicContainer")}>
+							<h5 className={styles.topicContainer}>
 								<div className={styles.topicText}>{cardData.topic}</div>
 							</h5>
 

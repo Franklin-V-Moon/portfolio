@@ -50,13 +50,6 @@ Reads `?SortBy=` from `window.location.search` inside a `useEffect` (post-hydrat
 Montserrat is fetched from `fonts.cdnfonts.com` **twice** — once via a render-blocking `<link>` in `_document.tsx:10-13`, again via `@import` in `themes/globals.css:5` — plus `animate.css` from a third-party CDN, plus a **synchronous** `<script src='gumroad.js'>` (line 17-19, with a deliberate `eslint-disable @next/next/no-sync-scripts` — the "correct" fix was known and explicitly bypassed).
 **Action:** Replace both Montserrat fetches with `next/font/google` (self-hosted, zero extra request, no FOUC). Replace the sync Gumroad script with `next/script` (`strategy="lazyOnload"` or `"afterInteractive"`). Evaluate whether `animate.css` (a whole third-party animation library) is pulling its weight vs. a handful of hand-written CSS animations.
 
-#### P1.8 — Assets Store gallery uses un-optimized, un-lazy `<img>` against the largest media directory
-**Files:** `src/assets/components/AssetItem/AssetItem.tsx:33-41`, `src/assets/components/AssetCollection/AssetCollection.tsx:25-30`
-Both use MUI `CardMedia component='img'` (a real `<img>` under the hood) with no `loading="lazy"`, no explicit dimensions (CLS risk), against `public/assets/`. Contrast with `GuideCard.tsx:33-40`, which already does this correctly (`loading='lazy'`, `decoding='async'`).
-
-A `next/image` migration of both components was attempted and reverted — it broke the gallery, and the page is currently unlinked/hidden, so it's lower priority. The source thumbnails in `public/assets/` were still resized/recompressed directly (121 MB → ~10 MB, all downscaled to a sane thumbnail resolution), so the un-optimized `<img>` tags are now at least serving reasonably-sized files rather than multi-MB originals.
-**Action:** Revisit the `next/image` migration separately with more room to debug, or at minimum add `loading="lazy"` + explicit dimensions matching `GuideCard.tsx`'s existing pattern.
-
 ### Theming & Styling (dead dark-mode system)
 
 This is one root cause with five symptoms across routing, theming, and testing — group as a single cleanup effort.
