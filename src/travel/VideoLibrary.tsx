@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ImageWithSkeleton } from "../global/ImageWithSkeleton";
 import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import { TravelVideoMetaData } from "./types";
 import { CardActionArea, Grid, LinearProgress } from "@mui/material";
@@ -70,7 +70,7 @@ export const VideoLibrary = ({
 										</div>
 									)}
 
-									<Image
+									<ImageWithSkeleton
 										src={`/travel/posters/${dataItem.hostedLink}.png`}
 										alt={`${dataItem.title} poster`}
 										className={styles.videoCardImage}
