@@ -8,7 +8,6 @@ import { ExternalLinkButtons } from "./ExternalLinkButtons";
 import { ProjectMetaData } from "./types";
 
 import styles from "./ProjectItem.module.scss";
-import { setDark } from "../../utils/configureCss/configureCss";
 import { splitStringAtFullStop } from "../../utils/split-string/splitStringAtFullStop";
 
 export const ProjectItem = ({
@@ -58,7 +57,7 @@ export const ProjectItem = ({
 			<div className={styles.subTitleContainer}>
 				{subTitleArray.map((sentence, index) => {
 					return (
-						<div className={setDark(styles, "subTitle")} key={index}>
+						<div className={styles.subTitle} key={index}>
 							{sentence}
 						</div>
 					);

@@ -1,4 +1,3 @@
-import { setDark } from "../../../utils/configureCss/configureCss";
 import { MetaData, FolioData } from "../types";
 
 import styles from "./FolioGrouping.module.scss";
@@ -23,7 +22,7 @@ export const FolioGrouping = ({
 				};
 				return (
 					<button
-						className={setDark(styles, "folioItem")}
+						className={styles.folioItem}
 						onClick={() => handleOpenModal(modalPayload)}
 						key={index}>
 						{item.title}

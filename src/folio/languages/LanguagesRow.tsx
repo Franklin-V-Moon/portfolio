@@ -1,4 +1,3 @@
-import { setDark } from "../../../utils/configureCss/configureCss";
 import { MetaData } from "../types";
 
 import styles from "./LanguagesRow.module.scss";
@@ -21,7 +20,7 @@ export const LanguagesRow = ({
 
 	return (
 		<button
-			className={setDark(styles, "rowItem")}
+			className={styles.rowItem}
 			onClick={() => handleOpenModal(modalPayload)}>
 			{item.title}
 		</button>

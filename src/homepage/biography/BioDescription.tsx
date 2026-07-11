@@ -1,6 +1,5 @@
 import { Duration, intervalToDuration } from "date-fns";
 import { useEffect, useState } from "react";
-import { setDark } from "../../../utils/configureCss/configureCss";
 
 import styles from "./BioDescription.module.scss";
 import { tabsData } from "../../datasources/NavBarMetaData";
@@ -33,7 +32,7 @@ export const BioDescription = (): JSX.Element => {
 		<div className={styles.outerContainer}>
 			<div className={styles.container}>
 				<span className={styles.titleFont}>Franklin</span>
-				<span className={`${styles.titleFont} ${setDark(styles, "gradient")}`}>
+				<span className={`${styles.titleFont} ${styles.gradient}`}>
 					{" V Moon "}
 				</span>
 
@@ -53,7 +52,7 @@ export const BioDescription = (): JSX.Element => {
 
 				{/* <span className={styles.backupAutoType}>Developer</span> */}
 
-				<main className={setDark(styles, "blurb")}>
+				<main className={styles.blurb}>
 					{tabsData[0].pageDescription}
 					<br />
 					<br />

@@ -1,6 +1,5 @@
 import CommitIcon from "@mui/icons-material/Commit";
 import Image from "next/image";
-import { setDark } from "../../../../utils/configureCss/configureCss";
 
 import color from "../../../../themes/_colors.module.scss";
 import styles from "../Experience.module.scss";
@@ -25,7 +24,7 @@ export const VolunteerListItem = ({
 		<>
 			<CommitIcon
 				fontSize='large'
-				className={`${styles.lineIcon} ${setDark(volunteerStyles, "lineIcon")}`}
+				className={`${styles.lineIcon} ${volunteerStyles.lineIcon}`}
 			/>
 			<div
 				className={`${styles.itemContainer} ${volunteerStyles.itemContainer}`}>
