@@ -1,4 +1,4 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Navbar } from "./Navbar";
 
 jest.mock("next/router", () => {
@@ -14,16 +14,9 @@ jest.mock("next/router", () => {
 
 describe("Navbar component", () => {
 	it("renders the navbar correctly", () => {
-		const { getByText } = render(<Navbar setDarkMode={() => {}} />);
-		expect(getByText("FOLIO")).toBeDefined();
+		const { getByText } = render(<Navbar />);
+		expect(getByText("PORTFOLIO")).toBeDefined();
 		expect(getByText("GUIDES")).toBeDefined();
-		expect(getByText("PROJECTS")).toBeDefined();
-	});
-
-	it("toggles dark mode when the dark mode button is pressed", () => {
-		const setDarkMode = jest.fn();
-		const { getByLabelText } = render(<Navbar setDarkMode={setDarkMode} />);
-		fireEvent.click(getByLabelText("Dark Mode"));
-		expect(setDarkMode).toHaveBeenCalled();
+		expect(getByText("TRAVEL")).toBeDefined();
 	});
 });

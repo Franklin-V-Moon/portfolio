@@ -31,16 +31,16 @@ Everything else is either dead code (safe, mechanical deletions) or a well-under
 
 These are high priority bugs. Fix before or alongside anything else, since they undermine trust in the rest of the toolchain.
 
-### FIXED P0.1 — Test suite cannot run — RESOLVED (2026-07-12)
+### FIXED P0.1 — Test suite cannot run
 **Files:** `jest.config.js:9`, `package.json` (devDependencies)
 `testEnvironment: "jest-environment-jsdom"` is configured but the `jest-environment-jsdom` package is **not installed** (absent from `package.json`, `yarn.lock`, and `node_modules`). Jest ≥28 stopped bundling jsdom by default, so this fails immediately with `Test environment jest-environment-jsdom cannot be found` on a clean install.
 **Action:** `yarn add -D jest-environment-jsdom` (pin to a version compatible with the installed `jest@^29.7.0`, or do this as part of the Jest 29→30 bump in P1).
 **Resolution:** Ran `yarn add --dev jest-environment-jsdom`, which also surfaced and required fixing two related install-state bugs: stale `node_modules` hoisting (a full `rm -rf node_modules && yarn install` was needed — incremental reinstalls weren't sufficient) and a missing `@testing-library/dom` peer dependency of `@testing-library/react@16`. `yarn test` now runs; 15 of 20 suites pass. Remaining failures are unrelated application/test bugs (P0.2 covers `Navbar.test.tsx`; `textFormatter.test.ts`, `SalaryExpectationsSection.test.tsx`, `BioDescription.test.tsx`, `ContactCard.test.tsx` are not yet triaged).
 
-### P0.2 — Stale test asserts a removed component API
+### FIXED P0.2 — Stale test asserts a removed component API
 **File:** `src/global/navigation/Navbar.test.tsx:17,23-28`
 Renders `<Navbar setDarkMode={...} />` and asserts `getByLabelText("Dark Mode")` triggers the setter — but `Navbar.tsx` takes **no props** and has no dark-mode toggle at all (light mode was intentionally removed). This test has been silently rotten, likely since before P0.1 was noticed, meaning nobody has seen a green test run in a while.
-**Action:** Delete the stale toggle assertions once the dead dark-mode system (P1.5) is removed; rewrite `Navbar.test.tsx` against the current no-props API.
+**Resolution:** Confirmed both tests failed for real reasons (`yarn jest src/global/navigation/Navbar.test.tsx`): the dark-mode toggle test found no `"Dark Mode"` label since no toggle exists, and the render test asserted stale tab labels (`FOLIO`, `PROJECTS`) that no longer exist in `NavBarMetaData.tsx` (current tabs are the home tab — rendered as hidden text `PORTFOLIO` since its `label` is `""` — plus `GUIDES` and `TRAVEL`; `PROJECTS` isn't a nav tab at all). Rewrote `Navbar.test.tsx` to render `<Navbar />` with no props and assert against the current tab labels; removed the dead dark-mode-toggle test and the now-unused `fireEvent` import. Suite passes; `yarn lint` shows no new issues.
 
 ### P0.3 — `next.config.js` self-overwrite: SVGR config is dead
 **File:** `next.config.js:1-21`
@@ -72,6 +72,10 @@ This is a **top-level sibling key**, not nested inside `compilerOptions` — Typ
 ```
 No `yarn lint`, no `yarn build`/typecheck step — `tsc` only runs implicitly inside `next build`, and `next build` never runs in CI, so **type errors and lint failures can merge to `main` undetected**. The postbuild sitemap pipeline (`export-meta.ts` + `next-sitemap`) is also never exercised.
 **Action:** Bump to `actions/checkout@v4` + `actions/setup-node@v4` with a current Node LTS (matching a real `engines` field, see P1.9), add `yarn lint` and `yarn build` steps, enable `cache: 'yarn'`.
+
+### P0.6 - Fix all failing unit tests
+Since fixing P0.1, we now see 7 failing unit tests that need to be reviewed and potentially fixed
+
 
 ---
 
