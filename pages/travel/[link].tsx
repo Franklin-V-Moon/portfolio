@@ -256,7 +256,7 @@ const VideoContent = ({
 													title={`Skip to the moment when the ${item.title
 														.split("(")[0]
 														.trim()} happened`}
-													key={`Button to skip to ${item}`}>
+													key={`Button to skip to ${item.timecode}`}>
 													<Button
 														variant='outlined'
 														color='inherit'
