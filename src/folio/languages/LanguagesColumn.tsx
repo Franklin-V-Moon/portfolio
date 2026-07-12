@@ -23,11 +23,11 @@ export const LanguagesColumn = (props: LanguagesColumnProps) => {
 		<div className={styles.container}>
 			<div>
 				<div className={styles.columnWrapper}>
-					<h2
+					<button
 						className={styles.title}
 						onClick={() => handleOpenModal(modalPayload)}>
 						{title}
-					</h2>
+					</button>
 					<div className={styles.columnContainer}>
 						<div className={styles.column}>
 							{data.map((item, index) => {

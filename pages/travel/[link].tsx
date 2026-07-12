@@ -80,7 +80,7 @@ const VideoContent = ({
 		}
 	}, [isPlayerReady, router.query]);
 
-	const adviceKeyData: any = {
+	const adviceKeyData: Record<string, string> = {
 		travelLength: "Trip Duration",
 		currency: "Currencies Used",
 		season: "Best Months",

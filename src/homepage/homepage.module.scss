@@ -1,4 +1,4 @@
-@import "../../themes/breakpoints";
+@use "../../themes/breakpoints" as *;
 
 .pageToggle {
 	display: flex;

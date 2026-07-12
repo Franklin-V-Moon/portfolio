@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Dispatch, SetStateAction } from "react";
 import { Topic } from "../../../types";
 import { addTransparency } from "../filterAnimations";
@@ -22,11 +22,11 @@ export const SingleSelectFilterField = ({
 	defaultValue: string;
 	highlightColor: string;
 }) => {
-	const handleChange = (event: any) => {
+	const handleChange = (event: SelectChangeEvent<string>) => {
 		const {
 			target: { value },
 		} = event;
-		setFilter(value === defaultValue ? undefined : value);
+		setFilter(value === defaultValue ? undefined : (value as Topic));
 	};
 
 	const dropDownStylingOverrides = {

@@ -26,7 +26,7 @@ export const BioDescription = () => {
 			setPeriodWorked(timeWorked());
 		}, 30 * 1000);
 		return () => clearInterval(thirtySecondInterval);
-	});
+	}, []);
 
 	return (
 		<div className={styles.outerContainer}>

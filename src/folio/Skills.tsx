@@ -13,7 +13,7 @@ import { slideTransition } from "../guides/components/filter/filterAnimations";
 
 import styles from "../../src/folio/index.module.scss";
 
-const Transition: any = slideTransition("right");
+const Transition = slideTransition("right");
 
 export const Folio: NextPage = () => {
 	const [showModal, setShowModal] = useState(false);

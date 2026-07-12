@@ -1,5 +1,5 @@
-@import "../../themes/breakpoints";
-@import "../../themes/colors.module";
+@use "../../themes/breakpoints" as *;
+@use "../../themes/colors.module" as *;
 
 .pageContainer {
 	min-height: 100vh;

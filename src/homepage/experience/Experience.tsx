@@ -14,34 +14,34 @@ export const Experience = () => {
 	const [stickyColumnLock, setStickyColumnLock] = useState(0);
 
 	useEffect(() => {
-		const leftColumn = document.getElementById("right-column");
-		const rightColumn = document.getElementById("left-column");
-
-		if (!rightColumn || !leftColumn) {
-			return;
-		}
-
 		const getSmallerColumnHeight = (leftCol: string, rightCol: string) => {
 			const leftHeightValue = parseFloat(leftCol.replace("px", ""));
 			const rightHeightValue = parseFloat(rightCol.replace("px", ""));
 			return Math.min(leftHeightValue, rightHeightValue);
 		};
 
-		const smallerColumnHeight = getSmallerColumnHeight(
-			window.getComputedStyle(leftColumn).getPropertyValue("height"),
-			window.getComputedStyle(rightColumn).getPropertyValue("height"),
-		);
-
-		setStickyColumnLock(smallerColumnHeight);
-
-		const updateMobile = () => {
+		const updateLayout = () => {
 			setMobile(window.innerWidth < 600 ? true : false);
+
+			const leftColumn = document.getElementById("right-column");
+			const rightColumn = document.getElementById("left-column");
+
+			if (!rightColumn || !leftColumn) {
+				return;
+			}
+
+			const smallerColumnHeight = getSmallerColumnHeight(
+				window.getComputedStyle(leftColumn).getPropertyValue("height"),
+				window.getComputedStyle(rightColumn).getPropertyValue("height"),
+			);
+
+			setStickyColumnLock(smallerColumnHeight);
 		};
 
-		updateMobile();
-		window.addEventListener("resize", updateMobile);
+		updateLayout();
+		window.addEventListener("resize", updateLayout);
 		return () => {
-			window.removeEventListener("resize", updateMobile);
+			window.removeEventListener("resize", updateLayout);
 		};
 	}, []);
 

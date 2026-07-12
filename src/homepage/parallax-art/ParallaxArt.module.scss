@@ -1,4 +1,4 @@
-@import "../../../themes/breakpoints";
+@use "../../../themes/breakpoints" as *;
 
 $height: 35vh;
 $darkBackgroundColor: #01456e;

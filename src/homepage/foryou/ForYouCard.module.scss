@@ -1,4 +1,4 @@
-@import "../../../themes/colors.module";
+@use "../../../themes/colors.module" as *;
 
 .container {
 	width: 350px;
