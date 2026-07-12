@@ -77,7 +77,7 @@ export const Navbar = () => {
 					variant='standard'
 					className={styles.container}
 					sx={{
-						"& .MuiTabs-flexContainer": {
+						"& .MuiTabs-list": {
 							justifyContent: "flex-end",
 						},
 					}}>
