@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 
-import styles from "./assetitem.module.scss";
+import styles from "./AssetItem.module.scss";
 import { AssetItemMetaData } from "../../types";
 import { useRef } from "react";
 

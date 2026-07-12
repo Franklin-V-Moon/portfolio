@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./searchbar.module.scss";
+import styles from "./Searchbar.module.scss";
 
 const AssetSearchBar = () => {
 	return (

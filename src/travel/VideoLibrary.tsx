@@ -2,7 +2,7 @@ import { ImageWithSkeleton } from "../global/ImageWithSkeleton";
 import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import { TravelVideoMetaData } from "./types";
 import { CardActionArea, Grid, LinearProgress } from "@mui/material";
-import styles from "./videolibrary.module.scss";
+import styles from "./VideoLibrary.module.scss";
 import { useEffect, useState } from "react";
 import router from "next/router";
 

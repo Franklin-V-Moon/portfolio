@@ -6,7 +6,7 @@ import {
 	Typography,
 } from "@mui/material";
 
-import styles from "./assetcollection.module.scss";
+import styles from "./AssetCollection.module.scss";
 import { AssetCollectionMetaData } from "../../types";
 import router from "next/router";
 
