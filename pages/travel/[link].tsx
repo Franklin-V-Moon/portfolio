@@ -195,9 +195,7 @@ const VideoContent = ({
 	return (
 		<>
 			<Head>
-				<title>
-					{title} - {year} - Franklin Von Moon
-				</title>
+				<title>{`${title} - ${year} - Franklin Von Moon`}</title>
 				<meta name={title} content={title} />
 				<link rel='icon' href='/favicon-yellow.ico' />
 				<meta

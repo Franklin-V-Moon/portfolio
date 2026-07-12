@@ -21,9 +21,7 @@ const AssetCollectionPage = ({
 	return (
 		<>
 			<Head>
-				<title>
-					{collectionData.title} Asset Collection - Franklin Von Moon
-				</title>
+				<title>{`${collectionData.title} Asset Collection - Franklin Von Moon`}</title>
 				<meta name={collectionData.title} content={collectionData.title} />
 				<link rel='icon' href='/favicon-purple.ico' />
 				<meta
