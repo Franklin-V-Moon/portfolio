@@ -23,20 +23,20 @@ export const Navbar = () => {
 		return 0;
 	};
 
-	const [tabIndex, setTabIndex] = useState(initialTab());
+	const [selectedTab, setSelectedTab] = useState(initialTab());
 
 	const handleTabClick = (route: string, tab: number) => {
-		setTabIndex(tab);
+		setSelectedTab(tab);
 		router.replace(route);
 	};
 
 	useEffect(() => {
-		setTabIndex(initialTab());
+		setSelectedTab(initialTab());
 	}, [router, initialTab]);
 
 	return (
 		<>
-			<h1 className={styles.behindNav}>{tabsData[tabIndex].pageDescription}</h1>
+			<h1 className={styles.behindNav}>{tabsData[selectedTab].pageDescription}</h1>
 
 			<nav role='navigation' aria-label='Main navigation'>
 				<div className={styles.logotypeDesktopContainer}>
@@ -47,7 +47,7 @@ export const Navbar = () => {
 					<span
 						className={`${styles.logotypeText} ${styles.logotypeAlignDesktop} ${
 							styles.logoSecond
-						} ${styles[tabsData[tabIndex].gradient]} ${
+						} ${styles[tabsData[selectedTab].gradient]} ${
 							styles.logotypeGradientSize
 						}`}>
 						V Moon
@@ -58,7 +58,7 @@ export const Navbar = () => {
 					<span className={styles.logotypeText}>F</span>
 					<span
 						className={`${styles.logotypeText} ${
-							styles[tabsData[tabIndex].gradient]
+							styles[tabsData[selectedTab].gradient]
 						}`}>
 						V
 					</span>
@@ -66,11 +66,11 @@ export const Navbar = () => {
 				</div>
 
 				<Tabs
-					value={tabIndex}
+					value={selectedTab}
 					scrollButtons={true}
 					slotProps={{
 						indicator: {
-							style: { background: tabsData[tabIndex].color },
+							style: { background: tabsData[selectedTab].color },
 						},
 					}}
 					textColor='inherit'
@@ -93,7 +93,7 @@ export const Navbar = () => {
 										<span className={styles.visuallyHidden}>PORTFOLIO</span>
 									)
 								}
-								icon={item.icon(tabIndex)}
+								icon={item.icon(selectedTab)}
 								className={`${styles.tab} ${styles.hover} ${
 									styles.baseTabSize
 								} ${
