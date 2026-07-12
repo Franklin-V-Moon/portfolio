@@ -12,7 +12,7 @@ export const ProgressBar = ({
 	title: string;
 	scores: number[];
 }) => {
-	const scoreKeyData: any = {
+	const scoreKeyData: Record<string, { title: string; tooltip: string }> = {
 		beauty: {
 			title: "Beauty",
 			tooltip: "How attractive, clean and unique the country is on average",

@@ -1,4 +1,4 @@
-@import "../../themes/breakpoints";
+@use "../../themes/breakpoints" as *;
 
 .container {
 	margin-top: 20px;

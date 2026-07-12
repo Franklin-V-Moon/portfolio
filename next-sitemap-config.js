@@ -1,6 +1,19 @@
-const travelMetaData = require("./utils/sitemap-meta/TravelMetaData.json");
-const guideMetaData = require("./utils/sitemap-meta/GuideMetaData.json");
-const assetMetaData = require("./utils/sitemap-meta/AssetMetaData.json");
+const fs = require("fs");
+const path = require("path");
+
+const requireSitemapMeta = (filename) => {
+	const filePath = path.join(__dirname, "utils", "sitemap-meta", filename);
+	if (!fs.existsSync(filePath)) {
+		throw new Error(
+			`Missing ${filePath}. Run "yarn export-meta" before generating the sitemap.`,
+		);
+	}
+	return require(filePath);
+};
+
+const travelMetaData = requireSitemapMeta("TravelMetaData.json");
+const guideMetaData = requireSitemapMeta("GuideMetaData.json");
+const assetMetaData = requireSitemapMeta("AssetMetaData.json");
 const siteUrl = "https://franklin-v-moon.dev";
 
 const normalizeTravelSlug = (slug) => {

@@ -4,7 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Select from "@mui/material/Select";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Dispatch, SetStateAction } from "react";
 import { Languages, Tags } from "../../../types";
 import { addTransparency } from "../filterAnimations";
@@ -29,12 +29,14 @@ type MultiSelectFilterProps = (LanguagesFilter | TagsFilter) & {
 export const MultiSelectFilterField = (props: MultiSelectFilterProps) => {
 	const { label, filter, setFilter, dropDownData, highlightColor } = props;
 
-	const handleChange = (event: any) => {
+	const handleChange = (event: SelectChangeEvent<Languages[] | Tags[]>) => {
 		const {
 			target: { value },
 		} = event;
 
-		setFilter(value);
+		(setFilter as Dispatch<SetStateAction<Languages[] | Tags[]>>)(
+			value as Languages[] | Tags[],
+		);
 	};
 
 	return (

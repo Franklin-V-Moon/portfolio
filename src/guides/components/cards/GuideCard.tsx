@@ -24,7 +24,7 @@ export const GuideCard = ({
 		<div className={styles.container}>
 			<Card className={styles.card}>
 				<CardActionArea
-					component={Link as any}
+					component={Link}
 					href={href}
 					onClick={() => setLoading(true)}
 					sx={{ textDecoration: "none", color: "inherit", display: "block" }}

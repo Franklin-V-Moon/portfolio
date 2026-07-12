@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ParallaxArt.module.scss";
 
 export const ParallaxArt = () => {
@@ -16,14 +16,18 @@ export const ParallaxArt = () => {
 
 	const pageTop = offSetY === 0;
 
+	const rafId = useRef<number>(undefined);
+
 	useEffect(() => {
 		const handleScrollAnimation = () => {
 			handleScroll();
-			window.requestAnimationFrame(handleScrollAnimation);
+			rafId.current = window.requestAnimationFrame(handleScrollAnimation);
 		};
 		handleScrollAnimation();
 		return () => {
-			window.cancelAnimationFrame(handleScrollAnimation as any);
+			if (rafId.current !== undefined) {
+				window.cancelAnimationFrame(rafId.current);
+			}
 		};
 	}, []);
 

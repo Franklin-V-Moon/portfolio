@@ -6,6 +6,8 @@ import Head from "next/head";
 import { NotionAPI } from "notion-client";
 import { ExtendedRecordMap } from "notion-types";
 import { NotionRenderer } from "react-notion-x";
+import type { Code as CodeComponent } from "react-notion-x/build/third-party/code";
+import type { ComponentProps } from "react";
 import {
 	getGuideMetaData,
 	getGuideMetaDataByLink,
@@ -17,7 +19,7 @@ import styles from "../../src/guides/index.module.scss";
 import { Footer } from "../../utils/footer/Footer";
 import router from "next/router";
 
-const Code = dynamic<any>(() =>
+const Code = dynamic<ComponentProps<typeof CodeComponent>>(() =>
 	import("react-notion-x/build/third-party/code").then((m) => m.Code),
 );
 
