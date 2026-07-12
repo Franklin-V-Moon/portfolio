@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./BioDescription.module.scss";
 import { tabsData } from "../../datasources/NavBarMetaData";
 
-export const BioDescription = (): JSX.Element => {
+export const BioDescription = () => {
 	const timeWorked = () => {
 		return intervalToDuration({
 			start: new Date("August 2, 2021 09:00:00"),

@@ -1,4 +1,4 @@
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutlined";
 import { FormControl, IconButton, Switch, Tooltip } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 
@@ -15,12 +15,14 @@ export const SalarySwitch = ({
 	onChange: () => void;
 	description: string;
 }) => {
-	const label = { inputProps: { "aria-label": `Toggle ${text} switch` } };
+	const label = {
+		slotProps: { input: { "aria-label": `Toggle ${text} switch` } },
+	};
 
 	return (
 		<div className={styles.container}>
 			<Tooltip
-				TransitionComponent={Zoom}
+				slots={{ transition: Zoom }}
 				title={description}
 				enterTouchDelay={0}
 				leaveTouchDelay={5000}>

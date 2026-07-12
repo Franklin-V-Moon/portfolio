@@ -8,7 +8,7 @@ type LanguagesColumnProps = {
 	handleOpenModal: (payload: MetaData) => void;
 };
 
-export const LanguagesColumn = (props: LanguagesColumnProps): JSX.Element => {
+export const LanguagesColumn = (props: LanguagesColumnProps) => {
 	const { columnData, handleOpenModal } = props;
 	const { title, data, knowledge, proficiency, description } = columnData;
 

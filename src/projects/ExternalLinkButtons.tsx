@@ -11,11 +11,11 @@ export const ExternalLinkButtons = ({
 	metaData,
 }: {
 	metaData: ProjectMetaData;
-}): JSX.Element => {
+}) => {
 	return (
 		<div className={styles.container}>
 			{metaData.deployedURL ? (
-				<Tooltip TransitionComponent={Zoom} title='Deployed Website'>
+				<Tooltip slots={{ transition: Zoom }} title='Deployed Website'>
 					<Button
 						startIcon={<OpenInNewIcon />}
 						color='brightGrey'
@@ -26,7 +26,7 @@ export const ExternalLinkButtons = ({
 				</Tooltip>
 			) : null}
 			{metaData.repoURL ? (
-				<Tooltip TransitionComponent={Zoom} title='Github Repository'>
+				<Tooltip slots={{ transition: Zoom }} title='Github Repository'>
 					<Button
 						startIcon={<GitHubIcon />}
 						color='brightGrey'
@@ -37,7 +37,7 @@ export const ExternalLinkButtons = ({
 				</Tooltip>
 			) : null}
 			{metaData.uxURL ? (
-				<Tooltip TransitionComponent={Zoom} title='Early Design Documents'>
+				<Tooltip slots={{ transition: Zoom }} title='Early Design Documents'>
 					<Button
 						startIcon={<FormatPaintIcon />}
 						color='brightGrey'

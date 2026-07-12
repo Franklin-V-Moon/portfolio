@@ -1,5 +1,5 @@
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutlined";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutlined";
 import {
 	IconButton,
 	InputAdornment,
@@ -31,7 +31,7 @@ export const MoneyInput = ({
 	return (
 		<div className={styles.container}>
 			<Tooltip
-				TransitionComponent={Zoom}
+				slots={{ transition: Zoom }}
 				title={description}
 				enterTouchDelay={0}
 				leaveTouchDelay={5000}>
@@ -52,7 +52,7 @@ export const MoneyInput = ({
 					type={"number"}
 				/>
 			</div>
-			<Tooltip TransitionComponent={Zoom} title={"Clear"} enterTouchDelay={0}>
+			<Tooltip slots={{ transition: Zoom }} title={"Clear"} enterTouchDelay={0}>
 				<div className={styles.deleteIcon}>
 					<IconButton
 						color='primary'

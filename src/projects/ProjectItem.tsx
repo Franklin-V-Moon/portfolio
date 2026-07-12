@@ -14,7 +14,7 @@ export const ProjectItem = ({
 	metaData,
 }: {
 	metaData: ProjectMetaData;
-}): JSX.Element => {
+}) => {
 	const subTitleArray = splitStringAtFullStop(metaData.subTitle);
 
 	return (
@@ -25,14 +25,14 @@ export const ProjectItem = ({
 				wrapAround={true}
 				renderBottomCenterControls={null}
 				renderCenterLeftControls={({ previousSlide }) => (
-					<Tooltip TransitionComponent={Zoom} title='Previous Slide'>
+					<Tooltip slots={{ transition: Zoom }} title='Previous Slide'>
 						<Button onClick={previousSlide} color='brightGrey'>
 							<KeyboardArrowLeftIcon />
 						</Button>
 					</Tooltip>
 				)}
 				renderCenterRightControls={({ nextSlide }) => (
-					<Tooltip TransitionComponent={Zoom} title='Next Slide'>
+					<Tooltip slots={{ transition: Zoom }} title='Next Slide'>
 						<Button onClick={nextSlide} color='brightGrey'>
 							<KeyboardArrowRightIcon />
 						</Button>

@@ -10,7 +10,7 @@ export const VideoLibrary = ({
 	videoMetaData,
 }: {
 	videoMetaData: TravelVideoMetaData[];
-}): JSX.Element => {
+}) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [loading, setLoading] = useState({ state: false, index: -1 });
 
@@ -35,9 +35,8 @@ export const VideoLibrary = ({
 					const href = `/travel/${dataItem.link}`;
 					return (
 						<Grid
-							item
 							key={`Video card of ${dataItem.title}`}
-							xs={isSmallScreen && 6}>
+							size={{ xs: isSmallScreen ? 6 : false }}>
 							<div
 								style={{
 									animation: `fadeIn ${videoIndex + 5}00ms ease-in-out`,

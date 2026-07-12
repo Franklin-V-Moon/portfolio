@@ -5,7 +5,7 @@ import React from "react";
 export const closeMenu = (
 	event: Event | React.SyntheticEvent,
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>,
-	anchorRef: React.RefObject<HTMLButtonElement>,
+	anchorRef: React.RefObject<HTMLButtonElement | null>,
 ): void => {
 	if (
 		anchorRef.current &&

@@ -68,10 +68,12 @@ export const MultiSelectFilterField = (props: MultiSelectFilterProps) => {
 						</Box>
 					)}
 					MenuProps={{
-						PaperProps: {
-							style: {
-								maxHeight: 48 * 4.5 + 8,
-								width: 300,
+						slotProps: {
+							paper: {
+								style: {
+									maxHeight: 48 * 4.5 + 8,
+									width: 300,
+								},
 							},
 						},
 					}}>

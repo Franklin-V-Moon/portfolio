@@ -56,7 +56,7 @@ export const ProgressBar = ({
 	return (
 		<>
 			<Tooltip
-				TransitionComponent={Zoom}
+				slots={{ transition: Zoom }}
 				title={scoreKeyData[title].tooltip}
 				followCursor
 				key={`score item ${title}`}>

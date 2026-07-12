@@ -8,10 +8,10 @@ export const ForYou = () => {
 		<>
 			<SubHeading text={"What Can I Do For You?"} />
 
-			<Grid container spacing={5} justifyContent='center'>
+			<Grid container spacing={5} sx={{ justifyContent: "center" }}>
 				{forYouMetaData.map((item, index) => {
 					return (
-						<Grid item key={index}>
+						<Grid key={index}>
 							<ForYouCard
 								logo={item.logo}
 								title={item.title}

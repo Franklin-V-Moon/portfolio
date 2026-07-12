@@ -9,10 +9,10 @@ export const Qualifications = () => {
 		<>
 			<SubHeading text={"Expertise"} />
 
-			<Grid container spacing={5} justifyContent='center'>
+			<Grid container spacing={5} sx={{ justifyContent: "center" }}>
 				{qualificationMetaData.map((item, index) => {
 					return (
-						<Grid item key={index}>
+						<Grid key={index}>
 							<QualificationCard
 								logo={item.logo}
 								title={item.title}

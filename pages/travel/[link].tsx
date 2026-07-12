@@ -44,7 +44,14 @@ import {
 import { useRouter } from "next/router";
 import { ProgressBar } from "../../src/travel/components/ProgressBar";
 import { useEffect, useRef, useState } from "react";
-import { InstagramEmbed } from "react-social-media-embed/dist/components/embeds/InstagramEmbed";
+import {
+	InstagramEmbed as InstagramEmbedImport,
+	InstagramEmbedProps,
+} from "react-social-media-embed/dist/components/embeds/InstagramEmbed";
+import { ComponentType } from "react";
+
+const InstagramEmbed =
+	InstagramEmbedImport as unknown as ComponentType<InstagramEmbedProps>;
 
 const VideoContent = ({
 	metaData,
@@ -243,11 +250,11 @@ const VideoContent = ({
 										<div>
 											{extras.highlights.map((item) => (
 												<Tooltip
-													TransitionComponent={Zoom}
+													slots={{ transition: Zoom }}
 													title={`Skip to the moment when the ${item.title
 														.split("(")[0]
 														.trim()} happened`}
-													key={`Button to skip to ${item}`}>
+													key={`Button to skip to ${item.timecode}`}>
 													<Button
 														variant='outlined'
 														color='inherit'
@@ -264,7 +271,7 @@ const VideoContent = ({
 							</div>
 							<div className={styles.share}>
 								<Tooltip
-									TransitionComponent={Zoom}
+									slots={{ transition: Zoom }}
 									title='Copy link to this exact timestamp'>
 									<IconButton
 										onClick={() => handleCopyToClipboardWithTimecode()}
@@ -274,7 +281,7 @@ const VideoContent = ({
 								</Tooltip>
 							</div>
 							<div>
-								<Tooltip TransitionComponent={Zoom} title='Download options'>
+								<Tooltip slots={{ transition: Zoom }} title='Download options'>
 									<IconButton
 										onClick={() => window.open(backupLink, "_blank")}
 										color='inherit'>
@@ -536,10 +543,10 @@ const VideoContent = ({
 																				backgroundColor: detail.isWarning
 																					? "rgba(255, 0, 0, 0.1)"
 																					: detail.isRecommendation
-																					? "rgba(255, 247, 0, 0.1)"
-																					: detail.isInfo
-																					? "rgba(0, 221, 255, 0.1)"
-																					: "transparent",
+																						? "rgba(255, 247, 0, 0.1)"
+																						: detail.isInfo
+																							? "rgba(0, 221, 255, 0.1)"
+																							: "transparent",
 																				marginBottom: detail.link
 																					? "-5px"
 																					: undefined,
@@ -590,7 +597,10 @@ const VideoContent = ({
 																				width={1000}
 																				height={1000}
 																				sizes='100vw'
-																				style={{ width: "100%", height: "auto" }}
+																				style={{
+																					width: "100%",
+																					height: "auto",
+																				}}
 																			/>
 																		)}
 																	</div>

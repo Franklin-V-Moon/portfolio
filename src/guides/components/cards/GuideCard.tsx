@@ -16,7 +16,7 @@ export const GuideCard = ({
 	cardData,
 }: {
 	cardData: GuideMetaData;
-}): JSX.Element => {
+}) => {
 	const [loading, setLoading] = useState(false);
 	const href = `/guides/${cardData.link}`;
 
