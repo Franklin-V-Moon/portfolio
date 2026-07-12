@@ -1,17 +1,14 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useRouter } from "next/router";
 import Guides from "../../pages/guides/index";
-import { Topic } from "./types";
+import { Languages, Topic } from "./types";
 
 jest.mock("next/router", () => ({
 	useRouter: jest.fn(),
 }));
 
 describe("Guides page", () => {
-	const mockReplace = jest.fn();
-
 	beforeEach(() => {
-		mockReplace.mockClear();
 		window.history.replaceState(null, "", "/guides");
 	});
 
@@ -20,7 +17,7 @@ describe("Guides page", () => {
 			isReady: true,
 			pathname: "/guides",
 			query: { topic: Topic.Agile },
-			replace: mockReplace,
+			replace: jest.fn(),
 		});
 		window.history.replaceState(null, "", "/guides?topic=Agile");
 
@@ -45,7 +42,7 @@ describe("Guides page", () => {
 			isReady: true,
 			pathname: "/guides",
 			query: {},
-			replace: mockReplace,
+			replace: jest.fn(),
 		});
 
 		render(<Guides />);
@@ -55,8 +52,9 @@ describe("Guides page", () => {
 		fireEvent.click(await screen.findByRole("option", { name: "Agile" }));
 
 		await waitFor(() => {
-			const lastCall = mockReplace.mock.calls.at(-1);
-			expect(lastCall?.[0].query).toEqual({ topic: Topic.Agile });
+			expect(window.location.pathname + window.location.search).toBe(
+				"/guides?topic=Agile",
+			);
 		});
 
 		fireEvent.click(screen.getByRole("button", { name: "Clear All" }));
@@ -73,7 +71,7 @@ describe("Guides page", () => {
 			isReady: true,
 			pathname: "/guides",
 			query: { topic: Topic.Agile, sort: "oldest" },
-			replace: mockReplace,
+			replace: jest.fn(),
 		});
 		window.history.replaceState(null, "", "/guides?topic=Agile&sort=oldest");
 
@@ -85,6 +83,66 @@ describe("Guides page", () => {
 		await waitFor(() => {
 			expect(window.location.pathname + window.location.search).toBe(
 				"/guides?sort=oldest",
+			);
+		});
+	});
+
+	it("removes the topic param from the URL when reset back to All", async () => {
+		(useRouter as jest.Mock).mockReturnValue({
+			isReady: true,
+			pathname: "/guides",
+			query: { topic: Topic.Agile },
+			replace: jest.fn(),
+		});
+		window.history.replaceState(null, "", "/guides?topic=Agile");
+
+		render(<Guides />);
+
+		await waitFor(() => {
+			expect(window.location.search).toBe("?topic=Agile");
+		});
+
+		fireEvent.click(screen.getByRole("button", { name: "Filter" }));
+		fireEvent.mouseDown(screen.getAllByRole("combobox")[0]);
+		fireEvent.click(await screen.findByRole("option", { name: "All" }));
+
+		await waitFor(() => {
+			expect(window.location.pathname + window.location.search).toBe(
+				"/guides",
+			);
+		});
+	});
+
+	it("removes a language param from the URL when deselected", async () => {
+		(useRouter as jest.Mock).mockReturnValue({
+			isReady: true,
+			pathname: "/guides",
+			query: { languages: [Languages.Docker, Languages.Terraform] },
+			replace: jest.fn(),
+		});
+		window.history.replaceState(
+			null,
+			"",
+			"/guides?languages=Docker&languages=Terraform",
+		);
+
+		render(<Guides />);
+
+		await waitFor(() => {
+			expect(window.location.search).toBe(
+				"?languages=Docker&languages=Terraform",
+			);
+		});
+
+		fireEvent.click(screen.getByRole("button", { name: "Filter" }));
+		fireEvent.mouseDown(screen.getByText(Languages.Docker));
+		fireEvent.click(
+			await screen.findByRole("option", { name: Languages.Docker }),
+		);
+
+		await waitFor(() => {
+			expect(window.location.pathname + window.location.search).toBe(
+				"/guides?languages=Terraform",
 			);
 		});
 	});

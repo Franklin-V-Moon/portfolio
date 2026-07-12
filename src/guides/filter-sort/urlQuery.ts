@@ -70,3 +70,19 @@ export const buildGuidesQuery = (
 
 	return query;
 };
+
+export const buildGuidesSearchString = (
+	query: Record<string, string | string[]>,
+): string => {
+	const params = new URLSearchParams();
+
+	Object.entries(query).forEach(([key, value]) => {
+		if (Array.isArray(value)) {
+			value.forEach((item) => params.append(key, item));
+		} else {
+			params.append(key, value);
+		}
+	});
+
+	return params.toString();
+};

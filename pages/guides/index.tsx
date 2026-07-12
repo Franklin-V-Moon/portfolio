@@ -12,6 +12,7 @@ import { FilterModal } from "../../src/guides/components/filter/FilterModal";
 import { filterAndSortMetaData } from "../../src/guides/filter-sort/filterAndSortMetaData";
 import {
 	buildGuidesQuery,
+	buildGuidesSearchString,
 	parseGuidesQuery,
 } from "../../src/guides/filter-sort/urlQuery";
 import { Languages, SortOptions, Tags, Topic } from "../../src/guides/types";
@@ -53,33 +54,22 @@ const Guides: NextPage = () => {
 			return;
 		}
 
-		router.replace(
-			{
-				pathname: router.pathname,
-				query: buildGuidesQuery(
-					sortBy,
-					topicFilter,
-					languagesFilter,
-					tagsFilter,
-				),
-			},
-			undefined,
-			{ shallow: true },
+		const query = buildGuidesQuery(
+			sortBy,
+			topicFilter,
+			languagesFilter,
+			tagsFilter,
 		);
+		const search = buildGuidesSearchString(query);
+		const url = `${router.pathname}${search ? `?${search}` : ""}`;
+
+		window.history.replaceState(window.history.state, "", url);
 	}, [router, hasSyncedFromUrl, sortBy, topicFilter, languagesFilter, tagsFilter]);
 
 	const handleClearAll = () => {
 		setTopicFilter(undefined);
 		setFilteredLanguages([]);
 		setTagsFilter([]);
-
-		const clearedQuery = buildGuidesQuery(sortBy, undefined, [], []);
-		const search = new URLSearchParams(
-			clearedQuery as Record<string, string>,
-		).toString();
-		const url = `${router.pathname}${search ? `?${search}` : ""}`;
-
-		window.history.replaceState(window.history.state, "", url);
 	};
 
 	useEffect(() => {

@@ -63,14 +63,12 @@ const Travel = ({
 	useEffect(() => setHasMounted(true), []);
 
 	useEffect(() => {
-		router.replace(
-			{
-				pathname: router.pathname,
-				query: buildTravelQuery(sortSelection, searchingText),
-			},
-			undefined,
-			{ shallow: true },
-		);
+		const search = new URLSearchParams(
+			buildTravelQuery(sortSelection, searchingText),
+		).toString();
+		const url = `${router.pathname}${search ? `?${search}` : ""}`;
+
+		window.history.replaceState(window.history.state, "", url);
 	}, [router, sortSelection, searchingText]);
 
 	const sortedMetaData = useMemo(

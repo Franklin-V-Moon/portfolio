@@ -1,5 +1,9 @@
 import { Languages, SortOptions, Tags, Topic } from "../types";
-import { buildGuidesQuery, parseGuidesQuery } from "./urlQuery";
+import {
+	buildGuidesQuery,
+	buildGuidesSearchString,
+	parseGuidesQuery,
+} from "./urlQuery";
 
 describe("parseGuidesQuery()", () => {
 	it("defaults to Newest sort and no filters when the query is empty", () => {
@@ -118,5 +122,29 @@ describe("buildGuidesQuery()", () => {
 			languages: [Languages.CSS],
 			tags: [Tags.Essay],
 		});
+	});
+});
+
+describe("buildGuidesSearchString()", () => {
+	it("returns an empty string for an empty query", () => {
+		expect(buildGuidesSearchString({})).toBe("");
+	});
+
+	it("serializes single-value params", () => {
+		expect(buildGuidesSearchString({ topic: Topic.Agile })).toBe(
+			`topic=${Topic.Agile}`,
+		);
+	});
+
+	it("repeats the key for each item in an array-value param", () => {
+		expect(
+			buildGuidesSearchString({
+				languages: [Languages.Docker, Languages.Terraform],
+			}),
+		).toBe(
+			`languages=${encodeURIComponent(
+				Languages.Docker,
+			)}&languages=${encodeURIComponent(Languages.Terraform)}`,
+		);
 	});
 });
