@@ -11,7 +11,7 @@ import AssetItem from "../../src/assets/components/AssetItem/AssetItem";
 import { Footer } from "../../utils/footer/Footer";
 import Image from "next/image";
 
-const AssetCollection = ({
+const AssetCollectionPage = ({
 	collectionData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	if (!collectionData) {
@@ -116,4 +116,4 @@ export const getStaticProps: GetStaticProps<
 	};
 };
 
-export default AssetCollection;
+export default AssetCollectionPage;
