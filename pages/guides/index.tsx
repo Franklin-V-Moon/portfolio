@@ -72,6 +72,14 @@ const Guides: NextPage = () => {
 		setTopicFilter(undefined);
 		setFilteredLanguages([]);
 		setTagsFilter([]);
+		router.replace(
+			{
+				pathname: router.pathname,
+				query: buildGuidesQuery(sortBy, undefined, [], []),
+			},
+			undefined,
+			{ shallow: true },
+		);
 	};
 
 	useEffect(() => {
