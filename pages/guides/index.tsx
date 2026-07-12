@@ -1,6 +1,7 @@
 import { Dialog, Grid } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { PageContainer } from "../../src/global/PageContainer";
 import { FilterButton } from "../../src/guides/components/buttons/FilterButton";
@@ -9,6 +10,10 @@ import { GuideCard } from "../../src/guides/components/cards/GuideCard";
 import { slideTransition } from "../../src/guides/components/filter/filterAnimations";
 import { FilterModal } from "../../src/guides/components/filter/FilterModal";
 import { filterAndSortMetaData } from "../../src/guides/filter-sort/filterAndSortMetaData";
+import {
+	buildGuidesQuery,
+	parseGuidesQuery,
+} from "../../src/guides/filter-sort/urlQuery";
 import { Languages, SortOptions, Tags, Topic } from "../../src/guides/types";
 import { Footer } from "../../utils/footer/Footer";
 
@@ -19,6 +24,7 @@ import { tabsData } from "../../src/datasources/NavBarMetaData";
 const Transition = slideTransition("right");
 
 const Guides: NextPage = () => {
+	const router = useRouter();
 	const [sortBy, setSortBy] = useState<SortOptions>(SortOptions.Newest);
 	const [topicFilter, setTopicFilter] = useState<Topic | undefined>(undefined);
 	const [languagesFilter, setFilteredLanguages] = useState([] as Languages[]);
@@ -27,6 +33,40 @@ const Guides: NextPage = () => {
 		filterAndSortMetaData(sortBy, topicFilter, languagesFilter, tagsFilter),
 	);
 	const [disableClearAll, setDisableClearAll] = useState(true);
+	const [hasSyncedFromUrl, setHasSyncedFromUrl] = useState(false);
+
+	useEffect(() => {
+		if (!router.isReady) {
+			return;
+		}
+
+		const parsed = parseGuidesQuery(router.query);
+		setSortBy(parsed.sortBy);
+		setTopicFilter(parsed.topicFilter);
+		setFilteredLanguages(parsed.languagesFilter);
+		setTagsFilter(parsed.tagsFilter);
+		setHasSyncedFromUrl(true);
+	}, [router.isReady]);
+
+	useEffect(() => {
+		if (!hasSyncedFromUrl) {
+			return;
+		}
+
+		router.replace(
+			{
+				pathname: router.pathname,
+				query: buildGuidesQuery(
+					sortBy,
+					topicFilter,
+					languagesFilter,
+					tagsFilter,
+				),
+			},
+			undefined,
+			{ shallow: true },
+		);
+	}, [router, hasSyncedFromUrl, sortBy, topicFilter, languagesFilter, tagsFilter]);
 
 	const handleClearAll = () => {
 		setTopicFilter(undefined);
