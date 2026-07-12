@@ -1,5 +1,5 @@
-@import "../../../../themes/colors.module";
-@import "../../../../themes/breakpoints";
+@use "../../../../themes/colors.module" as *;
+@use "../../../../themes/breakpoints" as *;
 
 .container {
 	margin: 10px;

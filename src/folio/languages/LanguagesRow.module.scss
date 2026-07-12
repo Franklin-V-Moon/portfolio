@@ -1,4 +1,4 @@
-@import "../../../themes/colors.module.scss";
+@use "../../../themes/colors.module" as *;
 
 .rowItem {
 	background: none;
