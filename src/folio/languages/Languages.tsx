@@ -20,7 +20,7 @@ export const Languages = ({
 					<Grid container className={styles.columnContainer}>
 						{languagesMetaData.map((columnData, index) => {
 							return (
-								<Grid item key={index}>
+								<Grid key={index}>
 									<LanguagesColumn
 										columnData={columnData}
 										handleOpenModal={handleOpenModal}

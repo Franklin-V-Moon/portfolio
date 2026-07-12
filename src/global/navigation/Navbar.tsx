@@ -68,8 +68,10 @@ export const Navbar = () => {
 				<Tabs
 					value={tabIndex}
 					scrollButtons={true}
-					TabIndicatorProps={{
-						style: { background: tabsData[tabIndex].color },
+					slotProps={{
+						indicator: {
+							style: { background: tabsData[tabIndex].color },
+						},
 					}}
 					textColor='inherit'
 					variant='standard'

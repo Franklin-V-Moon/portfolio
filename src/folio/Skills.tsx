@@ -29,7 +29,7 @@ export const Folio: NextPage = () => {
 			<div className={styles.modalContainer}>
 				<Dialog
 					open={showModal}
-					TransitionComponent={Transition}
+					slots={{ transition: Transition }}
 					onClose={() => setShowModal(false)}>
 					{FolioModal(setShowModal, modalPayload)}
 				</Dialog>

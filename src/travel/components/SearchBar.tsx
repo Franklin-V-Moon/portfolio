@@ -89,8 +89,6 @@ const svgStyle: React.CSSProperties = {
 	height: "90%",
 };
 
-Input.defaultProps = {};
-
 Input.displayName = "Input";
 
 export const SearchBar = ({

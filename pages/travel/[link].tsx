@@ -44,7 +44,16 @@ import {
 import { useRouter } from "next/router";
 import { ProgressBar } from "../../src/travel/components/ProgressBar";
 import { useEffect, useRef, useState } from "react";
-import { InstagramEmbed } from "react-social-media-embed/dist/components/embeds/InstagramEmbed";
+import {
+	InstagramEmbed as InstagramEmbedImport,
+	InstagramEmbedProps,
+} from "react-social-media-embed/dist/components/embeds/InstagramEmbed";
+import { ComponentType } from "react";
+
+// react-social-media-embed's own types still target the pre-React-19 JSX
+// namespace, which TypeScript rejects as a JSX component under React 19.
+const InstagramEmbed =
+	InstagramEmbedImport as unknown as ComponentType<InstagramEmbedProps>;
 
 const VideoContent = ({
 	metaData,
@@ -243,7 +252,7 @@ const VideoContent = ({
 										<div>
 											{extras.highlights.map((item) => (
 												<Tooltip
-													TransitionComponent={Zoom}
+													slots={{ transition: Zoom }}
 													title={`Skip to the moment when the ${item.title
 														.split("(")[0]
 														.trim()} happened`}
@@ -264,7 +273,7 @@ const VideoContent = ({
 							</div>
 							<div className={styles.share}>
 								<Tooltip
-									TransitionComponent={Zoom}
+									slots={{ transition: Zoom }}
 									title='Copy link to this exact timestamp'>
 									<IconButton
 										onClick={() => handleCopyToClipboardWithTimecode()}
@@ -274,7 +283,7 @@ const VideoContent = ({
 								</Tooltip>
 							</div>
 							<div>
-								<Tooltip TransitionComponent={Zoom} title='Download options'>
+								<Tooltip slots={{ transition: Zoom }} title='Download options'>
 									<IconButton
 										onClick={() => window.open(backupLink, "_blank")}
 										color='inherit'>

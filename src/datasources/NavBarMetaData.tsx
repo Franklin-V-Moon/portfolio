@@ -2,6 +2,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import HikingOutlinedIcon from "@mui/icons-material/HikingOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { ReactElement } from "react";
 import colors from "../../themes/_colors.module.scss";
 
 const setColor = (tab: number, id: number, color: string) => {
@@ -13,7 +14,7 @@ export const tabsData: {
 	color: string;
 	gradient: string;
 	route: string;
-	icon: (tab: number) => JSX.Element;
+	icon: (tab: number) => ReactElement;
 	order: number;
 	disabled?: boolean;
 	pageDescription: string;

@@ -14,8 +14,8 @@ export const Contact = () => {
 			<SubHeading text={"Get In Touch"} />
 
 			<div className={styles.gap}>
-				<Grid container spacing={3} justifyContent='center'>
-					<Grid item>
+				<Grid container spacing={3} sx={{ justifyContent: "center" }}>
+					<Grid>
 						<ContactCard
 							contactMethod={"Instagram"}
 							link={"https://www.instagram.com/franklin.v.moon"}>
@@ -23,7 +23,7 @@ export const Contact = () => {
 						</ContactCard>
 					</Grid>
 
-					<Grid item>
+					<Grid>
 						<ContactCard
 							contactMethod={"LinkedIn"}
 							link={"https://www.linkedin.com/in/franklin-von-moon-23572518a"}>
@@ -31,7 +31,7 @@ export const Contact = () => {
 						</ContactCard>
 					</Grid>
 
-					<Grid item>
+					<Grid>
 						<ContactCard
 							contactMethod={"Github"}
 							link={"https://github.com/Franklin-v-moon"}>
@@ -39,7 +39,7 @@ export const Contact = () => {
 						</ContactCard>
 					</Grid>
 
-					<Grid item>
+					<Grid>
 						<ContactCard
 							contactMethod={"Email"}
 							link={

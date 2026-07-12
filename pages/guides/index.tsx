@@ -93,7 +93,7 @@ const Guides: NextPage = () => {
 
 				<Dialog
 					open={showFilterMenu}
-					TransitionComponent={Transition}
+					slots={{ transition: Transition }}
 					keepMounted
 					onClose={() => setShowFilterMenu(false)}>
 					{FilterModal(
@@ -120,7 +120,7 @@ const Guides: NextPage = () => {
 					<Grid container className={styles.gridContainer}>
 						{metaData.map((dataItem, index) => {
 							return (
-								<Grid item key={index}>
+								<Grid key={index}>
 									<GuideCard cardData={dataItem} />
 								</Grid>
 							);

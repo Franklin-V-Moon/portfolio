@@ -16,7 +16,7 @@ export const AssetCollection = ({
 	collection,
 }: {
 	collection: AssetCollectionMetaData;
-}): JSX.Element => {
+}) => {
 	return (
 		<Card key={collection.title} className={styles.assetCard}>
 			<CardActionArea
