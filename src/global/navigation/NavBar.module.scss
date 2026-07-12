@@ -48,13 +48,12 @@
 	margin-top: 24px;
 	z-index: 6;
 	font-weight: bold;
+	position: fixed;
+	top: 0;
 
 	@include breakpoint(medium) {
 		display: none;
 	}
-
-	position: fixed;
-	top: 0;
 }
 
 .logotypeAlignDesktop {

@@ -6,12 +6,11 @@ $darkBackgroundColor: #01456e;
 .outerContainer {
 	display: none;
 	height: $height;
+	animation: 1s ease-in-out infinite;
 
 	@include breakpoint(medium) {
 		display: block;
 	}
-
-	animation: 1s ease-in-out infinite;
 }
 
 .innerContainer {

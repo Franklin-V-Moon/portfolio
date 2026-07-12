@@ -6,7 +6,7 @@
 		"node": ">=24"
 	},
 	"scripts": {
-		"dev": "yarn && next dev",
+		"dev": "yarn && next dev --webpack",
 		"test": "jest",
 		"build": "next build --webpack",
 		"export-meta": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' ts-node utils/export-meta.ts",
