@@ -7,10 +7,13 @@ import "../themes/globals.css";
 import { GlobalTheme } from "../themes/GlobalTheme";
 import Head from "next/head";
 import Script from "next/script";
+import { AppCacheProvider } from "@mui/material-nextjs/v16-pagesRouter";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp(props: AppProps) {
+	const { Component, pageProps } = props;
+
 	return (
-		<>
+		<AppCacheProvider {...props}>
 			<Head>
 				<meta
 					name='google-site-verification'
@@ -24,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<Navbar />
 			</GlobalTheme>
 			<Script src='https://gumroad.com/js/gumroad.js' strategy='lazyOnload' />
-		</>
+		</AppCacheProvider>
 	);
 }
 
