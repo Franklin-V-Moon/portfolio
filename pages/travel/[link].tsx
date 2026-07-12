@@ -50,8 +50,6 @@ import {
 } from "react-social-media-embed/dist/components/embeds/InstagramEmbed";
 import { ComponentType } from "react";
 
-// react-social-media-embed's own types still target the pre-React-19 JSX
-// namespace, which TypeScript rejects as a JSX component under React 19.
 const InstagramEmbed =
 	InstagramEmbedImport as unknown as ComponentType<InstagramEmbedProps>;
 
@@ -545,10 +543,10 @@ const VideoContent = ({
 																				backgroundColor: detail.isWarning
 																					? "rgba(255, 0, 0, 0.1)"
 																					: detail.isRecommendation
-																					? "rgba(255, 247, 0, 0.1)"
-																					: detail.isInfo
-																					? "rgba(0, 221, 255, 0.1)"
-																					: "transparent",
+																						? "rgba(255, 247, 0, 0.1)"
+																						: detail.isInfo
+																							? "rgba(0, 221, 255, 0.1)"
+																							: "transparent",
 																				marginBottom: detail.link
 																					? "-5px"
 																					: undefined,
@@ -599,7 +597,10 @@ const VideoContent = ({
 																				width={1000}
 																				height={1000}
 																				sizes='100vw'
-																				style={{ width: "100%", height: "auto" }}
+																				style={{
+																					width: "100%",
+																					height: "auto",
+																				}}
 																			/>
 																		)}
 																	</div>
