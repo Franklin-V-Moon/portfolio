@@ -98,7 +98,7 @@ export const SearchBar = ({
 }: {
 	searchArray: string[];
 	searchingText: string;
-	setSearchingText: React.Dispatch<React.SetStateAction<string>>;
+	setSearchingText: (value: string) => void;
 }) => {
 	const inputRef = React.useRef<HTMLInputElement>(null);
 	const [isFocused, setIsFocused] = React.useState(false);

@@ -1,5 +1,5 @@
 import { Button, Card, FormGroup, InputLabel } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import {
 	countryScaler,
 	EXPECTED_SALARY_WITH_NO_BENEFITS,
@@ -23,20 +23,24 @@ export const SalaryExpectationsSection = () => {
 
 	const [values, setValues] = useState(salaryExpectations);
 
-	const [expectedSalary, setExpectedSalary] = useState(MINIMUM_LIVABLE_SALARY);
-
 	const [fullyRemote, setFullyRemote] = useState(true);
 	const [hybridRemote, setHybridRemote] = useState(false);
-	useEffect(() => {
-		if (fullyRemote) {
+
+	const handleFullyRemoteToggle = () => {
+		const next = !fullyRemote;
+		setFullyRemote(next);
+		if (next) {
 			setHybridRemote(false);
 		}
-	}, [fullyRemote]);
-	useEffect(() => {
-		if (hybridRemote) {
+	};
+
+	const handleHybridRemoteToggle = () => {
+		const next = !hybridRemote;
+		setHybridRemote(next);
+		if (next) {
 			setFullyRemote(false);
 		}
-	}, [hybridRemote]);
+	};
 
 	const [flatHierarchy, setFlatHierarchy] = useState(true);
 	const [layoffFree, setLayoffFree] = useState(true);
@@ -51,8 +55,6 @@ export const SalaryExpectationsSection = () => {
 	const STOCK_OPTIONS = "stock";
 	const TRAINING_ALLOWANCES = "trainingAllowances";
 	const OTHER_ALLOWANCES = "otherAllowances";
-
-	const [disableClearAll, setDisableClearAll] = useState(false);
 
 	const handleMoneyInputChange = (
 		event: React.ChangeEvent<HTMLInputElement>,
@@ -96,59 +98,53 @@ export const SalaryExpectationsSection = () => {
 		});
 	};
 
-	useEffect(() => {
-		const calculateExpectedSalary = () => {
-			let baseSalary = EXPECTED_SALARY_WITH_NO_BENEFITS;
-			const stock = values.stock;
-			const trainingAllowance = values.trainingAllowances;
-			const otherAllowances = values.otherAllowances;
+	const rawExpectedSalary = useMemo(() => {
+		let baseSalary = EXPECTED_SALARY_WITH_NO_BENEFITS;
+		const stock = values.stock;
+		const trainingAllowance = values.trainingAllowances;
+		const otherAllowances = values.otherAllowances;
 
-			if (fullyRemote) {
-				baseSalary = baseSalary - values.fullyRemote;
-			}
+		if (fullyRemote) {
+			baseSalary = baseSalary - values.fullyRemote;
+		}
 
-			if (hybridRemote) {
-				baseSalary = baseSalary - values.hybridRemote;
-			}
+		if (hybridRemote) {
+			baseSalary = baseSalary - values.hybridRemote;
+		}
 
-			if (flatHierarchy) {
-				baseSalary = baseSalary - values.flatHierarchy;
-			}
+		if (flatHierarchy) {
+			baseSalary = baseSalary - values.flatHierarchy;
+		}
 
-			if (layoffFree) {
-				baseSalary = baseSalary - values.layoffFree;
-			}
+		if (layoffFree) {
+			baseSalary = baseSalary - values.layoffFree;
+		}
 
-			if (ethical) {
-				baseSalary = baseSalary - values.ethical;
-			}
+		if (ethical) {
+			baseSalary = baseSalary - values.ethical;
+		}
 
-			if (workLifeBalance) {
-				baseSalary = baseSalary - values.workLifeBalance;
-			}
+		if (workLifeBalance) {
+			baseSalary = baseSalary - values.workLifeBalance;
+		}
 
-			if (internationalTravel) {
-				baseSalary = baseSalary - values.internationalTravel;
-			}
+		if (internationalTravel) {
+			baseSalary = baseSalary - values.internationalTravel;
+		}
 
-			baseSalary = baseSalary - stock * STOCK_REDUCTION; // 50% reduction
-			baseSalary = baseSalary - trainingAllowance * TRAINING_ALLOWANCE; // 10% reduction
-			baseSalary = baseSalary - otherAllowances * GENERAL_ALLOWANCES; // 20% reduction
+		baseSalary = baseSalary - stock * STOCK_REDUCTION; // 50% reduction
+		baseSalary = baseSalary - trainingAllowance * TRAINING_ALLOWANCE; // 10% reduction
+		baseSalary = baseSalary - otherAllowances * GENERAL_ALLOWANCES; // 20% reduction
 
-			baseSalary = baseSalary * countryScaleValue;
+		baseSalary = baseSalary * countryScaleValue;
 
-			const minimumSalary = MINIMUM_LIVABLE_SALARY * countryScaleValue;
+		const minimumSalary = MINIMUM_LIVABLE_SALARY * countryScaleValue;
 
-			if (baseSalary <= minimumSalary) {
-				baseSalary = minimumSalary;
-			}
+		if (baseSalary <= minimumSalary) {
+			baseSalary = minimumSalary;
+		}
 
-			setDisableClearAll(baseSalary === EXPECTED_SALARY_WITH_NO_BENEFITS);
-
-			return Math.round(baseSalary);
-		};
-
-		setExpectedSalary(calculateExpectedSalary());
+		return baseSalary;
 	}, [
 		fullyRemote,
 		hybridRemote,
@@ -160,6 +156,9 @@ export const SalaryExpectationsSection = () => {
 		values,
 		countryScaleValue,
 	]);
+
+	const expectedSalary = Math.round(rawExpectedSalary);
+	const disableClearAll = rawExpectedSalary === EXPECTED_SALARY_WITH_NO_BENEFITS;
 
 	return (
 		<Card className={styles.cardContainer}>
@@ -179,7 +178,7 @@ export const SalaryExpectationsSection = () => {
 						<SalarySwitch
 							text={"Fully Remote"}
 							checked={fullyRemote}
-							onChange={() => setFullyRemote(!fullyRemote)}
+							onChange={handleFullyRemoteToggle}
 							description={
 								"Allows the employee complete flexibility to work from home or the office"
 							}
@@ -187,7 +186,7 @@ export const SalaryExpectationsSection = () => {
 						<SalarySwitch
 							text={"Hybrid Remote"}
 							checked={hybridRemote}
-							onChange={() => setHybridRemote(!hybridRemote)}
+							onChange={handleHybridRemoteToggle}
 							description={
 								"The employee is mandated to work at the office some days of the week"
 							}

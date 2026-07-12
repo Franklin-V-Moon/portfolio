@@ -19,7 +19,7 @@ import {
 import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
 import { VideoLibrary } from "../../src/travel/VideoLibrary";
 import { ButtonBase, styled } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SortBy } from "../../src/travel/types";
 import { TravelSort } from "../../src/travel/components/TravelSort";
 import { SearchBar } from "../../src/travel/components/SearchBar";
@@ -46,17 +46,21 @@ const Travel = ({
 	const initialSortSelection = initialSortBy ?? SortBy.Newest;
 
 	const [sortSelection, setSortSelection] = useState(initialSortSelection);
-	const [sortedMetaData, setSortedMetaData] = useState(() =>
-		sortFunctions[initialSortSelection](false),
+
+	// applyWatchedStatus reads from the client only; deferring it to after mount
+	// keeps the first client render matching the server-rendered HTML.
+	const [hasMounted, setHasMounted] = useState(false);
+	useEffect(() => setHasMounted(true), []);
+
+	const sortedMetaData = useMemo(
+		() => sortFunctions[sortSelection](hasMounted ? undefined : false),
+		[sortSelection, searchingText, hasMounted],
 	);
 
-	useEffect(() => {
-		setSortedMetaData(sortFunctions[sortSelection]());
-	}, [sortSelection, searchingText]);
-
-	useEffect(() => {
-		setSortSelection(searchingText ? SortBy.Searching : SortBy.Newest);
-	}, [searchingText]);
+	const handleSearchingTextChange = (value: string) => {
+		setSearchingText(value);
+		setSortSelection(value ? SortBy.Searching : SortBy.Newest);
+	};
 
 	const InvisibleImageButton = styled(ButtonBase)(({ theme }) => ({
 		position: "absolute",
@@ -166,7 +170,7 @@ const Travel = ({
 							<SearchBar
 								searchArray={allCountriesList()}
 								searchingText={searchingText}
-								setSearchingText={setSearchingText}
+								setSearchingText={handleSearchingTextChange}
 							/>
 						</div>
 						<TravelSort setSortMetaDataBy={setSortSelection} />
