@@ -72,14 +72,14 @@ const Guides: NextPage = () => {
 		setTopicFilter(undefined);
 		setFilteredLanguages([]);
 		setTagsFilter([]);
-		router.replace(
-			{
-				pathname: router.pathname,
-				query: buildGuidesQuery(sortBy, undefined, [], []),
-			},
-			undefined,
-			{ shallow: true },
-		);
+
+		const clearedQuery = buildGuidesQuery(sortBy, undefined, [], []);
+		const search = new URLSearchParams(
+			clearedQuery as Record<string, string>,
+		).toString();
+		const url = `${router.pathname}${search ? `?${search}` : ""}`;
+
+		window.history.replaceState(window.history.state, "", url);
 	};
 
 	useEffect(() => {

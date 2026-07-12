@@ -12,24 +12,19 @@ describe("Guides page", () => {
 
 	beforeEach(() => {
 		mockReplace.mockClear();
+		window.history.replaceState(null, "", "/guides");
+	});
+
+	it("clears filter params from the browser URL when Clear All is clicked", async () => {
 		(useRouter as jest.Mock).mockReturnValue({
 			isReady: true,
 			pathname: "/guides",
 			query: { topic: Topic.Agile },
 			replace: mockReplace,
 		});
-	});
+		window.history.replaceState(null, "", "/guides?topic=Agile");
 
-	it("clears filter params from the URL when Clear All is clicked", async () => {
 		render(<Guides />);
-
-		await waitFor(() => {
-			expect(mockReplace).toHaveBeenCalledWith(
-				expect.objectContaining({ query: { topic: Topic.Agile } }),
-				undefined,
-				{ shallow: true },
-			);
-		});
 
 		fireEvent.click(screen.getByRole("button", { name: "Filter" }));
 
@@ -39,12 +34,13 @@ describe("Guides page", () => {
 		fireEvent.click(clearAllButton);
 
 		await waitFor(() => {
-			const lastCall = mockReplace.mock.calls.at(-1);
-			expect(lastCall?.[0].query).toEqual({});
+			expect(window.location.pathname + window.location.search).toBe(
+				"/guides",
+			);
 		});
 	});
 
-	it("selecting a topic via the UI then clearing removes it from the URL", async () => {
+	it("selecting a topic via the UI then clearing removes it from the browser URL", async () => {
 		(useRouter as jest.Mock).mockReturnValue({
 			isReady: true,
 			pathname: "/guides",
@@ -66,8 +62,30 @@ describe("Guides page", () => {
 		fireEvent.click(screen.getByRole("button", { name: "Clear All" }));
 
 		await waitFor(() => {
-			const lastCall = mockReplace.mock.calls.at(-1);
-			expect(lastCall?.[0].query).toEqual({});
+			expect(window.location.pathname + window.location.search).toBe(
+				"/guides",
+			);
+		});
+	});
+
+	it("keeps a non-default sort param in the browser URL when Clear All is clicked", async () => {
+		(useRouter as jest.Mock).mockReturnValue({
+			isReady: true,
+			pathname: "/guides",
+			query: { topic: Topic.Agile, sort: "oldest" },
+			replace: mockReplace,
+		});
+		window.history.replaceState(null, "", "/guides?topic=Agile&sort=oldest");
+
+		render(<Guides />);
+
+		fireEvent.click(screen.getByRole("button", { name: "Filter" }));
+		fireEvent.click(await screen.findByRole("button", { name: "Clear All" }));
+
+		await waitFor(() => {
+			expect(window.location.pathname + window.location.search).toBe(
+				"/guides?sort=oldest",
+			);
 		});
 	});
 });
