@@ -47,8 +47,7 @@ const Travel = ({
 
 	const [sortSelection, setSortSelection] = useState(initialSortSelection);
 
-	// applyWatchedStatus reads from the client only; deferring it to after mount
-	// keeps the first client render matching the server-rendered HTML.
+
 	const [hasMounted, setHasMounted] = useState(false);
 	useEffect(() => setHasMounted(true), []);
 
