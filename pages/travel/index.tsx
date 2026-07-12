@@ -20,17 +20,26 @@ import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
 import { VideoLibrary } from "../../src/travel/VideoLibrary";
 import { ButtonBase, styled } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/router";
 import { SortBy } from "../../src/travel/types";
 import { TravelSort } from "../../src/travel/components/TravelSort";
 import { SearchBar } from "../../src/travel/components/SearchBar";
 import { travelVideoMetaData } from "../../src/datasources/TravelMetaData";
-import router from "next/router";
 import { tabsData } from "../../src/datasources/NavBarMetaData";
+import {
+	buildTravelQuery,
+	parseSearchTextFromQuery,
+	parseSortByFromQuery,
+} from "../../src/travel/urlQuery";
 
 const Travel = ({
 	initialSortBy,
+	initialSearchingText,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-	const [searchingText, setSearchingText] = useState<string>("");
+	const router = useRouter();
+	const [searchingText, setSearchingText] = useState<string>(
+		initialSearchingText,
+	);
 
 	const sortFunctions = {
 		[SortBy.Newest]: allNewestFirst,
@@ -43,13 +52,26 @@ const Travel = ({
 		[SortBy.Searching]: () => searchResult(searchingText),
 	};
 
-	const initialSortSelection = initialSortBy ?? SortBy.Newest;
+	const initialSortSelection = initialSearchingText
+		? SortBy.Searching
+		: initialSortBy ?? SortBy.Newest;
 
 	const [sortSelection, setSortSelection] = useState(initialSortSelection);
 
 
 	const [hasMounted, setHasMounted] = useState(false);
 	useEffect(() => setHasMounted(true), []);
+
+	useEffect(() => {
+		router.replace(
+			{
+				pathname: router.pathname,
+				query: buildTravelQuery(sortSelection, searchingText),
+			},
+			undefined,
+			{ shallow: true },
+		);
+	}, [router, sortSelection, searchingText]);
 
 	const sortedMetaData = useMemo(
 		() => sortFunctions[sortSelection](hasMounted ? undefined : false),
@@ -215,18 +237,15 @@ const Travel = ({
 
 export const getServerSideProps: GetServerSideProps<{
 	initialSortBy: SortBy | null;
+	initialSearchingText: string;
 }> = async (context) => {
-	const sortByParam = context.query.SortBy;
-	const sortByValue = Array.isArray(sortByParam) ? sortByParam[0] : sortByParam;
-
-	const initialSortBy =
-		Object.values(SortBy).find(
-			(enumValue) => enumValue.toLowerCase() === sortByValue?.toLowerCase(),
-		) ?? null;
+	const initialSortBy = parseSortByFromQuery(context.query);
+	const initialSearchingText = parseSearchTextFromQuery(context.query);
 
 	return {
 		props: {
 			initialSortBy,
+			initialSearchingText,
 		},
 	};
 };
