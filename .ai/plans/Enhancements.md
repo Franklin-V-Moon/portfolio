@@ -12,7 +12,6 @@
 
 ## 4. Load first pictures sooner, eg profile headshot (solid circle), first guides and first travel videos
 
-
 ## 5. SEO overhaul and Fix sitemap logic
 
 ## 6. Accessibility check
@@ -20,6 +19,8 @@
 ## 7. Return assets and fix navbar, bring back moving color line?
 
 ## 8. Update salary calculator
+
+## 9. C-Index to scores
 
 # Major Features
 

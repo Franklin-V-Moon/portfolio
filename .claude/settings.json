@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn test *)",
+      "Bash(yarn lint *)",
+      "Bash(yarn jest *)",
+      "Bash(yarn tsc *)",
+      "Bash(curl -s \"http://localhost:3000*)",
+      "Bash(curl -s http://localhost:3000*)"
+    ]
+  },
+  "sandbox": {
+    "network": {
+      "allowLocalBinding": true
+    }
+  }
+}
