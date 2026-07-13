@@ -1,0 +1,68 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+import { SortButton } from "./SortButton";
+import { SortOptions } from "../../types";
+
+describe("SortButton", () => {
+	it("does not show sort options before the Sort button is clicked", () => {
+		render(<SortButton setSortMetaDataBy={jest.fn()} />);
+
+		expect(screen.queryByRole("menuitem", { name: /Newest/ })).toBeNull();
+	});
+
+	it("shows sort options after the Sort button is clicked", async () => {
+		render(<SortButton setSortMetaDataBy={jest.fn()} />);
+
+		fireEvent.click(screen.getByRole("button", { name: "Sort" }));
+
+		expect(
+			await screen.findByRole("menuitem", { name: /Newest/ }),
+		).toBeDefined();
+		expect(screen.getByRole("menuitem", { name: /Oldest/ })).toBeDefined();
+		expect(
+			screen.getByRole("menuitem", { name: /Alphabetical/ }),
+		).toBeDefined();
+	});
+
+	it("calls setSortMetaDataBy with Newest when Newest is clicked", async () => {
+		const setSortMetaDataBy = jest.fn();
+		render(<SortButton setSortMetaDataBy={setSortMetaDataBy} />);
+
+		fireEvent.click(screen.getByRole("button", { name: "Sort" }));
+		fireEvent.click(await screen.findByRole("menuitem", { name: /Newest/ }));
+
+		expect(setSortMetaDataBy).toHaveBeenCalledWith(SortOptions.Newest);
+	});
+
+	it("calls setSortMetaDataBy with Oldest when Oldest is clicked", async () => {
+		const setSortMetaDataBy = jest.fn();
+		render(<SortButton setSortMetaDataBy={setSortMetaDataBy} />);
+
+		fireEvent.click(screen.getByRole("button", { name: "Sort" }));
+		fireEvent.click(await screen.findByRole("menuitem", { name: /Oldest/ }));
+
+		expect(setSortMetaDataBy).toHaveBeenCalledWith(SortOptions.Oldest);
+	});
+
+	it("calls setSortMetaDataBy with Alphabetical when Alphabetical is clicked", async () => {
+		const setSortMetaDataBy = jest.fn();
+		render(<SortButton setSortMetaDataBy={setSortMetaDataBy} />);
+
+		fireEvent.click(screen.getByRole("button", { name: "Sort" }));
+		fireEvent.click(
+			await screen.findByRole("menuitem", { name: /Alphabetical/ }),
+		);
+
+		expect(setSortMetaDataBy).toHaveBeenCalledWith(SortOptions.Alphabetical);
+	});
+
+	it("hides the Alphabetical option when alphabetical is false", async () => {
+		render(<SortButton setSortMetaDataBy={jest.fn()} alphabetical={false} />);
+
+		fireEvent.click(screen.getByRole("button", { name: "Sort" }));
+
+		await screen.findByRole("menuitem", { name: /Newest/ });
+		expect(
+			screen.queryByRole("menuitem", { name: /Alphabetical/ }),
+		).toBeNull();
+	});
+});
