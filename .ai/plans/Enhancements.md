@@ -2,8 +2,6 @@
 
 # Quick Wins
 
-## 0. Ai assistance tools so it can see better
-
 ## 1. Add unit tests
 
 ## 2. Check and refine all logs
