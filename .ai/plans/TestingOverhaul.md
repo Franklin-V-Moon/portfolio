@@ -45,7 +45,7 @@
 
 The component (`src/guides/components/filter/FilterModal.tsx:15-24`) takes 9 positional args ending in `disableClearAll: boolean` and `handleClearAll: () => void`. The test only supplies 7. Fix the call and add coverage for the two missing params (disabled state and the click handler), which is currently untested entirely.
 
-- [ ] Replace the test body with:
+- [x] Replace the test body with:
 
 ```ts
 import { render, fireEvent } from "@testing-library/react";
@@ -137,9 +137,9 @@ describe("FilterModal", () => {
 });
 ```
 
-- [ ] Run `yarn test FilterModal` — expect 3 passed.
-- [ ] Run `npx tsc --noEmit` — confirm the `TS2554` error on this file is gone.
-- [ ] Commit: `git add src/guides/components/filter/FilterModal.test.ts && git commit -m "test: fix FilterModal test to match its real 9-arg signature"`
+- [x] Run `yarn test FilterModal` — expect 3 passed.
+- [x] Run `npx tsc --noEmit` — confirm the `TS2554` error on this file is gone.
+- [x] Commit: `git add src/guides/components/filter/FilterModal.test.ts && git commit -m "test: fix FilterModal test to match its real 9-arg signature"`
 
 ### Task 1.2: Rename `WorkExpItems.test.tsx`, add its missing required `index` prop, and cover the optional-location branch
 
@@ -149,8 +149,8 @@ describe("FilterModal", () => {
 
 `WorkExpListItem`'s props (`src/homepage/experience/components/WorkExpListItem.tsx:7-26`) now require `index: number` and make `employerLocation` optional. The existing test supplies neither correctly — `npx tsc --noEmit` flags it (`TS2741: Property 'index' is missing`). Fix the props and add a case for the optional-location branch, which was never covered.
 
-- [ ] `git mv src/homepage/experience/components/WorkExpItems.test.tsx src/homepage/experience/components/WorkExpListItem.test.tsx`
-- [ ] Replace its content with:
+- [x] `git mv src/homepage/experience/components/WorkExpItems.test.tsx src/homepage/experience/components/WorkExpListItem.test.tsx`
+- [x] Replace its content with:
 
 ```tsx
 import { render } from "@testing-library/react";
@@ -205,9 +205,9 @@ describe("WorkExpListItem", () => {
 });
 ```
 
-- [ ] Run `yarn test WorkExpListItem` — expect 2 passed.
-- [ ] Run `npx tsc --noEmit` — confirm the `TS2741` error on this file is gone.
-- [ ] Commit: `git add -A src/homepage/experience/components/ && git commit -m "test: fix WorkExpListItem test props and cover the optional-location branch"`
+- [x] Run `yarn test WorkExpListItem` — expect 2 passed.
+- [x] Run `npx tsc --noEmit` — confirm the `TS2741` error on this file is gone.
+- [x] Commit: `git add -A src/homepage/experience/components/ && git commit -m "test: fix WorkExpListItem test props and cover the optional-location branch"`
 
 ### Task 1.3: Fix `VolunteerListItem.test.tsx`'s missing required props
 
@@ -216,7 +216,7 @@ describe("WorkExpListItem", () => {
 
 `VolunteerListItem`'s props (`src/homepage/experience/components/VolunteerListItem.tsx:8-22`) now require `agency: string` and `index: number`. The test supplies neither — `npx tsc --noEmit` flags it (`TS2739`).
 
-- [ ] Replace its content with:
+- [x] Replace its content with:
 
 ```tsx
 import { render } from "@testing-library/react";
@@ -249,9 +249,9 @@ describe("VolunteerListItem", () => {
 });
 ```
 
-- [ ] Run `yarn test VolunteerListItem` — expect 1 passed.
-- [ ] Run `npx tsc --noEmit` — confirm the `TS2739` error on this file is gone.
-- [ ] Commit: `git add src/homepage/experience/components/VolunteerListItem.test.tsx && git commit -m "test: fix VolunteerListItem test to pass its required agency and index props"`
+- [x] Run `yarn test VolunteerListItem` — expect 1 passed.
+- [x] Run `npx tsc --noEmit` — confirm the `TS2739` error on this file is gone.
+- [x] Commit: `git add src/homepage/experience/components/VolunteerListItem.test.tsx && git commit -m "test: fix VolunteerListItem test to pass its required agency and index props"`
 
 ---
 
