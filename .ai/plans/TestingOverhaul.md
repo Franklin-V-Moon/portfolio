@@ -270,14 +270,14 @@ describe("VolunteerListItem", () => {
 
 None of these files render a component or touch `window`/`document`. Jest supports a per-file environment override via a docblock at the very top of the file — this needs no `jest.config.js` change and carries zero risk to the jsdom-dependent suites.
 
-- [ ] For each file above, add this as the first line (above the existing `import`s):
+- [x] For each file above, add this as the first line (above the existing `import`s):
 
 ```ts
 /** @jest-environment node */
 ```
 
-- [ ] Run `yarn test` — expect the same 23 suites / 72 tests to pass.
-- [ ] Commit: `git add src/guides/filter-sort/*.test.ts src/travel/urlQuery.test.ts src/guides/components/cards/textFormatter.test.ts src/guides/guideDataService.test.ts utils/split-string/splitStringAtFullStop.test.tsx && git commit -m "perf: run pure-logic tests in the node environment instead of jsdom"`
+- [x] Run `yarn test` — expect the same 23 suites / 72 tests to pass.
+- [x] Commit: `git add src/guides/filter-sort/*.test.ts src/travel/urlQuery.test.ts src/guides/components/cards/textFormatter.test.ts src/guides/guideDataService.test.ts utils/split-string/splitStringAtFullStop.test.tsx && git commit -m "perf: run pure-logic tests in the node environment instead of jsdom"`
 
 **Note:** every new pure-logic test file added in Phase 3 below already includes this docblock in its example code — don't add it a second time.
 
@@ -296,7 +296,7 @@ This file backs the entire `/travel` page (grouping, tiering, search) plus a loc
 
 Note on `countTotalCountries()` below: it is **not** asserted to be `>= allCountriesList().length`. `countTotalCountries` sums each video's raw country count and then subtracts that video's `deductCountryCount` adjustment (a real field in the data, used to correct for a video that lists a country it doesn't really count as a new visit) — so the total can legitimately land *below* the deduplicated country count. Verified against the real data while writing this plan: `countTotalCountries()` is 47, `allCountriesList().length` is 48. Only assert non-negativity.
 
-- [ ] Write:
+- [x] Write:
 
 ```ts
 import {
@@ -522,8 +522,8 @@ describe("localStorage-backed helpers", () => {
 
 `window.location.reload` is non-configurable in this jsdom version (`jest.spyOn(window.location, "reload")` and `Object.defineProperty(window.location, "reload", ...)` both throw `Cannot redefine property`, confirmed by actually running this test) — so the last case above doesn't assert `reload` was called, only the `localStorage` side effect that happens right before it. jsdom's real `reload()` still fires and logs a "Not implemented: navigation" console error; the `console.error` spy (same pattern as `ErrorBoundary.test.tsx`) silences that expected noise without hiding a real failure.
 
-- [ ] Run `yarn test travelDataService` and verify all pass.
-- [ ] Commit: `git add src/travel/travelDataService.test.ts && git commit -m "test: add coverage for travelDataService grouping, tiering, search and localStorage helpers"`
+- [x] Run `yarn test travelDataService` and verify all pass.
+- [x] Commit: `git add src/travel/travelDataService.test.ts && git commit -m "test: add coverage for travelDataService grouping, tiering, search and localStorage helpers"`
 
 ### Task 3.2: `getFeaturedItems.tsx` — deterministic seeded-random selection
 
@@ -532,7 +532,7 @@ describe("localStorage-backed helpers", () => {
 
 The seed is derived from `new Date()` (`src/assets/components/getFeaturedItems.tsx:9-13`), so the test must pin system time with Jest's built-in fake timers (no mocking library needed) to get a deterministic result.
 
-- [ ] Write:
+- [x] Write:
 
 ```ts
 /** @jest-environment node */
@@ -595,8 +595,8 @@ describe("getFeaturedItems()", () => {
 });
 ```
 
-- [ ] Run `yarn test getFeaturedItems` — expect 5 passed (verified while writing this plan: `getFeaturedItems` copies items into its own local arrays before `splice`-ing them, so the shared module-level `collections` fixture above is safe to reuse across all five `it`s without depletion).
-- [ ] Commit: `git add src/assets/components/getFeaturedItems.test.ts && git commit -m "test: add coverage for getFeaturedItems seeded selection"`
+- [x] Run `yarn test getFeaturedItems` — expect 5 passed (verified while writing this plan: `getFeaturedItems` copies items into its own local arrays before `splice`-ing them, so the shared module-level `collections` fixture above is safe to reuse across all five `it`s without depletion).
+- [x] Commit: `git add src/assets/components/getFeaturedItems.test.ts && git commit -m "test: add coverage for getFeaturedItems seeded selection"`
 
 ### Task 3.3: `filterAndSortMetaData.ts` — the untested composition point
 
@@ -605,7 +605,7 @@ describe("getFeaturedItems()", () => {
 
 Sub-functions (`filterForTopic`, `sortByNewest`, etc.) are already well tested individually; the orchestrator that combines them (`src/guides/filter-sort/filterAndSortMetaData.ts:15-48`) is not. This reads real data via `getGuideMetaData()` (no injection point exists), so assert on shape/order invariants rather than exact object equality — that keeps the test robust to guide content edits.
 
-- [ ] Write:
+- [x] Write:
 
 ```ts
 /** @jest-environment node */
@@ -654,8 +654,8 @@ describe("filterAndSortMetaData()", () => {
 });
 ```
 
-- [ ] Run `yarn test filterAndSortMetaData` — expect 3 passed.
-- [ ] Commit: `git add src/guides/filter-sort/filterAndSortMetaData.test.ts && git commit -m "test: add coverage for the filterAndSortMetaData orchestrator"`
+- [x] Run `yarn test filterAndSortMetaData` — expect 3 passed.
+- [x] Commit: `git add src/guides/filter-sort/filterAndSortMetaData.test.ts && git commit -m "test: add coverage for the filterAndSortMetaData orchestrator"`
 
 ### Task 3.4: `filterAnimations.ts` — shared menu-interaction logic
 
@@ -664,7 +664,7 @@ describe("filterAndSortMetaData()", () => {
 
 `closeMenu` and `keyboardNavigation` back both `SortButton` and `TravelSort` (Phase 4). Testing them directly, with plain object stand-ins for the DOM event and ref, is simpler and faster than exercising them only through a rendered menu.
 
-- [ ] Write:
+- [x] Write:
 
 ```ts
 /** @jest-environment node */
@@ -742,8 +742,8 @@ describe("addTransparency()", () => {
 });
 ```
 
-- [ ] Run `yarn test filterAnimations` and adjust the exact `addTransparency` expectations if the hex math differs from the above (read `src/guides/components/filter/filterAnimations.tsx:45-48` and compute by hand — `Math.round(0 * 255).toString(16)` is `"0"`, not `"00"`, which is why the negative case above has one fewer digit).
-- [ ] Commit: `git add src/guides/components/filter/filterAnimations.test.ts && git commit -m "test: add coverage for closeMenu, keyboardNavigation and addTransparency"`
+- [x] Run `yarn test filterAnimations` and adjust the exact `addTransparency` expectations if the hex math differs from the above (read `src/guides/components/filter/filterAnimations.tsx:45-48` and compute by hand — `Math.round(0 * 255).toString(16)` is `"0"`, not `"00"`, which is why the negative case above has one fewer digit).
+- [x] Commit: `git add src/guides/components/filter/filterAnimations.test.ts && git commit -m "test: add coverage for closeMenu, keyboardNavigation and addTransparency"`
 
 ---
 
@@ -758,12 +758,12 @@ Each task below follows the existing house pattern: `render` + `fireEvent` + `ge
 
 Current test only asserts static text renders. The component's real logic — `initialTab()` (`src/global/navigation/Navbar.tsx:10-24`) matching `router.pathname` to a tab by prefix, and `handleTabClick` calling `router.replace` — is untested.
 
-- [ ] Add cases to the existing `next/router` mock (make `useRouter` a `jest.fn()` so `pathname` can vary per test, same technique as `GuidesPage.test.tsx`):
+- [x] Add cases to the existing `next/router` mock (make `useRouter` a `jest.fn()` so `pathname` can vary per test, same technique as `GuidesPage.test.tsx`):
   - Given `pathname: "/guides"`, the "GUIDES" tab renders with `aria-selected="true"`.
   - Given `pathname: "/guides/some-post"` (a sub-route), the "GUIDES" tab is still selected (prefix match).
   - Given an unrecognized `pathname`, the first tab ("PORTFOLIO") is selected.
   - Clicking a tab calls `router.replace` with that tab's route.
-- [ ] Run `yarn test Navbar` and commit: `git commit -m "test: cover Navbar's tab-selection and click-to-navigate logic"`
+- [x] Run `yarn test Navbar` and commit: `git commit -m "test: cover Navbar's tab-selection and click-to-navigate logic"`
 
 ### Task 4.2: `SortButton.test.tsx` (new)
 
@@ -772,7 +772,7 @@ Current test only asserts static text renders. The component's real logic — `i
 
 Cover: menu opens on click; clicking "Newest"/"Oldest"/"Alphabetical" calls `setSortMetaDataBy` with the matching `SortOptions` value; the "Alphabetical" option is absent when `alphabetical={false}` is passed.
 
-- [ ] Implement, run `yarn test SortButton`, commit: `git commit -m "test: add coverage for SortButton menu and selection"`
+- [x] Implement, run `yarn test SortButton`, commit: `git commit -m "test: add coverage for SortButton menu and selection"`
 
 ### Task 4.3: `TravelSort.test.tsx` (new)
 
@@ -781,7 +781,7 @@ Cover: menu opens on click; clicking "Newest"/"Oldest"/"Alphabetical" calls `set
 
 Cover: menu opens on click; clicking each rendered `SortBy` option calls `setSortMetaDataBy` with that value; the first `SortBy` enum value (sliced off via `.slice(1)` in the component) is never rendered as a menu item.
 
-- [ ] Implement, run `yarn test TravelSort`, commit: `git commit -m "test: add coverage for TravelSort menu and selection"`
+- [x] Implement, run `yarn test TravelSort`, commit: `git commit -m "test: add coverage for TravelSort menu and selection"`
 
 ### Task 4.4: `FolioModal.test.tsx` (new)
 
@@ -790,7 +790,7 @@ Cover: menu opens on click; clicking each rendered `SortBy` option calls `setSor
 
 `FolioModal` is a plain function (like `FilterModal`) invoked as `FolioModal(setShowModal, payload)`, not as JSX — mirror the calling convention from `FilterModal.test.ts`. Cover: renders heading/knowledge/description/proficiency for a complete payload; returns `undefined` (renders nothing) when any required field is missing (`src/folio/modal/FolioModal.tsx:13-21`); close button calls `setShowModal(false)`.
 
-- [ ] Implement, run `yarn test FolioModal`, commit: `git commit -m "test: add coverage for FolioModal including its guard-clause branch"`
+- [x] Implement, run `yarn test FolioModal`, commit: `git commit -m "test: add coverage for FolioModal including its guard-clause branch"`
 
 ### Task 4.5: `AssetItem.test.tsx` (new)
 
@@ -799,7 +799,7 @@ Cover: menu opens on click; clicking each rendered `SortBy` option calls `setSor
 
 Cover: shows "Free" when `price === null`, `"$5"` when `price: 5`; shows the length badge only when `item.length` is set; shows the pack icon only when `item.isPack` is true; clicking the card delegates a click to the hidden Gumroad anchor (`src/assets/components/AssetItem/AssetItem.tsx:22-26` — assert via a `jest.spyOn` on the anchor's `click` method, or simpler: assert `document.querySelector("a.gumroad-button")` received focus/was clicked by checking a `click` listener fired).
 
-- [ ] Implement, run `yarn test AssetItem`, commit: `git commit -m "test: add coverage for AssetItem pricing, badges and click delegation"`
+- [x] Implement, run `yarn test AssetItem`, commit: `git commit -m "test: add coverage for AssetItem pricing, badges and click delegation"`
 
 ### Task 4.6: `AssetCollection.test.tsx` (new)
 
@@ -816,7 +816,7 @@ jest.mock("next/router", () => ({
 
 Cover: renders the collection title; clicking the card calls `router.push` with `/assets-store/${collection.hostedLink}`.
 
-- [ ] Implement, run `yarn test AssetCollection`, commit: `git commit -m "test: add coverage for AssetCollection navigation on click"`
+- [x] Implement, run `yarn test AssetCollection`, commit: `git commit -m "test: add coverage for AssetCollection navigation on click"`
 
 ### Task 4.7: `ImageWithSkeleton.test.tsx` (new)
 
@@ -825,7 +825,7 @@ Cover: renders the collection title; clicking the card calls `router.push` with 
 
 Cover: renders with the skeleton class before load; after firing a `load` event on the `<img>`, the loaded class is applied and any `onLoad` prop passed in is still called.
 
-- [ ] Implement, run `yarn test ImageWithSkeleton`, commit: `git commit -m "test: add coverage for ImageWithSkeleton load state transition"`
+- [x] Implement, run `yarn test ImageWithSkeleton`, commit: `git commit -m "test: add coverage for ImageWithSkeleton load state transition"`
 
 ### Task 4.8: `ErrorContent.test.tsx` (new)
 
@@ -834,7 +834,7 @@ Cover: renders with the skeleton class before load; after firing a `load` event 
 
 One-line render test, matching the sibling `ErrorBoundary.test.tsx` style: asserts `"Not Found"` renders.
 
-- [ ] Implement, run `yarn test ErrorContent`, commit: `git commit -m "test: add coverage for ErrorContent"`
+- [x] Implement, run `yarn test ErrorContent`, commit: `git commit -m "test: add coverage for ErrorContent"`
 
 ---
 
@@ -851,7 +851,7 @@ One-line render test, matching the sibling `ErrorBoundary.test.tsx` style: asser
 - Typing in the search bar switches the active sort to `Searching` and puts the search text in the `q` param.
 - Clearing the search text falls back to the default (`Newest`) URL state.
 
-- [ ] Implement, run `yarn test TravelPage`, commit: `git commit -m "test: add TravelPage integration coverage for sort/search URL sync"`
+- [x] Implement, run `yarn test TravelPage`, commit: `git commit -m "test: add TravelPage integration coverage for sort/search URL sync"`
 
 ---
 
@@ -859,10 +859,10 @@ One-line render test, matching the sibling `ErrorBoundary.test.tsx` style: asser
 
 ### Task 6.1: Full suite pass and timing check
 
-- [ ] Run `npx tsc --noEmit -p tsconfig.json` — confirm zero errors (this is what would have caught the `FilterModal` breakage originally; treat any new error the same way).
-- [ ] Run `time yarn test` — confirm all suites pass and total time remains in the low single-digit seconds. Expected new count: ~34 suites, roughly 115-130 tests.
-- [ ] Run `yarn lint` — confirm no new lint errors from the added test files.
-- [ ] Commit any final fixups.
+- [x] Run `npx tsc --noEmit -p tsconfig.json` — confirm zero errors (this is what would have caught the `FilterModal` breakage originally; treat any new error the same way).
+- [x] Run `time yarn test` — confirm all suites pass and total time remains in the low single-digit seconds. Expected new count: ~34 suites, roughly 115-130 tests.
+- [x] Run `yarn lint` — confirm no new lint errors from the added test files.
+- [x] Commit any final fixups.
 
 ---
 
