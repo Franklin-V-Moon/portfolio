@@ -10,6 +10,7 @@ describe("WorkExpListItem", () => {
 		const employerExperiences = [
 			{
 				title: "Developer",
+				subRole: "Frontend",
 				period: "January 2020 - Present",
 			},
 		];
@@ -21,12 +22,29 @@ describe("WorkExpListItem", () => {
 				periodWithEmployer={periodWithEmployer}
 				employerLocation={employerLocation}
 				employerExperiences={employerExperiences}
+				index={0}
 			/>,
 		);
 
 		expect(getByText(employerName)).toBeDefined();
-		expect(getAllByText(periodWithEmployer)).toBeDefined();
 		expect(getByText(employerLocation)).toBeDefined();
-		expect(getByText(employerName)).toBeDefined();
+		expect(getAllByText(periodWithEmployer)).toBeDefined();
+		expect(getByText(employerExperiences[0].title)).toBeDefined();
+		expect(getByText(employerExperiences[0].subRole)).toBeDefined();
+	});
+
+	it("omits the employer location line when none is given", () => {
+		const { queryByText, getAllByText } = render(
+			<WorkExpListItem
+				companyLogo='company-logo'
+				employerName='Employer Name'
+				periodWithEmployer='2020 - Present'
+				employerExperiences={[{ title: "Developer", period: "2020 - Present" }]}
+				index={0}
+			/>,
+		);
+
+		expect(queryByText("New York, NY")).toBeNull();
+		expect(getAllByText("2020 - Present")).toBeDefined();
 	});
 });
