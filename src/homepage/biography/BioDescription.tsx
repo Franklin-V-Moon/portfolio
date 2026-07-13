@@ -19,9 +19,10 @@ export const BioDescription = () => {
 		return value === 1 ? `${value} ${timeUnit}` : `${value} ${timeUnit}s`;
 	};
 
-	const [periodWorked, setPeriodWorked] = useState<Duration>(timeWorked());
+	const [periodWorked, setPeriodWorked] = useState<Duration>();
 
 	useEffect(() => {
+		setPeriodWorked(timeWorked());
 		const thirtySecondInterval = setInterval(() => {
 			setPeriodWorked(timeWorked());
 		}, 30 * 1000);
