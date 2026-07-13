@@ -93,6 +93,11 @@ const VideoContent = ({
 		? Object.entries(extras?.scorecard)
 		: [];
 
+	const finalScoreFillPercent =
+		extras?.finalScore !== undefined
+			? Math.max(extras.finalScore * 10, 16)
+			: 0;
+
 	const adviceArray = extras?.advice ? Object.entries(extras?.advice) : [];
 
 	const adviceColors = {
@@ -338,7 +343,7 @@ const VideoContent = ({
 								</div>
 							)}
 
-							{extras.scorecard && extras.finalScore && (
+							{extras.scorecard && typeof extras.finalScore === "number" && (
 								<div className={styles.scorecardContainer}>
 									<h2>Scores</h2>
 									{extras.countries && extras.countries.length > 1 && (
@@ -367,31 +372,27 @@ const VideoContent = ({
 											Final Score
 										</h4>
 
-										<LinearProgress
-											variant='determinate'
-											value={
-												extras.finalScore === 1 ? 16 : extras.finalScore * 10
-											}
-											className={`${styles.scoreBar} ${styles.finalScore}`}
-											sx={{
-												"& .MuiLinearProgress-bar": {
-													background:
-														"linear-gradient(to right,  #f7df07,rgb(254, 222, 93))",
-													borderRadius: "20px",
-													borderTop: "1.9px solid white",
-												},
-											}}
-										/>
+										<div className={styles.finalScoreBarWrapper}>
+											<LinearProgress
+												variant='determinate'
+												value={finalScoreFillPercent}
+												className={`${styles.scoreBar} ${styles.finalScore}`}
+												sx={{
+													"& .MuiLinearProgress-bar": {
+														background:
+															"linear-gradient(to right,  #f7df07,rgb(254, 222, 93))",
+														borderRadius: "20px",
+														borderTop: "1.9px solid white",
+													},
+												}}
+											/>
 
-										{extras.finalScore > 1 && (
 											<h4
 												className={styles.finalScoreDigit}
-												style={{
-													paddingLeft: `${(extras.finalScore * 5) / 2}%`,
-												}}>
+												style={{ width: `${finalScoreFillPercent}%` }}>
 												{extras.finalScore} / 10
 											</h4>
-										)}
+										</div>
 									</div>
 								</div>
 							)}
