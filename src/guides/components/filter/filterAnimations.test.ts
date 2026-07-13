@@ -8,7 +8,7 @@ describe("closeMenu()", () => {
 		closeMenu(
 			{ target: {} } as unknown as Event,
 			setOpen,
-			anchorRef as React.RefObject<HTMLButtonElement>,
+			anchorRef as unknown as React.RefObject<HTMLButtonElement>,
 		);
 		expect(setOpen).toHaveBeenCalledWith(false);
 	});
@@ -19,7 +19,7 @@ describe("closeMenu()", () => {
 		closeMenu(
 			{ target: {} } as unknown as Event,
 			setOpen,
-			anchorRef as React.RefObject<HTMLButtonElement>,
+			anchorRef as unknown as React.RefObject<HTMLButtonElement>,
 		);
 		expect(setOpen).not.toHaveBeenCalled();
 	});
