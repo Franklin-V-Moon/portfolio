@@ -25,6 +25,8 @@ describe("ImageWithSkeleton", () => {
 		const img = getByAltText("Test image");
 		fireEvent.load(img);
 
+		// next/image defers the onLoad callback through an internal img.decode()
+		// promise, so it fires a microtask after fireEvent.load returns.
 		await waitFor(() => expect(onLoad).toHaveBeenCalledTimes(1));
 		expect(img.className).toMatch(/loaded/);
 	});
