@@ -19,7 +19,7 @@
 	}
 }
 
-.logo {
+.logoContainer {
 	@include breakpoint(small) {
 		float: right;
 		padding-right: 5px;
