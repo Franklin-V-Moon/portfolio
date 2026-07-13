@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { Languages, Tags, Topic } from "../../types";
 import { FilterModal } from "./FilterModal";
 
@@ -11,6 +11,7 @@ describe("FilterModal", () => {
 	const setFilteredLanguages = jest.fn();
 	const setTagsFilter = jest.fn();
 	const setShowFilterMenu = jest.fn();
+	const handleClearAll = jest.fn();
 
 	beforeEach(() => {
 		jest.clearAllMocks();
@@ -26,6 +27,8 @@ describe("FilterModal", () => {
 				tagsFilter,
 				setTagsFilter,
 				setShowFilterMenu,
+				false,
+				handleClearAll,
 			),
 		);
 
@@ -39,5 +42,46 @@ describe("FilterModal", () => {
 
 		expect(getAllByText("Tags")).toBeDefined();
 		expect(getByText("Snippet")).toBeDefined();
+	});
+
+	it("disables Clear All when disableClearAll is true", () => {
+		const { getByRole } = render(
+			FilterModal(
+				topicFilter,
+				setTopicFilter,
+				languagesFilter,
+				setFilteredLanguages,
+				tagsFilter,
+				setTagsFilter,
+				setShowFilterMenu,
+				true,
+				handleClearAll,
+			),
+		);
+
+		expect(getByRole("button", { name: "Clear All" })).toHaveProperty(
+			"disabled",
+			true,
+		);
+	});
+
+	it("calls handleClearAll when Clear All is clicked", () => {
+		const { getByRole } = render(
+			FilterModal(
+				topicFilter,
+				setTopicFilter,
+				languagesFilter,
+				setFilteredLanguages,
+				tagsFilter,
+				setTagsFilter,
+				setShowFilterMenu,
+				false,
+				handleClearAll,
+			),
+		);
+
+		fireEvent.click(getByRole("button", { name: "Clear All" }));
+
+		expect(handleClearAll).toHaveBeenCalledTimes(1);
 	});
 });
