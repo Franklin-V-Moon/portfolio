@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import { subTitleShortener, titleShortener } from "./textFormatter";
 
 describe("textFormatter", () => {

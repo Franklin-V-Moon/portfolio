@@ -2,8 +2,6 @@
 
 # Quick Wins
 
-## 1. Add unit tests
-
 ## 2. Check and refine all logs
 
 ## 3. Spell check pass

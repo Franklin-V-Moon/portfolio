@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import { splitStringAtFullStop } from "./splitStringAtFullStop";
 
 describe("splitStringAtFullStop", () => {

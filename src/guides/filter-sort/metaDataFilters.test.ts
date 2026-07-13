@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import {} from "react";
 import { testGuideMetaDataArrayMetaData } from "../test-helpers/guideMetaDataArray";
 import { Languages, Tags, Topic } from "../types";

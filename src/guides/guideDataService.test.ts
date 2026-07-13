@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import { testGuideMetaDataArrayMetaData } from "./test-helpers/guideMetaDataArray";
 import { testGuideMetaDataItem } from "./test-helpers/guideMetaDataItem";
 import { getGuideMetaDataByLink } from "./guideDataService";

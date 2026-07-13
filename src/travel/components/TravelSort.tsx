@@ -77,7 +77,7 @@ export const TravelSort = ({
 										{Object.values(SortBy)
 											.slice(1)
 											.map((value, index) => (
-												<>
+												<React.Fragment key={value}>
 													<MenuItem
 														onClick={() => {
 															setSortMetaDataBy(value);
@@ -94,7 +94,7 @@ export const TravelSort = ({
 																}}
 															/>
 														)}
-												</>
+												</React.Fragment>
 											))}
 									</MenuList>
 								</ClickAwayListener>

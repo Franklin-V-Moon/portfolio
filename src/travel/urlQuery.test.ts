@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import { SortBy } from "./types";
 import {
 	buildTravelQuery,
