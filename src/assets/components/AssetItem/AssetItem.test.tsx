@@ -11,7 +11,7 @@ describe("AssetItem", () => {
 		tags: [],
 	};
 
-	it('shows "Free" when price is null', () => {
+	it("shows \"Free\" when price is null", () => {
 		const { getByText } = render(
 			<AssetItem item={{ ...baseItem, price: null }} />,
 		);

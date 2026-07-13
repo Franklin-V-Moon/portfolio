@@ -11,11 +11,6 @@ describe("filterAndSortMetaData()", () => {
 	});
 
 	it("applies topic, language and tag filters together", () => {
-		// `languages`/`tags` are optional on GuideMetaData, and item 0 in the
-		// real data doesn't have any set — pick an entry that does, rather
-		// than assuming the first item works (confirmed by running this: the
-		// naive `const [sample] = getGuideMetaData()` version throws
-		// "Cannot read properties of undefined (reading 'length')").
 		const sample = getGuideMetaData().find(
 			(item) => item.languages && item.languages.length > 0,
 		);
