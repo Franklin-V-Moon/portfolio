@@ -161,6 +161,7 @@ const Travel = ({
 						sizes='100vw'
 						className={styles.worldMap}
 						style={{ width: "100%", height: "auto" }}
+						priority
 					/>
 					<InvisibleImageButton
 						focusRipple

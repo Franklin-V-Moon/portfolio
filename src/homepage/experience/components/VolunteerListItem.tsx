@@ -28,13 +28,16 @@ export const VolunteerListItem = ({
 			/>
 			<div
 				className={`${styles.itemContainer} ${volunteerStyles.itemContainer}`}>
-				<Image
-					src={`/homepage/companies/${logo}.png`}
-					alt={`${logo} logo`}
-					width={160}
-					height={40}
-					className={`${styles.logo} ${volunteerStyles.logo}`}
-				/>
+				<div
+					className={`${styles.logoContainer} ${volunteerStyles.logoContainer}`}>
+					<Image
+						src={`/homepage/companies/${logo}.png`}
+						alt={`${logo} logo`}
+						fill
+						sizes='160px'
+						className={`${styles.logo} ${volunteerStyles.logo}`}
+					/>
+				</div>
 
 				<h3 className={`${volunteerStyles.agency}`}>{agency}</h3>
 				<div className={`${volunteerStyles.title}`}>{title}</div>

@@ -2,6 +2,7 @@
 	"name": "portfolio",
 	"version": "3.0.0",
 	"private": false,
+	"license": "UNLICENSED",
 	"engines": {
 		"node": ">=24"
 	},

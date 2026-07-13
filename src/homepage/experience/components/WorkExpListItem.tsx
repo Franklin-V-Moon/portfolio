@@ -31,13 +31,15 @@ export const WorkExpListItem = ({
 				className={`${styles.lineIcon} ${styles.workExpLineIcon}`}
 			/>
 			<div className={styles.itemContainer}>
-				<Image
-					src={`/homepage/companies/${companyLogo}.png`}
-					alt={`${companyLogo} logo`}
-					width={160}
-					height={40}
-					className={styles.logo}
-				/>
+				<div className={styles.logoContainer}>
+					<Image
+						src={`/homepage/companies/${companyLogo}.png`}
+						alt={`${companyLogo} logo`}
+						fill
+						sizes='160px'
+						className={styles.logo}
+					/>
+				</div>
 
 				<h3 className={styles.employerTitle}>{employerName}</h3>
 				{employerLocation && (

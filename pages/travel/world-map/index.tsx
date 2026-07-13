@@ -65,6 +65,7 @@ const WorldMapPage: NextPage = () => {
 					height={1878}
 					sizes='100vw'
 					style={{ width: "100%", height: "auto" }}
+					priority
 				/>
 			</div>
 			<div className={styles.mapGesture}>

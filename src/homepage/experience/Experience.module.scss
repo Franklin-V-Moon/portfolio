@@ -36,11 +36,16 @@
 	border-left: 3px solid $defaultDarkBlue;
 }
 
-.logo {
-	height: 40;
-	width: auto;
-	line-height: 0;
+.logoContainer {
+	position: relative;
+	height: 40px;
+	width: 160px;
 	margin-bottom: 10px;
+}
+
+.logo {
+	object-fit: contain;
+	object-position: left center;
 }
 
 .employerTitle {
