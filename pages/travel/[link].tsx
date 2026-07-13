@@ -23,7 +23,8 @@ import {
 	hasRestrictionBypass,
 } from "../../src/travel/travelDataService";
 import styles from "../../src/travel/index.module.scss";
-import ReactPlayer from "react-player";
+import dynamic from "next/dynamic";
+import type ReactPlayerType from "react-player";
 import {
 	publicCDNVideoUrl,
 	scorecardColorsPrimary,
@@ -53,6 +54,10 @@ import { ComponentType } from "react";
 const InstagramEmbed =
 	InstagramEmbedImport as unknown as ComponentType<InstagramEmbedProps>;
 
+const ReactPlayer = dynamic(() => import("react-player"), {
+	ssr: false,
+}) as unknown as typeof ReactPlayerType;
+
 const VideoContent = ({
 	metaData,
 	upNext,
@@ -68,7 +73,7 @@ const VideoContent = ({
 		link,
 	} = metaData as TravelVideoMetaData;
 
-	const playerRef = useRef<ReactPlayer | null>(null);
+	const playerRef = useRef<ReactPlayerType | null>(null);
 	const router = useRouter();
 
 	const [durationISO, setDurationISO] = useState<string>();
