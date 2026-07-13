@@ -26,6 +26,12 @@
 	}
 }
 
+.logo {
+	@include breakpoint(small) {
+		object-position: right center;
+	}
+}
+
 .subText {
 	line-height: 2;
 	font-size: 18px;

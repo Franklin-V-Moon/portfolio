@@ -35,7 +35,7 @@ export const VolunteerListItem = ({
 						alt={`${logo} logo`}
 						fill
 						sizes='160px'
-						className={styles.logo}
+						className={`${styles.logo} ${volunteerStyles.logo}`}
 					/>
 				</div>
 
