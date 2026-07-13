@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import { Languages, SortOptions, Tags, Topic } from "../types";
 import {
 	buildGuidesQuery,
