@@ -19,4 +19,18 @@ describe("renders component information", () => {
 		expect(getByText(mockCardData.title)).toBeDefined();
 		expect(getByText(mockCardData.subTitle)).toBeDefined();
 	});
+
+	it("lazy-loads the thumbnail by default", () => {
+		const { getByRole } = render(<GuideCard cardData={mockCardData} />);
+		expect(getByRole("img").getAttribute("loading")).toBe("lazy");
+	});
+
+	it("eager-loads the thumbnail with high fetch priority when priority is set", () => {
+		const { getByRole } = render(
+			<GuideCard cardData={mockCardData} priority />,
+		);
+		const image = getByRole("img");
+		expect(image.getAttribute("loading")).toBe("eager");
+		expect(image.getAttribute("fetchpriority")).toBe("high");
+	});
 });

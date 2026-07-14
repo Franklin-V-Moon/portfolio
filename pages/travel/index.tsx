@@ -76,6 +76,17 @@ const Travel = ({
 		[sortSelection, searchingText, hasMounted],
 	);
 
+	const groupsWithStartIndex = useMemo(
+		() =>
+			sortedMetaData.map((metaData, index) => ({
+				...metaData,
+				startIndex: sortedMetaData
+					.slice(0, index)
+					.reduce((sum, group) => sum + group.grouping.length, 0),
+			})),
+		[sortedMetaData],
+	);
+
 	const handleSearchingTextChange = (value: string) => {
 		setSearchingText(value);
 		setSortSelection(value ? SortBy.Searching : SortBy.Newest);
@@ -197,7 +208,7 @@ const Travel = ({
 					</div>
 				</div>
 
-				{sortedMetaData.map((metaData, index) => (
+				{groupsWithStartIndex.map((metaData, index) => (
 					<div
 						key={`Videos from ${metaData.heading}`}
 						className={styles.libraryContainer}
@@ -225,7 +236,10 @@ const Travel = ({
 								</h2>
 							</div>
 						</div>
-						<VideoLibrary videoMetaData={metaData.grouping} />
+						<VideoLibrary
+							videoMetaData={metaData.grouping}
+							startIndex={metaData.startIndex}
+						/>
 					</div>
 				))}
 			</PageContainer>

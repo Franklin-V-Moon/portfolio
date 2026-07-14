@@ -85,6 +85,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={`${styles.layer} ${sunRising && styles.sunUp} ${
 							sunSetting && styles.sunDown
 						}`}
@@ -100,6 +101,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={`${styles.layer} ${moonRising && styles.moonUp} ${
 							moonSetting && styles.moonDown
 						}`}
@@ -115,6 +117,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={`${styles.layer} ${pageTop && styles.fadeInOutFast}`}
 						style={{
 							zIndex: -7,
@@ -127,6 +130,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={styles.layer}
 						style={{
 							zIndex: -7,
@@ -139,6 +143,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={`${styles.layer} ${pageTop && styles.fadeInOutSlow}`}
 						style={{
 							zIndex: -7,
@@ -151,6 +156,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={`${styles.layer} ${styles.shootingStar}`}
 						style={{
 							zIndex: -6,
@@ -162,6 +168,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={styles.layer}
 						style={{
 							zIndex: -6,
@@ -174,6 +181,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={`${styles.layer} ${pageTop && styles.trainLeftRight}`}
 						style={{
 							zIndex: -5,
@@ -186,6 +194,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={`${styles.layer} ${
 							pageTop && styles.cloudLeftRightSlow
 						}`}
@@ -200,6 +209,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={styles.layer}
 						style={{
 							zIndex: -5,
@@ -212,6 +222,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={styles.layer}
 						style={{
 							zIndex: -4,
@@ -224,6 +235,7 @@ export const ParallaxArt = () => {
 						width={0}
 						height={0}
 						unoptimized
+						priority
 						className={`${styles.layer} ${
 							pageTop && styles.cloudLeftRightFast
 						}`}

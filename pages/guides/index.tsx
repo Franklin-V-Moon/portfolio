@@ -23,6 +23,7 @@ import { getGuideMetaData } from "../../src/guides/guideDataService";
 import { tabsData } from "../../src/datasources/NavBarMetaData";
 
 const Transition = slideTransition("right");
+const PRIORITY_IMAGE_COUNT = 6;
 
 const Guides: NextPage = () => {
 	const router = useRouter();
@@ -159,7 +160,10 @@ const Guides: NextPage = () => {
 						{metaData.map((dataItem, index) => {
 							return (
 								<Grid key={index}>
-									<GuideCard cardData={dataItem} />
+									<GuideCard
+										cardData={dataItem}
+										priority={index < PRIORITY_IMAGE_COUNT}
+									/>
 								</Grid>
 							);
 						})}

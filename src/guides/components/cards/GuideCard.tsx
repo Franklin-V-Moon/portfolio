@@ -14,8 +14,10 @@ import styles from "./GuideCard.module.scss";
 
 export const GuideCard = ({
 	cardData,
+	priority = false,
 }: {
 	cardData: GuideMetaData;
+	priority?: boolean;
 }) => {
 	const [loading, setLoading] = useState(false);
 	const href = `/guides/${cardData.link}`;
@@ -35,7 +37,8 @@ export const GuideCard = ({
 						alt={`${cardData.title} thumbnail`}
 						image={cardData.thumbnail}
 						decoding='async'
-						loading='lazy'
+						loading={priority ? "eager" : "lazy"}
+						fetchPriority={priority ? "high" : "auto"}
 					/>
 					<CardContent>
 						<div className={styles.cardContent}>
