@@ -2,16 +2,6 @@
 
 # Quick Wins
 
-## 2. Check and refine all logs
-
-## 3. Spell check pass
-
-## 4. Load first pictures sooner, eg profile headshot (solid circle), first guides and first travel videos
-
-## 5. SEO overhaul and Fix sitemap logic
-
-## 6. Accessibility check
-
 ## 7. Return assets and fix navbar, bring back moving color line?
 
 ## 8. Update salary calculator
