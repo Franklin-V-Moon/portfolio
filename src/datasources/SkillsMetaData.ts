@@ -117,7 +117,7 @@ export const languagesMetaData: ColumnData[] = [
 			{
 				title: "XUnit",
 				knowledge:
-					"To compliment my learning of dotNET, I must ensure I'm writing maintainable reliable C# code with XUnit unit tests.",
+					"To complement my learning of dotNET, I must ensure I'm writing maintainable reliable C# code with XUnit unit tests.",
 				proficiency: Capable,
 				description: Description.Capable,
 			},
@@ -211,7 +211,7 @@ export const languagesMetaData: ColumnData[] = [
 			{
 				title: "Backstage IDP",
 				knowledge:
-					"Backstage IDP is an open-source developer portal framework that centralizes tools, services, and documentation to streamline developer workflows and improve platform discoverability. I have a strong understanding developing for Backstage and its extensibility, particularly how it can be leveraged to address challenges around developer onboarding, service cataloging, and consistent self-service workflows across distributed teams.",
+					"Backstage IDP is an open-source developer portal framework that centralizes tools, services, and documentation to streamline developer workflows and improve platform discoverability. I have a strong understanding of developing for Backstage and its extensibility, particularly how it can be leveraged to address challenges around developer onboarding, service cataloging, and consistent self-service workflows across distributed teams.",
 				proficiency: Proficient,
 				description: Description.HighlyProficient,
 			},
@@ -283,7 +283,7 @@ export const languagesMetaData: ColumnData[] = [
 			{
 				title: "SQL",
 				knowledge:
-					"I have used SQL to write queries to extract, manipulate, and analyze data, and you have gained a good understanding of its syntax and capabilities. ",
+					"I have used SQL to write queries to extract, manipulate, and analyze data, and I have gained a good understanding of its syntax and capabilities. ",
 				proficiency: Capable,
 				description: Description.Capable,
 			},
@@ -297,21 +297,21 @@ export const languagesMetaData: ColumnData[] = [
 			{
 				title: "USS",
 				knowledge:
-					"Along with unity I have a strong understanding of the UI Toolkit and have used it to build scalable extensible user interfaces",
+					"Along with Unity I have a strong understanding of the UI Toolkit and have used it to build scalable extensible user interfaces",
 				proficiency: HighlyProficient,
 				description: Description.HighlyProficient,
 			},
 			{
 				title: "UXML",
 				knowledge:
-					"Along with unity I have a strong understanding of the UI Toolkit and have used UXMLto build scalable extensible user interfaces ",
+					"Along with Unity I have a strong understanding of the UI Toolkit and have used UXML to build scalable extensible user interfaces ",
 				proficiency: Proficient,
 				description: Description.Proficient,
 			},
 			{
 				title: "JQuery",
 				knowledge:
-					"I've Jquery on various legacy applications and understand it's valuable tool for manipulating the DOM and adding interactivity to my web applications. However, it is important to consider the drawbacks of using Jquery, it can add a significant amount of weight to a page if many Jquery plugins are used, and it is not as performant as some newer JavaScript libraries and frameworks.",
+					"I've used Jquery on various legacy applications and understand it's a valuable tool for manipulating the DOM and adding interactivity to my web applications. However, it is important to consider the drawbacks of using Jquery, it can add a significant amount of weight to a page if many Jquery plugins are used, and it is not as performant as some newer JavaScript libraries and frameworks.",
 				proficiency: Capable,
 				description: Description.Capable,
 			},
@@ -340,14 +340,14 @@ export const toolsMetaData: FolioData[] = [
 			{
 				title: "Postman",
 				knowledge:
-					"API platforms are tools that allows developers to test and debug APIs but many have not delved deeper into environment configuration, sharing and packaging like I have.",
+					"API platforms are tools that allow developers to test and debug APIs but many have not delved deeper into environment configuration, sharing and packaging like I have.",
 				proficiency: HighlyProficient,
 				description: Description.HighlyProficient,
 			},
 			{
 				title: "Github",
 				knowledge:
-					"I have used Github to host my own personal projects as well as contribute to open source projects. It's a core tool all devs need to know these days and im comfortable with it",
+					"I have used Github to host my own personal projects as well as contribute to open source projects. It's a core tool all devs need to know these days and I'm comfortable with it",
 				proficiency: HighlyProficient,
 				description: Description.HighlyProficient,
 			},
@@ -427,7 +427,7 @@ export const toolsMetaData: FolioData[] = [
 			{
 				title: "Apple Developer",
 				knowledge:
-					"Apple Developer is a suite of tools and resources provided by Apple for developing and distributing software for the company's platforms, including iOS, iPadOS, macOS, watchOS, and tvOS. used alongside Android App Distribution where I've worked on projects where it was an integral part of the release process and required me to understand how it functioned, how to use the provided indicators and also how to debug.",
+					"Apple Developer is a suite of tools and resources provided by Apple for developing and distributing software for the company's platforms, including iOS, iPadOS, macOS, watchOS, and tvOS, used alongside Android App Distribution where I've worked on projects where it was an integral part of the release process and required me to understand how it functioned, how to use the provided indicators and also how to debug.",
 				proficiency: Proficient,
 				description: Description.Proficient,
 			},
@@ -557,7 +557,7 @@ export const cloudMetaData: FolioData[] = [
 			{
 				title: "Buildkite",
 				knowledge:
-					"Buldkite is a tool for continuous integration and continuous delivery that allows users to build, test, and deploy their software projects automatically, ensuring that their code is always up to date and in a deployable state. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
+					"Buildkite is a tool for continuous integration and continuous delivery that allows users to build, test, and deploy their software projects automatically, ensuring that their code is always up to date and in a deployable state. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
 				proficiency: Proficient,
 				description: Description.Proficient,
 			},

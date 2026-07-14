@@ -26,7 +26,7 @@ skills and the site's features.
 
 ![Skills](https://github.com/user-attachments/assets/c14f1844-50b1-40ca-8816-4f8d35b56d8a)
 
-A list of tools I have familiarity with and w brief breakdown of my confidence
+A list of tools I have familiarity with and a brief breakdown of my confidence
 in each
 
 ![Projects](https://github.com/user-attachments/assets/8835c765-e97d-4626-87bf-ccb53b6f9ba6)
@@ -53,6 +53,7 @@ strengthened my front-end programming skills.
 
 This section provides an overview of the countries I've traveled to. Each video
 comes with a wide range of extra content that can be searched and sorted with
+the search bar and sort options.
 
 &nbsp;
 
@@ -171,7 +172,7 @@ process utilizing a headless CMS solution such as [Strapi](https://strapi.io/).
 Currently, updates to guide content are made directly within
 [Notion Pages](https://www.notion.so/) and modifications to other page elements
 are performed by updating the .ts files within the repository's
-`~/src/datasources directory`. Hence, the subsequent instructions assume that
+`~/src/datasources` directory. Hence, the subsequent instructions assume that
 you have access to the local repository and are authorized to make and push
 changes.
 
@@ -278,7 +279,7 @@ unlimited Volunteering or Work Experience items
 
 ### Update Salary Expectations
 
-1. Open `~/src/datasources/SalarayExpectationMetaData.ts` in your favorite text
+1. Open `~/src/datasources/SalaryExpectationMetaData.ts` in your favorite text
    editor
 
 2. Edit the content as desired

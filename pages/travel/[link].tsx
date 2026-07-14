@@ -478,7 +478,7 @@ const VideoContent = ({
 								)}
 								{extras.donts && (
 									<>
-										<h2 style={{ margin: "40px 0 0 0" }}>Dont</h2>
+										<h2 style={{ margin: "40px 0 0 0" }}>Don't</h2>
 										{extras.donts.map((dontItem) => (
 											<div
 												className={styles.doDontIconContainer}

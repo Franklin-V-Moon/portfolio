@@ -127,7 +127,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"While its political landscape has faced challenges and its infrastructure can be demanding, the warmth of the Nepali people and the profound spiritual atmosphere make it a truly unforgettable destination.",
 			],
 			challenges: [
-				"Getting around is difficult, except flying. Dont drive cross country unless you're mentally prepared for it.",
+				"Getting around is difficult, except flying. Don't drive cross country unless you're mentally prepared for it.",
 			],
 			donts: [
 				"I strongly suggest you don't do Everest Basecamp. It's not beautiful or fun compared to other more beautiful and rewarding mountains like Annapurna.",
@@ -251,7 +251,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			finalScore: 4,
 			summary: [
 				"Malaysia is a simple yet multi-cultural destination blending Chinese, Indian and Arabic cultures all into one fairly unassuming package.",
-				"Singapore is an impressive hub of commerce and efficiency you don,t see often. It is what Hong Kong wishes it still was and continues to thrive and attracts the best minds from asia into one concentrated pinhead.",
+				"Singapore is an impressive hub of commerce and efficiency you don't see often. It is what Hong Kong wishes it still was and continues to thrive and attracts the best minds from asia into one concentrated pinhead.",
 				"We had a very short vacation but we made the most of it by drinking, hanging out and checking out the local attractions from the rainbow steps in Kuala Lumpur to the Gardens By the Bay.",
 			],
 			challenges: [
@@ -333,7 +333,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			dos: [
 				"Checkout the Antarctic centre and try a ride in the Haagland.",
-				"Rent a vehicle, publish transport is a huge hassle",
+				"Rent a vehicle, public transport is a huge hassle",
 			],
 			donts: [
 				"Skip the chance to go Skiing, it's a beautiful country and shredding powder in the southern hemisphere is wonderful.",
@@ -711,7 +711,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			finalScore: 3,
 			summary: [
-				"Fiji, a South Pacific paradise, offers a unique blend of vibrant culture and stunning natural beauty. .",
+				"Fiji, a South Pacific paradise, offers a unique blend of vibrant culture and stunning natural beauty.",
 				"From the warm, welcoming smiles of the locals to the breathtaking coral reefs and lush rainforests, Fiji provides an escape into a world of tranquility and adventure. Whether you're seeking relaxation on pristine beaches or thrilling water sports,",
 				"Fiji's diverse islands promise an unforgettable experience steeped in rich traditions and breathtaking landscapes.",
 			],
@@ -955,7 +955,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			finalScore: 7,
 			summary: [
 				"What a brilliant a diverse nation, no two areas here are the same so it's impossible to speak about any culture or rule for the entire nation as it varies completely.",
-				"If you want nature, peace and safety head south to Kerala. If you're after urban sprawl and endless activities, hit up Delhi in the north. Do you like mountains? head east to Darjeerling.",
+				"If you want nature, peace and safety head south to Kerala. If you're after urban sprawl and endless activities, hit up Delhi in the north. Do you like mountains? head east to Darjeeling.",
 				"No two india experiences are the same and it's almost endless with places to go and things to see.",
 			],
 			challenges: [
@@ -1044,7 +1044,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			finalScore: 4,
 			summary: [
-				"As far as rich petro-states go oman is probably the only great one. Rather than going the glitzy luxury fake route they decided to go for a more modest, comfortable and enriching feeling fo their nation.",
+				"As far as rich petro-states go oman is probably the only great one. Rather than going the glitzy luxury fake route they decided to go for a more modest, comfortable and enriching feeling for their nation.",
 				"Getting around Oman is such a lovely therapeutic experience, it feels almost like meditating to drive along the 4 lane silky smooth highways with not a soul in sight.",
 				"If you want a Middle East experience that feels like it came from a disney movie, this is it.",
 			],
@@ -1052,7 +1052,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"getting around by public transport is honestly an un-fun miserable experience, I highly recommend hiring a car.",
 			],
 			dos: [
-				"Try hiking in a wadi. It's combines a mix of shallow swimming and walking, just dont forget to bring plenty of drinking water.",
+				"Try hiking in a wadi. It combines a mix of shallow swimming and walking, just don't forget to bring plenty of drinking water.",
 				"Stay in a dome along the desert, its a relatively affordable and peaceful experience.",
 			],
 			advice: {
@@ -1192,7 +1192,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"It boasts some of the most attractive photogenic sites in the world from Wadi Rum with it's heritage train experience to Petra, the great Nabataean city lost in time",
 			],
 			challenges: [
-				"Getting between major cities can be a struggle and bus time tables dont always align. I'd recommend hiring a car, not a tour guide",
+				"Getting between major cities can be a struggle and bus time tables don't always align. I'd recommend hiring a car, not a tour guide",
 			],
 			dos: [
 				"Apply for the Jordan Pass, it comes with entry to most attractions, historical sites and includes your visa for the country",
@@ -1845,7 +1845,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			summary: [
 				"Experiencing Syria during the Assad regime was an actual unforgettable experience, the week I spent in Syria might be the most impactful week of my life.",
 				"Each and every aspect of this tragic yet resilient country stands out. The people still have so much pride and hope, everyone is wonderful, the history immense and the food to die for.",
-				"Damascus has gone down as my favorite city, its so rich and vibrant. Homs and Hama while devastated from decades of war still have so much to offer. Aleppo and Palmyra with it's recent ISIS occupation could alone could be traveled for weeks without learning everything that's just happened.",
+				"Damascus has gone down as my favorite city, its so rich and vibrant. Homs and Hama while devastated from decades of war still have so much to offer. Aleppo and Palmyra with it's recent ISIS occupation could alone be traveled for weeks without learning everything that's just happened.",
 			],
 			dos: ["Eat and drink everything."],
 			donts: [
@@ -2261,7 +2261,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"Train surf in Dhaka. It's a thrilling experience and nearing it's expected end. Simply try to sneak on the roof when no guards are watching and enjoy the ride.",
 			],
 			donts: [
-				"Solo travel as a woman, even a group of women I would not suggest. Many of the locals have no concept of personal space, they will crowd around you and stare, touch, help themselves to whats in your pocket and even I, a 6-foot man, was sexually harassed multiple times",
+				"Solo travel as a woman, even a group of women I would not suggest. Many of the locals have no concept of personal space, they will crowd around you and stare, touch, help themselves to what's in your pocket and even I, a 6-foot man, was sexually harassed multiple times",
 			],
 			advice: {
 				travelLength: "2 weeks",
@@ -2350,7 +2350,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			summary: [
 				"We hiked and rode our way through a less-traveled section of the Himalayas, everywhere you look is stunning architecture and color.",
 				"There are few countries like Bhutan. Nestled 2500m in the mountains it's a bastion of peace and long term thinking. They impose an expensive daily Sustainable Development Fee (SDF) on tourists which is what makes it one of the least visited countries on earth.",
-				"We also got to enjoy the celebrations of Diwali in the East-Indian region of Darjeerling, surprisingly it felt more like new years with endless screaming fireworks and fire crackers.",
+				"We also got to enjoy the celebrations of Diwali in the East-Indian region of Darjeeling, surprisingly it felt more like new years with endless screaming fireworks and fire crackers.",
 			],
 			challenges: [
 				"Bhutan essentially forces tourists to hire a guide and driver. Technically you can explore Paro and Thimphu without one but you MUST fly in to the airport, don't try to get there via car.",
@@ -2522,9 +2522,9 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"This country is not for new travellers but if you're seeking one of the most rewarding and enriching experiences, you'll probably never find a better option",
 			],
 			challenges: [
-				"Due to security concerns it's common local police forces will try to 'escort' you around. In reality they will nag you to just go back to your hotel so they can play on their phones. It's free but a highly annoying 'service' that you cant opt out of once they start following you",
-				"Getting cash is hard, the only bank tat reliably worke dfor me was Standard Charter",
-				"Islamabad airport has no SIM services and a virtually non existant ATM, so bring cash if arriving here",
+				"Due to security concerns it's common local police forces will try to 'escort' you around. In reality they will nag you to just go back to your hotel so they can play on their phones. It's free but a highly annoying 'service' that you can't opt out of once they start following you",
+				"Getting cash is hard, the only bank that reliably worked for me was Standard Charter",
+				"Islamabad airport has no SIM services and a virtually non existent ATM, so bring cash if arriving here",
 			],
 			dos: [
 				"Accept people offering you food and services, if you engage them long enough you'll usually find a way to repay them, its okay to say yes",
@@ -2643,7 +2643,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"If you're a woman, cover your hair at all times.",
 			],
 			donts: [
-				"Bring a drone, they are exteremely illegal to even have on you.",
+				"Bring a drone, they are extremely illegal to even have on you.",
 				"If you're a man, take photos of or approach women, especially in the conservative centres like Mazar-i-Sharif and Kandahar. If they approach you it's fine.",
 			],
 			advice: {
@@ -2699,7 +2699,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					title: "Complete Afghanistan",
 					length: "3 weeks",
 					description:
-						"Complete trip that goes to all major cities and wonders, recomend utilizing internal flight as commutes are often 8-12 hours a-piece",
+						"Complete trip that goes to all major cities and wonders, recommend utilizing internal flight as commutes are often 8-12 hours a-piece",
 					mapImage: "afghanhighlights",
 					steps: [
 						{
@@ -2726,12 +2726,12 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 								},
 								{
 									sentence:
-										"You should be able to get a bus ticket at the Kabul depo in advance",
+										"You should be able to get a bus ticket at the Kabul depot in advance",
 									isInfo: true,
 								},
 								{
 									sentence:
-										"Explore Bamyans Buddhas, screaming city and Band-e-Amir Lake",
+										"Explore Bamyan Buddhas, screaming city and Band-e-Amir Lake",
 									image: "bamyanbuddhas",
 								},
 							],
@@ -2787,7 +2787,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 							details: [
 								{
 									sentence:
-										"Very long commute to the Minaret of Jam, a famous lone menaret tower in the middle of a hidden oasis",
+										"Very long commute to the Minaret of Jam, a famous lone minaret tower in the middle of a hidden oasis",
 								},
 								{
 									sentence:
@@ -2850,7 +2850,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 								{ sentence: "Long commute to Bamyan (9+ hours)" },
 								{
 									sentence:
-										"Explore Bamyans Buddhas, screaming city and Band-e-Amir Lake",
+										"Explore Bamyan Buddhas, screaming city and Band-e-Amir Lake",
 									image: "bamyanbuddhas",
 								},
 							],
@@ -2884,7 +2884,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 								},
 								{
 									sentence:
-										"Arrive extremely early for one of the most conjested small and dangerous border crossing of your life",
+										"Arrive extremely early for one of the most congested small and dangerous border crossings of your life",
 									isWarning: true,
 								},
 							],
@@ -2931,7 +2931,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"Double the time estimates for getting places.",
 			],
 			dos: [
-				"Bring the most unbelievably crisp $100usd to exchange of you're life, even a fold or crease invalidates it here.",
+				"Bring the most unbelievably crisp $100usd to exchange of your life, even a fold or crease invalidates it here.",
 				"Visit during Thingyan, Myanmars version of Songkran.",
 			],
 			donts: [
@@ -3012,7 +3012,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 								},
 								{
 									sentence:
-										"Try a hike and stay in local villages, my recomendation for a local guide:",
+										"Try a hike and stay in local villages, my recommendation for a local guide:",
 									link: "https://www.instagram.com/eversmiletrekking/?hl=en",
 								},
 							],
@@ -3194,7 +3194,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			finalScore: 6,
 			summary: [
 				"From the Great Wall snaking across wind-scoured ridges to the Terracotta Warriors staring through two millennia, China pairs grand history with serene peaks, delicious tea breaks, and smooth satisfying high speed rail.",
-				"But you’ll also find shoulder-to-shoulder crowds and “ancient” streets polished into theme parks, where the the experience is curated and even the night market feels algorithmically optimized.",
+				"But you’ll also find shoulder-to-shoulder crowds and “ancient” streets polished into theme parks, where the experience is curated and even the night market feels algorithmically optimized.",
 				"The whole country runs like it’s already the year 3025. Brilliantly frictionless or mildly dystopian, depending on your mood.",
 			],
 			challenges: [

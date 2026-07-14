@@ -75,7 +75,7 @@ export const guideMetaData: GuideMetaData[] = [
 		created: 1727343784,
 		thumbnail: "/guides/accessibility.png",
 		subTitle:
-			"Primary important tools with a realistic web coding checklist to improve your sites a11y",
+			"Primarily important tools with a realistic web coding checklist to improve your site's a11y",
 		topic: Topic.Article,
 		tags: [Tags.StepByStep, Tags.QuickStart],
 	},
@@ -86,7 +86,7 @@ export const guideMetaData: GuideMetaData[] = [
 		created: 1727326347,
 		thumbnail: "/guides/davinci-resolve.png",
 		subTitle:
-			"My ever improving process for travel post production thats high quality and efficient",
+			"My ever improving process for travel post production that's high quality and efficient",
 		topic: Topic.Article,
 		tags: [Tags.StepByStep, Tags.QuickStart],
 	},
@@ -198,7 +198,7 @@ export const guideMetaData: GuideMetaData[] = [
 		created: 1675825605,
 		thumbnail: "/guides/aws-script.png",
 		subTitle:
-			"Running scripts is fairly critical when you want to automatically configure you're EC2 Instances",
+			"Running scripts is fairly critical when you want to automatically configure your EC2 Instances",
 		topic: Topic.Infrastructure,
 		languages: [Languages.BashShell],
 		tags: [Tags.CodeBlock],

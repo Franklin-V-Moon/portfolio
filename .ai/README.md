@@ -1,6 +1,6 @@
 # `.ai/`
 
-This directory backs a tool-agnostic AI assistant setup for this repo. It's designed so that all ai coding assistants (e.g Claude Code, Cursor Gemini CLI or any other tool that follows the same open standards) all read the same instructions, skills, and MCP config — nothing vendor-specific needs to be duplicated by hand.
+This directory backs a tool-agnostic AI assistant setup for this repo. It's designed so that all AI coding assistants (e.g. Claude Code, Cursor, Gemini CLI, or any other tool that follows the same open standards) read the same instructions, skills, and MCP config — nothing vendor-specific needs to be duplicated by hand.
 
 ## How it fits together
 

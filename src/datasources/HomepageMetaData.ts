@@ -17,7 +17,7 @@ export const forYouMetaData: ForYouMetaData[] = [
 		logo: "postproduction",
 		title: "Visual Effects",
 		paragraph:
-			"I want to capture snapshots of our world and enhancing them, from special moments to efficient render pipelines.",
+			"I want to capture snapshots of our world and enhance them, from special moments to efficient render pipelines.",
 	},
 ];
 

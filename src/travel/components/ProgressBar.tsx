@@ -39,12 +39,12 @@ export const ProgressBar = ({
 		accessibility: {
 			title: "Accessibility",
 			tooltip:
-				"How easy is it to get around and operate independently without a guide. Higher means its easy to get around and book hotels",
+				"How easy is it to get around and operate independently without a guide. Higher means it's easy to get around and book hotels",
 		},
 		video: {
 			title: "Video",
 			tooltip:
-				"How well the final edited video turned out (See above). Low means I don't like it. Each country gets it's own rating within one video",
+				"How well the final edited video turned out (See above). Low means I don't like it. Each country gets its own rating within one video",
 		},
 		finalScore: {
 			title: "Final Score",
