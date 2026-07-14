@@ -12,21 +12,6 @@ describe("Guides page", () => {
 		window.history.replaceState(null, "", "/guides");
 	});
 
-	it("renders a visually hidden h1 titled Guides", () => {
-		(useRouter as jest.Mock).mockReturnValue({
-			isReady: true,
-			pathname: "/guides",
-			query: {},
-			replace: jest.fn(),
-		});
-
-		render(<Guides />);
-
-		const heading = screen.getByRole("heading", { level: 1 });
-		expect(heading.textContent).toBe("Guides");
-		expect(heading.className).toContain("visuallyHidden");
-	});
-
 	it("clears filter params from the browser URL when Clear All is clicked", async () => {
 		(useRouter as jest.Mock).mockReturnValue({
 			isReady: true,

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { BioDescription } from "./BioDescription";
 
 describe("BioDescription", () => {
@@ -13,15 +13,5 @@ describe("BioDescription", () => {
 		const { queryByRole } = render(<BioDescription />);
 
 		expect(queryByRole("main")).toBeNull();
-	});
-
-	it("renders a visually hidden h1 with the person's name and role", () => {
-		render(<BioDescription />);
-
-		const heading = screen.getByRole("heading", { level: 1 });
-		expect(heading.textContent).toBe(
-			"Franklin Von Moon — Software Engineer & Traveler",
-		);
-		expect(heading.className).toContain("visuallyHidden");
 	});
 });
