@@ -33,6 +33,9 @@ export const BioDescription = () => {
 	return (
 		<div className={styles.outerContainer}>
 			<div className={styles.container}>
+				<h1 className={styles.visuallyHidden}>
+					Franklin Von Moon — Software Engineer & Traveler
+				</h1>
 				<span className={styles.titleFont}>Franklin</span>
 				<span className={`${styles.titleFont} ${styles.gradient}`}>
 					{" V Moon "}

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import { SalaryExpectationsSection } from "./SalaryExpectationsSection";
 
 describe("SalaryExpectationsSection", () => {
@@ -34,5 +34,13 @@ describe("SalaryExpectationsSection", () => {
 		fireEvent.click(clearAllButton);
 
 		expect(fullyRemoteCheckbox.checked).toBe(undefined);
+	});
+
+	it("renders the country scale name as a level 3 heading", () => {
+		render(<SalaryExpectationsSection />);
+
+		expect(screen.getByRole("heading", { level: 3 }).textContent).toBe(
+			"Australia",
+		);
 	});
 });

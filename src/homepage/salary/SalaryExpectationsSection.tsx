@@ -283,7 +283,7 @@ export const SalaryExpectationsSection = () => {
 								max={9}
 								onChange={handleCountryChange}
 							/>
-							<h4 className={styles.countryScaleName}>{countryScaleName}</h4>
+							<h3 className={styles.countryScaleName}>{countryScaleName}</h3>
 						</div>
 					</div>
 				</div>

@@ -131,6 +131,8 @@ const Guides: NextPage = () => {
 					/>
 				</Head>
 
+				<h1 className={styles.visuallyHidden}>Guides</h1>
+
 				<Dialog
 					open={showFilterMenu}
 					slots={{ transition: Transition }}

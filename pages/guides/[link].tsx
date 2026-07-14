@@ -64,6 +64,8 @@ const PageContent = ({
 				/>
 			</Head>
 
+			<h1 className={styles.visuallyHidden}>{title}</h1>
+
 			<Container maxWidth={"md"}>
 				<div className={styles.returnContainer}>
 					<Button

@@ -21,7 +21,7 @@ export const FolioColumn = ({
 				{metaData.map((grouping, index) => {
 					return (
 						<div key={index} className={styles.folioGroupingContainer}>
-							<h2 className={styles.folioHeading}>{grouping.title}</h2>
+							<h3 className={styles.folioHeading}>{grouping.title}</h3>
 							<FolioGrouping
 								grouping={grouping}
 								handleOpenModal={handleOpenModal}

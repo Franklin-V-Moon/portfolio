@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { ForYouCard } from "./ForYouCard";
 
 describe("ForYouCard component", () => {
@@ -14,5 +14,13 @@ describe("ForYouCard component", () => {
 		expect(getByText(title)).toBeDefined();
 		expect(getByText("This is a test sentence.")).toBeDefined();
 		expect(getByText("This is another test sentence.")).toBeDefined();
+	});
+
+	it("renders the title as a level 3 heading", () => {
+		const title = "Test Title";
+
+		render(<ForYouCard logo={"testLogo"} title={title} paragraph={""} />);
+
+		expect(screen.getByRole("heading", { level: 3 }).textContent).toBe(title);
 	});
 });
