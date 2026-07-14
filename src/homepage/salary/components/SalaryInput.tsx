@@ -56,7 +56,7 @@ export const MoneyInput = ({
 				<div className={styles.deleteIcon}>
 					<IconButton
 						color='primary'
-						component='label'
+						aria-label='Clear'
 						onClick={() => onClear(name)}>
 						<DeleteOutlineIcon />
 					</IconButton>

@@ -43,4 +43,18 @@ describe("SalaryExpectationsSection", () => {
 			"Australia",
 		);
 	});
+
+	it("labels the country scale slider with its visible label", () => {
+		render(<SalaryExpectationsSection />);
+
+		expect(screen.getByRole("slider", { name: "Scale By Country" })).toBeDefined();
+	});
+
+	it("announces the proposed salary via a polite live region", () => {
+		render(<SalaryExpectationsSection />);
+
+		const salaryHeading = screen.getByText("$83,000").parentElement;
+
+		expect(salaryHeading?.getAttribute("aria-live")).toBe("polite");
+	});
 });
