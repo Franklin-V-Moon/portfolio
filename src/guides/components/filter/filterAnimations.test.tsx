@@ -38,7 +38,7 @@ describe("closeMenu()", () => {
 });
 
 describe("keyboardNavigation()", () => {
-	it("closes the menu on Tab without preventing default", () => {
+	it("leaves Tab alone, letting focus advance natively", () => {
 		const setOpen = jest.fn();
 		const preventDefault = jest.fn();
 		keyboardNavigation(
@@ -46,7 +46,7 @@ describe("keyboardNavigation()", () => {
 			setOpen,
 		);
 		expect(preventDefault).not.toHaveBeenCalled();
-		expect(setOpen).toHaveBeenCalledWith(false);
+		expect(setOpen).not.toHaveBeenCalled();
 	});
 
 	it("closes the menu on Escape without preventing default", () => {
