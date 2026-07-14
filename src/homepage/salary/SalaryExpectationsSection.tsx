@@ -268,13 +268,10 @@ export const SalaryExpectationsSection = () => {
 						/>
 						<Gap />
 						<div className={styles.internationalSliderContainer}>
-							<InputLabel
-								id='scale-by-country-label'
-								htmlFor='outlined-adornment-amount'>
+							<InputLabel id='scale-by-country-label'>
 								Scale By Country
 							</InputLabel>
 							<Slider
-								id='outlined-adornment-amount'
 								aria-labelledby='scale-by-country-label'
 								size='small'
 								defaultValue={7}
