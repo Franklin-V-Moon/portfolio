@@ -9,6 +9,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { AppCacheProvider } from "@mui/material-nextjs/v16-pagesRouter";
 import { ErrorBoundary } from "../utils/error/ErrorBoundary";
+import styles from "./_app.module.scss";
 
 function MyApp(props: AppProps) {
 	const { Component, pageProps } = props;
@@ -22,11 +23,16 @@ function MyApp(props: AppProps) {
 				/>
 			</Head>
 			<GlobalTheme>
+				<a href='#main-content' className={styles.skipLink}>
+					Skip to content
+				</a>
 				<div style={{ height: "70px" }}></div>
 				<Analytics />
-				<ErrorBoundary>
-					<Component {...pageProps} />
-				</ErrorBoundary>
+				<main id='main-content' tabIndex={-1}>
+					<ErrorBoundary>
+						<Component {...pageProps} />
+					</ErrorBoundary>
+				</main>
 				<Navbar />
 			</GlobalTheme>
 			<Script src='https://gumroad.com/js/gumroad.js' strategy='lazyOnload' />

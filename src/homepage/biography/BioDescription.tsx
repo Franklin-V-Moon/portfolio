@@ -54,7 +54,7 @@ export const BioDescription = () => {
 
 				{/* <span className={styles.backupAutoType}>Developer</span> */}
 
-				<main className={styles.blurb}>
+				<div className={styles.blurb}>
 					{tabsData[0].pageDescription}
 					<br />
 					<br />
@@ -67,7 +67,7 @@ export const BioDescription = () => {
 					{pluralTime("hour", periodWorked?.hours)}
 					{" and "}
 					{pluralTime("minute", periodWorked?.minutes)}{" "}
-				</main>
+				</div>
 			</div>
 		</div>
 	);
