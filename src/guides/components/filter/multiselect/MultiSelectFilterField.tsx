@@ -29,6 +29,8 @@ type MultiSelectFilterProps = (LanguagesFilter | TagsFilter) & {
 export const MultiSelectFilterField = (props: MultiSelectFilterProps) => {
 	const { label, filter, setFilter, dropDownData, highlightColor } = props;
 
+	const labelId = `${label}-select-label`;
+
 	const handleChange = (event: SelectChangeEvent<Languages[] | Tags[]>) => {
 		const {
 			target: { value },
@@ -43,6 +45,7 @@ export const MultiSelectFilterField = (props: MultiSelectFilterProps) => {
 		<div>
 			<FormControl sx={{ m: 2, width: 300 }}>
 				<InputLabel
+					id={labelId}
 					sx={{
 						"&.Mui-focused": {
 							color: highlightColor,
@@ -52,6 +55,7 @@ export const MultiSelectFilterField = (props: MultiSelectFilterProps) => {
 				</InputLabel>
 				<Select
 					multiple
+					labelId={labelId}
 					value={filter}
 					onChange={handleChange}
 					input={<OutlinedInput label={label} />}

@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { FolioColumn } from "./FolioColumn";
 import { Proficiency } from "../types";
 
@@ -57,6 +57,22 @@ describe("FolioColumn component", () => {
 		expect(getByText(metaData[1].title)).toBeDefined();
 		expect(getByText(metaData[1].data[1].title)).toBeDefined();
 		expect(handleOpenModal).toHaveBeenCalledTimes(0);
+	});
+
+	it("renders each group title as a level 3 heading", () => {
+		render(
+			<FolioColumn
+				title={title}
+				metaData={metaData}
+				handleOpenModal={handleOpenModal}
+			/>,
+		);
+
+		const headings = screen.getAllByRole("heading", { level: 3 });
+		expect(headings.map((heading) => heading.textContent)).toEqual([
+			metaData[0].title,
+			metaData[1].title,
+		]);
 	});
 
 	it("should call the handleOpenModal function when FolioGrouping component is clicked", () => {

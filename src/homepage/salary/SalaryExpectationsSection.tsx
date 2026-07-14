@@ -162,7 +162,7 @@ export const SalaryExpectationsSection = () => {
 
 	return (
 		<Card className={styles.cardContainer}>
-			<div className={styles.heading}>
+			<div className={styles.heading} aria-live='polite'>
 				<div className={styles.salaryNumber}>
 					${commaSeparate(expectedSalary)}
 				</div>
@@ -268,11 +268,11 @@ export const SalaryExpectationsSection = () => {
 						/>
 						<Gap />
 						<div className={styles.internationalSliderContainer}>
-							<InputLabel htmlFor='outlined-adornment-amount'>
+							<InputLabel id='scale-by-country-label'>
 								Scale By Country
 							</InputLabel>
 							<Slider
-								aria-label='Countries'
+								aria-labelledby='scale-by-country-label'
 								size='small'
 								defaultValue={7}
 								valueLabelDisplay='off'
@@ -283,7 +283,7 @@ export const SalaryExpectationsSection = () => {
 								max={9}
 								onChange={handleCountryChange}
 							/>
-							<h4 className={styles.countryScaleName}>{countryScaleName}</h4>
+							<h3 className={styles.countryScaleName}>{countryScaleName}</h3>
 						</div>
 					</div>
 				</div>

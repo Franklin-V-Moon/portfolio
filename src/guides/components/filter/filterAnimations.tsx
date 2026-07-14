@@ -1,6 +1,7 @@
 import { Slide } from "@mui/material";
 import { TransitionProps } from "@mui/material/transitions";
 import React from "react";
+import { usePrefersReducedMotion } from "../../../../utils/usePrefersReducedMotion";
 
 export const closeMenu = (
 	event: Event | React.SyntheticEvent,
@@ -21,10 +22,7 @@ export const keyboardNavigation = (
 	event: React.KeyboardEvent,
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
-	if (event.key === "Tab") {
-		event.preventDefault();
-		setOpen(false);
-	} else if (event.key === "Escape") {
+	if (event.key === "Escape") {
 		setOpen(false);
 	}
 };
@@ -38,7 +36,16 @@ export const slideTransition = (
 		},
 		ref: React.Ref<unknown>,
 	) {
-		return <Slide direction={direction} ref={ref} {...props} timeout={550} />;
+		const prefersReducedMotion = usePrefersReducedMotion();
+
+		return (
+			<Slide
+				direction={direction}
+				ref={ref}
+				{...props}
+				timeout={prefersReducedMotion ? 0 : 550}
+			/>
+		);
 	});
 };
 

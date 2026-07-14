@@ -8,4 +8,10 @@ describe("BioDescription", () => {
 		expect(getByText("Franklin")).toBeDefined();
 		expect(getByText("V Moon")).toBeDefined();
 	});
+
+	it("does not render a main landmark", () => {
+		const { queryByRole } = render(<BioDescription />);
+
+		expect(queryByRole("main")).toBeNull();
+	});
 });

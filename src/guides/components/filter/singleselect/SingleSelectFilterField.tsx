@@ -29,6 +29,8 @@ export const SingleSelectFilterField = ({
 		setFilter(value === defaultValue ? undefined : (value as Topic));
 	};
 
+	const labelId = `${label}-select-label`;
+
 	const dropDownStylingOverrides = {
 		"&:hover": {
 			backgroundColor: `${addTransparency(highlightColor, 0.4)} !important`,
@@ -47,6 +49,7 @@ export const SingleSelectFilterField = ({
 			}}>
 			<FormControl fullWidth>
 				<InputLabel
+					id={labelId}
 					sx={{
 						"&.Mui-focused": {
 							color: highlightColor,
@@ -55,6 +58,7 @@ export const SingleSelectFilterField = ({
 					Topic
 				</InputLabel>
 				<Select
+					labelId={labelId}
 					value={filter ? filter : defaultValue}
 					label={label}
 					onChange={handleChange}

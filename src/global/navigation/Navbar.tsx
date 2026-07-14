@@ -39,7 +39,7 @@ export const Navbar = () => {
 
 	return (
 		<>
-			<h1 className={styles.behindNav}>{tabsData[selectedTab].pageDescription}</h1>
+			<h1 className={styles.visuallyHidden}>{tabsData[selectedTab].pageDescription}</h1>
 
 			<nav role='navigation' aria-label='Main navigation'>
 				<div className={styles.logotypeDesktopContainer}>
@@ -107,7 +107,7 @@ export const Navbar = () => {
 									padding: "0.4375rem",
 								}}
 								key={index}
-								tabIndex={index + 1}
+								aria-current={index === selectedTab ? "page" : undefined}
 								onClick={() => {
 									handleTabClick(item.route, index);
 								}}

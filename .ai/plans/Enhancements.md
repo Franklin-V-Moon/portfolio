@@ -8,6 +8,8 @@
 
 ## 9. C-Index to scores
 
+## 10. Smoother work experience stopping
+
 # Major Features
 
 ## 0. Subtitles

@@ -41,6 +41,9 @@ export const darkTheme = createTheme({
 				root: {
 					color: "#fff",
 					transition: "linear 200ms",
+					"@media (prefers-reduced-motion: reduce)": {
+						transition: "none",
+					},
 				},
 			},
 		},

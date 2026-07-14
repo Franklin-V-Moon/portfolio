@@ -33,4 +33,13 @@ describe("renders component information", () => {
 		expect(image.getAttribute("loading")).toBe("eager");
 		expect(image.getAttribute("fetchpriority")).toBe("high");
 	});
+
+	it("renders the full subtitle text in the DOM without requiring hover", () => {
+		const longSubtitle =
+			"A subtitle long enough that it would previously have been shortened by the JS-based truncation and only revealed via a hover-only tooltip";
+		const { getByText } = render(
+			<GuideCard cardData={{ ...mockCardData, subTitle: longSubtitle }} />,
+		);
+		expect(getByText(longSubtitle)).toBeDefined();
+	});
 });

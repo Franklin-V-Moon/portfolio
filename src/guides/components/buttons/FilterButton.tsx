@@ -4,9 +4,10 @@ import { Dispatch } from "react";
 
 type FilterButtonProps = {
 	setShowFilterMenu: Dispatch<React.SetStateAction<boolean>>;
+	showFilterMenu: boolean;
 };
 export const FilterButton = (props: FilterButtonProps) => {
-	const { setShowFilterMenu } = props;
+	const { setShowFilterMenu, showFilterMenu } = props;
 
 	const handleOpenFilterMenu = () => {
 		setShowFilterMenu(true);
@@ -16,6 +17,8 @@ export const FilterButton = (props: FilterButtonProps) => {
 		<Button
 			onClick={handleOpenFilterMenu}
 			color='brightGrey'
+			aria-haspopup='dialog'
+			aria-expanded={showFilterMenu ? "true" : undefined}
 			endIcon={<FilterAltOutlinedIcon />}>
 			Filter
 		</Button>
