@@ -18,11 +18,13 @@ import { SortOptions } from "../../types";
 
 type SortButtonProps = {
 	setSortMetaDataBy: Dispatch<SetStateAction<SortOptions>>;
+	sortBy: SortOptions;
 	alphabetical?: boolean;
 };
 
 export const SortButton = (props: SortButtonProps) => {
-	const { setSortMetaDataBy: setSortOption, alphabetical = true } = props;
+	const { setSortMetaDataBy: setSortOption, sortBy, alphabetical = true } =
+		props;
 
 	const [open, setOpen] = React.useState(false);
 	const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -59,6 +61,7 @@ export const SortButton = (props: SortButtonProps) => {
 						anchorRef.current = node;
 						setAnchorEl(node);
 					}}
+					id='composition-button'
 					aria-controls={open ? "composition-menu" : undefined}
 					aria-expanded={open ? "true" : undefined}
 					aria-haspopup='true'
@@ -82,8 +85,13 @@ export const SortButton = (props: SortButtonProps) => {
 							}}>
 							<Paper>
 								<ClickAwayListener onClickAway={handleClose}>
-									<MenuList autoFocusItem={open} onKeyDown={handleListKeyDown}>
+									<MenuList
+										autoFocusItem={open}
+										id='composition-menu'
+										aria-labelledby='composition-button'
+										onKeyDown={handleListKeyDown}>
 										<MenuItem
+											aria-current={sortBy === SortOptions.Newest ? "true" : undefined}
 											onClick={() => {
 												setSortOption(SortOptions.Newest);
 											}}>
@@ -91,6 +99,7 @@ export const SortButton = (props: SortButtonProps) => {
 											ㅤNewest
 										</MenuItem>
 										<MenuItem
+											aria-current={sortBy === SortOptions.Oldest ? "true" : undefined}
 											onClick={() => {
 												setSortOption(SortOptions.Oldest);
 											}}>
@@ -99,6 +108,9 @@ export const SortButton = (props: SortButtonProps) => {
 										</MenuItem>
 										{alphabetical && (
 											<MenuItem
+												aria-current={
+													sortBy === SortOptions.Alphabetical ? "true" : undefined
+												}
 												onClick={() => {
 													setSortOption(SortOptions.Alphabetical);
 												}}>

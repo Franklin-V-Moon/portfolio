@@ -38,14 +38,14 @@ describe("closeMenu()", () => {
 });
 
 describe("keyboardNavigation()", () => {
-	it("closes the menu and prevents default on Tab", () => {
+	it("closes the menu on Tab without preventing default", () => {
 		const setOpen = jest.fn();
 		const preventDefault = jest.fn();
 		keyboardNavigation(
 			{ key: "Tab", preventDefault } as unknown as React.KeyboardEvent,
 			setOpen,
 		);
-		expect(preventDefault).toHaveBeenCalled();
+		expect(preventDefault).not.toHaveBeenCalled();
 		expect(setOpen).toHaveBeenCalledWith(false);
 	});
 

@@ -40,4 +40,24 @@ describe("MultiSelectFilter", () => {
 			expect(getByText(item)).toBeDefined();
 		});
 	});
+
+	it("ties the label to the select via matching id/labelId", () => {
+		const { container, getByRole } = render(
+			<MultiSelectFilterField
+				label={label}
+				filter={filter}
+				setFilter={setFilter}
+				dropDownData={dropDownData}
+				highlightColor={highlightColor}
+			/>,
+		);
+
+		const labelEl = container.querySelector("label");
+		const select = getByRole("combobox");
+
+		expect(labelEl?.getAttribute("id")).toBeTruthy();
+		expect(select.getAttribute("aria-labelledby")).toBe(
+			labelEl?.getAttribute("id"),
+		);
+	});
 });

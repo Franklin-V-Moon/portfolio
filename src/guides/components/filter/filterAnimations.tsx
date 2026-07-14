@@ -22,10 +22,7 @@ export const keyboardNavigation = (
 	event: React.KeyboardEvent,
 	setOpen: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
-	if (event.key === "Tab") {
-		event.preventDefault();
-		setOpen(false);
-	} else if (event.key === "Escape") {
+	if (event.key === "Tab" || event.key === "Escape") {
 		setOpen(false);
 	}
 };

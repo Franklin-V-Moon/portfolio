@@ -4,12 +4,11 @@ import {
 	CardContent,
 	CardMedia,
 	LinearProgress,
-	Tooltip,
 } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
 import { GuideMetaData } from "../../types";
-import { subTitleShortener, titleShortener } from "./textFormatter";
+import { titleShortener } from "./textFormatter";
 import styles from "./GuideCard.module.scss";
 
 export const GuideCard = ({
@@ -48,11 +47,7 @@ export const GuideCard = ({
 
 							<h6 className={styles.title}>{titleShortener(cardData.title)}</h6>
 
-							<Tooltip title={cardData.subTitle} followCursor>
-								<p className={styles.subtitle}>
-									{subTitleShortener(cardData.subTitle)}
-								</p>
-							</Tooltip>
+							<p className={styles.subtitle}>{cardData.subTitle}</p>
 						</div>
 					</CardContent>
 

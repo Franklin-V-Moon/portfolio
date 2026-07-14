@@ -152,8 +152,11 @@ const Guides: NextPage = () => {
 				<PageContainer>
 					<div className={styles.filterContainer}>
 						<div className={styles.filters}>
-							<FilterButton setShowFilterMenu={setShowFilterMenu} />
-							<SortButton setSortMetaDataBy={setSortBy} />
+							<FilterButton
+								setShowFilterMenu={setShowFilterMenu}
+								showFilterMenu={showFilterMenu}
+							/>
+							<SortButton setSortMetaDataBy={setSortBy} sortBy={sortBy} />
 						</div>
 					</div>
 
