@@ -73,4 +73,28 @@ describe("Navbar component", () => {
 
 		expect(replace).toHaveBeenCalledWith("/guides");
 	});
+
+	it("sets aria-current='page' on the active tab", () => {
+		(useRouter as jest.Mock).mockReturnValue({
+			pathname: "/guides",
+			replace: jest.fn(),
+		});
+
+		render(<Navbar />);
+
+		const guidesTab = screen.getByRole("tab", { name: "GUIDES" });
+		expect(guidesTab.getAttribute("aria-current")).toBe("page");
+	});
+
+	it("does not set aria-current on inactive tabs", () => {
+		(useRouter as jest.Mock).mockReturnValue({
+			pathname: "/",
+			replace: jest.fn(),
+		});
+
+		render(<Navbar />);
+
+		const guidesTab = screen.getByRole("tab", { name: "GUIDES" });
+		expect(guidesTab.getAttribute("aria-current")).toBeNull();
+	});
 });

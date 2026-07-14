@@ -107,7 +107,7 @@ export const Navbar = () => {
 									padding: "0.4375rem",
 								}}
 								key={index}
-								tabIndex={index + 1}
+								aria-current={index === selectedTab ? "page" : undefined}
 								onClick={() => {
 									handleTabClick(item.route, index);
 								}}
