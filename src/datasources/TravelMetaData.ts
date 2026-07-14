@@ -251,7 +251,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			finalScore: 4,
 			summary: [
 				"Malaysia is a simple yet multi-cultural destination blending Chinese, Indian and Arabic cultures all into one fairly unassuming package.",
-				"Singapore is an impressive hub of commerce and efficiency you don't see often. It is what Hong Kong wishes it still was and continues to thrive and attracts the best minds from asia into one concentrated pinhead.",
+				"Singapore is an impressive hub of commerce and efficiency you don't see often. It is what Hong Kong wishes it still was and continues to thrive and attracts the best minds from Asia into one concentrated pinhead.",
 				"We had a very short vacation but we made the most of it by drinking, hanging out and checking out the local attractions from the rainbow steps in Kuala Lumpur to the Gardens By the Bay.",
 			],
 			challenges: [
@@ -514,7 +514,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"Got any broken tech? Take it to MBK in Bangkok for a very cheap once-over and enjoy the experience.",
 			],
 			donts: [
-				"Avoid the Full Moon Party, it's really not any different to an average walking street except the drinks are super strong and its a logistical nightmare to get in/out.",
+				"Avoid the Full Moon Party, it's really not any different to an average walking street except the drinks are super strong and it's a logistical nightmare to get in/out.",
 				"Just stick to Phuket island, ensure you leave the island and explore the surrounds like Phi Phi and Krabi - Phuket itself is very underwhelming.",
 			],
 			advice: {
@@ -785,7 +785,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"While each country carries the weight of past conflicts, they now extend warm hospitality, inviting travelers to explore their diverse landscapes, savor their unique cuisines, and witness the resilience of their people.",
 			],
 			challenges: [
-				"Travellers often don't realize you need a visa for Vietnam. Try to get it early, if not you can pay for corrupt officials to expedite your application but its often a few hundred USD.",
+				"Travellers often don't realize you need a visa for Vietnam. Try to get it early, if not you can pay for corrupt officials to expedite your application but it's often a few hundred USD.",
 				"It can be a headache to get to train street in Hanoi, keep trying. Theirs always a cop looking away if you pick your moment.",
 			],
 			dos: [
@@ -874,9 +874,9 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			finalScore: 6,
 			summary: [
-				"These 3 nations makeup not-China, each has had a controversial recent history and could be the flashpoint for future conflict but today they stand still with a unique chinese twist worth experiencing.",
+				"These 3 nations makeup not-China, each has had a controversial recent history and could be the flashpoint for future conflict but today they stand still with a unique Chinese twist worth experiencing.",
 				"Taiwan is a wonderful place worth taking it slow and simply enjoying, from hiking to biking, from drinking to festivals - It has plenty to do and see.",
-				"Hong Kong is sadly losing it's identity but still has much to offer, the night life is incredible and it's recent history easy to get lost in.",
+				"Hong Kong is sadly losing its identity but still has much to offer, the night life is incredible and its recent history easy to get lost in.",
 			],
 			challenges: [
 				"Due to the expensive housing, many of the hostels are filled with locals which leads to a hostel culture devoid of friendship and connections",
@@ -956,7 +956,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			summary: [
 				"What a brilliant a diverse nation, no two areas here are the same so it's impossible to speak about any culture or rule for the entire nation as it varies completely.",
 				"If you want nature, peace and safety head south to Kerala. If you're after urban sprawl and endless activities, hit up Delhi in the north. Do you like mountains? head east to Darjeeling.",
-				"No two india experiences are the same and it's almost endless with places to go and things to see.",
+				"No two India experiences are the same and it's almost endless with places to go and things to see.",
 			],
 			challenges: [
 				"Safety is a concern depending on where you are. For example, in the denser poorer north i would recommend traveling alone as a woman. However in the south you'll find the population is dominantly women and so services and culture revolve more around keeping you safe.",
@@ -1046,14 +1046,14 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			summary: [
 				"As far as rich petro-states go oman is probably the only great one. Rather than going the glitzy luxury fake route they decided to go for a more modest, comfortable and enriching feeling for their nation.",
 				"Getting around Oman is such a lovely therapeutic experience, it feels almost like meditating to drive along the 4 lane silky smooth highways with not a soul in sight.",
-				"If you want a Middle East experience that feels like it came from a disney movie, this is it.",
+				"If you want a Middle East experience that feels like it came from a Disney movie, this is it.",
 			],
 			challenges: [
 				"getting around by public transport is honestly an un-fun miserable experience, I highly recommend hiring a car.",
 			],
 			dos: [
 				"Try hiking in a wadi. It combines a mix of shallow swimming and walking, just don't forget to bring plenty of drinking water.",
-				"Stay in a dome along the desert, its a relatively affordable and peaceful experience.",
+				"Stay in a dome along the desert, it's a relatively affordable and peaceful experience.",
 			],
 			advice: {
 				travelLength: "2 weeks",
@@ -1111,8 +1111,8 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			finalScore: 3,
 			summary: [
 				"Kuwait is a classic Persian Gulf petro-state with all the things you'd expect from luxury malls to car dependant transport. But at-least the artificial islands they're building don't completely destroy the marine life.",
-				"Next door you'll find Iraq and the autonomous region of iraqi Kurdistan which for all intents and purposes is a defacto independent country protected by the Peshmerga.",
-				"Recently ravaged by ISIS, the nation is still reeling and trying to find it's footing, the Kurds in the north continue to fight for independence but even so you'll find them warm, inviting and above all relatively safe.",
+				"Next door you'll find Iraq and the autonomous region of Iraqi Kurdistan which for all intents and purposes is a defacto independent country protected by the Peshmerga.",
+				"Recently ravaged by ISIS, the nation is still reeling and trying to find its footing, the Kurds in the north continue to fight for independence but even so you'll find them warm, inviting and above all relatively safe.",
 			],
 			challenges: [
 				"The Kuwaiti Dinar is the most expensive currency in the world due to their oil exports, don't come poor",
@@ -1189,7 +1189,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			summary: [
 				"The safest place in the Middle East, with something for literally everyone Jordan is a wonderful country to visit and have a lovely holiday",
 				"Sitting between several hostile powers you'd think Jordan to be dangerous but for decades now it's managed to remain a safe haven for refugees and tourists with plenty of warmth and hospitality to go around",
-				"It boasts some of the most attractive photogenic sites in the world from Wadi Rum with it's heritage train experience to Petra, the great Nabataean city lost in time",
+				"It boasts some of the most attractive photogenic sites in the world from Wadi Rum with its heritage train experience to Petra, the great Nabataean city lost in time",
 			],
 			challenges: [
 				"Getting between major cities can be a struggle and bus time tables don't always align. I'd recommend hiring a car, not a tour guide",
@@ -1279,7 +1279,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			summary: [
 				"Saudi Arabia, what a mess. I've never really disliked a country let alone hated one but Arabia somehow managed to be one of the worst weeks of travel in my life.",
 				"From the local men who openly beat their wives to having a rock thrown at my head for simply whistling while I walked down the highway (Apparently I was noise polluting the 8 lane freeway). I've never been to a place so hostile and closed off.",
-				"I'm still not sure if I liked Bahrain or not, but compared to Saudi it was like paradise. Here at least you're allowed to drink, theirs fun things to do and people actually follow through when they say they'll do something. It's a cute little petro-state where fun can be found, compared to it's neighbors.",
+				"I'm still not sure if I liked Bahrain or not, but compared to Saudi it was like paradise. Here at least you're allowed to drink, there's fun things to do and people actually follow through when they say they'll do something. It's a cute little petro-state where fun can be found, compared to its neighbors.",
 			],
 			challenges: ["Everything in Saudi is a challenge"],
 			donts: [
@@ -1371,8 +1371,8 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"Apply for a visa from SurfIran, GetIranVisa & CIBTvisas in advance. The length of stay you can be granted is generally down to your countries relationship with Iran",
 			],
 			donts: [
-				"Even mention Israel. Many people get offended and will report you if overhearing it. Similarly, don't visit Iran if theirs even a trace of you having been to israel",
-				"Stick around if theirs a crowd forming, ie protests. They quickly turn dangerous and it's largely accepted that unfortunate individuals caught in a bad situation are hurt or killed, simply to make an example",
+				"Even mention Israel. Many people get offended and will report you if overhearing it. Similarly, don't visit Iran if there's even a trace of you having been to Israel",
+				"Stick around if there's a crowd forming, ie protests. They quickly turn dangerous and it's largely accepted that unfortunate individuals caught in a bad situation are hurt or killed, simply to make an example",
 			],
 			advice: {
 				travelLength: "1 - 1.5 months",
@@ -1479,7 +1479,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			finalScore: 7,
 			summary: [
-				"I spent a solid month exploring the 3 countries of the South-Caucasus, it was a surprise how good Georgia was  with it's outstanding food and wine.",
+				"I spent a solid month exploring the 3 countries of the South-Caucasus, it was a surprise how good Georgia was  with its outstanding food and wine.",
 				"These 3 nations have a complex history, under Soviet rule they co-existed relatively peacefully. But today Armenia and Azerbaijan regularly clash and Georgia is currently partially occupied by Russia.",
 				"Azerbaijan feels like any other gulf petro state and in many ways is proud to be a Turkish puppet. Armenia has a tragic history but some of the most hopeful people you'll ever meet.",
 			],
@@ -1601,8 +1601,8 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"Checkout Crete. Raki here is untaxed and therefore cheaper than water, they literally give it away with every meal.",
 			],
 			donts: [
-				"Spend too much time in Santorini. You can do most of it in a day but it's extremely expensive and theirs better places",
-				"Never eat at a restaurant where theirs someone out the front trying to lure you in. If it's good they don't need to do that",
+				"Spend too much time in Santorini. You can do most of it in a day but it's extremely expensive and there's better places",
+				"Never eat at a restaurant where there's someone out the front trying to lure you in. If it's good they don't need to do that",
 			],
 			advice: {
 				travelLength: "1 - 3 months",
@@ -1686,14 +1686,14 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			finalScore: 5,
 			summary: [
 				"The bridge between worlds, Türkiye. Meeting and mixing Europe, the Middle East and the Caucuses.",
-				"Honestly I didn't spend enough time in Turkey and what I did do and see was a bit 'touristy'. Istanbul is one of those cities you could spend weeks alone, from it's 'Europe side' and it's 'Asia Side' you can experience a great mesh of foods, lifestyles and fun experiences.",
+				"Honestly I didn't spend enough time in Turkey and what I did do and see was a bit 'touristy'. Istanbul is one of those cities you could spend weeks alone, from its 'Europe side' and its 'Asia Side' you can experience a great mesh of foods, lifestyles and fun experiences.",
 			],
 			challenges: [
 				"Taxi drivers in Turkey are something else. Never trust the driver, if you know they're going the wrong way don't be afraid to jump out and if they decide to double the agreed-upon price after you've arrived, expect the confrontation to become physical.",
 			],
 			dos: [
 				"Find accommodation on the 'Asia' side of Istanbul, the district of Kadikoy. You can still see all the famous things of the 'Europe' side but save so much on money and the nightlife is best on the Asia anyway.",
-				"Negotiate locally for the hot air balloons in Cappadocia. You can secure a half price discount the night before if theirs been a string of good weather days",
+				"Negotiate locally for the hot air balloons in Cappadocia. You can secure a half price discount the night before if there's been a string of good weather days",
 			],
 			advice: {
 				travelLength: "1 month",
@@ -1772,7 +1772,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			finalScore: 3,
 			summary: [
-				"Heading through to Syria I had to checkout Lebanon, sometimes nicknamed 'The Switzerland of the Middle East' for it's previous reputation to discreetly store one's wealth.",
+				"Heading through to Syria I had to checkout Lebanon, sometimes nicknamed 'The Switzerland of the Middle East' for its previous reputation to discreetly store one's wealth.",
 				"Sadly at time of filming Lebanon has fallen far. Infested with Hezbollah, an Iran-backed terror organization that sudo-controls the government without any of the benefits a functioning government would provide. They destabilize the whole nation and ensure it's stuck in constant conflict internally and externally.",
 				"Even so, the Lebanese press on as some of the kindest and most hospital folks you'll ever meet. Kind, open-minded and fantastic cooks.",
 			],
@@ -1845,7 +1845,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			summary: [
 				"Experiencing Syria during the Assad regime was an actual unforgettable experience, the week I spent in Syria might be the most impactful week of my life.",
 				"Each and every aspect of this tragic yet resilient country stands out. The people still have so much pride and hope, everyone is wonderful, the history immense and the food to die for.",
-				"Damascus has gone down as my favorite city, its so rich and vibrant. Homs and Hama while devastated from decades of war still have so much to offer. Aleppo and Palmyra with it's recent ISIS occupation could alone be traveled for weeks without learning everything that's just happened.",
+				"Damascus has gone down as my favorite city, it's so rich and vibrant. Homs and Hama while devastated from decades of war still have so much to offer. Aleppo and Palmyra with its recent ISIS occupation could alone be traveled for weeks without learning everything that's just happened.",
 			],
 			dos: ["Eat and drink everything."],
 			donts: [
@@ -1936,7 +1936,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			finalScore: 4,
 			summary: [
-				"An island nation divided, where ancient ruins meet sun-drenched coastlines with everything you love and hate from it's nearest neighbors.",
+				"An island nation divided, where ancient ruins meet sun-drenched coastlines with everything you love and hate from its nearest neighbors.",
 				"The Greek Cypriot and Turkish Cypriot communities of Cyprus are a living testament to the island's complex recent history where the UN buffer lines creates an incredibly strange atmosphere yet life goes on in paradise.",
 				"I explored a few cities and mostly 'lived it up' aboard cruises and wind surfing, the south feels much more like a Greek island and the north more like a forgotten wasteland from Fallout with countless ghost towns covered in bullet holes.",
 			],
@@ -2002,7 +2002,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			finalScore: 8,
 			summary: [
 				"We witnessed firsthand the tangible realities of the Israeli-Palestinian conflict, including the separation barrier and its impact on daily life.",
-				"Israel & Palestine have diverse religious and political narratives shaping the region's complex recent history. growing up a christian, it was fascinating to see the real locations from the bible and even more so, that they always had a gift shop next door.",
+				"Israel & Palestine have diverse religious and political narratives shaping the region's complex recent history. growing up a Christian, it was fascinating to see the real locations from the Bible and even more so, that they always had a gift shop next door.",
 				"It's a surreal experience to travel this region, with so many concerning and surprising facts it can be heart breaking to visit but something I believe everyone should try at-least once.",
 			],
 			challenges: [
@@ -2012,8 +2012,8 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"Cross into Bethlehem on foot and get a day trip with any taxi drivers. First and foremost they want you to understand their circumstances.",
 			],
 			donts: [
-				"Cross the Jordanian border if you plan to visit a long list of other arab countries. Even though Israel does not stamp your passport, the Jordanian land border stamp will indicate you visited Israel - In Lebanon for example, this would get you arrested.",
-				"Rent a car in israel then drive it into Palestine. The Israeli numberplate will get your car targeted.",
+				"Cross the Jordanian border if you plan to visit a long list of other Arab countries. Even though Israel does not stamp your passport, the Jordanian land border stamp will indicate you visited Israel - In Lebanon for example, this would get you arrested.",
+				"Rent a car in Israel then drive it into Palestine. The Israeli numberplate will get your car targeted.",
 			],
 			advice: {
 				travelLength: "2 - 4 weeks",
@@ -2093,8 +2093,8 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			finalScore: 6,
 			summary: [
 				"The Philippines, an archipelago of over 7,000 islands offering a diverse landscape of beaches, volcanoes, rain forests and infinite diving.",
-				"Nearby Brunei is a tiny oil-rich sultanate known for it's mosques, tree canopies and Venetian-style river villages.",
-				"Steering clear of Manila due to it's scammy and congested nature, we explored chaotic Cebu by scooter and snorkelled around its gorgeous coast. While the food in both countries is quite bad (philippines voted worst in the world recently) we did enjoy the nightlife and punchy red horse beers.",
+				"Nearby Brunei is a tiny oil-rich sultanate known for its mosques, tree canopies and Venetian-style river villages.",
+				"Steering clear of Manila due to its scammy and congested nature, we explored chaotic Cebu by scooter and snorkelled around its gorgeous coast. While the food in both countries is quite bad (Philippines voted worst in the world recently) we did enjoy the nightlife and punchy red horse beers.",
 			],
 			challenges: [
 				"Manilla is a hellish city with some truly awful congestion. Many taxi scams exist, particularly the 'airport bus' that you can never rely on.",
@@ -2168,7 +2168,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"The roads are almost nonexistent with potholes regularly swallowing up whole motorbikes. It's fun but ensure ample time and energy",
 			],
 			dos: [
-				"Spend a few days at 'Barry's Place' in Atauro. He's amazing and theirs a lot to do surprisingly",
+				"Spend a few days at 'Barry's Place' in Atauro. He's amazing and there's a lot to do surprisingly",
 			],
 			advice: {
 				travelLength: "1 week",
@@ -2255,10 +2255,10 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			challenges: [
 				"The food is straight-up not fit for animal nor human consumption. Everything, even KFC, gave me food poisoning. Stick to Oreos and potato crisps.",
-				"Getting around is very hard, you can't really book anything online and theirs no such thing as a schedule. Just ask around until a solution presents itself but that does mean you can commute in crazy unexpected ways.",
+				"Getting around is very hard, you can't really book anything online and there's no such thing as a schedule. Just ask around until a solution presents itself but that does mean you can commute in crazy unexpected ways.",
 			],
 			dos: [
-				"Train surf in Dhaka. It's a thrilling experience and nearing it's expected end. Simply try to sneak on the roof when no guards are watching and enjoy the ride.",
+				"Train surf in Dhaka. It's a thrilling experience and nearing its expected end. Simply try to sneak on the roof when no guards are watching and enjoy the ride.",
 			],
 			donts: [
 				"Solo travel as a woman, even a group of women I would not suggest. Many of the locals have no concept of personal space, they will crowd around you and stare, touch, help themselves to what's in your pocket and even I, a 6-foot man, was sexually harassed multiple times",
@@ -2504,7 +2504,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		backupLink:
 			"https://drive.google.com/drive/folders/14vEAX2n-dlTqZ59ywDNLbIte6FeClEV4?usp=sharing",
 		extras: {
-			countries: ["pakistan"],
+			countries: ["Pakistan"],
 			trailer: "pakistantrailer",
 			scorecard: {
 				beauty: [3],
@@ -2527,7 +2527,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"Islamabad airport has no SIM services and a virtually non existent ATM, so bring cash if arriving here",
 			],
 			dos: [
-				"Accept people offering you food and services, if you engage them long enough you'll usually find a way to repay them, its okay to say yes",
+				"Accept people offering you food and services, if you engage them long enough you'll usually find a way to repay them, it's okay to say yes",
 				"Make sure to visit in the warmer months, Skardu and Gilget close in the winter and they're arguably the best places to be as a tourist",
 			],
 			donts: [
@@ -2932,7 +2932,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			dos: [
 				"Bring the most unbelievably crisp $100usd to exchange of your life, even a fold or crease invalidates it here.",
-				"Visit during Thingyan, Myanmars version of Songkran.",
+				"Visit during Thingyan, Myanmar's version of Songkran.",
 			],
 			donts: [
 				"Rely on local ATMs, they regularly run out of cash or give a terrible conversion rate.",
@@ -3101,7 +3101,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			challenges: ["Roads and English do not really exist"],
 			dos: [
 				"Prepare various entertainments for the many long drives, you will spend most of your days driving",
-				"Try to be a part of the Naadam festival with it's perfect weather and bright outfits",
+				"Try to be a part of the Naadam festival with its perfect weather and bright outfits",
 			],
 			donts: [
 				"Buy Naadam tickets in advance, they're only required for the stadium and it's not exactly hard to get in without them",
@@ -3180,7 +3180,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		backupLink:
 			"https://drive.google.com/drive/folders/1go-otWd7v6xXLtbt0UFKk5_ZtEZRgjEH?usp=sharing",
 		extras: {
-			countries: ["china"],
+			countries: ["China"],
 			trailer: "china2trailer",
 			scorecard: {
 				beauty: [7],
@@ -3315,7 +3315,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			summary: [
 				"Sun-kissed beaches, ancient golden temples, bustling street food markets brimming with exotic flavors, and lush jungles hiding hidden waterfalls, all woven together in the land of smiles.",
 				"Here for 2 years on a long-term assignment I got to see and do it all.",
-				"It really is the gateway to asia I think everyone should visit once in their life, theirs a reason Thailand is one of the most popular tourist destinations in the world.",
+				"It really is the gateway to Asia I think everyone should visit once in their life, there's a reason Thailand is one of the most popular tourist destinations in the world.",
 			],
 			challenges: [
 				"Police are something different, not a worry if you have cash in your pocket but just hope you don't need their help",
