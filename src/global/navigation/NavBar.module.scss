@@ -1,5 +1,6 @@
 @use "../../../themes/colors.module" as *;
 @use "../../../themes/breakpoints" as *;
+@use "../../../themes/accessibility.module" as *;
 
 .container {
 	position: sticky;
@@ -11,14 +12,6 @@
 	position: fixed;
 	top: 0;
 	width: 100vw;
-}
-
-.behindNav {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -1;
-	font-size: 1px;
 }
 
 .hover {
@@ -95,18 +88,6 @@
 			content: "PORTFOLIO";
 		}
 	}
-}
-
-.visuallyHidden {
-	position: absolute;
-	width: 0.0625rem;
-	height: 0.0625rem;
-	padding: 0;
-	margin: -0.0625rem;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border: 0;
 }
 
 .baseTabSize {
