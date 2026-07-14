@@ -44,7 +44,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { ProgressBar } from "../../src/travel/components/ProgressBar";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
 	InstagramEmbed as InstagramEmbedImport,
 	InstagramEmbedProps,
@@ -57,6 +57,31 @@ const InstagramEmbed =
 const ReactPlayer = dynamic(() => import("react-player"), {
 	ssr: false,
 }) as unknown as typeof ReactPlayerType;
+
+const Trailer = ({ trailer }: { trailer?: string }) => {
+	return (
+		<div className={styles.trailerPlayerWrapper}>
+			<div className={styles.trailerLabel}>TRAILER</div>
+			<div
+				className={styles.trailerCTA}
+				style={{
+					animation: "fadeIn 1000ms ease-out",
+					opacity: 0.7,
+				}}>
+				PLAY FULL VIDEO
+			</div>
+			<ReactPlayer
+				url={`${publicCDNVideoUrl}${trailer}.mp4`}
+				playing={true}
+				loop={true}
+				muted={true}
+				controls={false}
+				width='100%'
+				height='100%'
+			/>
+		</div>
+	);
+};
 
 const VideoContent = ({
 	metaData,
@@ -79,11 +104,29 @@ const VideoContent = ({
 	const [durationISO, setDurationISO] = useState<string>();
 	const [isPlayerReady, setIsPlayerReady] = useState(false);
 
+	const skipTo = useCallback((timecode: number) => {
+		if (playerRef.current) {
+			playerRef.current.seekTo(timecode, "seconds");
+		}
+	}, []);
+
+	const handleTimecodeOnLoad = useCallback(() => {
+		const timecodeParam = router.query.timecode;
+		if (
+			timecodeParam &&
+			typeof timecodeParam === "string" &&
+			!isNaN(parseInt(timecodeParam))
+		) {
+			const timeInSeconds = parseInt(timecodeParam);
+			skipTo(timeInSeconds);
+		}
+	}, [router.query.timecode, skipTo]);
+
 	useEffect(() => {
 		if (isPlayerReady) {
 			handleTimecodeOnLoad();
 		}
-	}, [isPlayerReady, router.query]);
+	}, [isPlayerReady, handleTimecodeOnLoad]);
 
 	const adviceKeyData: Record<string, string> = {
 		travelLength: "Trip Duration",
@@ -135,24 +178,6 @@ const VideoContent = ({
 		}
 	};
 
-	const skipTo = (timecode: number) => {
-		if (playerRef.current) {
-			playerRef.current.seekTo(timecode, "seconds");
-		}
-	};
-
-	const handleTimecodeOnLoad = () => {
-		const timecodeParam = router.query.timecode;
-		if (
-			timecodeParam &&
-			typeof timecodeParam === "string" &&
-			!isNaN(parseInt(timecodeParam))
-		) {
-			const timeInSeconds = parseInt(timecodeParam);
-			skipTo(timeInSeconds);
-		}
-	};
-
 	const secondsToISO = (s: number) => {
 		const h = Math.floor(s / 3600);
 		const m = Math.floor((s % 3600) / 60);
@@ -175,31 +200,6 @@ const VideoContent = ({
 			...(durationISO ? { duration: durationISO } : {}),
 			publisher: { "@type": "Person", name: "Franklin Von Moon" },
 		},
-	};
-
-	const Trailer = () => {
-		return (
-			<div className={styles.trailerPlayerWrapper}>
-				<div className={styles.trailerLabel}>TRAILER</div>
-				<div
-					className={styles.trailerCTA}
-					style={{
-						animation: "fadeIn 1000ms ease-out",
-						opacity: 0.7,
-					}}>
-					PLAY FULL VIDEO
-				</div>
-				<ReactPlayer
-					url={`${publicCDNVideoUrl}${extras?.trailer}.mp4`}
-					playing={true}
-					loop={true}
-					muted={true}
-					controls={false}
-					width='100%'
-					height='100%'
-				/>
-			</div>
-		);
 	};
 
 	return (
@@ -246,7 +246,7 @@ const VideoContent = ({
 							width='100%'
 							id='player'
 							playing={!!extras?.trailer}
-							light={extras?.trailer && <Trailer />}
+							light={extras?.trailer && <Trailer trailer={extras.trailer} />}
 							onDuration={(s) => setDurationISO(secondsToISO(s))}
 							onReady={() => setIsPlayerReady(true)}
 						/>
@@ -306,7 +306,7 @@ const VideoContent = ({
 								<div className={styles.lockedTrailer}>
 									<LockIcon style={{ fontSize: "60px" }} />
 								</div>
-								<Trailer />
+								<Trailer trailer={extras.trailer} />
 							</div>
 						) : (
 							<Image

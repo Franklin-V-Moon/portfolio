@@ -2,7 +2,7 @@ import { Dialog, Grid } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { PageContainer } from "../../src/global/PageContainer";
 import { FilterButton } from "../../src/guides/components/buttons/FilterButton";
 import { SortButton } from "../../src/guides/components/buttons/SortButton";
@@ -31,23 +31,25 @@ const Guides: NextPage = () => {
 	const [topicFilter, setTopicFilter] = useState<Topic | undefined>(undefined);
 	const [languagesFilter, setFilteredLanguages] = useState([] as Languages[]);
 	const [tagsFilter, setTagsFilter] = useState([] as Tags[]);
-	const [metaData, setMetaData] = useState(
-		filterAndSortMetaData(sortBy, topicFilter, languagesFilter, tagsFilter),
-	);
-	const [disableClearAll, setDisableClearAll] = useState(true);
 	const [hasSyncedFromUrl, setHasSyncedFromUrl] = useState(false);
 
+	// One-time bootstrap from the URL once the router hydrates. Deliberately
+	// keyed on router.isReady only: filter state becomes independently
+	// mutable afterward, and re-running on every router.query change would
+	// fight the write-back effect below.
 	useEffect(() => {
 		if (!router.isReady) {
 			return;
 		}
 
 		const parsed = parseGuidesQuery(router.query);
+		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setSortBy(parsed.sortBy);
 		setTopicFilter(parsed.topicFilter);
 		setFilteredLanguages(parsed.languagesFilter);
 		setTagsFilter(parsed.tagsFilter);
 		setHasSyncedFromUrl(true);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.isReady]);
 
 	useEffect(() => {
@@ -73,16 +75,15 @@ const Guides: NextPage = () => {
 		setTagsFilter([]);
 	};
 
-	useEffect(() => {
-		const preparedMetaData = filterAndSortMetaData(
-			sortBy,
-			topicFilter,
-			languagesFilter,
-			tagsFilter,
-		);
-		setMetaData(preparedMetaData);
-		setDisableClearAll(preparedMetaData === getGuideMetaData());
-	}, [sortBy, topicFilter, languagesFilter, tagsFilter]);
+	const metaData = useMemo(
+		() =>
+			filterAndSortMetaData(sortBy, topicFilter, languagesFilter, tagsFilter),
+		[sortBy, topicFilter, languagesFilter, tagsFilter],
+	);
+	const disableClearAll = useMemo(
+		() => metaData === getGuideMetaData(),
+		[metaData],
+	);
 
 	const [showFilterMenu, setShowFilterMenu] = React.useState(false);
 

@@ -31,8 +31,6 @@ export const ParallaxArt = () => {
 		};
 	}, []);
 
-	const [initialLoad, setInitialLoad] = useState(true);
-
 	const [sunRising, setSunRising] = useState(false);
 	const [sunAnchored, setSunAnchored] = useState(false);
 	const [sunSetting, setSunSetting] = useState(false);
@@ -60,13 +58,11 @@ export const ParallaxArt = () => {
 	};
 
 	useEffect(() => {
-		if (initialLoad) {
-			setInitialLoad(false);
-			return;
-		}
-
-		transitionMoonUp();
-	}, [initialLoad]);
+		const frameId = window.requestAnimationFrame(() => {
+			transitionMoonUp();
+		});
+		return () => window.cancelAnimationFrame(frameId);
+	}, []);
 
 	return (
 		<>

@@ -1,13 +1,13 @@
 import { Tab, Tabs } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { tabsData } from "../../datasources/NavBarMetaData";
 import styles from "./NavBar.module.scss";
 
 export const Navbar = () => {
 	const router = useRouter();
 
-	const initialTab = () => {
+	const initialTab = useCallback(() => {
 		const currentBrowserRoute = router.pathname;
 
 		if (currentBrowserRoute === tabsData[0].route) {
@@ -21,7 +21,7 @@ export const Navbar = () => {
 		}
 
 		return 0;
-	};
+	}, [router.pathname]);
 
 	const [selectedTab, setSelectedTab] = useState(initialTab());
 
@@ -30,7 +30,10 @@ export const Navbar = () => {
 		router.replace(route);
 	};
 
+	// Resyncs the optimistically-set tab with the actual route, needed for
+	// browser back/forward navigation which doesn't go through handleTabClick.
 	useEffect(() => {
+		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setSelectedTab(initialTab());
 	}, [router, initialTab]);
 

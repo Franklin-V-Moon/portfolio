@@ -19,7 +19,7 @@ import {
 import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
 import { VideoLibrary } from "../../src/travel/VideoLibrary";
 import { ButtonBase, styled } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/router";
 import { SortBy } from "../../src/travel/types";
 import { TravelSort } from "../../src/travel/components/TravelSort";
@@ -32,6 +32,50 @@ import {
 	parseSortByFromQuery,
 } from "../../src/travel/urlQuery";
 
+const sortFunctions = {
+	[SortBy.Newest]: allNewestFirst,
+	[SortBy.Oldest]: allOldestFirst,
+	[SortBy.Best]: allByBest,
+	[SortBy.Worst]: allByWorst,
+	[SortBy.Food]: allByFood,
+	[SortBy.Danger]: allByDanger,
+	[SortBy.Funniest]: funniestOnly,
+};
+
+const InvisibleImageButton = styled(ButtonBase)(({ theme }) => ({
+	position: "absolute",
+	top: 0,
+	left: 0,
+	right: 0,
+	bottom: 0,
+	backgroundColor: "transparent",
+	padding: 0,
+	border: "none",
+	"&:hover, &.Mui-focusVisible": {
+		zIndex: 1,
+		"& .MuiImage-root": {
+			transform: "scale(1.01)",
+			transition: theme.transitions.create("transform", {
+				duration: theme.transitions.duration.shortest,
+			}),
+		},
+		"& .MuiTouchRipple-root": {
+			opacity: 0.15,
+		},
+	},
+	"& .MuiTouchRipple-root": {
+		color: "rgba(255, 255, 255, 0.3)",
+	},
+}));
+
+const emptySubscribe = () => () => {};
+const useHasMounted = () =>
+	useSyncExternalStore(
+		emptySubscribe,
+		() => true,
+		() => false,
+	);
+
 const Travel = ({
 	initialSortBy,
 	initialSearchingText,
@@ -41,26 +85,13 @@ const Travel = ({
 		initialSearchingText,
 	);
 
-	const sortFunctions = {
-		[SortBy.Newest]: allNewestFirst,
-		[SortBy.Oldest]: allOldestFirst,
-		[SortBy.Best]: allByBest,
-		[SortBy.Worst]: allByWorst,
-		[SortBy.Food]: allByFood,
-		[SortBy.Danger]: allByDanger,
-		[SortBy.Funniest]: funniestOnly,
-		[SortBy.Searching]: () => searchResult(searchingText),
-	};
-
 	const initialSortSelection = initialSearchingText
 		? SortBy.Searching
 		: initialSortBy ?? SortBy.Newest;
 
 	const [sortSelection, setSortSelection] = useState(initialSortSelection);
 
-
-	const [hasMounted, setHasMounted] = useState(false);
-	useEffect(() => setHasMounted(true), []);
+	const hasMounted = useHasMounted();
 
 	useEffect(() => {
 		const search = new URLSearchParams(
@@ -72,7 +103,10 @@ const Travel = ({
 	}, [router, sortSelection, searchingText]);
 
 	const sortedMetaData = useMemo(
-		() => sortFunctions[sortSelection](hasMounted ? undefined : false),
+		() =>
+			sortSelection === SortBy.Searching
+				? searchResult(searchingText)
+				: sortFunctions[sortSelection](hasMounted ? undefined : false),
 		[sortSelection, searchingText, hasMounted],
 	);
 
@@ -91,32 +125,6 @@ const Travel = ({
 		setSearchingText(value);
 		setSortSelection(value ? SortBy.Searching : SortBy.Newest);
 	};
-
-	const InvisibleImageButton = styled(ButtonBase)(({ theme }) => ({
-		position: "absolute",
-		top: 0,
-		left: 0,
-		right: 0,
-		bottom: 0,
-		backgroundColor: "transparent",
-		padding: 0,
-		border: "none",
-		"&:hover, &.Mui-focusVisible": {
-			zIndex: 1,
-			"& .MuiImage-root": {
-				transform: "scale(1.01)",
-				transition: theme.transitions.create("transform", {
-					duration: theme.transitions.duration.shortest,
-				}),
-			},
-			"& .MuiTouchRipple-root": {
-				opacity: 0.15,
-			},
-		},
-		"& .MuiTouchRipple-root": {
-			color: "rgba(255, 255, 255, 0.3)",
-		},
-	}));
 
 	const handleOpenBlankPage = () => {
 		router.push("/travel/world-map");

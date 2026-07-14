@@ -23,6 +23,9 @@ export const TravelSort = ({
 }) => {
 	const [open, setOpen] = React.useState(false);
 	const anchorRef = React.useRef<HTMLButtonElement>(null);
+	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+		null,
+	);
 
 	const handleToggle = () => {
 		setOpen((prevOpen) => !prevOpen);
@@ -49,7 +52,10 @@ export const TravelSort = ({
 		<Stack direction='row' spacing={2}>
 			<div>
 				<Button
-					ref={anchorRef}
+					ref={(node) => {
+						anchorRef.current = node;
+						setAnchorEl(node);
+					}}
 					aria-controls={open ? "composition-menu" : undefined}
 					aria-expanded={open ? "true" : undefined}
 					aria-haspopup='true'
@@ -60,7 +66,7 @@ export const TravelSort = ({
 				</Button>
 				<Popper
 					open={open}
-					anchorEl={anchorRef.current}
+					anchorEl={anchorEl}
 					role={undefined}
 					placement='bottom-start'
 					transition>
