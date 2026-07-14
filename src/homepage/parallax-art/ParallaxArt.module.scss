@@ -73,6 +73,11 @@ $darkBackgroundColor: #01456e;
 
 .fadeInOutFast {
 	animation: fadeInOutFast 8s ease-in-out infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		opacity: 1;
+	}
 }
 
 @keyframes fadeInOutSlow {
@@ -95,6 +100,11 @@ $darkBackgroundColor: #01456e;
 
 .fadeInOutSlow {
 	animation: fadeInOutSlow 45s ease-in-out infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		opacity: 1;
+	}
 }
 
 @keyframes shootingStar {
@@ -109,6 +119,11 @@ $darkBackgroundColor: #01456e;
 .shootingStar {
 	animation-delay: 20s;
 	animation: shootingStar 16s ease-in-out forwards;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		transform: translate(-200vh, -200vh);
+	}
 }
 
 @keyframes cloudLeftRightSlow {
@@ -125,6 +140,10 @@ $darkBackgroundColor: #01456e;
 
 .cloudLeftRightSlow {
 	animation: cloudLeftRightSlow 5000s infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
 }
 
 @keyframes cloudLeftRightFast {
@@ -141,6 +160,10 @@ $darkBackgroundColor: #01456e;
 
 .cloudLeftRightFast {
 	animation: cloudLeftRightFast 1500s infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
 }
 
 @keyframes trainLeftRight {
@@ -157,6 +180,10 @@ $darkBackgroundColor: #01456e;
 
 .trainLeftRight {
 	animation: trainLeftRight 50s infinite;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+	}
 }
 
 @keyframes sunUp {
@@ -170,6 +197,11 @@ $darkBackgroundColor: #01456e;
 
 .sunUp {
 	animation: sunUp 3s ease-in-out forwards;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		transform: translateX(0%);
+	}
 }
 
 @keyframes sunDown {
@@ -183,6 +215,11 @@ $darkBackgroundColor: #01456e;
 
 .sunDown {
 	animation: sunDown 3s ease-in-out forwards;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		transform: translateY(20%);
+	}
 }
 
 @keyframes moonUp {
@@ -196,6 +233,11 @@ $darkBackgroundColor: #01456e;
 
 .moonUp {
 	animation: moonUp 3s ease-in-out forwards;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		transform: translateX(0%);
+	}
 }
 
 @keyframes moonDown {
@@ -209,4 +251,9 @@ $darkBackgroundColor: #01456e;
 
 .moonDown {
 	animation: moonDown 3s ease-in-out forwards;
+
+	@media (prefers-reduced-motion: reduce) {
+		animation: none;
+		transform: translateY(50%);
+	}
 }

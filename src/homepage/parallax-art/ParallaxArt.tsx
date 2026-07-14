@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "../../../utils/usePrefersReducedMotion";
 import styles from "./ParallaxArt.module.scss";
 
 export const ParallaxArt = () => {
 	const [offSetY, setOffSetY] = useState(0);
 
 	const theme = "dark";
+
+	const prefersReducedMotion = usePrefersReducedMotion();
 
 	const handleScroll = () => {
 		// Stop rendering once parallax is off screen
@@ -19,6 +22,9 @@ export const ParallaxArt = () => {
 	const rafId = useRef<number>(undefined);
 
 	useEffect(() => {
+		if (prefersReducedMotion) {
+			return;
+		}
 		const handleScrollAnimation = () => {
 			handleScroll();
 			rafId.current = window.requestAnimationFrame(handleScrollAnimation);
@@ -29,7 +35,7 @@ export const ParallaxArt = () => {
 				window.cancelAnimationFrame(rafId.current);
 			}
 		};
-	}, []);
+	}, [prefersReducedMotion]);
 
 	const [sunRising, setSunRising] = useState(false);
 	const [sunAnchored, setSunAnchored] = useState(false);
@@ -69,7 +75,9 @@ export const ParallaxArt = () => {
 			<div
 				className={styles.outerContainer}
 				style={{
-					animation: "fadeIn 1000ms ease-in-out",
+					animation: prefersReducedMotion
+						? "none"
+						: "fadeIn 1000ms ease-in-out",
 					opacity: 1,
 				}}>
 				<div className={styles.innerContainer}>
