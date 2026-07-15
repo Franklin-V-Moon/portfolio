@@ -23,7 +23,6 @@ function MyApp(props: AppProps) {
 				/>
 			</Head>
 			<GlobalTheme>
-				{/* tabIndex=1: must stay lower than Navbar's tab tabIndex (Navbar.tsx) so this reaches focus first */}
 				<a href='#main-content' className={styles.skipLink} tabIndex={1}>
 					Skip to content
 				</a>

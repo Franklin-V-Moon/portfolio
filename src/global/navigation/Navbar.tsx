@@ -30,8 +30,6 @@ export const Navbar = () => {
 		router.replace(route);
 	};
 
-	// Resyncs the optimistically-set tab with the actual route, needed for
-	// browser back/forward navigation which doesn't go through handleTabClick.
 	useEffect(() => {
 		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setSelectedTab(initialTab());
@@ -108,9 +106,6 @@ export const Navbar = () => {
 								}}
 								key={index}
 								aria-current={index === selectedTab ? "page" : undefined}
-								// Navbar renders after page content in the DOM (kept content-first
-								// for SEO), so positive tabIndex restores nav-first keyboard order.
-								// Reserves 1 for the skip link in pages/_app.tsx — keep in sync.
 								tabIndex={index + 2}
 								onClick={() => {
 									handleTabClick(item.route, index);

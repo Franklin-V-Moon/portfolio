@@ -2,11 +2,11 @@
 
 # Quick Wins
 
-## 7. Return assets and fix navbar, bring back moving color line?
+## 6. SEO overhaul
 
-## 8. Update salary calculator
-
-## 9. C-Index to scores
+## 7. Return assets and fix navbar
+- Also a11y is broken
+- Mobile too wide
 
 ## 10. Smoother work experience stopping
 
