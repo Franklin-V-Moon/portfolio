@@ -16,45 +16,60 @@ const guideMetaData = requireSitemapMeta("GuideMetaData.json");
 const assetMetaData = requireSitemapMeta("AssetMetaData.json");
 const siteUrl = "https://franklin-v-moon.dev";
 
-const normalizeTravelSlug = (slug) => {
+// Shared fallback for content types with no per-item "last updated" field
+// (travel only has a `year`, and the base static routes aren't individual
+// content items) — reflects when this sitemap was actually generated.
+const buildLastmod = new Date().toISOString();
+
+const normalizeSlug = (slug) => {
 	if (!slug) return null;
-	const cleaned = String(slug)
+	return String(slug)
 		.trim()
-		.replace(/^\/+|\/+$/g, "")
-		.toLowerCase();
-	return `/travel/${cleaned}`;
+		.replace(/^\/+|\/+$/g, "");
+};
+
+const normalizeTravelSlug = (slug) => {
+	const cleaned = normalizeSlug(slug);
+	return cleaned ? `/travel/${cleaned}` : null;
 };
 
 const normalizeGuideSlug = (slug) => {
-	if (!slug) return null;
-	const cleaned = String(slug)
-		.trim()
-		.replace(/^\/+|\/+$/g, "")
-		.toLowerCase();
-	return `/guides/${cleaned}`;
+	const cleaned = normalizeSlug(slug);
+	return cleaned ? `/guides/${cleaned}` : null;
 };
 
 const normalizeAssetPageSlug = (slug) => {
-	if (!slug) return null;
-	const cleaned = String(slug)
-		.trim()
-		.replace(/^\/+|\/+$/g, "")
-		.toLowerCase();
-	return `/assets-store/${cleaned}`;
+	const cleaned = normalizeSlug(slug);
+	return cleaned ? `/assets-store/${cleaned}` : null;
 };
 
-const generateWallpaperUrls = (hostedLink, wallpapers) => {
+const generateWallpaperImages = (hostedLink, wallpapers) => {
 	if (!hostedLink || !Array.isArray(wallpapers) || wallpapers.length === 0)
-		return [];
-	const baseDir = hostedLink
-		.trim()
-		.replace(/^\/+|\/+$/g, "")
-		.toLowerCase();
+		return undefined;
+	const baseDir = normalizeSlug(hostedLink);
 	return wallpapers.map((wallpaper) => ({
-		loc: `${siteUrl}/assets/${baseDir}/${wallpaper}`,
-		changefreq: "yearly",
-		priority: 0.4,
+		loc: new URL(`${siteUrl}/assets/${baseDir}/${wallpaper}`),
+		title: `Wallpaper: ${wallpaper}`,
+		caption: `Wallpaper: ${wallpaper}`,
 	}));
+};
+
+const generateTravelVideoEntry = (item, loc) => {
+	if (!item.hostedLink) return undefined;
+	const description =
+		item.extras?.summary?.[0] ??
+		`${item.title} — travel video from ${item.year}.`;
+
+	return [
+		{
+			title: item.title,
+			thumbnailLoc: new URL(`${siteUrl}/travel/posters/${item.hostedLink}.png`),
+			description,
+			playerLoc: new URL(`${siteUrl}${loc}#player`),
+			publicationDate: new Date(item.year, 0, 1).toISOString(),
+			requiresSubscription: !!item.restricted,
+		},
+	];
 };
 
 module.exports = {
@@ -80,6 +95,7 @@ module.exports = {
 
 		return {
 			loc: path,
+			lastmod: buildLastmod,
 			changefreq: config.changefreq,
 			priority,
 		};
@@ -97,8 +113,10 @@ module.exports = {
 
 				paths.push({
 					loc,
+					lastmod: buildLastmod,
 					changefreq: "yearly",
 					priority: 0.5,
+					videos: generateTravelVideoEntry(item, loc),
 				});
 			}
 		}
@@ -111,6 +129,9 @@ module.exports = {
 
 				paths.push({
 					loc,
+					lastmod: guide.created
+						? new Date(guide.created * 1000).toISOString()
+						: buildLastmod,
 					changefreq: "yearly",
 					priority: 0.5,
 				});
@@ -120,25 +141,24 @@ module.exports = {
 		if (Array.isArray(assetMetaData)) {
 			for (const asset of assetMetaData) {
 				const loc = normalizeAssetPageSlug(asset.hostedLink);
-				if (loc && !seen.has(loc)) {
-					seen.add(loc);
-					paths.push({
-						loc,
-						changefreq: "monthly",
-						priority: 0.5,
-					});
-				}
+				if (!loc || seen.has(loc)) continue;
+				seen.add(loc);
 
-				const wallpaperUrls = generateWallpaperUrls(
-					asset.hostedLink,
-					asset.wallpapers,
-				);
-				for (const wallpaperPath of wallpaperUrls) {
-					if (!seen.has(wallpaperPath.loc)) {
-						seen.add(wallpaperPath.loc);
-						paths.push(wallpaperPath);
-					}
-				}
+				const itemDates = (asset.assetItemMetaData ?? [])
+					.map((item) => item.created)
+					.filter((created) => typeof created === "number");
+				const lastmod =
+					itemDates.length > 0
+						? new Date(Math.max(...itemDates) * 1000).toISOString()
+						: buildLastmod;
+
+				paths.push({
+					loc,
+					lastmod,
+					changefreq: "monthly",
+					priority: 0.5,
+					images: generateWallpaperImages(asset.hostedLink, asset.wallpapers),
+				});
 			}
 		}
 

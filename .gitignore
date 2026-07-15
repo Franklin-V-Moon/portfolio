@@ -35,3 +35,9 @@ yarn-error.log*
 # env
 .env
 .env*.local
+
+#sitemaps config
+/public/robots.txt
+/public/sitemap.xml
+/public/sitemap-*.xml
+/utils/sitemap-meta/

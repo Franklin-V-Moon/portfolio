@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://franklin-v-moon.dev
-
-# Sitemaps
-Sitemap: https://franklin-v-moon.dev/sitemap.xml
