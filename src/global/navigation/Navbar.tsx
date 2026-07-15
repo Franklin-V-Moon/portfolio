@@ -108,6 +108,10 @@ export const Navbar = () => {
 								}}
 								key={index}
 								aria-current={index === selectedTab ? "page" : undefined}
+								// Navbar renders after page content in the DOM (kept content-first
+								// for SEO), so positive tabIndex restores nav-first keyboard order.
+								// Reserves 1 for the skip link in pages/_app.tsx — keep in sync.
+								tabIndex={index + 2}
 								onClick={() => {
 									handleTabClick(item.route, index);
 								}}

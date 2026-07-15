@@ -98,6 +98,25 @@ describe("Navbar component", () => {
 		expect(guidesTab.getAttribute("aria-current")).toBeNull();
 	});
 
+	it("gives each nav tab an ascending positive tabIndex, reserving 1 for the skip link", () => {
+		(useRouter as jest.Mock).mockReturnValue({
+			pathname: "/",
+			replace: jest.fn(),
+		});
+
+		render(<Navbar />);
+
+		expect(
+			screen.getByRole("tab", { name: "PORTFOLIO" }).getAttribute("tabindex"),
+		).toBe("2");
+		expect(
+			screen.getByRole("tab", { name: "GUIDES" }).getAttribute("tabindex"),
+		).toBe("3");
+		expect(
+			screen.getByRole("tab", { name: "TRAVEL" }).getAttribute("tabindex"),
+		).toBe("4");
+	});
+
 	it("renders a visually hidden h1 with the route's page description", () => {
 		(useRouter as jest.Mock).mockReturnValue({
 			pathname: "/guides",
