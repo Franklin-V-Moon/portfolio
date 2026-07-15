@@ -107,7 +107,17 @@ export const Navbar = () => {
 								key={index}
 								aria-current={index === selectedTab ? "page" : undefined}
 								tabIndex={index + 2}
-								onClick={() => {
+								onClick={(event: React.MouseEvent) => {
+									if (
+										event.button !== 0 ||
+										event.metaKey ||
+										event.ctrlKey ||
+										event.shiftKey ||
+										event.altKey
+									) {
+										return;
+									}
+									event.preventDefault();
 									handleTabClick(item.route, index);
 								}}
 								href={item.route}

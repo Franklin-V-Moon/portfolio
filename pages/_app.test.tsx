@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { useRouter } from "next/router";
+import { tabsData } from "../src/datasources/NavBarMetaData";
 import MyApp from "./_app";
 
 jest.mock("next/router", () => ({
@@ -35,7 +36,10 @@ describe("MyApp focus order", () => {
 
 		const labels = positiveTabbed.map((el) => el.textContent?.trim());
 
-		expect(labels).toEqual(["Skip to content", "PORTFOLIO", "GUIDES", "TRAVEL"]);
+		const expectedNavLabels = tabsData
+			.filter((tab) => !tab.disabled)
+			.map((tab) => tab.label || "PORTFOLIO");
+		expect(labels).toEqual(["Skip to content", ...expectedNavLabels]);
 
 		const pageContentButton = screen.getByText("Page content button");
 		expect(pageContentButton.getAttribute("tabindex")).toBeNull();
