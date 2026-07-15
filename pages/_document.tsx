@@ -20,8 +20,8 @@ export default function MyDocument(
 		<Html lang='en'>
 			<Head>
 				<link rel='manifest' href='/manifest.json' />
-					<meta name='theme-color' content='#13181c' />
-					<DocumentHeadTags {...props} />
+				<meta name='theme-color' content='#13181c' />
+				<DocumentHeadTags {...props} />
 			</Head>
 			<body className={montserrat.className}>
 				<Main />

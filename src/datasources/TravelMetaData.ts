@@ -1420,7 +1420,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			extraLinks: [
 				{
 					title: "My Complete Backpacking Persia Guide",
-					link: "https://www.franklin-v-moon.dev/guides/persia-guide",
+					link: "https://franklin-v-moon.dev/guides/persia-guide",
 				},
 				{
 					title: "Blackmarket USD to Rial Rate",
@@ -3261,7 +3261,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			extraLinks: [
 				{
 					title: "China - My First Country",
-					link: "https://www.franklin-v-moon.dev/travel/china",
+					link: "https://franklin-v-moon.dev/travel/china",
 				},
 			],
 			highlights: [

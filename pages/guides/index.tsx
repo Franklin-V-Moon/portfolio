@@ -91,12 +91,12 @@ const Guides: NextPage = () => {
 		"@context": "https://schema.org",
 		"@type": "CollectionPage",
 		name: "Guides",
-		url: "https://www.franklin-v-moon.dev/guides",
+		url: "https://franklin-v-moon.dev/guides",
 		description: tabsData[1].pageDescription,
 		creator: {
 			"@type": "Person",
 			name: "Franklin Von Moon",
-			url: "https://www.franklin-v-moon.dev",
+			url: "https://franklin-v-moon.dev",
 		},
 	};
 
@@ -105,6 +105,7 @@ const Guides: NextPage = () => {
 			<div className={styles.pageContainer}>
 				<Head>
 					<title>Guides & Knowledge – Franklin Von Moon</title>
+					<link rel='canonical' href='https://franklin-v-moon.dev/guides' />
 					<link rel='icon' href='/favicon-green.ico' />
 					<meta name='description' content={tabsData[1].pageDescription} />
 					<meta
@@ -121,9 +122,22 @@ const Guides: NextPage = () => {
 					/>
 					<meta
 						property='og:url'
-						content='https://www.franklin-v-moon.dev/guides'
+						content='https://franklin-v-moon.dev/guides'
 					/>
 					<meta property='og:type' content='website' />
+					<meta name='twitter:card' content='summary_large_image' />
+					<meta
+						name='twitter:title'
+						content='Guides & Knowledge – Franklin Von Moon'
+					/>
+					<meta
+						name='twitter:description'
+						content={tabsData[1].pageDescription}
+					/>
+					<meta
+						name='twitter:image'
+						content='https://user-images.githubusercontent.com/42459707/217668165-2975c163-f020-4a13-a8d9-3087d043f834.png'
+					/>
 
 					<script
 						type='application/ld+json'
@@ -150,6 +164,7 @@ const Guides: NextPage = () => {
 				</Dialog>
 
 				<PageContainer>
+					<h1>Guides</h1>
 					<div className={styles.filterContainer}>
 						<div className={styles.filters}>
 							<FilterButton

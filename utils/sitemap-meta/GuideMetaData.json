@@ -86,7 +86,7 @@
     "notionPage": "10de32d00811801494d5ffb767dba40f",
     "created": 1727343784,
     "thumbnail": "/guides/accessibility.png",
-    "subTitle": "Primary important tools with a realistic web coding checklist to improve your sites a11y",
+    "subTitle": "Primarily important tools with a realistic web coding checklist to improve your site's a11y",
     "topic": "Article",
     "tags": [
       "How To",
@@ -99,7 +99,7 @@
     "notionPage": "10de32d00811807e9725e006d6c6a830",
     "created": 1727326347,
     "thumbnail": "/guides/davinci-resolve.png",
-    "subTitle": "My ever improving process for travel post production thats high quality and efficient",
+    "subTitle": "My ever improving process for travel post production that's high quality and efficient",
     "topic": "Article",
     "tags": [
       "How To",
@@ -232,7 +232,7 @@
     "notionPage": "dd5eea1afcb447e4b82dd5843ac0f662",
     "created": 1675825605,
     "thumbnail": "/guides/aws-script.png",
-    "subTitle": "Running scripts is fairly critical when you want to automatically configure you're EC2 Instances",
+    "subTitle": "Running scripts is fairly critical when you want to automatically configure your EC2 Instances",
     "topic": "Infrastructure",
     "languages": [
       "Bash / Shell"

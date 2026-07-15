@@ -15,6 +15,12 @@
 	@include breakpoint(medium) {
 		margin-top: 20px;
 	}
+
+	h1 {
+		display: inline;
+		margin: 0;
+		font: inherit;
+	}
 }
 
 .titleFont {

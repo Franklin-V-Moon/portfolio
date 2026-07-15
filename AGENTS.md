@@ -4,7 +4,7 @@ Instructions for AI coding agents (Claude Code, Cursor, Gemini CLI, or any other
 
 ## Overview
 
-Franklin Von Moon's personal portfolio site — Next.js 14 (Pages Router) + TypeScript, deployed on Vercel. Content is a mix of hardcoded TypeScript data files and a Notion CMS integration for long-form guide content.
+Franklin Von Moon's personal portfolio site — Next.js 16 (Pages Router) + TypeScript, deployed on Vercel. Content is a mix of hardcoded TypeScript data files and a Notion CMS integration for long-form guide content.
 
 ## Commands
 
@@ -38,7 +38,7 @@ Tests are colocated with source as `*.test.ts`/`*.test.tsx` next to the file und
 
 **Styling**: Sass CSS Modules per-component (`Component.module.scss` next to `Component.tsx`), plus MUI for interactive primitives (`Tab`, `Button`, `Container`, etc.). No CSS-in-JS beyond MUI's own `sx`/theme usage. The README explicitly favors minimal npm deps and raw CSS for performance (Lighthouse score is a stated priority).
 
-**Images**: Next/Image optimization is currently disabled (`images: { unoptimized: true }` in `next.config.js`) — this needs to be changed to optimized. SVGs are referenced as plain URL strings, not imported as React components.
+**Images**: SVGs are referenced as plain URL strings, not imported as React components.
 
 ## Content editing workflows
 

@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 		"@context": "https://schema.org",
 		"@type": "Person",
 		name: "Franklin Von Moon",
-		url: "https://www.franklin-v-moon.dev",
+		url: "https://franklin-v-moon.dev",
 		jobTitle: "Software Engineer & Traveler",
 		description: tabsData[0].pageDescription,
 		sameAs: [
@@ -30,6 +30,7 @@ const Home: NextPage = () => {
 		<>
 			<Head>
 				<title>Franklin Von Moon</title>
+				<link rel='canonical' href='https://franklin-v-moon.dev/' />
 				<link rel='icon' href='/favicon-blue.ico' />
 				<meta name='description' content={tabsData[0].pageDescription} />
 				<meta property='og:title' content='Franklin Von Moon' />
@@ -38,8 +39,18 @@ const Home: NextPage = () => {
 					property='og:image'
 					content='https://github.com/user-attachments/assets/63411a74-1521-4cd9-b9f8-a77124ecdfc5'
 				/>
-				<meta property='og:url' content='https://www.franklin-v-moon.dev/' />
+				<meta property='og:url' content='https://franklin-v-moon.dev/' />
 				<meta property='og:type' content='website' />
+				<meta name='twitter:card' content='summary_large_image' />
+				<meta name='twitter:title' content='Franklin Von Moon' />
+				<meta
+					name='twitter:description'
+					content={tabsData[0].pageDescription}
+				/>
+				<meta
+					name='twitter:image'
+					content='https://github.com/user-attachments/assets/63411a74-1521-4cd9-b9f8-a77124ecdfc5'
+				/>
 
 				<script
 					type='application/ld+json'

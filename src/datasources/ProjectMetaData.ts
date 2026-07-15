@@ -47,7 +47,7 @@ export const projectMetaData: ProjectMetaData[] = [
 
 		subTitle:
 			"The website you are currently viewing was designed with the objective of serving as a professional portfolio as well as a resource center for the dissemination of my knowledge to the public. The development of the website was carried out using Typescript and the NEXT JS library, incorporating a Test-Driven Development approach and deployed on Vercel via a continuous integration and continuous deployment pipeline facilitated by GitHub Actions. In addition, the website is optimized for search engines, and its content management system is based on Notion pages.",
-		deployedURL: "https://www.franklin-v-moon.dev/",
+		deployedURL: "https://franklin-v-moon.dev/",
 		repoURL: "https://github.com/OperationFman/portfolio",
 	},
 	{

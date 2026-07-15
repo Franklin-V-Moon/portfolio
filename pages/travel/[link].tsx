@@ -183,35 +183,43 @@ const VideoContent = ({
 		return `PT${h ? `${h}H` : ""}${m ? `${m}M` : ""}${sec ? `${sec}S` : "0S"}`;
 	};
 
+	const description =
+		extras?.summary?.[0] ?? `${title} — travel video from ${year}.`;
+	const pageUrl = `https://franklin-v-moon.dev/travel/${link}`;
+	const ogImage =
+		"https://github.com/user-attachments/assets/be5c8009-bc6a-489d-bc42-b680c541656f";
+
 	const jsonLd = {
 		"@context": "https://schema.org",
-		"@graph": {
-			"@type": "VideoObject",
-			name: `${title} — Travel Video`,
-			description: extras?.summary?.[0] || "Travel video",
-			thumbnailUrl: [
-				`https://www.franklin-v-moon.dev/travel/posters/${hostedLink}.png`,
-			],
-			contentUrl: `${publicCDNVideoUrl}${slug}.mp4`,
-			embedUrl: `https://www.franklin-v-moon.dev/travel/${link}#player`,
-			uploadDate: new Date(Number(year), 0, 1).toISOString(),
-			...(durationISO ? { duration: durationISO } : {}),
-			publisher: { "@type": "Person", name: "Franklin Von Moon" },
-		},
+		"@type": "VideoObject",
+		name: `${title} — Travel Video`,
+		description,
+		thumbnailUrl: [
+			`https://franklin-v-moon.dev/travel/posters/${hostedLink}.png`,
+		],
+		contentUrl: `${publicCDNVideoUrl}${slug}.mp4`,
+		embedUrl: `https://franklin-v-moon.dev/travel/${link}#player`,
+		uploadDate: new Date(Number(year), 0, 1).toISOString(),
+		...(durationISO ? { duration: durationISO } : {}),
+		publisher: { "@type": "Person", name: "Franklin Von Moon" },
 	};
 
 	return (
 		<>
 			<Head>
 				<title>{`${title} - ${year} - Franklin Von Moon`}</title>
-				<meta name={title} content={title} />
+				<meta name='description' content={description} />
+				<link rel='canonical' href={pageUrl} />
 				<link rel='icon' href='/favicon-yellow.ico' />
-				<meta
-					property='og:image'
-					content={
-						"https://github.com/user-attachments/assets/be5c8009-bc6a-489d-bc42-b680c541656f"
-					}
-				/>
+				<meta property='og:title' content={title} />
+				<meta property='og:description' content={description} />
+				<meta property='og:url' content={pageUrl} />
+				<meta property='og:type' content='video.other' />
+				<meta property='og:image' content={ogImage} />
+				<meta name='twitter:card' content='summary_large_image' />
+				<meta name='twitter:title' content={title} />
+				<meta name='twitter:description' content={description} />
+				<meta name='twitter:image' content={ogImage} />
 				<script
 					type='application/ld+json'
 					dangerouslySetInnerHTML={{
@@ -231,479 +239,481 @@ const VideoContent = ({
 					</Button>
 				</div>
 
-				<h1 className={styles.title}>{title}</h1>
-				<h2 className={styles.year}>{year}</h2>
+				<article>
+						<h1 className={styles.title}>{title}</h1>
+						<h2 className={styles.year}>{year}</h2>
 
-				{hasRestrictionBypass() || !metaData.restricted ? (
-					<>
-						<ReactPlayer
-							url={`${publicCDNVideoUrl}${slug}.mp4`}
-							controls
-							pip
-							ref={playerRef}
-							volume={0.3}
-							height='100%'
-							width='100%'
-							id='player'
-							playing={!!extras?.trailer}
-							light={extras?.trailer && <Trailer trailer={extras.trailer} />}
-							onDuration={(s) => setDurationISO(secondsToISO(s))}
-							onReady={() => setIsPlayerReady(true)}
-						/>
-						<div className={styles.subVideoInteraction}>
-							<div className={styles.skipToContainer}>
-								{extras && extras.highlights && (
-									<>
-										<h5 className={styles.skipToText}>Skip to:</h5>
-										<div>
-											{extras.highlights.map((item) => (
-												<Tooltip
-													slots={{ transition: Zoom }}
-													title={`Skip to the moment when the ${item.title
-														.split("(")[0]
-														.trim()} happened`}
-													key={`Button to skip to ${item.timecode}`}>
-													<Button
-														variant='outlined'
-														color='inherit'
-														startIcon={<FastForwardIcon />}
-														className={styles.skipToButton}
-														onClick={() => skipTo(item.timecode)}>
-														{item.title}
-													</Button>
-												</Tooltip>
-											))}
-										</div>
-									</>
-								)}
-							</div>
-							<div className={styles.share}>
-								<Tooltip
-									slots={{ transition: Zoom }}
-									title='Copy link to this exact timestamp'>
-									<IconButton
-										onClick={() => handleCopyToClipboardWithTimecode()}
-										color='inherit'>
-										<ShareIcon fontSize='small' color='inherit' />
-									</IconButton>
-								</Tooltip>
-							</div>
-							<div>
-								<Tooltip slots={{ transition: Zoom }} title='Download options'>
-									<IconButton
-										onClick={() => window.open(backupLink, "_blank")}
-										color='inherit'>
-										<DownloadIcon fontSize='medium' color='inherit' />
-									</IconButton>
-								</Tooltip>
-							</div>
-						</div>
-					</>
-				) : (
-					<div className={styles.comingSoon}>
-						{extras?.trailer ? (
-							<div className={styles.lockedTrailerContainer}>
-								<div className={styles.lockedTrailer}>
-									<LockIcon style={{ fontSize: "60px" }} />
-								</div>
-								<Trailer trailer={extras.trailer} />
-							</div>
-						) : (
-							<Image
-								src={"/travel/editingAstronaut.png"}
-								alt={"No video placeholder image"}
-								height={300}
-								width={640}
-								sizes='100vw'
-								className={styles.noVideoImage}
-								style={{ width: "100%", height: "auto", objectFit: "cover" }}
+						{hasRestrictionBypass() || !metaData.restricted ? (
+						<>
+							<ReactPlayer
+								url={`${publicCDNVideoUrl}${slug}.mp4`}
+								controls
+								pip
+								ref={playerRef}
+								volume={0.3}
+								height='100%'
+								width='100%'
+								id='player'
+								playing={!!extras?.trailer}
+								light={extras?.trailer && <Trailer trailer={extras.trailer} />}
+								onDuration={(s) => setDurationISO(secondsToISO(s))}
+								onReady={() => setIsPlayerReady(true)}
 							/>
-						)}
-						<div className={styles.protectedVideoContainer}>
-							<h5 className={styles.restrictedVideo}>
-								Full Video Locked, Know The Password?
-							</h5>
-							<h5
-								onClick={() => videoEnabled(metaData)}
-								className={styles.loginButton}>
-								Click Here
-							</h5>
-						</div>
-					</div>
-				)}
-
-				{extras && (
-					<>
-						<div className={styles.extrasContainer}>
-							{extras.summary && (
-								<div className={styles.summaryContainer}>
-									<h2>Summary</h2>
-									{extras.summary.map((sentence, index) => (
-										<p
-											key={`Paragraph ${index + 1}`}
-											className={styles.summaryParagraph}>
-											{sentence}
-										</p>
-									))}
-								</div>
-							)}
-
-							{extras.scorecard && typeof extras.finalScore === "number" && (
-								<div className={styles.scorecardContainer}>
-									<h2>Scores</h2>
-									{extras.countries && extras.countries.length > 1 && (
-										<div className={styles.scorecardLegend}>
-											{extras.countries.map((country, index) => (
-												<div className={styles.legendItem} key={country}>
-													<h5
-														style={{
-															color: `${scorecardColorsPrimary[index]}`,
-															padding: "0 20px 12px 0",
-															margin: 0,
-														}}>
-														{country}
-													</h5>
-												</div>
-											))}
-										</div>
+							<div className={styles.subVideoInteraction}>
+								<div className={styles.skipToContainer}>
+									{extras && extras.highlights && (
+										<>
+											<h5 className={styles.skipToText}>Skip to:</h5>
+											<div>
+												{extras.highlights.map((item) => (
+													<Tooltip
+														slots={{ transition: Zoom }}
+														title={`Skip to the moment when the ${item.title
+															.split("(")[0]
+															.trim()} happened`}
+														key={`Button to skip to ${item.timecode}`}>
+														<Button
+															variant='outlined'
+															color='inherit'
+															startIcon={<FastForwardIcon />}
+															className={styles.skipToButton}
+															onClick={() => skipTo(item.timecode)}>
+															{item.title}
+														</Button>
+													</Tooltip>
+												))}
+											</div>
+										</>
 									)}
-									{scoreCardArray.map(([title, scores]) => (
-										<ProgressBar title={title} scores={scores} key={title} />
-									))}
-									<div className={styles.finalScoreDiv} />
-									<div className={styles.finalScoreContainer}>
-										<h4
-											className={`${styles.scoreTitle} ${styles.finalScoreTitle}`}>
-											Final Score
-										</h4>
+								</div>
+								<div className={styles.share}>
+									<Tooltip
+										slots={{ transition: Zoom }}
+										title='Copy link to this exact timestamp'>
+										<IconButton
+											onClick={() => handleCopyToClipboardWithTimecode()}
+											color='inherit'>
+											<ShareIcon fontSize='small' color='inherit' />
+										</IconButton>
+									</Tooltip>
+								</div>
+								<div>
+									<Tooltip slots={{ transition: Zoom }} title='Download options'>
+										<IconButton
+											onClick={() => window.open(backupLink, "_blank")}
+											color='inherit'>
+											<DownloadIcon fontSize='medium' color='inherit' />
+										</IconButton>
+									</Tooltip>
+								</div>
+							</div>
+						</>
+					) : (
+						<div className={styles.comingSoon}>
+							{extras?.trailer ? (
+								<div className={styles.lockedTrailerContainer}>
+									<div className={styles.lockedTrailer}>
+										<LockIcon style={{ fontSize: "60px" }} />
+									</div>
+									<Trailer trailer={extras.trailer} />
+								</div>
+							) : (
+								<Image
+									src={"/travel/editingAstronaut.png"}
+									alt={"No video placeholder image"}
+									height={300}
+									width={640}
+									sizes='100vw'
+									className={styles.noVideoImage}
+									style={{ width: "100%", height: "auto", objectFit: "cover" }}
+								/>
+							)}
+							<div className={styles.protectedVideoContainer}>
+								<h5 className={styles.restrictedVideo}>
+									Full Video Locked, Know The Password?
+								</h5>
+								<h5
+									onClick={() => videoEnabled(metaData)}
+									className={styles.loginButton}>
+									Click Here
+								</h5>
+							</div>
+						</div>
+					)}
 
-										<div className={styles.finalScoreBarWrapper}>
-											<LinearProgress
-												variant='determinate'
-												value={finalScoreFillPercent}
-												className={`${styles.scoreBar} ${styles.finalScore}`}
-												sx={{
-													"& .MuiLinearProgress-bar": {
-														background:
-															"linear-gradient(to right,  #f7df07,rgb(254, 222, 93))",
-														borderRadius: "20px",
-														borderTop: "1.9px solid white",
-													},
-												}}
-											/>
+					{extras && (
+						<>
+							<div className={styles.extrasContainer}>
+								{extras.summary && (
+									<div className={styles.summaryContainer}>
+										<h2>Summary</h2>
+										{extras.summary.map((sentence, index) => (
+											<p
+												key={`Paragraph ${index + 1}`}
+												className={styles.summaryParagraph}>
+												{sentence}
+											</p>
+										))}
+									</div>
+								)}
 
+								{extras.scorecard && typeof extras.finalScore === "number" && (
+									<div className={styles.scorecardContainer}>
+										<h2>Scores</h2>
+										{extras.countries && extras.countries.length > 1 && (
+											<div className={styles.scorecardLegend}>
+												{extras.countries.map((country, index) => (
+													<div className={styles.legendItem} key={country}>
+														<h5
+															style={{
+																color: `${scorecardColorsPrimary[index]}`,
+																padding: "0 20px 12px 0",
+																margin: 0,
+															}}>
+															{country}
+														</h5>
+													</div>
+												))}
+											</div>
+										)}
+										{scoreCardArray.map(([title, scores]) => (
+											<ProgressBar title={title} scores={scores} key={title} />
+										))}
+										<div className={styles.finalScoreDiv} />
+										<div className={styles.finalScoreContainer}>
 											<h4
-												className={styles.finalScoreDigit}
-												style={{ width: `${finalScoreFillPercent}%` }}>
-												{extras.finalScore} / 10
+												className={`${styles.scoreTitle} ${styles.finalScoreTitle}`}>
+												Final Score
 											</h4>
+
+											<div className={styles.finalScoreBarWrapper}>
+												<LinearProgress
+													variant='determinate'
+													value={finalScoreFillPercent}
+													className={`${styles.scoreBar} ${styles.finalScore}`}
+													sx={{
+														"& .MuiLinearProgress-bar": {
+															background:
+																"linear-gradient(to right,  #f7df07,rgb(254, 222, 93))",
+															borderRadius: "20px",
+															borderTop: "1.9px solid white",
+														},
+													}}
+												/>
+
+												<h4
+													className={styles.finalScoreDigit}
+													style={{ width: `${finalScoreFillPercent}%` }}>
+													{extras.finalScore} / 10
+												</h4>
+											</div>
 										</div>
 									</div>
-								</div>
-							)}
-						</div>
+								)}
+							</div>
 
-						<div className={styles.extrasContainer}>
-							<div className={styles.extraInfoContainer}>
-								<>
-									{extras.advice && (
+							<div className={styles.extrasContainer}>
+								<div className={styles.extraInfoContainer}>
+									<>
+										{extras.advice && (
+											<>
+												<h2 style={{ margin: "0 0 -10px 0" }}>Advice</h2>
+												{adviceArray.map(([adviceTitle, adviceValue]) => (
+													<div key={adviceTitle} className={styles.adviceWrapper}>
+														<h4 className={styles.adviceHeader}>
+															{adviceKeyData[adviceTitle]}
+														</h4>
+														<p className={styles.adviceParagraph}>
+															{adviceValue}
+														</p>
+													</div>
+												))}
+											</>
+										)}
+										{extras.travelAdvisory && (
+											<div className={styles.adviceWrapper}>
+												<h4 className={styles.adviceHeader}>
+													Official Travel Advice
+												</h4>
+												<a
+													href={extras.travelAdvisory.link}
+													className={styles.dfatSubtext}
+													target='_blank'>
+													From the Australian DFAT Smartraveller
+												</a>
+												<div
+													className={styles.advisoryContainer}
+													style={{
+														backgroundColor:
+															adviceColors[extras.travelAdvisory.advice],
+													}}>
+													<h4>{extras.travelAdvisory.advice}</h4>
+												</div>
+											</div>
+										)}
+									</>
+								</div>
+
+								<div className={styles.extraInfoContainer}>
+									{extras.challenges && (
 										<>
-											<h2 style={{ margin: "0 0 -10px 0" }}>Advice</h2>
-											{adviceArray.map(([adviceTitle, adviceValue]) => (
-												<div key={adviceTitle} className={styles.adviceWrapper}>
-													<h4 className={styles.adviceHeader}>
-														{adviceKeyData[adviceTitle]}
-													</h4>
-													<p className={styles.adviceParagraph}>
-														{adviceValue}
-													</p>
+											<h2 style={{ margin: "0" }}>Challenges</h2>
+											{extras.challenges.map((challengeItem) => (
+												<div
+													className={styles.doDontIconContainer}
+													key={challengeItem}>
+													<HeartBrokenIcon
+														style={{
+															color: "ffeb3b",
+															fontSize: 30,
+															margin: "0 0 0 -4px",
+														}}
+													/>
+													<p className={styles.doDontText}>{challengeItem}</p>
 												</div>
 											))}
 										</>
 									)}
-									{extras.travelAdvisory && (
-										<div className={styles.adviceWrapper}>
-											<h4 className={styles.adviceHeader}>
-												Official Travel Advice
-											</h4>
-											<a
-												href={extras.travelAdvisory.link}
-												className={styles.dfatSubtext}
-												target='_blank'>
-												From the Australian DFAT Smartraveller
-											</a>
-											<div
-												className={styles.advisoryContainer}
-												style={{
-													backgroundColor:
-														adviceColors[extras.travelAdvisory.advice],
-												}}>
-												<h4>{extras.travelAdvisory.advice}</h4>
-											</div>
-										</div>
+									{extras.dos && (
+										<>
+											<h2 style={{ margin: "40px 0 0 0" }}>Do</h2>
+											{extras.dos.map((doItem) => (
+												<div className={styles.doDontIconContainer} key={doItem}>
+													<ThumbUpIcon style={{ color: "66bb6a" }} />
+													<p className={styles.doDontText}>{doItem}</p>
+												</div>
+											))}
+										</>
 									)}
-								</>
+									{extras.donts && (
+										<>
+											<h2 style={{ margin: "40px 0 0 0" }}>{"Don't"}</h2>
+											{extras.donts.map((dontItem) => (
+												<div
+													className={styles.doDontIconContainer}
+													key={dontItem}>
+													<ThumbDownIcon style={{ color: "f44336" }} />
+													<p className={styles.doDontText}>{dontItem}</p>
+												</div>
+											))}
+										</>
+									)}
+								</div>
 							</div>
 
-							<div className={styles.extraInfoContainer}>
-								{extras.challenges && (
-									<>
-										<h2 style={{ margin: "0" }}>Challenges</h2>
-										{extras.challenges.map((challengeItem) => (
-											<div
-												className={styles.doDontIconContainer}
-												key={challengeItem}>
-												<HeartBrokenIcon
-													style={{
-														color: "ffeb3b",
-														fontSize: 30,
-														margin: "0 0 0 -4px",
-													}}
+							{extras.itineraries && (
+								<div>
+									<h2>
+										{extras.itineraries.length > 1 ? "Itineraries" : "Itinerary"}
+									</h2>
+									{extras.itineraries.map((itinerary) => (
+										<div className={styles.extrasContainer} key={itinerary.title}>
+											<div className={styles.itineraryItemImageContainer}>
+												<Image
+													src={`/travel/itineraries/${itinerary.mapImage}.png`}
+													alt={`Map of ${title} for ${itinerary.title} itinerary`}
+													width={1000}
+													height={1000}
+													sizes='100vw'
+													style={{ width: "100%", height: "auto" }}
 												/>
-												<p className={styles.doDontText}>{challengeItem}</p>
 											</div>
-										))}
-									</>
-								)}
-								{extras.dos && (
-									<>
-										<h2 style={{ margin: "40px 0 0 0" }}>Do</h2>
-										{extras.dos.map((doItem) => (
-											<div className={styles.doDontIconContainer} key={doItem}>
-												<ThumbUpIcon style={{ color: "66bb6a" }} />
-												<p className={styles.doDontText}>{doItem}</p>
-											</div>
-										))}
-									</>
-								)}
-								{extras.donts && (
-									<>
-										<h2 style={{ margin: "40px 0 0 0" }}>{"Don't"}</h2>
-										{extras.donts.map((dontItem) => (
-											<div
-												className={styles.doDontIconContainer}
-												key={dontItem}>
-												<ThumbDownIcon style={{ color: "f44336" }} />
-												<p className={styles.doDontText}>{dontItem}</p>
-											</div>
-										))}
-									</>
-								)}
-							</div>
-						</div>
 
-						{extras.itineraries && (
-							<div>
-								<h2>
-									{extras.itineraries.length > 1 ? "Itineraries" : "Itinerary"}
-								</h2>
-								{extras.itineraries.map((itinerary) => (
-									<div className={styles.extrasContainer} key={itinerary.title}>
-										<div className={styles.itineraryItemImageContainer}>
-											<Image
-												src={`/travel/itineraries/${itinerary.mapImage}.png`}
-												alt={`Map of ${title} for ${itinerary.title} itinerary`}
-												width={1000}
-												height={1000}
-												sizes='100vw'
-												style={{ width: "100%", height: "auto" }}
-											/>
-										</div>
-
-										<div className={styles.itineraryItemContainer}>
-											<h3 className={styles.itineraryTitles}>
-												{itinerary.title}
-											</h3>
-											<h4
-												className={styles.itineraryTitles}
-												style={{ paddingTop: "19px" }}>
-												{itinerary.length}
-											</h4>
-											<p className={styles.itineraryTitles}>
-												{itinerary.description}
-											</p>
-											<div className={styles.accordionContainer}>
-												{itinerary.steps.map((step, stepIndex) => (
-													<div key={`step item ${stepIndex}`}>
-														<Accordion>
-															<AccordionSummary
-																expandIcon={<ArrowDropDownIcon />}
-																aria-controls='panel1-content'
-																id='panel1-header'
-																style={{ margin: "10px", paddingTop: "10px" }}>
-																<h4 className={styles.accordionTitle}>
-																	{step.stepTitle}
-																</h4>
-																<h4 className={styles.accordionDays}>
-																	{step.days}
-																</h4>
-															</AccordionSummary>
-															<AccordionDetails>
-																{step.details.map((detail, detailIndex) => (
-																	<div key={`detail item ${detailIndex}`}>
-																		<p
-																			className={styles.accordionParagraph}
-																			style={{
-																				backgroundColor: detail.isWarning
-																					? "rgba(255, 0, 0, 0.1)"
-																					: detail.isRecommendation
-																						? "rgba(255, 247, 0, 0.1)"
-																						: detail.isInfo
-																							? "rgba(0, 221, 255, 0.1)"
-																							: "transparent",
-																				marginBottom: detail.link
-																					? "-5px"
-																					: undefined,
-																			}}>
-																			{detail.isInfo && (
-																				<InfoIcon
-																					style={{
-																						marginRight: "6px",
-																						padding: "8px 0 0 0",
-																					}}
-																				/>
-																			)}
-
-																			{detail.isWarning && (
-																				<WarningIcon
-																					style={{
-																						marginRight: "6px",
-																						padding: "8px 0 0 0",
-																					}}
-																				/>
-																			)}
-
-																			{detail.isRecommendation && (
-																				<PsychologyAltIcon
-																					style={{
-																						marginRight: "6px",
-																						padding: "8px 0 0 0",
-																					}}
-																				/>
-																			)}
-
-																			{detail.sentence}
-																		</p>
-
-																		{detail.link && (
-																			<a
-																				className={styles.accordionLink}
-																				href={detail.link}
-																				target='_blank'>
-																				{detail.link}
-																			</a>
-																		)}
-
-																		{detail.image && (
-																			<Image
-																				src={`/travel/itineraries/${detail.image}.png`}
-																				alt={`Picture of ${detail.image}`}
-																				width={1000}
-																				height={1000}
-																				sizes='100vw'
+											<div className={styles.itineraryItemContainer}>
+												<h3 className={styles.itineraryTitles}>
+													{itinerary.title}
+												</h3>
+												<h4
+													className={styles.itineraryTitles}
+													style={{ paddingTop: "19px" }}>
+													{itinerary.length}
+												</h4>
+												<p className={styles.itineraryTitles}>
+													{itinerary.description}
+												</p>
+												<div className={styles.accordionContainer}>
+													{itinerary.steps.map((step, stepIndex) => (
+														<div key={`step item ${stepIndex}`}>
+															<Accordion>
+																<AccordionSummary
+																	expandIcon={<ArrowDropDownIcon />}
+																	aria-controls='panel1-content'
+																	id='panel1-header'
+																	style={{ margin: "10px", paddingTop: "10px" }}>
+																	<h4 className={styles.accordionTitle}>
+																		{step.stepTitle}
+																	</h4>
+																	<h4 className={styles.accordionDays}>
+																		{step.days}
+																	</h4>
+																</AccordionSummary>
+																<AccordionDetails>
+																	{step.details.map((detail, detailIndex) => (
+																		<div key={`detail item ${detailIndex}`}>
+																			<p
+																				className={styles.accordionParagraph}
 																				style={{
-																					width: "100%",
-																					height: "auto",
-																				}}
-																			/>
-																		)}
-																	</div>
-																))}
-															</AccordionDetails>
-														</Accordion>
-													</div>
-												))}
+																					backgroundColor: detail.isWarning
+																						? "rgba(255, 0, 0, 0.1)"
+																						: detail.isRecommendation
+																							? "rgba(255, 247, 0, 0.1)"
+																							: detail.isInfo
+																								? "rgba(0, 221, 255, 0.1)"
+																								: "transparent",
+																					marginBottom: detail.link
+																						? "-5px"
+																						: undefined,
+																				}}>
+																				{detail.isInfo && (
+																					<InfoIcon
+																						style={{
+																							marginRight: "6px",
+																							padding: "8px 0 0 0",
+																						}}
+																					/>
+																				)}
+
+																				{detail.isWarning && (
+																					<WarningIcon
+																						style={{
+																							marginRight: "6px",
+																							padding: "8px 0 0 0",
+																						}}
+																					/>
+																				)}
+
+																				{detail.isRecommendation && (
+																					<PsychologyAltIcon
+																						style={{
+																							marginRight: "6px",
+																							padding: "8px 0 0 0",
+																						}}
+																					/>
+																				)}
+
+																				{detail.sentence}
+																			</p>
+
+																			{detail.link && (
+																				<a
+																					className={styles.accordionLink}
+																					href={detail.link}
+																					target='_blank'>
+																					{detail.link}
+																				</a>
+																			)}
+
+																			{detail.image && (
+																				<Image
+																					src={`/travel/itineraries/${detail.image}.png`}
+																					alt={`Picture of ${detail.image}`}
+																					width={1000}
+																					height={1000}
+																					sizes='100vw'
+																					style={{
+																						width: "100%",
+																						height: "auto",
+																					}}
+																				/>
+																			)}
+																		</div>
+																	))}
+																</AccordionDetails>
+															</Accordion>
+														</div>
+													))}
+												</div>
 											</div>
 										</div>
+									))}
+								</div>
+							)}
+
+							{extras.extraVideos &&
+								(hasRestrictionBypass() || !metaData.restricted) && (
+									<div className={styles.extraVideos}>
+										<h2>Bonus Videos</h2>
+										<div className={styles.videoCardsContainer}>
+											{extras.extraVideos.map((linkItem) => (
+												<div key={linkItem.title} className={styles.videoCard}>
+													<h4 className={styles.videoCardTitle}>
+														{linkItem.title}
+													</h4>
+													<ReactPlayer
+														url={`${publicCDNVideoUrl}${linkItem.hostedLink}.mp4`}
+														controls
+														pip
+														playing={false}
+														volume={0.3}
+														height='100%'
+														width='100%'
+													/>
+												</div>
+											))}
+										</div>
 									</div>
-								))}
+								)}
+
+							<div className={styles.extrasContainer}>
+								{extras.music && (
+									<div className={styles.extraInfoContainer}>
+										<div className={styles.songsContainer}>
+											<h2 className={styles.extraInfoHeading}>Music Used</h2>
+											{extras.music.map((song) => (
+												<div key={song.title} className={styles.songItem}>
+													<a
+														className={styles.musicItem}
+														href={song.link}
+														target='_blank'>
+														♫ ‎ {song.title}
+													</a>
+												</div>
+											))}
+										</div>
+									</div>
+								)}
+								{extras.extraLinks && (
+									<div className={styles.extraInfoContainer}>
+										<>
+											<h2 className={styles.extraInfoHeading}>Links</h2>
+											{extras.extraLinks.map((linkItem) => (
+												<div
+													key={linkItem.title}
+													className={styles.extraLinksWrapper}>
+													<h4 className={styles.extraLinkItem}>
+														{linkItem.title}
+													</h4>
+													<a
+														className={styles.extraLinkItemLink}
+														href={linkItem.link}
+														target='_blank'>
+														{linkItem.link}
+													</a>
+												</div>
+											))}
+										</>
+									</div>
+								)}
 							</div>
-						)}
+						</>
+					)}
 
-						{extras.extraVideos &&
-							(hasRestrictionBypass() || !metaData.restricted) && (
-								<div className={styles.extraVideos}>
-									<h2>Bonus Videos</h2>
-									<div className={styles.videoCardsContainer}>
-										{extras.extraVideos.map((linkItem) => (
-											<div key={linkItem.title} className={styles.videoCard}>
-												<h4 className={styles.videoCardTitle}>
-													{linkItem.title}
-												</h4>
-												<ReactPlayer
-													url={`${publicCDNVideoUrl}${linkItem.hostedLink}.mp4`}
-													controls
-													pip
-													playing={false}
-													volume={0.3}
-													height='100%'
-													width='100%'
-												/>
+					{instagramLinks && (
+						<div className={styles.socialContainer}>
+							<h2>Instagram</h2>
+							<div className={styles.customGrid}>
+								{instagramLinks &&
+									instagramLinks.map((link) => {
+										return (
+											<div key={link} className={styles.embeddedPost}>
+												<InstagramEmbed url={link} width={350} />
 											</div>
-										))}
-									</div>
-								</div>
-							)}
-
-						<div className={styles.extrasContainer}>
-							{extras.music && (
-								<div className={styles.extraInfoContainer}>
-									<div className={styles.songsContainer}>
-										<h2 className={styles.extraInfoHeading}>Music Used</h2>
-										{extras.music.map((song) => (
-											<div key={song.title} className={styles.songItem}>
-												<a
-													className={styles.musicItem}
-													href={song.link}
-													target='_blank'>
-													♫ ‎ {song.title}
-												</a>
-											</div>
-										))}
-									</div>
-								</div>
-							)}
-							{extras.extraLinks && (
-								<div className={styles.extraInfoContainer}>
-									<>
-										<h2 className={styles.extraInfoHeading}>Links</h2>
-										{extras.extraLinks.map((linkItem) => (
-											<div
-												key={linkItem.title}
-												className={styles.extraLinksWrapper}>
-												<h4 className={styles.extraLinkItem}>
-													{linkItem.title}
-												</h4>
-												<a
-													className={styles.extraLinkItemLink}
-													href={linkItem.link}
-													target='_blank'>
-													{linkItem.link}
-												</a>
-											</div>
-										))}
-									</>
-								</div>
-							)}
+										);
+									})}
+							</div>
 						</div>
-					</>
-				)}
-
-				{instagramLinks && (
-					<div className={styles.socialContainer}>
-						<h2>Instagram</h2>
-						<div className={styles.customGrid}>
-							{instagramLinks &&
-								instagramLinks.map((link) => {
-									return (
-										<div key={link} className={styles.embeddedPost}>
-											<InstagramEmbed url={link} width={350} />
-										</div>
-									);
-								})}
-						</div>
-					</div>
-				)}
+					)}
+				</article>
 
 				<div className={styles.upNextContainer}>
 					{upNextMetaData.length >= 1 ? (

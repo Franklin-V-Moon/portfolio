@@ -115,11 +115,11 @@
         ]
       },
       {
-        "title": "Syria Flag Assad",
+        "title": "Syria Old Flag",
         "price": 5,
         "thumbnail": "syria/Syria_Flag_Assad.jpg",
         "length": 5,
-        "link": "",
+        "link": "https://franklinvmoon.gumroad.com/l/mdzmn",
         "created": 1760978035,
         "tags": [
           ""
@@ -130,11 +130,22 @@
         "price": 5,
         "thumbnail": "syria/Umayyad_Mosque.jpg",
         "length": 12,
-        "link": "",
+        "link": "https://franklinvmoon.gumroad.com/l/xvjip",
         "created": 1760977954,
         "tags": [
           ""
         ]
+      },
+      {
+        "title": "Complete Syria Collection (12 Clips)",
+        "price": 20,
+        "thumbnail": "syria/Syria_damascus_sword.jpg",
+        "link": "https://franklinvmoon.gumroad.com/l/mrqpli",
+        "created": 1760977955,
+        "tags": [
+          ""
+        ],
+        "isPack": true
       }
     ],
     "wallpapers": [

@@ -33,10 +33,12 @@ export const BioDescription = () => {
 	return (
 		<div className={styles.outerContainer}>
 			<div className={styles.container}>
-				<span className={styles.titleFont}>Franklin</span>
-				<span className={`${styles.titleFont} ${styles.gradient}`}>
-					{" V Moon "}
-				</span>
+				<h1>
+					<span className={styles.titleFont}>Franklin</span>
+					<span className={`${styles.titleFont} ${styles.gradient}`}>
+						{" V Moon "}
+					</span>
+				</h1>
 
 				<br />
 				{/* <ReactTypingEffect
