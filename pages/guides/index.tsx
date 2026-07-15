@@ -33,10 +33,6 @@ const Guides: NextPage = () => {
 	const [tagsFilter, setTagsFilter] = useState([] as Tags[]);
 	const [hasSyncedFromUrl, setHasSyncedFromUrl] = useState(false);
 
-	// One-time bootstrap from the URL once the router hydrates. Deliberately
-	// keyed on router.isReady only: filter state becomes independently
-	// mutable afterward, and re-running on every router.query change would
-	// fight the write-back effect below.
 	useEffect(() => {
 		if (!router.isReady) {
 			return;
@@ -164,7 +160,6 @@ const Guides: NextPage = () => {
 				</Dialog>
 
 				<PageContainer>
-					<h1>Guides</h1>
 					<div className={styles.filterContainer}>
 						<div className={styles.filters}>
 							<FilterButton

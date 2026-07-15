@@ -185,7 +185,6 @@ const Travel = ({
 			</Head>
 
 			<PageContainer>
-				<h1>Travel Videos</h1>
 				<div style={{ position: "relative", width: "100%", height: "auto" }}>
 					<Image
 						src='/travel/WorldDotted.png'
