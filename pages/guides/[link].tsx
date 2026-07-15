@@ -35,8 +35,11 @@ const PageContent = ({
 		return <ErrorContent />;
 	}
 
-	const { title, subTitle, topic, created, link, thumbnail } =
+	const { title, subTitle, created, link, thumbnail } =
 		metaData as GuideMetaData;
+
+	const pageUrl = `https://franklin-v-moon.dev/guides/${link}`;
+	const ogImage = `https://franklin-v-moon.dev${thumbnail}`;
 
 	const guideJsonLd = {
 		"@context": "https://schema.org",
@@ -45,16 +48,26 @@ const PageContent = ({
 		description: subTitle,
 		author: { "@type": "Person", name: "Franklin Von Moon" },
 		datePublished: new Date(created * 1000).toISOString(),
-		mainEntityOfPage: `https://www.franklin-v-moon.dev/guides/${link}`,
-		image: [`https://www.franklin-v-moon.dev${thumbnail}`],
+		mainEntityOfPage: pageUrl,
+		image: [ogImage],
 	};
 
 	return (
 		<>
 			<Head>
 				<title>{`${title} - Franklin Von Moon`}</title>
-				<meta name={subTitle} content={topic} />
+				<meta name='description' content={subTitle} />
+				<link rel='canonical' href={pageUrl} />
 				<link rel='icon' href='/favicon-green.ico' />
+				<meta property='og:title' content={title} />
+				<meta property='og:description' content={subTitle} />
+				<meta property='og:url' content={pageUrl} />
+				<meta property='og:type' content='article' />
+				<meta property='og:image' content={ogImage} />
+				<meta name='twitter:card' content='summary_large_image' />
+				<meta name='twitter:title' content={title} />
+				<meta name='twitter:description' content={subTitle} />
+				<meta name='twitter:image' content={ogImage} />
 
 				<script
 					type='application/ld+json'
@@ -77,14 +90,14 @@ const PageContent = ({
 			</Container>
 
 			<Container maxWidth={"md"} className={styles.contentPageContainer}>
-				<div className={styles.contentPage}>
+				<article className={styles.contentPage}>
 					<NotionRenderer
 						recordMap={notionPage}
 						fullPage={true}
 						darkMode={true}
 						components={{ Code }}
 					/>
-				</div>
+				</article>
 			</Container>
 			<Footer />
 		</>

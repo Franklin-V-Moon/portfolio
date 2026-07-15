@@ -18,16 +18,26 @@ const AssetCollectionPage = ({
 		return <ErrorContent />;
 	}
 
+	const description = `${collectionData.title} — stock footage and wallpapers available for purchase.`;
+	const pageUrl = `https://franklin-v-moon.dev/assets-store/${collectionData.hostedLink}`;
+	const ogImage = `https://franklin-v-moon.dev/assets/${collectionData.hostedLink}/${collectionData.thumbnail}`;
+
 	return (
 		<>
 			<Head>
 				<title>{`${collectionData.title} Asset Collection - Franklin Von Moon`}</title>
-				<meta name={collectionData.title} content={collectionData.title} />
+				<meta name='description' content={description} />
+				<link rel='canonical' href={pageUrl} />
 				<link rel='icon' href='/favicon-purple.ico' />
-				<meta
-					property='og:image'
-					content={`/assets/${collectionData.hostedLink}/${collectionData.thumbnail}`}
-				/>
+				<meta property='og:title' content={collectionData.title} />
+				<meta property='og:description' content={description} />
+				<meta property='og:url' content={pageUrl} />
+				<meta property='og:type' content='website' />
+				<meta property='og:image' content={ogImage} />
+				<meta name='twitter:card' content='summary_large_image' />
+				<meta name='twitter:title' content={collectionData.title} />
+				<meta name='twitter:description' content={description} />
+				<meta name='twitter:image' content={ogImage} />
 			</Head>
 
 			<PageContainer>
@@ -41,41 +51,43 @@ const AssetCollectionPage = ({
 					</Button>
 				</div>
 
-				<h1 style={{ fontWeight: "bold", textAlign: "center" }}>
-					{collectionData.title}
-				</h1>
-				{collectionData.assetItemMetaData.length > 0 && (
-					<>
-						<h2>Stock Footage</h2>
-						<div className={styles.assetCollectionsContainer}>
-							<div className={styles.assetCollectionsGrid}>
-								{collectionData.assetItemMetaData.map((item, key) => (
-									<AssetItem item={item} key={`Featured item ${key + 1}`} />
-								))}
+				<article>
+					<h1 style={{ fontWeight: "bold", textAlign: "center" }}>
+						{collectionData.title}
+					</h1>
+					{collectionData.assetItemMetaData.length > 0 && (
+						<>
+							<h2>Stock Footage</h2>
+							<div className={styles.assetCollectionsContainer}>
+								<div className={styles.assetCollectionsGrid}>
+									{collectionData.assetItemMetaData.map((item, key) => (
+										<AssetItem item={item} key={`Featured item ${key + 1}`} />
+									))}
+								</div>
 							</div>
-						</div>
-					</>
-				)}
+						</>
+					)}
 
-				{collectionData.wallpapers.length > 0 && (
-					<>
-						<h2 className={styles.subSection}>Free Wallpapers</h2>
-						{collectionData.wallpapers.map((wallpaper) => (
-							<div
-								className={styles.freeWallpaper}
-								key={`Wallpaper: ${wallpaper}`}>
-								<Image
-									src={`/assets/${collectionData.hostedLink}/${wallpaper}`}
-									alt={`Wallpaper: ${wallpaper}`}
-									width={3840}
-									height={2160}
-									sizes='100vw'
-									style={{ width: "100%", height: "auto" }}
-								/>
-							</div>
-						))}
-					</>
-				)}
+					{collectionData.wallpapers.length > 0 && (
+						<>
+							<h2 className={styles.subSection}>Free Wallpapers</h2>
+							{collectionData.wallpapers.map((wallpaper) => (
+								<div
+									className={styles.freeWallpaper}
+									key={`Wallpaper: ${wallpaper}`}>
+									<Image
+										src={`/assets/${collectionData.hostedLink}/${wallpaper}`}
+										alt={`Wallpaper: ${wallpaper}`}
+										width={3840}
+										height={2160}
+										sizes='100vw'
+										style={{ width: "100%", height: "auto" }}
+									/>
+								</div>
+							))}
+						</>
+					)}
+				</article>
 			</PageContainer>
 			<Footer />
 		</>

@@ -11,7 +11,11 @@ import "react-multi-carousel/lib/styles.css";
 import AssetItem from "../../src/assets/components/AssetItem/AssetItem";
 import AssetCollection from "../../src/assets/components/AssetCollection/AssetCollection";
 import { getFeaturedItems } from "../../src/assets/components/getFeaturedItems";
-import { tabsData } from "../../src/datasources/NavBarMetaData";
+
+const pageDescription =
+	"Assets of digital products, stock footage and free wallpaper I've collected available for purchase";
+const pageUrl = "https://franklin-v-moon.dev/assets-store";
+const ogImage = `https://franklin-v-moon.dev/assets/${stockFootageMetaData[0].hostedLink}/${stockFootageMetaData[0].thumbnail}`;
 
 const AssetsStore: NextPage = () => {
 	const responsiveFeatured = {
@@ -37,21 +41,24 @@ const AssetsStore: NextPage = () => {
 			<div className={styles.pageContainer}>
 				<Head>
 					<title>Assets Store - Franklin Von Moon</title>
+					<link rel='canonical' href={pageUrl} />
 					<link rel='icon' href='/favicon-purple.ico' />
-					<meta name='description' content={tabsData[2].pageDescription} />
+					<meta name='description' content={pageDescription} />
 					<meta
 						property='og:title'
 						content='Assets & Stock Footage Store – Franklin Von Moon'
 					/>
-					<meta
-						property='og:description'
-						content={tabsData[2].pageDescription}
-					/>
-					<meta
-						property='og:url'
-						content='https://www.franklin-v-moon.dev/assets-store'
-					/>
+					<meta property='og:description' content={pageDescription} />
+					<meta property='og:url' content={pageUrl} />
 					<meta property='og:type' content='website' />
+					<meta property='og:image' content={ogImage} />
+					<meta name='twitter:card' content='summary_large_image' />
+					<meta
+						name='twitter:title'
+						content='Assets & Stock Footage Store – Franklin Von Moon'
+					/>
+					<meta name='twitter:description' content={pageDescription} />
+					<meta name='twitter:image' content={ogImage} />
 
 					<script
 						type='application/ld+json'
@@ -60,12 +67,12 @@ const AssetsStore: NextPage = () => {
 								"@context": "https://schema.org",
 								"@type": "CollectionPage",
 								name: "Assets and Stock Footage Store",
-								description: tabsData[2].pageDescription,
-								url: "https://www.franklin-v-moon.dev/assets-store",
+								description: pageDescription,
+								url: pageUrl,
 								creator: {
 									"@type": "Person",
 									name: "Franklin Von Moon",
-									url: "https://www.franklin-v-moon.dev",
+									url: "https://franklin-v-moon.dev",
 								},
 							}),
 						}}

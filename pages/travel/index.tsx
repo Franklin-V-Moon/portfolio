@@ -134,12 +134,12 @@ const Travel = ({
 		"@context": "https://schema.org",
 		"@type": "CollectionPage",
 		name: "Travel Video Gallery",
-		url: "https://www.franklin-v-moon.dev/travel",
+		url: "https://franklin-v-moon.dev/travel",
 		description: tabsData[2].pageDescription,
 		creator: {
 			"@type": "Person",
 			name: "Franklin Von Moon",
-			url: "https://www.franklin-v-moon.dev",
+			url: "https://franklin-v-moon.dev",
 		},
 	};
 
@@ -147,6 +147,7 @@ const Travel = ({
 		<div>
 			<Head>
 				<title>Travel Videos – Franklin Von Moon</title>
+				<link rel='canonical' href='https://franklin-v-moon.dev/travel' />
 				<link rel='icon' href='/favicon-yellow.ico' />
 				<meta name='description' content={tabsData[2].pageDescription} />
 				<meta
@@ -160,9 +161,22 @@ const Travel = ({
 				/>
 				<meta
 					property='og:url'
-					content='https://www.franklin-v-moon.dev/travel'
+					content='https://franklin-v-moon.dev/travel'
 				/>
 				<meta property='og:type' content='website' />
+				<meta name='twitter:card' content='summary_large_image' />
+				<meta
+					name='twitter:title'
+					content='Travel Videos & World Map – Franklin Von Moon'
+				/>
+				<meta
+					name='twitter:description'
+					content={tabsData[2].pageDescription}
+				/>
+				<meta
+					name='twitter:image'
+					content='https://private-user-images.githubusercontent.com/42459707/367673150-764558d9-5f59-4574-9268-728ad7498b2f.png'
+				/>
 
 				<script
 					type='application/ld+json'
@@ -171,6 +185,7 @@ const Travel = ({
 			</Head>
 
 			<PageContainer>
+				<h1>Travel Videos</h1>
 				<div style={{ position: "relative", width: "100%", height: "auto" }}>
 					<Image
 						src='/travel/WorldDotted.png'
