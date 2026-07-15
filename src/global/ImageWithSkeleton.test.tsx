@@ -33,4 +33,25 @@ describe("ImageWithSkeleton", () => {
 		await waitFor(() => expect(onLoad).toHaveBeenCalledTimes(1));
 		expect(img.className).toMatch(/loaded/);
 	});
+
+	it("marks the image as loaded on mount if it was already complete, even without a load event", async () => {
+		const completeSpy = jest
+			.spyOn(window.HTMLImageElement.prototype, "complete", "get")
+			.mockReturnValue(true);
+
+		const { getByAltText } = render(
+			<ImageWithSkeleton
+				src='/test.jpg'
+				alt='Test image'
+				width={100}
+				height={100}
+			/>,
+		);
+
+		await waitFor(() =>
+			expect(getByAltText("Test image").className).toMatch(/loaded/),
+		);
+
+		completeSpy.mockRestore();
+	});
 });

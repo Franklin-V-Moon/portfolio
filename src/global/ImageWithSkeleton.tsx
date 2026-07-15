@@ -1,5 +1,5 @@
 import Image, { ImageProps } from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ImageWithSkeleton.module.scss";
 
 export const ImageWithSkeleton = ({
@@ -9,10 +9,18 @@ export const ImageWithSkeleton = ({
 	...props
 }: ImageProps) => {
 	const [loaded, setLoaded] = useState(false);
+	const imgRef = useRef<HTMLImageElement>(null);
+
+	useEffect(() => {
+		if (imgRef.current?.complete) {
+			setLoaded(true);
+		}
+	}, []);
 
 	return (
 		<Image
 			{...props}
+			ref={imgRef}
 			alt={alt}
 			className={`${className ?? ""} ${styles.image} ${
 				loaded ? styles.loaded : styles.skeleton
