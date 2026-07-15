@@ -92,7 +92,10 @@
 
 .baseTabSize {
 	font-size: 0.7rem;
-	min-width: 5rem;
+	// Shrinks with viewport width instead of holding a fixed 5rem floor, so
+	// tabs narrow ahead of overflowing under the mobile logo. Floor (2.75rem
+	// = 44px) matches the WCAG 2.5.8 minimum touch target size.
+	min-width: clamp(2.75rem, 18vw, 5rem);
 
 	@include breakpoint(medium) {
 		font-size: 0.9rem;
