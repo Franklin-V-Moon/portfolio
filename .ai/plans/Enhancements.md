@@ -1,11 +1,5 @@
 # Folder of major enhancements id like to add
 
-# Quick Wins
-
-## 6. SEO overhaul
-
-## 10. Smoother work experience stopping
-
 # Major Features
 
 ## 0. Subtitles
