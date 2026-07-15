@@ -37,8 +37,6 @@ export const Navbar = () => {
 
 	return (
 		<>
-			<h1 className={styles.visuallyHidden}>{tabsData[selectedTab].pageDescription}</h1>
-
 			<nav role='navigation' aria-label='Main navigation'>
 				<div className={styles.logotypeDesktopContainer}>
 					<span

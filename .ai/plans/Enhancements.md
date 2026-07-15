@@ -4,10 +4,6 @@
 
 ## 6. SEO overhaul
 
-## 7. Return assets and fix navbar
-- Also a11y is broken
-- Mobile too wide
-
 ## 10. Smoother work experience stopping
 
 # Major Features

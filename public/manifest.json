@@ -1,0 +1,21 @@
+{
+	"name": "Franklin Von Moon",
+	"short_name": "F. Von Moon",
+	"description": "Franklin Von Moon is a versatile full-stack developer, blending expertise in UX, frontend, mobile, backend and cloud devops to engineer digital products whilst having a positive global impact",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#13181c",
+	"theme_color": "#13181c",
+	"icons": [
+		{
+			"src": "/icons/icon-192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/icons/icon-512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}

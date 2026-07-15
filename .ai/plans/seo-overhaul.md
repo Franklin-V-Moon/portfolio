@@ -11,15 +11,60 @@ implemented directly as written. Items marked **[Needs your input]** require
 a decision only you can make (branding, infra/Vercel dashboard access, or
 product scope) before any code should change.
 
+A 2026-07-15 review pass re-verified every finding against the current
+codebase (some had gone stale — other work landed the same day/day after
+this plan was written) and resolved several open decisions. Items are now
+also marked **[Done]** (code changed, verified), **[Resolved/stale]** (the
+finding no longer applies — code moved on before it was actioned), or
+**[Confirmed]** (decision made, not yet implemented) where applicable.
+
 This item was already flagged in `.ai/plans/Enhancements.md` ("5. SEO overhaul
 and Fix sitemap logic") — this plan supersedes that one-liner with the actual
 findings and remediation.
 
 ---
 
+## Outstanding items requiring your input (tracked here, updated as resolved)
+
+- [x] **0.4 — Travel `og:image` replacement.** Need a real, permanently-hosted
+  image (a still frame or an existing `public/travel/` asset) to replace the
+  expired presigned URL. Supply a specific file/path when ready — see 0.4
+  for details.
+- [ ] **1.6 — `manifest.json` icons.** `public/manifest.json` was created
+  2026-07-15 using project context (name/description from `tabsData[0]`,
+  `background_color`/`theme_color` from `$darkBackground` in
+  `_colors.module.scss`). Its icons (`public/icons/icon-192.png`,
+  `icon-512.png`) are a **functional placeholder**, not final assets —
+  resized from the existing `public/favicon.ico` crescent-moon mark, whose
+  real embedded detail is much lower-fidelity than its 256×256 canvas
+  suggests (visibly blocky/pixelated even before upscaling to 512). Confirm
+  this is acceptable to ship as-is, or supply a proper high-res source (ideally
+  vector) for the moon mark. See 1.6.
+- [x] **2.1 — Hidden `<h1>` removed 2026-07-15** (see 2.1 for what changed).
+  Real visible `<h1>`s for `/`, `/guides`, `/guides/[link]`, `/travel` are
+  still outstanding — those 4 routes now have no `<h1>` at all — and need a
+  content/design decision, particularly for the homepage.
+- [ ] **2.2 — `<article>` wrapping confirmed, not yet implemented.** Approved
+  to wrap guide/travel/asset detail bodies in `<article>` (the `<main>` part
+  of the original finding is already done elsewhere — see 2.2). Still needs
+  a visual pass before landing.
+
+**Resolved during review (2026-07-15):**
+- 0.1 — canonical domain: **apex** (`franklin-v-moon.dev`), confirmed.
+- 1.7 — Assets tab was re-enabled in `NavBarMetaData.tsx` by commit `5b041e2`
+  (2026-07-15), one day after this plan was written — `/assets-store` is no
+  longer orphaned from navigation. This finding is now stale; see updated
+  note in 1.7. (0.3's wrong-array-index bug is unaffected by this and still
+  live.)
+- 2.6 — decided to keep folio/projects as scroll-anchored sections on `/`,
+  not split into their own routes. Sitelinks will stay scoped to `/`,
+  `/guides`, `/travel`, `/assets-store`.
+
+---
+
 ## Priority 0 — Active bugs actively hurting SEO today
 
-### 0.1 Duplicate content served on two hosts with no redirect or canonical **[Needs your input]**
+### 0.1 Duplicate content served on two hosts with no redirect or canonical **[Resolved: apex domain confirmed — mechanical fix ready]**
 - Both `https://franklin-v-moon.dev/` and `https://www.franklin-v-moon.dev/`
   serve the identical page with no redirect between them (confirmed live —
   both fetched directly with no host-redirect). Meanwhile:
@@ -29,7 +74,7 @@ findings and remediation.
   - Every hardcoded `og:url`/JSON-LD `url` in the actual page code
     (`pages/index.tsx:41`, `pages/guides/index.tsx:94,99,124`,
     `pages/travel/index.tsx:137,142,163`, `pages/assets-store/index.tsx:52,64,68`,
-    `pages/guides/[link].tsx:48-49`, `pages/travel/[link].tsx:195,198`,
+    `pages/guides/[link].tsx:48-49`, `pages/travel/[link].tsx:193,196`,
     `pages/travel/world-map/index.tsx:31`, plus data links in
     `src/datasources/ProjectMetaData.ts:50` and
     `src/datasources/TravelMetaData.ts:1423,3264`) uses **`www.`**.
@@ -39,14 +84,16 @@ findings and remediation.
 - **Why this matters**: Google will index both hosts as separate,
   near-duplicate sites, splitting link equity and (without a canonical tag,
   see 1.1) with no signal for which one it should prefer.
-- **Fix — needs you**: in the Vercel project's Domains settings, set one
-  domain as primary and force a 308/301 redirect from the other to it. Given
-  `robots.txt`/`next-sitemap-config.js` already commit to the apex domain in
-  code, redirecting `www` → apex is the path of least additional change.
-- **Fix — mechanical, once the domain is confirmed**: rewrite every
-  hardcoded `www.franklin-v-moon.dev` reference in application code (listed
-  above) to the apex `franklin-v-moon.dev`, so the code is internally
-  consistent with the sitemap/robots decision already made.
+- **Decided (2026-07-15): apex domain.** `robots.txt`/`next-sitemap-config.js`
+  already commit to the apex, so this is the least additional change.
+- **Fix — still needs you**: in the Vercel project's Domains settings, set
+  `franklin-v-moon.dev` as primary and force a 308/301 redirect from `www` to
+  it. This step happens in the Vercel dashboard, not in code — nothing here
+  can be done from the repo alone.
+- **Fix — mechanical, ready to implement**: rewrite every hardcoded
+  `www.franklin-v-moon.dev` reference in application code (listed above) to
+  the apex `franklin-v-moon.dev`, so the code is internally consistent with
+  the sitemap/robots decision already made.
 
 ### 0.2 Broken meta descriptions on every dynamic detail page **[Mechanical]**
 Three pages set an invalid meta tag shape — `<meta name={var} content={var} />`
@@ -56,7 +103,7 @@ these page types have ever had a real meta description**:
 - `pages/guides/[link].tsx:56` — currently `<meta name={subTitle} content={topic} />`.
   Fix to `<meta name='description' content={subTitle} />` (matches the
   `description` field already used for this page's own JSON-LD, `:45`).
-- `pages/travel/[link].tsx:209` — currently `<meta name={title} content={title} />`.
+- `pages/travel/[link].tsx:207` — currently `<meta name={title} content={title} />`.
   Fix to a real description derived from the same `extras?.summary?.[0]`
   fallback chain already used in this page's JSON-LD (`:193`), e.g.
   `` extras?.summary?.[0] ?? `${title} — travel video from ${year}.` ``.
@@ -66,36 +113,41 @@ these page types have ever had a real meta description**:
   dedicated description field (see 2.5) — e.g.
   `` `${collectionData.title} — stock footage and wallpapers available for purchase.` ``.
 
-### 0.3 `/assets-store` shows Travel's meta description, not its own **[Mechanical]**
+### 0.3 `/assets-store` shows Travel's meta description, not its own **[Mechanical — still live]**
 - `pages/assets-store/index.tsx:41,47,48,63` read `tabsData[2].pageDescription`
   for its own `<meta name="description">`, `og:description`, and JSON-LD
   `description`. `tabsData[2]` is the **Travel** tab
   (`src/datasources/NavBarMetaData.tsx:52-66`) — the real Assets tab entry
-  (which had its own correct copy, "Assets of digital products, stock
-  footage and free wallpaper I've collected available for purchase") is
-  commented out at `NavBarMetaData.tsx:67-81`, so the stale array index
-  silently falls through to whatever tab happens to sit at index 2.
+  (with its own correct copy, "Assets of digital products, stock footage and
+  free wallpaper I've collected available for purchase") is now at
+  `tabsData[3]` (re-enabled 2026-07-15, see 1.7), not index 2, so the stale
+  array index still silently pulls Travel's copy instead.
 - **Root cause**: indexing into a shared array by position instead of by an
-  explicit key, combined with commenting out (rather than removing) the
-  Assets entry.
-- **Fix**: pull the same, already-authored description text out of the
-  comment and into a local constant directly in
-  `pages/assets-store/index.tsx`, decoupled from `tabsData` indexing
-  entirely, so `/assets-store` no longer depends on the (currently-disabled)
-  nav tab array for its own copy.
+  explicit key. Re-enabling the Assets tab (1.7) didn't fix this — it just
+  moved the correct entry to a different wrong index.
+- **Fix**: read `tabsData[3].pageDescription` directly, or better, pull the
+  description into a local constant in `pages/assets-store/index.tsx`
+  decoupled from `tabsData` indexing entirely, so this page's own copy can't
+  silently break again if the array order changes.
 
-### 0.4 Expired presigned image URL used as `og:image` **[Needs your input]**
-- `pages/travel/index.tsx:159` and `pages/travel/world-map/index.tsx:26` both
-  hardcode the same `private-user-images.githubusercontent.com` URL with an
-  embedded JWT (`X-Amz-Expires=300`, issued 2024-09-16) — this presigned URL
-  **expired within 5 minutes of being generated in 2024** and has been a
-  dead link/broken preview image for both pages ever since.
-- **Fix — needs you**: supply (or point at) a real, permanently-hosted image
-  for the Travel section's link-preview card — e.g. a still frame or a
-  `public/travel/` asset already in the repo. Don't guess an image or invent
-  a path here; a wrong choice is worse than leaving it flagged. Once an
-  image is chosen, wiring it into `og:image` and the new `twitter:image`
-  tags (see 1.3) is a one-line change per file.
+### 0.4 Broken `og:image` on both travel routes **[Still needs you — checkbox above does not mean this is fixed in code]**
+- **Correction to the original finding**: the two references aren't
+  identical. `pages/travel/world-map/index.tsx:26` has the full presigned
+  `private-user-images.githubusercontent.com` URL with the embedded JWT
+  (`X-Amz-Expires=300`, issued 2024-09-16) — that token **expired within 5
+  minutes of being generated in 2024**. `pages/travel/index.tsx:159` (per
+  `git blame`, unchanged since 2025-09-04) has the **same image ID but with
+  the JWT query string already stripped off** — `private-user-images`
+  URLs are always presigned; without the query string this one almost
+  certainly 404s/403s outright rather than merely being expired. Either way,
+  both are dead links today.
+- **Still needs you**: nothing in the codebase has changed for this item.
+  Supply (or point at) a real, permanently-hosted image for the Travel
+  section's link-preview card — e.g. a still frame or a `public/travel/`
+  asset already in the repo. Don't guess an image or invent a path here; a
+  wrong choice is worse than leaving it flagged. Once an image is chosen,
+  wiring it into `og:image` and the new `twitter:image` tags (see 1.3) is a
+  one-line change per file.
 
 ### 0.5 `og:url` on `/travel/world-map` points at the wrong path **[Mechanical]**
 - `pages/travel/world-map/index.tsx:30-31` has
@@ -108,7 +160,7 @@ these page types have ever had a real meta description**:
   already has a correct, separate tag at `:21`).
 
 ### 0.6 `@graph` misused for a single entity in travel video JSON-LD **[Mechanical]**
-- `pages/travel/[link].tsx:190` wraps a lone `VideoObject` in
+- `pages/travel/[link].tsx:188` wraps a lone `VideoObject` in
   `"@graph": { ... }` (a bare object). `@graph` is a JSON-LD construct for
   bundling **multiple** top-level entities under one context and is
   conventionally an **array**; wrapping a single entity in a bare `@graph`
@@ -154,28 +206,31 @@ these page types have ever had a real meta description**:
 - Also add `<meta charSet='utf-8' />` in the same place — also confirmed
   absent everywhere and not auto-injected by Next.js Pages Router.
 
-### 1.3 No `twitter:card` tags anywhere **[Mechanical]**
-- Zero `twitter:*` meta tags exist anywhere in the repo. Link previews on
-  X/Twitter fall back to whatever Open Graph tags exist (which, per 1.4
-  below, are incomplete or missing on several routes), and other platforms
-  that do check Twitter Card tags specifically (some Slack/Discord
-  configurations) have nothing to read.
-- **Fix**: add a `summary_large_image` Twitter Card block (`twitter:card`,
-  `twitter:title`, `twitter:description`, `twitter:image`) to every page
-  that already has an Open Graph block, reusing the same
-  title/description/image values so the two stay in sync by construction.
-  `/travel` and `/travel/world-map`'s `twitter:image` can't be finished
-  until 0.4 is resolved (currently would point at the same broken URL as
-  `og:image`).
+### 1.3 No Twitter Card meta tags anywhere **[Mechanical]**
+- Confirmed zero `twitter:*` meta tags anywhere in `pages/`/`src/`. Without
+  these, links shared on Twitter/X fall back to whatever OG tags happen to
+  be present (patchy per 1.4) rather than a dedicated, correctly-sized card
+  preview — directly relevant to the "shows neatly when shared/previewed"
+  goal for this overhaul, alongside the OG tags themselves.
+- **Fix**: add `twitter:card` (`summary_large_image` works for all route
+  types here), `twitter:title`, `twitter:description`, and `twitter:image`
+  (must be an absolute URL, same requirement as `og:image`) alongside the
+  OG tags on every route. Cheapest to do in the same pass as 1.4, since both
+  reuse the same title/description/image values per page.
 
-### 1.4 Missing Open Graph tags on all three dynamic detail page types **[Mechanical]**
-- `pages/guides/[link].tsx` has **no OG tags at all**.
-- `pages/travel/[link].tsx` has only `og:image` (relative path, not
-  spec-valid as an absolute URL).
-- `pages/assets-store/[link].tsx` has only `og:image` (also relative).
-- **Fix**: add the full set (`og:title`, `og:description`, `og:url`,
-  `og:type`) to all three, and convert every `og:image` to an absolute URL
-  (spec requires absolute URLs for `og:image`/`twitter:image`). Suggested
+### 1.4 Missing Open Graph tags on all three dynamic detail page types **[Mechanical — partially stale, corrected]**
+- `pages/guides/[link].tsx` has **no OG tags at all**. Still accurate.
+- `pages/assets-store/[link].tsx:28` has only `og:image`, and it's still a
+  **relative** path (`` /assets/${collectionData.hostedLink}/${collectionData.thumbnail} ``)
+  — not spec-valid, needs converting to absolute. Still accurate.
+- `pages/travel/[link].tsx:210` has only `og:image` too, but **this part is
+  now stale**: its value is already an absolute URL
+  (`https://github.com/user-attachments/assets/...`), not relative as
+  originally noted — no fix needed for this specific tag. It's still missing
+  `og:title`/`og:description`/`og:url`/`og:type` like the other two.
+- **Fix**: add the full remaining set (`og:title`, `og:description`,
+  `og:url`, `og:type`) to all three, and convert only
+  `assets-store/[link].tsx`'s `og:image` to an absolute URL. Suggested
   `og:type`: `article` for guides, `video.other` for travel videos (the Open
   Graph video namespace's generic type), `website` for asset collections (no
   official OG `product` type without a separate namespace).
@@ -193,85 +248,99 @@ these page types have ever had a real meta description**:
   content="noindex">` (a 404 page is exactly the one case where `noindex` is
   correct) and a link back to the homepage.
 
-### 1.6 No `manifest.json` / `theme-color` **[Needs your input]**
+### 1.6 No `manifest.json` / `theme-color` **[Done 2026-07-15 — icons are a placeholder, see below]**
 - No `public/manifest.json` and no `<link rel="manifest">`/`<meta
   name="theme-color">` anywhere. This affects "Add to Home Screen"
   presentation and Chrome's mobile UI chrome color — a mild PWA/mobile
   signal, not a hard indexing requirement.
-- **Needs you**: a manifest needs real icon assets (typically 192×192 and
-  512×512 PNGs) and a deliberate `theme-color`/`background_color` choice
-  that matches the site's brand — a design decision, not a mechanical fix.
-  Either supply icons/colors, or confirm this is low-enough priority to skip.
+- **Done**: created `public/manifest.json` from existing project context —
+  `name`/`short_name`/`description` from the homepage's own copy
+  (`tabsData[0].pageDescription` in `NavBarMetaData.tsx`), `background_color`
+  and `theme_color` both set to `#13181c` (`$darkBackground` in
+  `themes/_colors.module.scss` — the site supports only dark mode, per
+  `AGENTS.md`). Wired `<link rel="manifest">` and `<meta name="theme-color">`
+  into `pages/_document.tsx`'s global `<Head>`.
+- **Icons are a placeholder, not a final asset**: `public/icons/icon-192.png`
+  and `icon-512.png` were generated by resizing the existing
+  `public/favicon.ico` (the crescent-moon mark used across the site's
+  colored per-tab favicons). That `.ico` reports a 256×256 canvas, but its
+  actual embedded art is much lower fidelity — visibly blocky even at native
+  size, let alone upscaled to 512. No higher-resolution or vector source for
+  this mark exists anywhere else in the repo (checked `public/`,
+  `src/assets`, and every SVG under `public/homepage/` — the only "moon"
+  SVGs there are unrelated large parallax-scene illustrations, not the
+  brand mark). These placeholders are good enough to make the manifest
+  functional today; a crisp "Add to Home Screen" icon still needs a real
+  high-res (ideally vector) version of the moon mark supplied separately.
 
-### 1.7 `/assets-store` is orphaned from navigation but still fully indexed **[Needs your input]**
-- `src/datasources/NavBarMetaData.tsx:67-81` has the Assets tab commented
-  out, so `/assets-store` has **zero internal links** pointing to it
-  anywhere in the site's own navigation — yet it's still fully crawlable
-  (`public/robots.txt` has no disallow), still has no `noindex`, and is
-  still explicitly listed in `next-sitemap-config.js`'s per-path priority
-  table (`:64-79`, priority `0.8`) and appears in the generated
-  `public/sitemap-0.xml`.
-- This is an internal-linking anti-pattern: pages with no internal links
-  pointing at them get less crawl priority and no link equity, regardless of
-  what the sitemap claims.
-- **Fix — needs you**: this is a product decision, not a bug — either (a)
-  re-enable the Assets tab in the navbar (uncomment
-  `NavBarMetaData.tsx:67-81`) if the store should be publicly promoted, or
-  (b) if it's intentionally soft-launched/unlisted, explicitly exclude it
-  from `next-sitemap-config.js` and add `noindex` to its `<Head>` until it's
-  ready.
+### 1.7 `/assets-store` orphaned from navigation **[Resolved/stale — tab re-enabled 2026-07-15]**
+- **Stale finding.** This was accurate when audited on 2026-07-14 (Assets tab
+  commented out at `NavBarMetaData.tsx:67-81`), but commit `5b041e2`
+  ("Navbar and a11y sizing fixes", 2026-07-15) re-enabled the Assets tab —
+  confirmed by reading the current `NavBarMetaData.tsx`, which now has 4
+  active entries (`/`, `/guides`, `/travel`, `/assets-store`) with no
+  commented-out block. `/assets-store` is linked from the navbar again, so it
+  is no longer an orphaned page — no further action needed here.
+- **Does not affect 0.3**: that finding (`/assets-store/index.tsx:41` reading
+  `tabsData[2]`, which is Travel, instead of its own entry at `tabsData[3]`)
+  is a separate array-indexing bug, unrelated to whether the tab is
+  commented out, and is still live. Fix as written in 0.3.
 
 ---
 
 ## Priority 2 — Structural & content issues
 
-### 2.1 A hidden `<h1>` is injected on every single page **[Needs your input]**
-- `src/global/navigation/Navbar.tsx:42` renders
-  `<h1 className={styles.behindNav}>{tabsData[selectedTab].pageDescription}</h1>`
-  on **every route** (`Navbar` is mounted globally in `pages/_app.tsx:30`).
-  Its CSS (`src/global/navigation/NavBar.module.scss:16-21`) sets
-  `position: absolute; z-index: -1; font-size: 1px;` — i.e. it's rendered
-  but never visible to a human visitor.
-- **Why this is worth fixing, not just noting**: Google's own webmaster
-  guidelines explicitly call out hidden text as a technique that can trigger
-  a manual action if judged deceptive, independent of whether it was
-  "well-intentioned." Even setting that aside, several pages also render a
-  **second, visible** `<h1>` on top of this hidden one —
-  `pages/travel/[link].tsx:234`, `pages/assets-store/index.tsx:92`,
-  `pages/assets-store/[link].tsx:44-46`, `pages/travel/world-map/index.tsx:36-43`
-  — giving those routes **two `<h1>` elements**, a heading-hierarchy defect
-  independent of the hidden-text question.
-- Meanwhile `/`, `/guides`, `/guides/[link]`, `/travel` have **only** the
-  hidden nav `<h1>` and no visible top-level heading of their own — a human
-  visitor (and a screen reader) lands on these pages with no real `<h1>` at
-  all.
-- **Recommended fix — needs your review**: give every page a real, visible
-  `<h1>` with real content (the homepage headshot/bio section is the most
-  awkward case — it currently has no natural single heading), then either
-  delete the global hidden `<h1>` from `Navbar.tsx` entirely, or demote it
-  to a non-heading, visually-hidden element (e.g. a `<span
-  className="visually-hidden">` — the same `.visuallyHidden` class already
-  exists at `NavBar.module.scss` per `Navbar.tsx:96`) so it stops competing
-  with page content for the one-`<h1>`-per-page signal. This touches shared
-  chrome plus layout on 4+ routes, so it needs a visual pass before landing,
-  not a blind mechanical edit.
+### 2.1 A hidden `<h1>` was injected on every single page **[Done — removed 2026-07-15, real per-page h1s still outstanding]**
+- **Stale finding, corrected before removal.** By the time this was actioned,
+  commit `93e8817` (2026-07-14, "use standard clip-rect visuallyHidden
+  technique for per-route h1") had already replaced the original
+  `position: absolute; z-index: -1; font-size: 1px;` hack with the standard
+  clip-rect "sr-only" accessibility pattern (`themes/_accessibility.module.scss`).
+  That pattern is **not** the kind of hidden text Google's spam policies
+  target — it's the industry-standard way to expose content to screen
+  readers only, not a manipulative cloaking technique. Removing it was a
+  simplification, not risk mitigation.
+- **Sitelinks are unaffected either way.** Sitelinks are generated
+  algorithmically from site structure, internal linking, and click behavior
+  — not from any single page's `<h1>` content — and there's no manual way to
+  request them (Search Console's old demotion tool was deprecated years
+  ago).
+- **Done**: removed the injected `<h1>` from `Navbar.tsx` (was line 40) and
+  its dedicated test in `Navbar.test.tsx`; `yarn test Navbar` passes. The
+  `.visuallyHidden` class itself was kept — it's still legitimately used for
+  the screen-reader-only "PORTFOLIO" label on the icon-only home tab
+  (now `Navbar.tsx:92`, shifted up by the removal).
+- **Still outstanding (not done)**: `/`, `/guides`, `/guides/[link]`,
+  `/travel` now have **zero** `<h1>` (they previously had only the hidden
+  one). `pages/travel/[link].tsx`, `pages/assets-store/index.tsx`,
+  `pages/assets-store/[link].tsx`, `pages/travel/world-map/index.tsx` already
+  had their own visible `<h1>` and now correctly have exactly one. Giving the
+  four heading-less routes a real, visible `<h1>` (the homepage
+  headshot/bio section is the awkward case — no natural single heading
+  today) is a real content/layout decision, deferred for a dedicated visual
+  pass rather than done blind alongside this removal.
 
-### 2.2 No semantic `<main>`, `<article>`, or `<section>` anywhere **[Needs your input]**
-- `grep` for these four tags across all of `pages/` and `src/` returns
-  exactly two hits: `Navbar.tsx:44`'s `<nav>` (correctly used, has
-  `aria-label`) and `src/homepage/biography/BioDescription.tsx:35`'s
-  `<main>` (wraps only the bio-text blurb, not the page's actual primary
-  content region). **Zero** `<article>` or `<section>` elements exist
-  anywhere — guide articles, travel video pages, and asset collection pages
-  (all textbook `<article>` candidates) are built entirely from `<div>`s,
-  including the shared `src/global/PageContainer.tsx` wrapper (a plain
-  `<div>` around an MUI `<Container>`, confirmed by reading it in full).
-- **Recommended fix — needs your review**: change `PageContainer`'s outer
-  `<div>` to `<main>`, and wrap the Notion-rendered guide body / travel
-  video detail body / asset collection body in `<article>`. Touches the
-  shared `PageContainer` used by nearly every route — needs a visual pass to
-  confirm no CSS targets `div` selectors that would break under an
-  element-tag change.
+### 2.2 No semantic `<article>`/`<section>` on detail pages **[Confirmed 2026-07-15 — proceed with corrected recommendation]**
+- **Stale part of the original finding**: this plan originally claimed zero
+  `<main>` wrapped real page content. That's no longer true — commit
+  `9abaa1b` (2026-07-14, "add real `<main>` landmark and skip-to-content
+  link") added `<main id='main-content'>` to `pages/_app.tsx:31`, wrapping
+  every route's rendered content globally. `src/global/PageContainer.tsx:10`
+  is still a plain `<div>` (confirmed by re-reading it), but it must **stay**
+  a `<div>` now — converting it to `<main>` too, as originally recommended,
+  would create two nested `<main>` landmarks per page, itself an
+  accessibility anti-pattern (a document should expose exactly one `<main>`
+  landmark).
+- **Still accurate**: `grep` for `<article>`/`<section>` across `pages/` and
+  `src/` returns zero hits. Guide articles, travel video pages, and asset
+  collection pages (all textbook `<article>` candidates) are still built
+  entirely from `<div>`s.
+- **Confirmed recommendation — approved to implement**: wrap the
+  Notion-rendered guide body, travel video detail body, and asset collection
+  body each in `<article>`. Do **not** touch `PageContainer`'s own wrapper
+  element or `_app.tsx`'s `<main>` — those are already correct. Still worth a
+  visual pass before landing, since it touches rendering for the
+  guide/travel/asset detail routes.
 
 ### 2.3 Heading hierarchy skips a level on travel detail pages **[Documented only]**
 - `pages/travel/[link].tsx` uses `<h2>` for its section headers (Summary,
@@ -304,7 +373,7 @@ these page types have ever had a real meta description**:
   fields to the schema so this content can be authored deliberately per
   collection instead of derived from the title.
 
-### 2.6 Homepage sections have no URL, title, or metadata of their own **[Documented only — scope decision]**
+### 2.6 Homepage sections have no URL, title, or metadata of their own **[Decided (2026-07-15): out of scope]**
 - There is no `/folio` or `/projects` route — "folio/skills", "projects",
   "experience/qualifications", "salary calculator", and "contact" are all
   rendered as scroll-anchored sections of the single `/` route
@@ -312,11 +381,14 @@ these page types have ever had a real meta description**:
   `Qualifications`, `Folio`, `Salary`, `Contact`). None of these sections is
   independently indexable, shareable, or has its own title/description —
   someone searching for, e.g., a specific project by name can only ever land
-  on the generic homepage. This is a legitimate architectural question
-  (would giving Folio/Projects their own routes serve SEO better, at the
-  cost of the current single-page scroll experience?) rather than a bug —
-  worth a decision on whether it's in scope for this overhaul or a separate
-  initiative.
+  on the generic homepage.
+- **Decided**: keep the single-page scroll experience as-is; not splitting
+  Folio/Projects into their own routes for this overhaul. Consequence for
+  the sitelinks goal stated at the top of this plan: sitelinks will stay
+  scoped to the 4 existing routes (`/`, `/guides`, `/travel`,
+  `/assets-store`) — Folio and Projects cannot appear as independent
+  sitelinks or independently rank in search under this decision. Revisit as
+  a separate initiative if that becomes a priority later.
 
 ---
 
@@ -364,7 +436,7 @@ these page types have ever had a real meta description**:
   client-side sort/filter as it already does for the rest of its
   interactivity.
 - **Image sitemap misuse.** `next-sitemap-config.js`'s
-  `generateWallpaperUrls` (`:51-62`) adds individual static wallpaper PNGs
+  `generateWallpaperUrls` (`:46-57`) adds individual static wallpaper PNGs
   as top-level `<url>` sitemap entries (`changefreq: yearly, priority:
   0.4`). Standard practice is the sitemap `<image:image>` extension nested
   under the page that displays the image, not a separate top-level URL
@@ -375,17 +447,20 @@ these page types have ever had a real meta description**:
 
 ## Suggested execution order
 
-1. **Decide 0.1 and 0.4 first** (domain + replacement image) — several
-   mechanical fixes below (canonical/OG/Twitter tags) are cheaper to write
-   once, correctly, after these are settled, rather than writing them twice.
+1. **0.1 and 0.4 decided/tracked** — domain is apex (still needs the Vercel
+   dashboard redirect, not code); the replacement travel image is tracked at
+   the top of this doc. Several mechanical fixes below (canonical/OG/Twitter
+   tags) are cheaper to write once, correctly, now that 0.1 is settled.
 2. Priority 0 mechanical fixes (0.2, 0.3, 0.5, 0.6) — independent, low-risk,
    no shared files between them.
 3. Priority 1 mechanical fixes (1.1–1.5) — mostly additive `<Head>` content;
    1.2's `_document.tsx` change is global and worth doing once, early.
-4. Priority 1 decisions (1.6, 1.7) — whenever you're ready to weigh in.
-5. Priority 2 items — hold for a dedicated pass with visual verification
-   (via the `run` skill), since 2.1/2.2 touch shared chrome used by every
-   route.
+4. ~~Priority 1 decisions (1.6, 1.7)~~ — both resolved 2026-07-15: 1.6's
+   manifest is done (icon quality still flagged), 1.7 was stale (tab already
+   re-enabled).
+5. Priority 2: 2.1 is done. 2.2 is confirmed but not yet implemented — do it
+   with visual verification (via the `run` skill), since it touches
+   rendering on the guide/travel/asset detail routes.
 6. Priority 3 (AGENTS.md drift) — trivial, do any time.
 7. Priority 4 — re-evaluate after the above lands; not urgent.
 

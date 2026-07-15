@@ -19,7 +19,9 @@ export default function MyDocument(
 	return (
 		<Html lang='en'>
 			<Head>
-				<DocumentHeadTags {...props} />
+				<link rel='manifest' href='/manifest.json' />
+					<meta name='theme-color' content='#13181c' />
+					<DocumentHeadTags {...props} />
 			</Head>
 			<body className={montserrat.className}>
 				<Main />

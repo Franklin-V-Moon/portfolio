@@ -142,9 +142,7 @@ const VideoContent = ({
 		: [];
 
 	const finalScoreFillPercent =
-		extras?.finalScore !== undefined
-			? Math.max(extras.finalScore * 10, 16)
-			: 0;
+		extras?.finalScore !== undefined ? Math.max(extras.finalScore * 10, 16) : 0;
 
 	const adviceArray = extras?.advice ? Object.entries(extras?.advice) : [];
 
@@ -210,7 +208,9 @@ const VideoContent = ({
 				<link rel='icon' href='/favicon-yellow.ico' />
 				<meta
 					property='og:image'
-					content={`/travel/posters/${metaData.hostedLink}.png`}
+					content={
+						"https://github.com/user-attachments/assets/be5c8009-bc6a-489d-bc42-b680c541656f"
+					}
 				/>
 				<script
 					type='application/ld+json'

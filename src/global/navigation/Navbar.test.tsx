@@ -151,19 +151,4 @@ describe("Navbar component", () => {
 			screen.getByRole("tab", { name: "TRAVEL" }).getAttribute("tabindex"),
 		).toBe("4");
 	});
-
-	it("renders a visually hidden h1 with the route's page description", () => {
-		(useRouter as jest.Mock).mockReturnValue({
-			pathname: "/guides",
-			replace: jest.fn(),
-		});
-
-		render(<Navbar />);
-
-		const heading = screen.getByRole("heading", { level: 1 });
-		expect(heading.textContent).toBe(
-			"Guides and practical notes, training references, and code snippets shared freely for learning and career growth.",
-		);
-		expect(heading.className).toContain("visuallyHidden");
-	});
 });
