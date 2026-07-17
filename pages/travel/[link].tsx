@@ -27,10 +27,7 @@ import { ItineraryList } from "../../src/travel/components/video-detail/Itinerar
 import { BonusVideos } from "../../src/travel/components/video-detail/BonusVideos";
 import { MusicAndLinks } from "../../src/travel/components/video-detail/MusicAndLinks";
 import { InstagramGrid } from "../../src/travel/components/video-detail/InstagramGrid";
-import {
-	findAvailableSubtitleLanguages,
-	SubtitleLanguage,
-} from "../../src/travel/subtitles";
+import { findAvailableSubtitleLanguages } from "../../src/travel/subtitles";
 
 const VideoContent = ({
 	metaData,
@@ -200,7 +197,7 @@ export const getStaticProps: GetStaticProps<
 	{
 		metaData: TravelVideoMetaData;
 		upNext: TravelVideoMetaData[];
-		subtitleLanguages: SubtitleLanguage[];
+		subtitleLanguages: string[];
 	},
 	Params
 > = async ({ params }) => {

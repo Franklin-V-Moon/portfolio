@@ -9,8 +9,6 @@ import DownloadIcon from "@mui/icons-material/Download";
 import { publicCDNVideoUrl } from "../../../datasources/TravelMetaData";
 import { secondsToISO } from "../../videoJsonLd";
 import { TravelVideoMetaData } from "../../types";
-import { SubtitleLanguage } from "../../subtitles";
-import { SubtitlesButton } from "./SubtitlesButton";
 import { Trailer } from "./Trailer";
 import { VideoFrame } from "./VideoFrame";
 import styles from "./VideoPlayer.module.scss";
@@ -26,7 +24,7 @@ export const VideoPlayer = ({
 }: {
 	metaData: TravelVideoMetaData;
 	onDuration?: (durationISO: string) => void;
-	subtitleLanguages?: SubtitleLanguage[];
+	subtitleLanguages?: string[];
 }) => {
 	const { hostedLink: slug, backupLink, extras } = metaData;
 
@@ -36,32 +34,17 @@ export const VideoPlayer = ({
 	const [showTrailer, setShowTrailer] = useState(() => !!extras?.trailer);
 	const [isPlayerReady, setIsPlayerReady] = useState(false);
 	const [isTrailerReady, setIsTrailerReady] = useState(false);
-	const [activeSubtitleCode, setActiveSubtitleCode] = useState<string | null>(
-		null,
-	);
 	const pendingSeekRef = useRef<number | null>(null);
 
 	const isContentReady = isPlayerReady || (showTrailer && isTrailerReady);
 
-	const subtitleTracks = subtitleLanguages.map((language) => ({
+	const subtitleTracks = subtitleLanguages.map((language, index) => ({
 		kind: "subtitles",
-		src: `/api/travel/subtitles/${slug}/${language.code}`,
-		srcLang: language.code,
-		label: language.label,
-		default: false,
+		src: `/api/travel/subtitles/${slug}/${encodeURIComponent(language)}`,
+		srcLang: language,
+		label: language,
+		default: index === 0,
 	}));
-
-	useEffect(() => {
-		const internalPlayer = playerRef.current?.getInternalPlayer() as
-			| HTMLVideoElement
-			| undefined;
-
-		if (!internalPlayer?.textTracks) return;
-
-		Array.from(internalPlayer.textTracks).forEach((track) => {
-			track.mode = track.language === activeSubtitleCode ? "showing" : "disabled";
-		});
-	}, [activeSubtitleCode, isPlayerReady]);
 
 	const performSeek = useCallback((timecode: number) => {
 		if (playerRef.current) {
@@ -175,11 +158,6 @@ export const VideoPlayer = ({
 						</>
 					)}
 				</div>
-				<SubtitlesButton
-					subtitleLanguages={subtitleLanguages}
-					activeCode={activeSubtitleCode}
-					onChange={setActiveSubtitleCode}
-				/>
 				<div className={styles.share}>
 					<Tooltip
 						slots={{ transition: Zoom }}

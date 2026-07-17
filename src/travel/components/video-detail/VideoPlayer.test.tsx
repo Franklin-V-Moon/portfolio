@@ -26,8 +26,6 @@ jest.mock("next/dynamic", () => ({
 
 const mockSeekTo = jest.fn();
 const mockGetCurrentTime = jest.fn().mockResolvedValue(125);
-let mockTextTracks: { language: string; mode: string }[] = [];
-const mockGetInternalPlayer = jest.fn(() => ({ textTracks: mockTextTracks }));
 
 jest.mock("react-player", () => {
 	const React = require("react");
@@ -47,7 +45,6 @@ jest.mock("react-player", () => {
 			React.useImperativeHandle(ref, () => ({
 				seekTo: mockSeekTo,
 				getCurrentTime: mockGetCurrentTime,
-				getInternalPlayer: mockGetInternalPlayer,
 			}));
 			// Mirrors react-player: onReady only fires for the active player,
 			// never while a `light` preview is being shown.
@@ -88,7 +85,6 @@ const buildMetaData = (
 describe("VideoPlayer", () => {
 	beforeEach(() => {
 		jest.clearAllMocks();
-		mockTextTracks = [];
 		(useRouter as jest.Mock).mockReturnValue({ query: {} });
 	});
 
@@ -177,71 +173,24 @@ describe("VideoPlayer", () => {
 		expect(player.querySelectorAll("track")).toHaveLength(0);
 	});
 
-	it("renders a subtitle track sourced from the subtitle proxy API for each available language, off by default", async () => {
+	it("renders a subtitle track sourced from the subtitle proxy API for each available language, first language on by default", async () => {
 		render(
 			<VideoPlayer
 				metaData={buildMetaData()}
-				subtitleLanguages={[{ code: "en", label: "English" }]}
+				subtitleLanguages={["English", "French"]}
 			/>,
 		);
 
 		const player = await screen.findByTestId("mock-react-player");
-		const track = player.querySelector("track");
+		const tracks = player.querySelectorAll("track");
 
-		expect(track?.getAttribute("src")).toBe("/api/travel/subtitles/japan/en");
-		expect(track?.getAttribute("srclang")).toBe("en");
-		expect(track?.getAttribute("label")).toBe("English");
-		expect(track?.getAttribute("kind")).toBe("subtitles");
-		expect(track?.hasAttribute("default")).toBe(false);
-	});
-
-	it("does not render a subtitles toggle when the video has no subtitle languages", async () => {
-		render(<VideoPlayer metaData={buildMetaData()} />);
-
-		await screen.findByTestId("mock-react-player");
-
-		expect(screen.queryByRole("button", { name: "Subtitles" })).toBeNull();
-	});
-
-	it("turns the matching text track on when a language is picked from the subtitles menu", async () => {
-		mockTextTracks = [{ language: "en", mode: "disabled" }];
-
-		render(
-			<VideoPlayer
-				metaData={buildMetaData()}
-				subtitleLanguages={[{ code: "en", label: "English" }]}
-			/>,
+		expect(tracks[0].getAttribute("src")).toBe(
+			"/api/travel/subtitles/japan/English",
 		);
-
-		await screen.findByTestId("mock-react-player");
-
-		fireEvent.click(screen.getByRole("button", { name: "Subtitles" }));
-		fireEvent.click(screen.getByRole("menuitem", { name: "English" }));
-
-		await waitFor(() => {
-			expect(mockTextTracks[0].mode).toBe("showing");
-		});
-	});
-
-	it("turns the text track back off when 'Off' is picked from the subtitles menu", async () => {
-		mockTextTracks = [{ language: "en", mode: "disabled" }];
-
-		render(
-			<VideoPlayer
-				metaData={buildMetaData()}
-				subtitleLanguages={[{ code: "en", label: "English" }]}
-			/>,
-		);
-
-		await screen.findByTestId("mock-react-player");
-
-		fireEvent.click(screen.getByRole("button", { name: "Subtitles" }));
-		fireEvent.click(screen.getByRole("menuitem", { name: "English" }));
-		await waitFor(() => expect(mockTextTracks[0].mode).toBe("showing"));
-
-		fireEvent.click(screen.getByRole("button", { name: "Subtitles" }));
-		fireEvent.click(screen.getByRole("menuitem", { name: "Off" }));
-
-		await waitFor(() => expect(mockTextTracks[0].mode).toBe("disabled"));
+		expect(tracks[0].getAttribute("srclang")).toBe("English");
+		expect(tracks[0].getAttribute("label")).toBe("English");
+		expect(tracks[0].getAttribute("kind")).toBe("subtitles");
+		expect(tracks[0].hasAttribute("default")).toBe(true);
+		expect(tracks[1].hasAttribute("default")).toBe(false);
 	});
 });

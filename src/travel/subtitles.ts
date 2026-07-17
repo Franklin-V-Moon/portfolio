@@ -1,52 +1,41 @@
 import { publicCDNVideoUrl } from "../datasources/TravelMetaData";
 
-export type SubtitleLanguage = {
-	code: string;
-	label: string;
-};
-
-// Extend this map as more languages get uploaded — codes without an entry
-// here still work, falling back to the code itself as the label.
-const SUBTITLE_LANGUAGE_LABELS: Record<string, string> = {
-	en: "English",
-};
-
-export const subtitleSourceUrl = (hostedLink: string, code: string) =>
-	`${publicCDNVideoUrl}${hostedLink}subtitles-${code}.vtt`;
+export const subtitleSourceUrl = (hostedLink: string, language: string) =>
+	`${publicCDNVideoUrl}${hostedLink}subtitles-${encodeURIComponent(language)}.vtt`;
 
 export const logMissingSubtitle = (
 	hostedLink: string,
-	code: string,
+	language: string,
 	reason: string,
 ) => {
 	console.error(
-		`[subtitles] ${hostedLink}subtitles-${code}.vtt not available: ${reason}`,
+		`[subtitles] ${hostedLink}subtitles-${language}.vtt not available: ${reason}`,
 	);
 };
 
 export const findAvailableSubtitleLanguages = async (
 	hostedLink?: string,
-	codes: string[] = [],
-): Promise<SubtitleLanguage[]> => {
-	if (!hostedLink || codes.length === 0) return [];
+	languages: string[] = [],
+): Promise<string[]> => {
+	if (!hostedLink || languages.length === 0) return [];
 
 	const results = await Promise.all(
-		codes.map(async (code) => {
+		languages.map(async (language) => {
 			try {
-				const response = await fetch(subtitleSourceUrl(hostedLink, code), {
+				const response = await fetch(subtitleSourceUrl(hostedLink, language), {
 					method: "HEAD",
 				});
 
 				if (!response.ok) {
-					logMissingSubtitle(hostedLink, code, `responded with ${response.status}`);
+					logMissingSubtitle(hostedLink, language, `responded with ${response.status}`);
 					return null;
 				}
 
-				return { code, label: SUBTITLE_LANGUAGE_LABELS[code] ?? code };
+				return language;
 			} catch (error) {
 				logMissingSubtitle(
 					hostedLink,
-					code,
+					language,
 					error instanceof Error ? error.message : String(error),
 				);
 				return null;
@@ -54,7 +43,7 @@ export const findAvailableSubtitleLanguages = async (
 		}),
 	);
 
-	return results.filter((language): language is SubtitleLanguage => language !== null);
+	return results.filter((language): language is string => language !== null);
 };
 
 // DaVinci Resolve timelines default to a 01:00:00:00 start timecode, and its

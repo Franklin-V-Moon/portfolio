@@ -53,9 +53,15 @@ describe("shiftVttTimestamps", () => {
 });
 
 describe("subtitleSourceUrl", () => {
-	it("builds the CDN url from the hosted link and language code", () => {
-		expect(subtitleSourceUrl("afghanistan", "en")).toBe(
-			"https://d3atatnx15erez.cloudfront.net/afghanistansubtitles-en.vtt",
+	it("builds the CDN url from the hosted link and language label", () => {
+		expect(subtitleSourceUrl("afghanistan", "English")).toBe(
+			"https://d3atatnx15erez.cloudfront.net/afghanistansubtitles-English.vtt",
+		);
+	});
+
+	it("url-encodes the language label", () => {
+		expect(subtitleSourceUrl("afghanistan", "British English")).toBe(
+			"https://d3atatnx15erez.cloudfront.net/afghanistansubtitles-British%20English.vtt",
 		);
 	});
 });
@@ -74,7 +80,9 @@ describe("findAvailableSubtitleLanguages", () => {
 	});
 
 	it("returns an empty array when hostedLink is not provided", async () => {
-		expect(await findAvailableSubtitleLanguages(undefined, ["en"])).toEqual([]);
+		expect(
+			await findAvailableSubtitleLanguages(undefined, ["English"]),
+		).toEqual([]);
 	});
 
 	it("returns an empty array when no languages are declared", async () => {
@@ -84,34 +92,32 @@ describe("findAvailableSubtitleLanguages", () => {
 	it("includes declared languages whose subtitle file exists", async () => {
 		global.fetch = jest.fn().mockResolvedValue({ ok: true });
 
-		const result = await findAvailableSubtitleLanguages("afghanistan", ["en"]);
+		const result = await findAvailableSubtitleLanguages("afghanistan", [
+			"English",
+		]);
 
-		expect(result).toEqual([{ code: "en", label: "English" }]);
-	});
-
-	it("falls back to the raw code as the label when it has no known translation", async () => {
-		global.fetch = jest.fn().mockResolvedValue({ ok: true });
-
-		const result = await findAvailableSubtitleLanguages("afghanistan", ["xx"]);
-
-		expect(result).toEqual([{ code: "xx", label: "xx" }]);
+		expect(result).toEqual(["English"]);
 	});
 
 	it("excludes declared languages whose subtitle file is missing and logs why", async () => {
 		global.fetch = jest.fn().mockResolvedValue({ ok: false, status: 404 });
 
-		const result = await findAvailableSubtitleLanguages("afghanistan", ["en"]);
+		const result = await findAvailableSubtitleLanguages("afghanistan", [
+			"English",
+		]);
 
 		expect(result).toEqual([]);
 		expect(console.error).toHaveBeenCalledWith(
-			expect.stringContaining("afghanistansubtitles-en.vtt"),
+			expect.stringContaining("afghanistansubtitles-English.vtt"),
 		);
 	});
 
 	it("excludes declared languages when the existence check throws and logs why", async () => {
 		global.fetch = jest.fn().mockRejectedValue(new Error("network error"));
 
-		const result = await findAvailableSubtitleLanguages("afghanistan", ["en"]);
+		const result = await findAvailableSubtitleLanguages("afghanistan", [
+			"English",
+		]);
 
 		expect(result).toEqual([]);
 		expect(console.error).toHaveBeenCalledWith(
