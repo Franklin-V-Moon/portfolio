@@ -17,6 +17,7 @@ import { VideoLibrary } from "../../src/travel/VideoLibrary";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useHasMounted } from "../../utils/useHasMounted";
 import { VideoPlayer } from "../../src/travel/components/video-detail/VideoPlayer";
 import { LockedVideo } from "../../src/travel/components/video-detail/LockedVideo";
 import { VideoSummary } from "../../src/travel/components/video-detail/VideoSummary";
@@ -37,6 +38,7 @@ const VideoContent = ({
 	const { title, year, instagramLinks, extras } = metaData as TravelVideoMetaData;
 
 	const router = useRouter();
+	const hasMounted = useHasMounted();
 
 	const [durationISO, setDurationISO] = useState<string>();
 
@@ -50,7 +52,7 @@ const VideoContent = ({
 		addToWatchedVideosStorage(metaData.link);
 	}
 
-	const isUnlocked = hasRestrictionBypass() || !metaData.restricted;
+	const isUnlocked = !metaData.restricted || (hasMounted && hasRestrictionBypass());
 
 	const { description, pageUrl, ogImage, jsonLd } = buildVideoJsonLd({
 		metaData,
