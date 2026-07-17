@@ -7,7 +7,13 @@ const ReactPlayer = dynamic(() => import("react-player"), {
 	ssr: false,
 }) as unknown as typeof ReactPlayerType;
 
-export const Trailer = ({ trailer }: { trailer?: string }) => {
+export const Trailer = ({
+	trailer,
+	onReady,
+}: {
+	trailer?: string;
+	onReady?: () => void;
+}) => {
 	return (
 		<div className={styles.trailerPlayerWrapper}>
 			<div className={styles.trailerLabel}>TRAILER</div>
@@ -27,6 +33,7 @@ export const Trailer = ({ trailer }: { trailer?: string }) => {
 				controls={false}
 				width='100%'
 				height='100%'
+				onReady={onReady}
 			/>
 		</div>
 	);

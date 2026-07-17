@@ -126,4 +126,28 @@ describe("VideoPlayer", () => {
 		expect(screen.queryByTestId("mock-react-player")).toBeNull();
 		expect(mockSeekTo).not.toHaveBeenCalled();
 	});
+
+	it("shows a loading skeleton until the trailer preview becomes ready", async () => {
+		render(
+			<VideoPlayer metaData={buildMetaData({ trailer: "japan-trailer" })} />,
+		);
+
+		expect(screen.getByTestId("video-skeleton")).toBeDefined();
+
+		await waitFor(() => {
+			expect(screen.queryByTestId("video-skeleton")).toBeNull();
+		});
+	});
+
+	it("shows a loading skeleton until the player is ready when there is no trailer", async () => {
+		render(<VideoPlayer metaData={buildMetaData()} />);
+
+		expect(screen.getByTestId("video-skeleton")).toBeDefined();
+
+		await screen.findByTestId("mock-react-player");
+
+		await waitFor(() => {
+			expect(screen.queryByTestId("video-skeleton")).toBeNull();
+		});
+	});
 });

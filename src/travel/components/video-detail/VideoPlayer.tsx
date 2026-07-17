@@ -10,6 +10,7 @@ import { publicCDNVideoUrl } from "../../../datasources/TravelMetaData";
 import { secondsToISO } from "../../videoJsonLd";
 import { TravelVideoMetaData } from "../../types";
 import { Trailer } from "./Trailer";
+import { VideoFrame } from "./VideoFrame";
 import styles from "./VideoPlayer.module.scss";
 
 const DynamicReactPlayer = dynamic(() => import("./DynamicReactPlayer"), {
@@ -30,7 +31,10 @@ export const VideoPlayer = ({
 
 	const [showTrailer, setShowTrailer] = useState(() => !!extras?.trailer);
 	const [isPlayerReady, setIsPlayerReady] = useState(false);
+	const [isTrailerReady, setIsTrailerReady] = useState(false);
 	const pendingSeekRef = useRef<number | null>(null);
+
+	const isContentReady = isPlayerReady || (showTrailer && isTrailerReady);
 
 	const performSeek = useCallback((timecode: number) => {
 		if (playerRef.current) {
@@ -92,22 +96,30 @@ export const VideoPlayer = ({
 
 	return (
 		<>
-			<DynamicReactPlayer
-				url={`${publicCDNVideoUrl}${slug}.mp4`}
-				controls
-				pip
-				playerRef={playerRef}
-				volume={0.3}
-				height='100%'
-				width='100%'
-				id='player'
-				playing={!!extras?.trailer}
-				light={
-					showTrailer && extras?.trailer && <Trailer trailer={extras.trailer} />
-				}
-				onDuration={(s) => onDuration?.(secondsToISO(s))}
-				onReady={() => setIsPlayerReady(true)}
-			/>
+			<VideoFrame isReady={isContentReady}>
+				<DynamicReactPlayer
+					url={`${publicCDNVideoUrl}${slug}.mp4`}
+					controls
+					pip
+					playerRef={playerRef}
+					volume={0.3}
+					height='100%'
+					width='100%'
+					id='player'
+					playing={!!extras?.trailer}
+					light={
+						showTrailer &&
+						extras?.trailer && (
+							<Trailer
+								trailer={extras.trailer}
+								onReady={() => setIsTrailerReady(true)}
+							/>
+						)
+					}
+					onDuration={(s) => onDuration?.(secondsToISO(s))}
+					onReady={() => setIsPlayerReady(true)}
+				/>
+			</VideoFrame>
 			<div className={styles.subVideoInteraction}>
 				<div className={styles.skipToContainer}>
 					{extras?.highlights && (
