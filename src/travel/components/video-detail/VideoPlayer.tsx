@@ -28,13 +28,29 @@ export const VideoPlayer = ({
 	const playerRef = useRef<ReactPlayerType | null>(null);
 	const router = useRouter();
 
+	const [showTrailer, setShowTrailer] = useState(() => !!extras?.trailer);
 	const [isPlayerReady, setIsPlayerReady] = useState(false);
+	const pendingSeekRef = useRef<number | null>(null);
 
-	const skipTo = useCallback((timecode: number) => {
+	const performSeek = useCallback((timecode: number) => {
 		if (playerRef.current) {
 			playerRef.current.seekTo(timecode, "seconds");
 		}
 	}, []);
+
+	const skipTo = useCallback(
+		(timecode: number) => {
+			if (showTrailer) {
+				// Player hasn't mounted yet behind the trailer preview — queue the
+				// seek and dismiss the trailer so the main video loads and plays.
+				pendingSeekRef.current = timecode;
+				setShowTrailer(false);
+				return;
+			}
+			performSeek(timecode);
+		},
+		[showTrailer, performSeek],
+	);
 
 	const handleTimecodeOnLoad = useCallback(() => {
 		const timecodeParam = router.query.timecode;
@@ -43,16 +59,21 @@ export const VideoPlayer = ({
 			typeof timecodeParam === "string" &&
 			!isNaN(parseInt(timecodeParam))
 		) {
-			const timeInSeconds = parseInt(timecodeParam);
-			skipTo(timeInSeconds);
+			performSeek(parseInt(timecodeParam));
 		}
-	}, [router.query.timecode, skipTo]);
+	}, [router.query.timecode, performSeek]);
 
 	useEffect(() => {
-		if (isPlayerReady) {
-			handleTimecodeOnLoad();
+		if (!isPlayerReady) return;
+
+		if (pendingSeekRef.current !== null) {
+			performSeek(pendingSeekRef.current);
+			pendingSeekRef.current = null;
+			return;
 		}
-	}, [isPlayerReady, handleTimecodeOnLoad]);
+
+		handleTimecodeOnLoad();
+	}, [isPlayerReady, handleTimecodeOnLoad, performSeek]);
 
 	const handleCopyToClipboardWithTimecode = async () => {
 		if (playerRef.current) {
@@ -81,7 +102,9 @@ export const VideoPlayer = ({
 				width='100%'
 				id='player'
 				playing={!!extras?.trailer}
-				light={extras?.trailer && <Trailer trailer={extras.trailer} />}
+				light={
+					showTrailer && extras?.trailer && <Trailer trailer={extras.trailer} />
+				}
 				onDuration={(s) => onDuration?.(secondsToISO(s))}
 				onReady={() => setIsPlayerReady(true)}
 			/>

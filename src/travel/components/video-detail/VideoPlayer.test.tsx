@@ -31,16 +31,21 @@ jest.mock("react-player", () => {
 	const React = require("react");
 	const MockReactPlayer = React.forwardRef(
 		(
-			{ onReady }: { onReady?: () => void },
+			{ onReady, light }: { onReady?: () => void; light?: React.ReactNode },
 			ref: unknown,
 		) => {
 			React.useImperativeHandle(ref, () => ({
 				seekTo: mockSeekTo,
 				getCurrentTime: mockGetCurrentTime,
 			}));
+			// Mirrors react-player: onReady only fires for the active player,
+			// never while a `light` preview is being shown.
 			React.useEffect(() => {
-				onReady?.();
-			}, [onReady]);
+				if (!light) onReady?.();
+			}, [light, onReady]);
+			if (light) {
+				return <div data-testid='mock-trailer-preview'>{light}</div>;
+			}
 			return <div data-testid='mock-react-player' />;
 		},
 	);
@@ -48,7 +53,9 @@ jest.mock("react-player", () => {
 	return { __esModule: true, default: MockReactPlayer };
 });
 
-const buildMetaData = (): TravelVideoMetaData => ({
+const buildMetaData = (
+	extrasOverrides: Partial<NonNullable<TravelVideoMetaData["extras"]>> = {},
+): TravelVideoMetaData => ({
 	title: "Japan",
 	year: 2023,
 	hostedLink: "japan",
@@ -57,6 +64,7 @@ const buildMetaData = (): TravelVideoMetaData => ({
 	backupLink: "https://example.com/download",
 	extras: {
 		highlights: [{ title: "Mount Fuji (sunrise)", timecode: 90 }],
+		...extrasOverrides,
 	},
 });
 
@@ -88,5 +96,34 @@ describe("VideoPlayer", () => {
 		await waitFor(() => {
 			expect(mockSeekTo).toHaveBeenCalledWith(42, "seconds");
 		});
+	});
+
+	it("dismisses the trailer preview and starts the player when a skip-to button is clicked", async () => {
+		render(
+			<VideoPlayer metaData={buildMetaData({ trailer: "japan-trailer" })} />,
+		);
+
+		await screen.findByTestId("mock-trailer-preview");
+		expect(mockSeekTo).not.toHaveBeenCalled();
+
+		fireEvent.click(
+			screen.getByRole("button", {
+				name: "Skip to the moment when the Mount Fuji happened",
+			}),
+		);
+
+		await screen.findByTestId("mock-react-player");
+		expect(mockSeekTo).toHaveBeenCalledWith(90, "seconds");
+	});
+
+	it("leaves the trailer preview alone until a skip-to button is clicked", async () => {
+		render(
+			<VideoPlayer metaData={buildMetaData({ trailer: "japan-trailer" })} />,
+		);
+
+		await screen.findByTestId("mock-trailer-preview");
+
+		expect(screen.queryByTestId("mock-react-player")).toBeNull();
+		expect(mockSeekTo).not.toHaveBeenCalled();
 	});
 });
