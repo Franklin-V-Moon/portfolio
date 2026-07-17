@@ -9,9 +9,11 @@ const ReactPlayer = dynamic(() => import("react-player"), {
 
 export const Trailer = ({
 	trailer,
+	ctaLabel = "PLAY FULL VIDEO",
 	onReady,
 }: {
 	trailer?: string;
+	ctaLabel?: string;
 	onReady?: () => void;
 }) => {
 	return (
@@ -23,7 +25,7 @@ export const Trailer = ({
 					animation: "fadeIn 1000ms ease-out",
 					opacity: 0.7,
 				}}>
-				PLAY FULL VIDEO
+				{ctaLabel}
 			</div>
 			<ReactPlayer
 				url={`${publicCDNVideoUrl}${trailer}.mp4`}

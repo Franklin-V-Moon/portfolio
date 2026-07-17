@@ -1,6 +1,11 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { LockedVideo } from "./LockedVideo";
+import { videoEnabled } from "../../travelDataService";
 import { TravelVideoMetaData } from "../../types";
+
+jest.mock("../../travelDataService", () => ({
+	videoEnabled: jest.fn(),
+}));
 
 jest.mock("next/dynamic", () => ({
 	__esModule: true,
@@ -46,6 +51,10 @@ const buildMetaData = (
 });
 
 describe("LockedVideo", () => {
+	beforeEach(() => {
+		jest.clearAllMocks();
+	});
+
 	it("shows a loading skeleton until the locked trailer becomes ready", async () => {
 		render(<LockedVideo metaData={buildMetaData({ trailer: "sk-trailer" })} />);
 
@@ -65,11 +74,29 @@ describe("LockedVideo", () => {
 		).toBeDefined();
 	});
 
-	it("always shows the password prompt", () => {
-		render(<LockedVideo metaData={buildMetaData()} />);
+	it("triggers the password prompt when the lock icon is tapped over the trailer", () => {
+		const metaData = buildMetaData({ trailer: "sk-trailer" });
+		render(<LockedVideo metaData={metaData} />);
 
-		expect(
-			screen.getByText("Full Video Locked, Know The Password?"),
-		).toBeDefined();
+		fireEvent.click(
+			screen.getByRole("button", {
+				name: "Enter password to unlock this video",
+			}),
+		);
+
+		expect(videoEnabled).toHaveBeenCalledWith(metaData);
+	});
+
+	it("triggers the password prompt when the lock icon is tapped over the placeholder image", () => {
+		const metaData = buildMetaData();
+		render(<LockedVideo metaData={metaData} />);
+
+		fireEvent.click(
+			screen.getByRole("button", {
+				name: "Enter password to unlock this video",
+			}),
+		);
+
+		expect(videoEnabled).toHaveBeenCalledWith(metaData);
 	});
 });
