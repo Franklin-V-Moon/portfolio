@@ -20,7 +20,7 @@ export const LockedVideo = ({ metaData }: { metaData: TravelVideoMetaData }) => 
 				onClick={() => videoEnabled(metaData)}
 				aria-label={UNLOCK_LABEL}
 				className={styles.unlockButton}>
-				<LockIcon style={{ fontSize: "60px" }} />
+				<LockIcon style={{ fontSize: "40px" }} />
 			</IconButton>
 		</Tooltip>
 	);
@@ -32,7 +32,7 @@ export const LockedVideo = ({ metaData }: { metaData: TravelVideoMetaData }) => 
 					{unlockButton}
 					<Trailer
 						trailer={extras.trailer}
-						ctaLabel='TAP TO UNLOCK'
+						ctaLabel='CLICK/TAP TO UNLOCK'
 						onReady={() => setIsTrailerReady(true)}
 					/>
 				</VideoFrame>
