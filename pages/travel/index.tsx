@@ -19,8 +19,9 @@ import {
 import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
 import { VideoLibrary } from "../../src/travel/VideoLibrary";
 import { ButtonBase, styled } from "@mui/material";
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
+import { useHasMounted } from "../../utils/useHasMounted";
 import { SortBy } from "../../src/travel/types";
 import { TravelSort } from "../../src/travel/components/TravelSort";
 import { SearchBar } from "../../src/travel/components/SearchBar";
@@ -67,14 +68,6 @@ const InvisibleImageButton = styled(ButtonBase)(({ theme }) => ({
 		color: "rgba(255, 255, 255, 0.3)",
 	},
 }));
-
-const emptySubscribe = () => () => {};
-const useHasMounted = () =>
-	useSyncExternalStore(
-		emptySubscribe,
-		() => true,
-		() => false,
-	);
 
 const Travel = ({
 	initialSortBy,
