@@ -47,8 +47,6 @@ jest.mock("react-player", () => {
 				getCurrentTime: mockGetCurrentTime,
 				getInternalPlayer: () => ({}),
 			}));
-			// Mirrors react-player: onReady only fires for the active player,
-			// never while a `light` preview is being shown.
 			React.useEffect(() => {
 				if (!light) onReady?.();
 			}, [light, onReady]);

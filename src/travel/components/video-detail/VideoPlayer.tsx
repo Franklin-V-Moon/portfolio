@@ -58,8 +58,6 @@ export const VideoPlayer = ({
 	const skipTo = useCallback(
 		(timecode: number) => {
 			if (showTrailer) {
-				// Player hasn't mounted yet behind the trailer preview — queue the
-				// seek and dismiss the trailer so the main video loads and plays.
 				pendingSeekRef.current = timecode;
 				setShowTrailer(false);
 				return;

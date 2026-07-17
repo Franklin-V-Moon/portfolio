@@ -46,10 +46,6 @@ export const findAvailableSubtitleLanguages = async (
 	return results.filter((language): language is string => language !== null);
 };
 
-// DaVinci Resolve timelines default to a 01:00:00:00 start timecode, and its
-// subtitle export uses that timeline timecode rather than zero-based media
-// time. Exported cues are shifted this many seconds later than the actual
-// video, since we standardise on leaving that Resolve setting untouched.
 export const RESOLVE_TIMELINE_START_OFFSET_SECONDS = 3600;
 
 const VTT_TIMESTAMP_PATTERN = /(\d{2}):(\d{2}):(\d{2})\.(\d{3})/g;

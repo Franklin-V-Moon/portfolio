@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-// Generated from UIVerse.io
-
 const Input: React.FC = () => {
 	return (
 		<div style={wrapperStyle}>
