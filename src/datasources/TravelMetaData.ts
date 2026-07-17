@@ -316,6 +316,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1q-5yyEWifu1rdyHtk5leUm_JDaIoEpFO?usp=sharing",
 		restricted: false,
 		extras: {
+			subtitles: ["English"],
 			countries: ["New Zealand"],
 			trailer: "newzealandtrailer",
 			scorecard: {
@@ -388,6 +389,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/16ekQGT90_76BCrX_mbiN3JDhnKrMG1-2?usp=sharing",
 		restricted: false,
 		extras: {
+			subtitles: ["English"],
 			countries: ["Japan"],
 			trailer: "japantrailer",
 			scorecard: {
@@ -561,6 +563,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1-qXArc3DWxqAKXxQfIAWwwtha53Qcn0O?usp=sharing",
 		restricted: true,
 		extras: {
+			subtitles: ["English"],
 			countries: ["South Korea"],
 			trailer: "southkoreatrailer",
 			scorecard: {
@@ -710,6 +713,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1lDzBYAhye2L7cbIM8hsbkKXxNSsyeDEH?usp=sharing",
 		restricted: true,
 		extras: {
+			subtitles: ["English"],
 			countries: ["Fiji"],
 			trailer: "fijitrailer",
 			scorecard: {
@@ -780,6 +784,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://www.instagram.com/p/DJhWKcdh_ex/?hl=en&img_index=1",
 		],
 		extras: {
+			subtitles: ["English"],
 			countries: ["Cambodia", "Laos", "Vietnam"],
 			trailer: "cambodialaosvietnamtrailer",
 			scorecard: {

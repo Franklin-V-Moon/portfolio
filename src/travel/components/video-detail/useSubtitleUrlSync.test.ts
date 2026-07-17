@@ -99,33 +99,7 @@ describe("useSubtitleUrlSync", () => {
 		expect(textTracks.tracks[0].mode).toBe("showing");
 	});
 
-	it("removes the Subtitles param when the default (first) language is showing", () => {
-		const textTracks = new FakeTextTrackList([
-			{ language: "English", mode: "showing" },
-			{ language: "French", mode: "disabled" },
-		]);
-		const replace = mockRouter({ link: "afghanistan", timecode: "42" });
-
-		renderHook(() =>
-			useSubtitleUrlSync(buildPlayerRef(textTracks), true, [
-				"English",
-				"French",
-			]),
-		);
-
-		textTracks.fireChange();
-
-		expect(replace).toHaveBeenCalledWith(
-			{
-				pathname: "/travel/[link]",
-				query: { link: "afghanistan", timecode: "42" },
-			},
-			undefined,
-			{ shallow: true },
-		);
-	});
-
-	it("adds the Subtitles param when a non-default language is showing", () => {
+	it("adds the Subtitles param when a non-default language starts showing", () => {
 		const textTracks = new FakeTextTrackList([
 			{ language: "English", mode: "disabled" },
 			{ language: "French", mode: "showing" },
@@ -167,6 +141,32 @@ describe("useSubtitleUrlSync", () => {
 			{
 				pathname: "/travel/[link]",
 				query: { link: "afghanistan", Subtitles: "None" },
+			},
+			undefined,
+			{ shallow: true },
+		);
+	});
+
+	it("writes the default language explicitly when a change event lands back on it", () => {
+		const textTracks = new FakeTextTrackList([
+			{ language: "English", mode: "showing" },
+			{ language: "French", mode: "disabled" },
+		]);
+		const replace = mockRouter({ link: "afghanistan" });
+
+		renderHook(() =>
+			useSubtitleUrlSync(buildPlayerRef(textTracks), true, [
+				"English",
+				"French",
+			]),
+		);
+
+		textTracks.fireChange();
+
+		expect(replace).toHaveBeenCalledWith(
+			{
+				pathname: "/travel/[link]",
+				query: { link: "afghanistan", Subtitles: "English" },
 			},
 			undefined,
 			{ shallow: true },
