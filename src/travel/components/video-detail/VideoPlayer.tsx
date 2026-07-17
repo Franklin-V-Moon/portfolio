@@ -12,9 +12,9 @@ import { TravelVideoMetaData } from "../../types";
 import { Trailer } from "./Trailer";
 import styles from "./VideoPlayer.module.scss";
 
-const ReactPlayer = dynamic(() => import("react-player"), {
+const DynamicReactPlayer = dynamic(() => import("./DynamicReactPlayer"), {
 	ssr: false,
-}) as unknown as typeof ReactPlayerType;
+});
 
 export const VideoPlayer = ({
 	metaData,
@@ -71,11 +71,11 @@ export const VideoPlayer = ({
 
 	return (
 		<>
-			<ReactPlayer
+			<DynamicReactPlayer
 				url={`${publicCDNVideoUrl}${slug}.mp4`}
 				controls
 				pip
-				ref={playerRef}
+				playerRef={playerRef}
 				volume={0.3}
 				height='100%'
 				width='100%'

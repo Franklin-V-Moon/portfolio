@@ -11,16 +11,14 @@ jest.mock("next/dynamic", () => ({
 	__esModule: true,
 	default: (loader: () => Promise<{ default: unknown }>) => {
 		const React = require("react");
-		const MockDynamicComponent = React.forwardRef(
-			(props: object, ref: unknown) => {
-				const [Component, setComponent] = React.useState<unknown>(null);
-				React.useEffect(() => {
-					loader().then((mod) => setComponent(() => mod.default ?? mod));
-				}, []);
-				if (!Component) return null;
-				return React.createElement(Component, { ...props, ref });
-			},
-		);
+		const MockDynamicComponent = (props: object) => {
+			const [Component, setComponent] = React.useState(null);
+			React.useEffect(() => {
+				loader().then((mod) => setComponent(() => mod.default ?? mod));
+			}, []);
+			if (!Component) return null;
+			return React.createElement(Component, props);
+		};
 		MockDynamicComponent.displayName = "MockDynamicComponent";
 		return MockDynamicComponent;
 	},
