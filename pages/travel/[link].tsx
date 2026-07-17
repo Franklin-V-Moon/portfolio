@@ -27,10 +27,15 @@ import { ItineraryList } from "../../src/travel/components/video-detail/Itinerar
 import { BonusVideos } from "../../src/travel/components/video-detail/BonusVideos";
 import { MusicAndLinks } from "../../src/travel/components/video-detail/MusicAndLinks";
 import { InstagramGrid } from "../../src/travel/components/video-detail/InstagramGrid";
+import {
+	findAvailableSubtitleLanguages,
+	SubtitleLanguage,
+} from "../../src/travel/subtitles";
 
 const VideoContent = ({
 	metaData,
 	upNext,
+	subtitleLanguages,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const { title, year, instagramLinks, extras } = metaData as TravelVideoMetaData;
 
@@ -95,7 +100,11 @@ const VideoContent = ({
 					<h2 className={styles.year}>{year}</h2>
 
 					{isUnlocked ? (
-						<VideoPlayer metaData={metaData} onDuration={setDurationISO} />
+						<VideoPlayer
+							metaData={metaData}
+							onDuration={setDurationISO}
+							subtitleLanguages={subtitleLanguages}
+						/>
 					) : (
 						<LockedVideo metaData={metaData} />
 					)}
@@ -191,17 +200,25 @@ export const getStaticProps: GetStaticProps<
 	{
 		metaData: TravelVideoMetaData;
 		upNext: TravelVideoMetaData[];
+		subtitleLanguages: SubtitleLanguage[];
 	},
 	Params
 > = async ({ params }) => {
 	const { link } = params as Params;
 
 	const metaDataIndex = getTravelMetaDataIndex(link);
+	const metaData = travelVideoMetaData[metaDataIndex];
+
+	const subtitleLanguages = await findAvailableSubtitleLanguages(
+		metaData.hostedLink,
+		metaData.extras?.subtitles,
+	);
 
 	return {
 		props: {
-			metaData: travelVideoMetaData[metaDataIndex],
+			metaData,
 			upNext: travelVideoMetaData.slice(metaDataIndex + 1),
+			subtitleLanguages,
 		},
 	};
 };

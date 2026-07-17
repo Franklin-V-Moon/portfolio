@@ -73,6 +73,7 @@ export type Extras = {
 	}[];
 	extraVideos?: { title: string; hostedLink: string }[];
 	tags?: string[];
+	subtitles?: string[];
 };
 
 export type Itinerary = {

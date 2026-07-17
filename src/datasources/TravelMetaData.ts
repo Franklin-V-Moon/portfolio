@@ -2648,6 +2648,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			countries: ["afghanistan"],
 			trailer: "afghanistantrailer",
+			subtitles: ["en"],
 			scorecard: {
 				beauty: [4],
 				affordability: [8],

@@ -41,3 +41,6 @@ yarn-error.log*
 /public/sitemap.xml
 /public/sitemap-*.xml
 /utils/sitemap-meta/
+
+# playwright MCP session output
+/.playwright-mcp/
