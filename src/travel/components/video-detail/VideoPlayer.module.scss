@@ -1,0 +1,30 @@
+@use "../../../../themes/colors.module" as *;
+@use "../../../../themes/breakpoints" as *;
+
+.subVideoInteraction {
+	display: flex;
+	margin-bottom: -10px;
+
+	@include breakpoint(medium) {
+		margin-bottom: -20px;
+	}
+}
+
+.skipToContainer {
+	width: 100%;
+}
+
+.skipToText {
+	margin: 5px 0 5px 10px;
+}
+
+.skipToButton {
+	color: $defaultYellow;
+	margin: 5px 10px;
+}
+
+.share {
+	cursor: pointer;
+	margin: 1.5px 0 0 0;
+	padding: 0;
+}

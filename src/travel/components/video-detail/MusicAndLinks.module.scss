@@ -1,0 +1,28 @@
+@use "../../../../themes/colors.module" as *;
+
+.extraInfoHeading {
+	margin-top: 0;
+}
+
+.extraLinksWrapper {
+	padding-left: 20px;
+	margin-bottom: 20px;
+}
+
+.songItem {
+	margin-bottom: 10px;
+}
+
+.musicItem {
+	margin-left: 10px;
+	color: $brightGrey;
+	text-decoration: none;
+}
+
+.extraLinkItem {
+	margin: 0 0 0 -10px;
+}
+
+.extraLinkItemLink {
+	color: $brightGrey;
+}

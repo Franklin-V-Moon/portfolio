@@ -1,0 +1,21 @@
+@use "../../../../themes/colors.module" as *;
+
+.accordionTitle {
+	margin: 0;
+	width: 40%;
+}
+
+.accordionDays {
+	margin: 0 0 0 10px;
+	color: $brightGrey;
+}
+
+.accordionParagraph {
+	margin-top: -15px;
+	padding: 5px;
+}
+
+.accordionLink {
+	padding: 0 5px 5px 5px;
+	color: $brightGrey;
+}

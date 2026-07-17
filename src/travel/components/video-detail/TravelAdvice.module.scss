@@ -1,0 +1,36 @@
+@use "../../../../themes/breakpoints" as *;
+@use "../../../../themes/colors.module" as *;
+
+.adviceWrapper {
+	margin-left: 20px;
+
+	@include breakpoint(medium) {
+		margin-left: 0;
+	}
+}
+
+.adviceHeader {
+	margin: 20px 0 0 0;
+}
+
+.adviceParagraph {
+	margin: 0 0 0 10px;
+	padding: 0;
+}
+
+.dfatSubtext {
+	margin: 0 0 0 10px;
+	color: $brightGrey;
+}
+
+.advisoryContainer {
+	width: 90%;
+	height: 75px;
+	margin: 10px 0 50px 9px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	color: black;
+}

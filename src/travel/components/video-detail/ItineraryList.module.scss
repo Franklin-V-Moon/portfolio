@@ -1,0 +1,29 @@
+@use "../../../../themes/breakpoints" as *;
+
+.itineraryItemContainer {
+	width: 100%;
+	margin-bottom: 60px;
+
+	@include breakpoint(medium) {
+		margin: -30px 0 0 0;
+	}
+}
+
+.itineraryTitles {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.itineraryItemImageContainer {
+	position: relative;
+	width: 100%;
+	top: -30px;
+
+	@include breakpoint(medium) {
+		padding: 10px 6% 50px 9px;
+	}
+}
+
+.accordionContainer {
+	margin: 30px 0;
+}

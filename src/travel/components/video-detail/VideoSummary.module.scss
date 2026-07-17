@@ -1,0 +1,16 @@
+@use "../../../../themes/breakpoints" as *;
+
+.summaryContainer {
+	width: 100%;
+	margin-bottom: 50px;
+	padding-right: 20px;
+}
+
+.summaryParagraph {
+	padding-left: 10px;
+	margin-top: -5px;
+
+	@include breakpoint(medium) {
+		padding-right: 50px;
+	}
+}

@@ -1,0 +1,79 @@
+@use "../../../../themes/colors.module" as *;
+@use "../../../../themes/breakpoints" as *;
+
+.scorecardContainer {
+	width: 100%;
+	margin-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+}
+
+.scorecardLegend {
+	display: flex;
+	flex-direction: row;
+	padding-left: 11px;
+
+	@include breakpoint(medium) {
+		padding-left: 0;
+	}
+}
+
+.finalScoreDiv {
+	margin-top: 10px;
+	border-top: 1px solid $brightGrey;
+
+	@include breakpoint(medium) {
+		width: 83%;
+	}
+}
+
+.finalScoreContainer {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	margin: 10px 0 0 -10px;
+	width: 102%;
+
+	@include breakpoint(medium) {
+		margin: 10px 0 0 0;
+	}
+}
+
+.finalScoreBarWrapper {
+	position: relative;
+	width: 59.1%;
+	height: 24px;
+	margin: 10px 0 0 10px;
+
+	@include breakpoint(medium) {
+		margin: 15px 0 0 10px;
+	}
+}
+
+.finalScoreDigit {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+	color: $mediumGrey;
+	margin: 0;
+}
+
+.finalScore {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.finalScoreTitle {
+	padding: 10px 0 0 0;
+	margin-left: 10px;
+
+	@include breakpoint(medium) {
+		padding: 14px 0 0 5px;
+	}
+}
