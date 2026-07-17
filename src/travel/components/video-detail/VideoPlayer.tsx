@@ -10,6 +10,7 @@ import { publicCDNVideoUrl } from "../../../datasources/TravelMetaData";
 import { secondsToISO } from "../../videoJsonLd";
 import { TravelVideoMetaData } from "../../types";
 import { Trailer } from "./Trailer";
+import { useSubtitleUrlSync } from "./useSubtitleUrlSync";
 import { VideoFrame } from "./VideoFrame";
 import styles from "./VideoPlayer.module.scss";
 
@@ -45,6 +46,8 @@ export const VideoPlayer = ({
 		label: language,
 		default: index === 0,
 	}));
+
+	useSubtitleUrlSync(playerRef, isPlayerReady, subtitleLanguages);
 
 	const performSeek = useCallback((timecode: number) => {
 		if (playerRef.current) {

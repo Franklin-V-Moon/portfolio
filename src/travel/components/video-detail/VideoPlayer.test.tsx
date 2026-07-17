@@ -45,6 +45,7 @@ jest.mock("react-player", () => {
 			React.useImperativeHandle(ref, () => ({
 				seekTo: mockSeekTo,
 				getCurrentTime: mockGetCurrentTime,
+				getInternalPlayer: () => ({}),
 			}));
 			// Mirrors react-player: onReady only fires for the active player,
 			// never while a `light` preview is being shown.
@@ -85,7 +86,11 @@ const buildMetaData = (
 describe("VideoPlayer", () => {
 	beforeEach(() => {
 		jest.clearAllMocks();
-		(useRouter as jest.Mock).mockReturnValue({ query: {} });
+		(useRouter as jest.Mock).mockReturnValue({
+			query: {},
+			pathname: "/travel/[link]",
+			replace: jest.fn(),
+		});
 	});
 
 	it("seeks to a highlight's timecode when its skip-to button is clicked", async () => {
@@ -103,7 +108,11 @@ describe("VideoPlayer", () => {
 	});
 
 	it("seeks to the timecode from the URL once the player is ready", async () => {
-		(useRouter as jest.Mock).mockReturnValue({ query: { timecode: "42" } });
+		(useRouter as jest.Mock).mockReturnValue({
+			query: { timecode: "42" },
+			pathname: "/travel/[link]",
+			replace: jest.fn(),
+		});
 
 		render(<VideoPlayer metaData={buildMetaData()} />);
 

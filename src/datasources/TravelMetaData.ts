@@ -495,6 +495,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1MMl5yLAUNf9t-nBdIVktxjwQbfo385ZV?usp=sharing",
 		restricted: false,
 		extras: {
+			subtitles: ["English"],
 			countries: ["Thailand"],
 			trailer: "thailandtrailer",
 			scorecard: {
@@ -635,6 +636,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1u6-BtdvLQ8E-azD-iOX8b7aM1ngCuiMH?usp=sharing",
 		restricted: true,
 		extras: {
+			subtitles: ["English"],
 			countries: ["United Arab Emirates"],
 			trailer: "uaetrailer",
 			scorecard: {
@@ -873,6 +875,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://www.instagram.com/p/Cq-ILXzrnjp/?img_index=1",
 		],
 		extras: {
+			subtitles: ["English"],
 			countries: ["Taiwan", "Hong Kong", "Macau"],
 			trailer: "taiwanhongkongmacautrailer",
 			scorecard: {
@@ -2646,9 +2649,9 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		backupLink:
 			"https://drive.google.com/drive/folders/13u7UC_NTr1cXDKtclfhxyl-nokepTDjW?usp=sharing",
 		extras: {
+			subtitles: ["English", "French"],
 			countries: ["afghanistan"],
 			trailer: "afghanistantrailer",
-			subtitles: ["English"],
 			scorecard: {
 				beauty: [4],
 				affordability: [8],
