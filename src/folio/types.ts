@@ -13,7 +13,6 @@ export type MetaData = {
 };
 
 export interface ColumnData extends MetaData {
-	isDeveloping?: boolean;
 	data: MetaData[];
 }
 

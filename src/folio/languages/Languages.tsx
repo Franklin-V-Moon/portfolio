@@ -1,8 +1,6 @@
-import { Button, Card, Grid } from "@mui/material";
-import { useState } from "react";
+import { Card, Chip } from "@mui/material";
 import { languagesMetaData } from "../../datasources/SkillsMetaData";
 import { MetaData } from "../types";
-import { LanguagesColumn } from "./LanguagesColumn";
 
 import styles from "./Languages.module.scss";
 
@@ -11,25 +9,42 @@ export const Languages = ({
 }: {
 	handleOpenModal: (payload: MetaData) => void;
 }) => {
-
 	return (
 		<div className={styles.container}>
 			<h2 className={styles.sectionTitle}>Skillsets</h2>
 
-			<Card>
-					<Grid container className={styles.columnContainer}>
-						{languagesMetaData.map((columnData, index) => {
-							return (
-								<Grid key={index}>
-									<LanguagesColumn
-										columnData={columnData}
-										handleOpenModal={handleOpenModal}
+			<div className={styles.cardGrid}>
+				{languagesMetaData.map((group) => {
+					const { title, knowledge, proficiency, description, data } = group;
+
+					return (
+						<Card key={title} className={styles.card}>
+							<button
+								className={styles.cardTitle}
+								onClick={() =>
+									handleOpenModal({
+										title,
+										knowledge,
+										proficiency,
+										description,
+									})
+								}>
+								{title}
+							</button>
+							<div className={styles.chipContainer}>
+								{data.map((item) => (
+									<Chip
+										key={item.title}
+										label={item.title}
+										className={styles.chip}
+										onClick={() => handleOpenModal(item)}
 									/>
-								</Grid>
-							);
-						})}
-					</Grid>
-			</Card>
+								))}
+							</div>
+						</Card>
+					);
+				})}
+			</div>
 		</div>
 	);
 };

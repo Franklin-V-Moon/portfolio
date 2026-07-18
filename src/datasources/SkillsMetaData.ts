@@ -237,13 +237,6 @@ export const languagesMetaData: ColumnData[] = [
 				description: Description.Proficient,
 			},
 			{
-				title: "Action Runners",
-				knowledge:
-					"I've experience setting up and maintaining action runners across different contexts including Github Actions to self hosted runners operating on AWS EKS with and without Auto-mode.",
-				proficiency: Capable,
-				description: Description.Proficient,
-			},
-			{
 				title: "Bash / Shell",
 				knowledge:
 					"BASH/Shell allows me to automate tasks and perform actions quickly and efficiently on the command line. I have used it to manage and manipulate files and directories, run scripts, and execute commands on remote servers.",

@@ -14,20 +14,63 @@
 	margin-top: 16px;
 }
 
-.columnContainer {
+.cardGrid {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	column-gap: 20px;
-	row-gap: 25px;
+	grid-template-columns: 1fr;
+	gap: 24px;
 
-	padding: 0 30px 0 60px;
-	margin-bottom: 25px;
+	padding: 0 24px;
+	margin-bottom: 32px;
+
+	@include breakpoint(small) {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
 	@include breakpoint(medium) {
-		grid-template-columns: repeat(4, 1fr);
-		column-gap: 30px;
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
 
-		padding: 0 50px 0 100px;
-		margin-bottom: 25px;
+.card {
+	padding: 20px 24px 24px;
+}
+
+.cardTitle {
+	border: none;
+	padding: 0;
+	outline: inherit;
+	text-align: left;
+	display: block;
+	font-size: 1.5em;
+	font-weight: bold;
+	font-family: inherit;
+
+	cursor: pointer;
+	margin-bottom: 18px;
+
+	@extend .defaultDarkBlueGradient;
+}
+
+.chipContainer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+
+	.chip {
+		background-color: transparent;
+		border: 1px solid $brightGrey;
+		color: $dimmerWhite;
+		box-shadow: 0 0 0 0 transparent;
+		transition:
+			background-color 0.3s ease,
+			border-color 0.3s ease,
+			box-shadow 0.3s ease;
+
+		&:hover,
+		&:focus-visible {
+			background-color: rgba($defaultBlue, 0.05);
+			border-color: $defaultBlue;
+			box-shadow: 0 0 0 1px $defaultBlue;
+		}
 	}
 }
