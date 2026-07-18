@@ -16,8 +16,8 @@ describe("projectToMap", () => {
 		for (const { lonLat } of geometry.checkpoints) {
 			const [x, y] = projectToMap(lonLat[0], lonLat[1]);
 
-			expect(x).toBeGreaterThanOrEqual(0);
-			expect(x).toBeLessThanOrEqual(geometry.viewBox.width);
+			expect(x).toBeGreaterThanOrEqual(geometry.viewBox.x);
+			expect(x).toBeLessThanOrEqual(geometry.viewBox.x + geometry.viewBox.width);
 			expect(y).toBeGreaterThanOrEqual(0);
 			expect(y).toBeLessThanOrEqual(geometry.viewBox.height);
 		}

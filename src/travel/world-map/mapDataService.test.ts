@@ -44,8 +44,8 @@ describe("allMapPins", () => {
 		for (const pin of pins) {
 			const [x, y] = projectToMap(pin.coordinates[0], pin.coordinates[1]);
 
-			expect(x).toBeGreaterThan(0);
-			expect(x).toBeLessThan(geometry.viewBox.width);
+			expect(x).toBeGreaterThan(geometry.viewBox.x);
+			expect(x).toBeLessThan(geometry.viewBox.x + geometry.viewBox.width);
 			expect(y).toBeGreaterThan(0);
 			expect(y).toBeLessThan(geometry.viewBox.height);
 		}

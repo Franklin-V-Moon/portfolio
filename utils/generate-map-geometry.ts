@@ -74,10 +74,8 @@ const ringsOfGeometry = (geometry: (typeof countriesObject.geometries)[0]) => {
 
 const arcIndex = (ringArc: number) => (ringArc < 0 ? ~ringArc : ringArc);
 
-const ringLons = (ring: number[]) =>
-	ring.flatMap((ringArc) =>
-		simplified.arcs[arcIndex(ringArc)].map((point) => point[0]),
-	);
+const ringPoints = (ring: number[]) =>
+	ring.flatMap((ringArc) => simplified.arcs[arcIndex(ringArc)]);
 
 const unwrappedArcs = new Set<number>();
 const unwrapRing = (ring: number[]) => {
@@ -93,17 +91,38 @@ const unwrapRing = (ring: number[]) => {
 	}
 };
 
+const seamJoinCountries = new Set([
+	"Russia",
+	"Fiji",
+	"New Zealand",
+	"Wallis and Futuna Is.",
+]);
+
 for (const geometry of countriesObject.geometries) {
-	const isRussia =
-		(geometry.properties as { name: string }).name === "Russia";
+	const joinsSeam = seamJoinCountries.has(
+		(geometry.properties as { name: string }).name,
+	);
 	for (const ring of ringsOfGeometry(geometry)) {
-		const lons = ringLons(ring);
+		const lons = ringPoints(ring).map((point) => point[0]);
 		const crossesSeam =
 			lons.some((lon) => lon > 170) && lons.some((lon) => lon < -170);
-		const russiaWestFragment = isRussia && lons.every((lon) => lon < -30);
-		if (crossesSeam || russiaWestFragment) {
+		const westFragment = joinsSeam && lons.every((lon) => lon < -168);
+		if (crossesSeam || westFragment) {
 			unwrapRing(ring);
 		}
+	}
+}
+
+const isFarWestSpeck = (ring: number[]) =>
+	ringPoints(ring).every(
+		([lon, lat]) => lon >= -180 && lon <= -172 && lat > 45,
+	);
+
+for (const geometry of countriesObject.geometries) {
+	if (geometry.type === "MultiPolygon") {
+		geometry.arcs = geometry.arcs.filter(
+			(polygon) => !isFarWestSpeck(polygon[0]),
+		);
 	}
 }
 
@@ -148,7 +167,7 @@ const roundPath = (d: string | null) =>
 		return rounded.endsWith(".0") ? rounded.slice(0, -2) : rounded;
 	});
 
-const [, [maxX, maxY]] = pathGenerator.bounds(countriesCollection);
+const [[minX], [maxX, maxY]] = pathGenerator.bounds(countriesCollection);
 
 const checkpoints = [
 	[0, 0],
@@ -168,7 +187,8 @@ const checkpoints = [
 
 const geometry = {
 	viewBox: {
-		width: Number(maxX.toFixed(1)),
+		x: Number(minX.toFixed(1)),
+		width: Number((maxX - minX).toFixed(1)),
 		height: Number(maxY.toFixed(1)),
 	},
 	projection: {
@@ -198,5 +218,5 @@ fs.writeFileSync(
 );
 
 console.log(
-	`Wrote worldMapGeometry.json: ${geometry.countries.length} countries, viewBox ${geometry.viewBox.width}x${geometry.viewBox.height}`,
+	`Wrote worldMapGeometry.json: ${geometry.countries.length} countries, viewBox ${geometry.viewBox.x} 0 ${geometry.viewBox.width}x${geometry.viewBox.height}`,
 );

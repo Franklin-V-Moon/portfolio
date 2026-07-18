@@ -9,7 +9,7 @@ export const WorldMap = () => {
 	return (
 		<svg
 			className={styles.map}
-			viewBox={`0 0 ${viewBox.width} ${viewBox.height}`}
+			viewBox={`${viewBox.x} 0 ${viewBox.width} ${viewBox.height}`}
 			role='img'
 			aria-label='A world map with a yellow dot on every place Franklin Von Moon has traveled'>
 			<g>

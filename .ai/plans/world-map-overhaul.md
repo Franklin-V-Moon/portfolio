@@ -38,6 +38,14 @@ Implementation notes (deviations from the original plan below):
 - Fixing a self-inflicted wart found during this change: the Pacific shift box
   originally reached latitude -45 and caught New Zealand's Chatham Islands,
   pushing them to 65S and stretching the map. The box now stops at -40.
+- Left-edge crop (Franklin, 2026-07-19): the viewBox now starts at the
+  westernmost kept land (St. Lawrence Island, x 23.7) instead of longitude
+  -180, removing the blank ocean strip left of Alaska. To enable it, the
+  seam-join unwrap was extended to New Zealand (Chatham Islands) and Wallis
+  and Futuna (Futuna), whose seam-hugging islets otherwise pinned the left
+  edge, and mid-ocean Aleutian specks fully within longitude -180..-172 above
+  latitude 45 are dropped. Final viewBox: 23.7 0 1003.4x394.5. Pins needed no
+  change - the crop is only a viewBox origin shift.
 - Phase 1 shipped a single `WorldMap.tsx` rather than the
   MapCountries/MapPins split — the split can arrive with phase 2 state if
   needed.
