@@ -30,9 +30,16 @@ export type TravelVideoMetaData = {
 	extras?: Extras;
 };
 
+export type MapLocation = {
+	place: string;
+	coordinates: [number, number];
+	countryId: string;
+};
+
 export type Extras = {
 	countries?: string[];
 	trailer?: string;
+	mapLocations?: MapLocation[];
 	deductCountryCount?: number;
 	scorecard?: {
 		beauty: number[];

@@ -21,6 +21,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		restricted: false,
 		extras: {
 			countries: ["China"],
+			mapLocations: [
+				{
+					place: "Guangzhou",
+					coordinates: [113.2644, 23.1291],
+					countryId: "China",
+				},
+			],
 			trailer: "chinatrailer",
 			scorecard: {
 				beauty: [7],
@@ -112,6 +119,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		restricted: false,
 		extras: {
 			countries: ["Nepal"],
+			mapLocations: [
+				{
+					place: "Kathmandu",
+					coordinates: [85.324, 27.7172],
+					countryId: "Nepal",
+				},
+			],
 			trailer: "nepaltrailer",
 			scorecard: {
 				beauty: [10],
@@ -178,6 +192,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		restricted: true,
 		extras: {
 			countries: ["Indonesia"],
+			mapLocations: [
+				{
+					place: "Jakarta",
+					coordinates: [106.8456, -6.2088],
+					countryId: "Indonesia",
+				},
+			],
 			trailer: "baliindonesiatrailer",
 			scorecard: {
 				beauty: [7],
@@ -242,6 +263,18 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		restricted: false,
 		extras: {
 			countries: ["Malaysia", "Singapore"],
+			mapLocations: [
+				{
+					place: "Kuala Lumpur",
+					coordinates: [101.6869, 3.139],
+					countryId: "Malaysia",
+				},
+				{
+					place: "Singapore",
+					coordinates: [103.8198, 1.3521],
+					countryId: "Singapore",
+				},
+			],
 			trailer: "malaysiasingaporetrailer",
 			scorecard: {
 				beauty: [3, 6],
@@ -318,6 +351,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["New Zealand"],
+			mapLocations: [
+				{
+					place: "Wellington",
+					coordinates: [174.7756, -41.2866],
+					countryId: "New Zealand",
+				},
+			],
 			trailer: "newzealandtrailer",
 			scorecard: {
 				beauty: [8],
@@ -391,6 +431,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Japan"],
+			mapLocations: [
+				{
+					place: "Tokyo",
+					coordinates: [139.6503, 35.6762],
+					countryId: "Japan",
+				},
+			],
 			trailer: "japantrailer",
 			scorecard: {
 				beauty: [8],
@@ -499,6 +546,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Thailand"],
+			mapLocations: [
+				{
+					place: "Bangkok",
+					coordinates: [100.5018, 13.7563],
+					countryId: "Thailand",
+				},
+			],
 			trailer: "thailandtrailer",
 			scorecard: {
 				beauty: [7],
@@ -565,6 +619,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["South Korea"],
+			mapLocations: [
+				{
+					place: "Seoul",
+					coordinates: [126.978, 37.5665],
+					countryId: "South Korea",
+				},
+			],
 			trailer: "southkoreatrailer",
 			scorecard: {
 				beauty: [5],
@@ -641,6 +702,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["United Arab Emirates"],
+			mapLocations: [
+				{
+					place: "Abu Dhabi",
+					coordinates: [54.3773, 24.4539],
+					countryId: "United Arab Emirates",
+				},
+			],
 			trailer: "uaetrailer",
 			scorecard: {
 				beauty: [4],
@@ -715,6 +783,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Fiji"],
+			mapLocations: [
+				{
+					place: "Suva",
+					coordinates: [178.4419, -18.1416],
+					countryId: "Fiji",
+				},
+			],
 			trailer: "fijitrailer",
 			scorecard: {
 				beauty: [3],
@@ -786,6 +861,23 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Cambodia", "Laos", "Vietnam"],
+			mapLocations: [
+				{
+					place: "Phnom Penh",
+					coordinates: [104.9282, 11.5564],
+					countryId: "Cambodia",
+				},
+				{
+					place: "Vientiane",
+					coordinates: [102.6331, 17.9757],
+					countryId: "Laos",
+				},
+				{
+					place: "Hanoi",
+					coordinates: [105.8542, 21.0285],
+					countryId: "Vietnam",
+				},
+			],
 			trailer: "cambodialaosvietnamtrailer",
 			scorecard: {
 				beauty: [2, 4, 6],
@@ -882,6 +974,23 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Taiwan", "Hong Kong", "Macau"],
+			mapLocations: [
+				{
+					place: "Taipei",
+					coordinates: [121.5654, 25.033],
+					countryId: "Taiwan",
+				},
+				{
+					place: "Hong Kong",
+					coordinates: [114.1694, 22.3193],
+					countryId: "Hong Kong",
+				},
+				{
+					place: "Macau",
+					coordinates: [113.5439, 22.1987],
+					countryId: "Macao",
+				},
+			],
 			trailer: "taiwanhongkongmacautrailer",
 			scorecard: {
 				beauty: [6, 5, 2],
@@ -963,6 +1072,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["India"],
+			mapLocations: [
+				{
+					place: "New Delhi",
+					coordinates: [77.209, 28.6139],
+					countryId: "India",
+				},
+			],
 			trailer: "indiatrailer",
 			scorecard: {
 				beauty: [3],
@@ -1054,6 +1170,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Oman"],
+			mapLocations: [
+				{
+					place: "Muscat",
+					coordinates: [58.3829, 23.588],
+					countryId: "Oman",
+				},
+			],
 			trailer: "omantrailer",
 			scorecard: {
 				beauty: [3],
@@ -1121,6 +1244,18 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Kuwait", "Iraqi Kurdistan"],
+			mapLocations: [
+				{
+					place: "Kuwait City",
+					coordinates: [47.9774, 29.3759],
+					countryId: "Kuwait",
+				},
+				{
+					place: "Erbil",
+					coordinates: [44.0092, 36.1911],
+					countryId: "Iraq",
+				},
+			],
 			trailer: "kuwaitiraqikurdistantrailer",
 			scorecard: {
 				beauty: [1, 3],
@@ -1199,6 +1334,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Jordan"],
+			mapLocations: [
+				{
+					place: "Amman",
+					coordinates: [35.9284, 31.9454],
+					countryId: "Jordan",
+				},
+			],
 			trailer: "jordantrailer",
 			scorecard: {
 				beauty: [3],
@@ -1290,6 +1432,18 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Saudi Arabia", "Bahrain"],
+			mapLocations: [
+				{
+					place: "Riyadh",
+					coordinates: [46.6753, 24.7136],
+					countryId: "Saudi Arabia",
+				},
+				{
+					place: "Manama",
+					coordinates: [50.586, 26.2285],
+					countryId: "Bahrain",
+				},
+			],
 			trailer: "saudiarabiabahraintrailer",
 			scorecard: {
 				beauty: [1, 1],
@@ -1372,6 +1526,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Iran"],
+			mapLocations: [
+				{
+					place: "Tehran",
+					coordinates: [51.389, 35.6892],
+					countryId: "Iran",
+				},
+			],
 			trailer: "irantrailer",
 			scorecard: {
 				beauty: [3],
@@ -1494,6 +1655,23 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Armenia", "Georgia", "Azerbaijan"],
+			mapLocations: [
+				{
+					place: "Yerevan",
+					coordinates: [44.4991, 40.1792],
+					countryId: "Armenia",
+				},
+				{
+					place: "Tbilisi",
+					coordinates: [44.8271, 41.7151],
+					countryId: "Georgia",
+				},
+				{
+					place: "Baku",
+					coordinates: [49.8671, 40.4093],
+					countryId: "Azerbaijan",
+				},
+			],
 			trailer: "armeniageorgiaazerbaijantrailer",
 			scorecard: {
 				beauty: [5, 6, 2],
@@ -1609,6 +1787,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Greece"],
+			mapLocations: [
+				{
+					place: "Athens",
+					coordinates: [23.7275, 37.9838],
+					countryId: "Greece",
+				},
+			],
 			trailer: "greecetrailer",
 			scorecard: {
 				beauty: [6],
@@ -1702,6 +1887,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		reelLinks: ["https://www.instagram.com/reel/C_cuUwoigGb/?hl=en"],
 		extras: {
 			countries: ["Turkey"],
+			mapLocations: [
+				{
+					place: "Ankara",
+					coordinates: [32.8597, 39.9334],
+					countryId: "Turkey",
+				},
+			],
 			trailer: "turkeytrailer",
 			scorecard: {
 				beauty: [4],
@@ -1790,6 +1982,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		reelLinks: ["https://www.instagram.com/reel/C_lNBtKCH0H/?hl=en"],
 		extras: {
 			countries: ["Lebanon"],
+			mapLocations: [
+				{
+					place: "Beirut",
+					coordinates: [35.5018, 33.8938],
+					countryId: "Lebanon",
+				},
+			],
 			trailer: "lebanontrailer",
 			scorecard: {
 				beauty: [3],
@@ -1862,6 +2061,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		reelLinks: ["https://www.instagram.com/reel/DAGBpdVCaEJ/?hl=en"],
 		extras: {
 			countries: ["Syria"],
+			mapLocations: [
+				{
+					place: "Damascus",
+					coordinates: [36.2765, 33.5138],
+					countryId: "Syria",
+				},
+			],
 			trailer: "syriatrailer",
 			scorecard: {
 				beauty: [7],
@@ -1956,6 +2162,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Cyprus"],
+			mapLocations: [
+				{
+					place: "Nicosia",
+					coordinates: [33.3823, 35.1856],
+					countryId: "Cyprus",
+				},
+			],
 			trailer: "cyprustrailer",
 			scorecard: {
 				beauty: [4],
@@ -2022,6 +2235,18 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		reelLinks: ["https://www.instagram.com/reel/DASgqv-CzW-/?hl=en"],
 		extras: {
 			countries: ["Israel", "Palestine"],
+			mapLocations: [
+				{
+					place: "Jerusalem",
+					coordinates: [35.2137, 31.7683],
+					countryId: "Israel",
+				},
+				{
+					place: "Ramallah",
+					coordinates: [35.2034, 31.9038],
+					countryId: "Palestine",
+				},
+			],
 			trailer: "israelpalestinetrailer",
 			scorecard: {
 				beauty: [4, 3],
@@ -2114,6 +2339,18 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1B2LnxZODyNkqD3TKdZg9PBc0qe0fvXbA?usp=sharing",
 		extras: {
 			countries: ["Philippines", "Brunei"],
+			mapLocations: [
+				{
+					place: "Manila",
+					coordinates: [120.9842, 14.5995],
+					countryId: "Philippines",
+				},
+				{
+					place: "Bandar Seri Begawan",
+					coordinates: [114.9398, 4.9031],
+					countryId: "Brunei",
+				},
+			],
 			trailer: "philippinesbruneitrailer",
 			scorecard: {
 				beauty: [3, 3],
@@ -2182,6 +2419,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1maUl4djBYlTRbgBo7WrUQYfB8Xdc0mrT?usp=sharing",
 		extras: {
 			countries: ["Timor-Leste"],
+			mapLocations: [
+				{
+					place: "Dili",
+					coordinates: [125.5603, -8.5569],
+					countryId: "Timor-Leste",
+				},
+			],
 			trailer: "timorlestetrailer",
 			scorecard: {
 				beauty: [3],
@@ -2273,6 +2517,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1_D1GjrhBz6rtuw8-4xNWFXlxmUi5axpZ?usp=sharing",
 		extras: {
 			countries: ["Bangladesh"],
+			mapLocations: [
+				{
+					place: "Dhaka",
+					coordinates: [90.4125, 23.8103],
+					countryId: "Bangladesh",
+				},
+			],
 			trailer: "bangladeshtrailer",
 			scorecard: {
 				beauty: [1],
@@ -2372,6 +2623,18 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1p724j3uqLAlkelWtiekMf1LUhbpzw-Jb?usp=sharing",
 		extras: {
 			countries: ["East India", "Bhutan"],
+			mapLocations: [
+				{
+					place: "Darjeeling",
+					coordinates: [88.2663, 27.041],
+					countryId: "India",
+				},
+				{
+					place: "Thimphu",
+					coordinates: [89.639, 27.4728],
+					countryId: "Bhutan",
+				},
+			],
 			trailer: "bhutaneastindiatrailer",
 			deductCountryCount: 1,
 			scorecard: {
@@ -2462,6 +2725,18 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1z5GgatabgWeQEKrbZkZZDSOCS_xuEV6r?usp=sharing",
 		extras: {
 			countries: ["Maldives", "Sri Lanka"],
+			mapLocations: [
+				{
+					place: "Male",
+					coordinates: [73.5093, 4.1755],
+					countryId: "Maldives",
+				},
+				{
+					place: "Colombo",
+					coordinates: [79.8612, 6.9271],
+					countryId: "Sri Lanka",
+				},
+			],
 			trailer: "maldivessrilankatrailer",
 			scorecard: {
 				beauty: [5, 3],
@@ -2543,6 +2818,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/14vEAX2n-dlTqZ59ywDNLbIte6FeClEV4?usp=sharing",
 		extras: {
 			countries: ["Pakistan"],
+			mapLocations: [
+				{
+					place: "Islamabad",
+					coordinates: [73.0479, 33.6844],
+					countryId: "Pakistan",
+				},
+			],
 			trailer: "pakistantrailer",
 			scorecard: {
 				beauty: [3],
@@ -2656,6 +2938,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "French"],
 			countries: ["afghanistan"],
+			mapLocations: [
+				{
+					place: "Kabul",
+					coordinates: [69.2075, 34.5553],
+					countryId: "Afghanistan",
+				},
+			],
 			trailer: "afghanistantrailer",
 			scorecard: {
 				beauty: [4],
@@ -2949,6 +3238,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1jS1RladwBgOPzbq58GO8oHMkTeNdjtUY?usp=sharing",
 		extras: {
 			countries: ["myanmar"],
+			mapLocations: [
+				{
+					place: "Naypyidaw",
+					coordinates: [96.0785, 19.7633],
+					countryId: "Myanmar",
+				},
+			],
 			trailer: "myanmartrailer",
 			scorecard: {
 				beauty: [4],
@@ -3121,6 +3417,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["mongolia"],
+			mapLocations: [
+				{
+					place: "Ulaanbaatar",
+					coordinates: [106.9057, 47.8864],
+					countryId: "Mongolia",
+				},
+			],
 			trailer: "mongoliatrailer",
 			scorecard: {
 				beauty: [8],
@@ -3220,6 +3523,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1go-otWd7v6xXLtbt0UFKk5_ZtEZRgjEH?usp=sharing",
 		extras: {
 			countries: ["China"],
+			mapLocations: [
+				{
+					place: "Beijing",
+					coordinates: [116.4074, 39.9042],
+					countryId: "China",
+				},
+			],
 			trailer: "china2trailer",
 			scorecard: {
 				beauty: [7],
@@ -3340,6 +3650,13 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			deductCountryCount: 1,
 			countries: ["Thailand"],
+			mapLocations: [
+				{
+					place: "Chiang Mai",
+					coordinates: [98.9853, 18.7883],
+					countryId: "Thailand",
+				},
+			],
 			trailer: "thailand2trailer",
 			scorecard: {
 				affordability: [8],
