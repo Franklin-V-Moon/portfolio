@@ -1,6 +1,36 @@
 # World Map Overhaul
 
-Status: Phases 0 and 1 implemented on main (2026-07-19) — SVG map with capital
+Status: COMPLETE — Phases 0, 1, and 2 implemented on branch worldmap-overhaul
+(2026-07-19). Phase 2 adds pin selection, group country highlighting, place
+labels linking to trip pages, and the evasive trailer player. Phase 3 remains
+future work (see Enhancements.md). Phase 2 decisions made autonomously:
+
+- Open question 2 (path to trip page): yes — the place label is a link;
+  clicking it navigates to /travel/[link]. Tooltip reads "Watch {trip}".
+- Open question 3 (mobile density): accepted for now; pins get large invisible
+  hit circles (18 viewBox units on touch widths, 9 on desktop) so taps work in
+  clusters. No zoom/merging built.
+- Open question 4 (og image): /travel og:image and twitter:image now point to
+  a 1200x630 render of the new map (public/travel/world-map-og.png), replacing
+  the long-expired GitHub JWT URLs. Regenerate by screenshotting /travel at
+  1200x630 after visual changes.
+- Open question 5 (label format): "PLACE YEAR" (e.g. "ERBIL 2023"), uppercase
+  letterspaced, dark halo for contrast, yellow on hover.
+- Open question 6 (entrance animation): none — map stays static for
+  Lighthouse; only the label and trailer fade in on selection (300-400ms),
+  disabled under prefers-reduced-motion.
+- Evasion implementation: four corner slots (pure logic in evasion.ts); the
+  player docks diagonally opposite the selected pin, and on rAF-throttled
+  mousemove flees to the farthest slot from the cursor, never entering the
+  pin's quadrant. pointer-events: none guarantees clicks always pass through
+  even mid-flight. Touch devices get the docked corner with no evasion. Video
+  keeps autoplaying under reduced motion (the user explicitly selected it);
+  only the movement animations are disabled.
+- Selection model: pin click/Enter/Space toggles; background click or Escape
+  deselects; selecting any pin in a multi-country trip highlights all its
+  countries and marks all its pins.
+
+Original phase 0/1 status: Phases 0 and 1 implemented — SVG map with capital
 dots live on /travel, old page/PNG removed. Phase 2 (interactivity) not started.
 
 Implementation notes (deviations from the original plan below):

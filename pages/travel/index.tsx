@@ -130,7 +130,7 @@ const Travel = ({
 				<meta property='og:description' content={tabsData[2].pageDescription} />
 				<meta
 					property='og:image'
-					content='https://private-user-images.githubusercontent.com/42459707/367673150-764558d9-5f59-4574-9268-728ad7498b2f.png'
+					content='https://franklin-v-moon.dev/travel/world-map-og.png'
 				/>
 				<meta
 					property='og:url'
@@ -148,7 +148,7 @@ const Travel = ({
 				/>
 				<meta
 					name='twitter:image'
-					content='https://private-user-images.githubusercontent.com/42459707/367673150-764558d9-5f59-4574-9268-728ad7498b2f.png'
+					content='https://franklin-v-moon.dev/travel/world-map-og.png'
 				/>
 
 				<script
