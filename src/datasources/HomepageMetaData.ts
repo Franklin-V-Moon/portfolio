@@ -17,7 +17,7 @@ export const forYouMetaData: ForYouMetaData[] = [
 		logo: "postproduction",
 		title: "Visual Effects",
 		paragraph:
-			"I want to capture snapshots of our world and enhance them, from special moments to efficient render pipelines.",
+			"I want to capture beautiful moments of life and our world. Then enhance them with an efficient modern render pipelines.",
 	},
 ];
 
@@ -87,10 +87,16 @@ export const workExperienceMetaData = [
 		period: "2019 - Present",
 		experiences: [
 			{
+				location: "Bucharest, Romania",
+				title: "Full Stack Software Engineer",
+				subRole: "Consulting Firm",
+				period: "2026 - Present",
+			},
+			{
 				location: "Bangkok, Thailand",
 				title: "Cloud DevOps Engineer",
 				subRole: "Low-Cost Airline",
-				period: "2023 - Present",
+				period: "2023 - 2025",
 			},
 			{
 				title: "Software Engineer",
@@ -98,9 +104,9 @@ export const workExperienceMetaData = [
 				period: "2022 - 2023",
 			},
 			{
+				location: "Melbourne, Australia",
 				title: "Graduate Developer",
 				subRole: "Employment Marketplace",
-				location: "Melbourne, Australia",
 				period: "2021 - 2022",
 			},
 			{

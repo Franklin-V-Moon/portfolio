@@ -15,14 +15,18 @@
 }
 
 .columnContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: 20px;
+	row-gap: 25px;
 
 	padding: 0 30px 0 60px;
 	margin-bottom: 25px;
 
 	@include breakpoint(medium) {
+		grid-template-columns: repeat(4, 1fr);
+		column-gap: 30px;
+
 		padding: 0 50px 0 100px;
 		margin-bottom: 25px;
 	}
