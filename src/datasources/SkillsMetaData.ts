@@ -283,6 +283,13 @@ export const languagesMetaData: ColumnData[] = [
 		description: Description.Proficient,
 		data: [
 			{
+				title: "RDS & DynamoDB",
+				knowledge:
+					"I'm proficient with AWS RDS and DynamoDB, setting up and maintaining databases with various budget concerns, handling automated backups and read replicas, and tuning performance for scalability and high availability across multiple environments, keeping track of costs.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
 				title: "EKS",
 				knowledge:
 					"I'm comfortable setting up and interfacing with AWS Elastic Kubernetes Service both self managed and auto-mode, including provisioning clusters, deploying containerized applications with Kubernetes manifests, and managing deployments and scaling using kubectl.",
@@ -302,13 +309,6 @@ export const languagesMetaData: ColumnData[] = [
 					"I've used lambda functions to solve a range or challenges including for small repetitive pipeline build tasks all the way to using it as an entire backend to avoid cold starts for infrequently used webapps.",
 				proficiency: Proficient,
 				description: Description.Capable,
-			},
-			{
-				title: "RDS & DynamoDB",
-				knowledge:
-					"I'm proficient with AWS RDS and DynamoDB, setting up and maintaining databases with various budget concerns, handling automated backups and read replicas, and tuning performance for scalability and high availability across multiple environments, keeping track of costs.",
-				proficiency: Proficient,
-				description: Description.Proficient,
 			},
 			{
 				title: "Firebase",
@@ -339,6 +339,13 @@ export const languagesMetaData: ColumnData[] = [
 				description: Description.Capable,
 			},
 			{
+				title: "Github Actions",
+				knowledge:
+					"GitHub Actions is a tool that allows users to automate processes and workflows within a GitHub repository, such as building and deploying code, running tests, and integrating with external services. I often use this to easily deploy smaller projects and ones where using less services are a priority.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
 				title: "Buildkite",
 				knowledge:
 					"Buildkite is a tool for continuous integration and continuous delivery that allows users to build, test, and deploy their software projects automatically, ensuring that their code is always up to date and in a deployable state. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
@@ -349,13 +356,6 @@ export const languagesMetaData: ColumnData[] = [
 				title: "Travis CI",
 				knowledge:
 					"Travis CI is a continuous integration tool that allows developers to automatically build, test, and deploy their software projects, typically as part of a larger development workflow. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Github Actions",
-				knowledge:
-					"GitHub Actions is a tool that allows users to automate processes and workflows within a GitHub repository, such as building and deploying code, running tests, and integrating with external services. I often use this to easily deploy smaller projects and ones where using less services are a priority.",
 				proficiency: Proficient,
 				description: Description.Proficient,
 			},

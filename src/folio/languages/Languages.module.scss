@@ -40,15 +40,16 @@
 	border: none;
 	padding: 0;
 	outline: inherit;
-	text-align: left;
+	text-align: center;
 	display: block;
+	width: fit-content;
 	font-size: 1.17em;
 	font-weight: bold;
 	font-family: inherit;
 	color: $white;
 
 	cursor: pointer;
-	margin-bottom: 18px;
+	margin: 0px auto 25px;
 }
 
 .chipContainer {
@@ -68,7 +69,7 @@
 			position: absolute;
 			inset: 0;
 			border-radius: inherit;
-			padding: 1px;
+			padding: 1.5px;
 			background: linear-gradient(to bottom right, #2781e7, #90caf9);
 			mask:
 				linear-gradient(#fff 0 0) content-box,

@@ -5,7 +5,7 @@ export const STOCK_REDUCTION = 0.5;
 export const TRAINING_ALLOWANCE = 0.9;
 export const GENERAL_ALLOWANCES = 0.8;
 
-// Numbers represent USD, e.g 8000 = $8,000aud
+// Numbers represent USD, e.g 8000 = $8,000usd
 export const salaryExpectations = {
 	fullyRemote: 6000,
 	hybridRemote: 3000,
