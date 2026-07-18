@@ -50,13 +50,6 @@ export const languagesMetaData: ColumnData[] = [
 				description: Description.HighlyProficient,
 			},
 			{
-				title: "Jest",
-				knowledge:
-					"I am effective at using Jest to write and run tests for various back and frontend applications. I am familiar with the various assertion methods and test utilities that Jest provides, and am able to troubleshoot and debug any issues that may arise during testing.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
 				title: "NextJS",
 				knowledge:
 					"I have a strong understanding of Vercel's NextJS features like server-side rendering and code splitting. I am proficient in applying these features in various projects and am confident in my ability to use NextJS to build high-quality applications. I am also capable of troubleshooting any issues that may arise.",
@@ -71,23 +64,9 @@ export const languagesMetaData: ColumnData[] = [
 				description: Description.Proficient,
 			},
 			{
-				title: "Flask",
-				knowledge:
-					"I can confidently say that I am very familiar with it and use it regularly in my projects. I have a strong understanding of its features and capabilities, and am able to effectively apply them to build web applications. In my experience, Python Flask has proven to be a valuable tool for building web applications quickly and efficiently. Its simplicity and flexibility make it an excellent choice for a wide range of projects.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
 				title: "CSS/SASS",
 				knowledge:
 					"I have used CSS in numerous projects in the past and have found it to be an invaluable tool for styling and formatting the front-end of web applications. I appreciate the flexibility and control that CSS gives me as a developer, and I am confident in my ability to use it effectively to create visually appealing and user-friendly interfaces.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "HTML",
-				knowledge:
-					"In my experience, HTML has proven to be a core reliable and essential part of any web developers career. It allows me to create well-structured and visually appealing web pages, and I am comfortable using it to implement a wide range of design elements in various methods.",
 				proficiency: HighlyProficient,
 				description: Description.HighlyProficient,
 			},
@@ -122,13 +101,6 @@ export const languagesMetaData: ColumnData[] = [
 				description: Description.Capable,
 			},
 			{
-				title: "Node",
-				knowledge:
-					"I have consistently utilized NodeJS in my professional capacity, and have gained a thorough understanding of its strengths and limitations. NodeJS boasts a high capacity for handling multiple concurrent connections and is known for its efficiency and lightweight design. It is particularly well-suited for developing real-time web applications. However, it should be noted that NodeJS operates on a single thread, which can potentially present certain challenges.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
 				title: "GraphQL",
 				knowledge:
 					"I've worked with GraphQL on various projects and am familiar with its benefits and drawbacks. For example, some benefits include the ability to request specific data from an API, usage of a single endpoint for all data queries, and the ability to easily update and evolve the API. Drawbacks include the need for a GraphQL server, the learning curve for developers who are new to the technology, and the potential for performance issues if not implemented correctly.",
@@ -136,20 +108,6 @@ export const languagesMetaData: ColumnData[] = [
 				description: Description.Proficient,
 			},
 
-			{
-				title: "ExpressJS",
-				knowledge:
-					"I find it to be a valuable tool in my work. I use it regularly in my projects and have a strong understanding of its features and capabilities. ExpressJS is a lightweight, flexible framework that makes it easy to build web applications and APIs. It provides a wide range of features and middleware that can be easily customized and integrated into any project. I appreciate the simplicity and power of ExpressJS, and find it to be an essential part of my toolkit as a developer.",
-				proficiency: Capable,
-				description: Description.Capable,
-			},
-			{
-				title: "PyTest",
-				knowledge:
-					" I find it to be a valuable tool for testing my code. PyTest makes it easy to write and execute tests, and the ability to run tests in parallel helps to speed up the testing process. In addition, the rich set of features offered by PyTest, such as fixture support and the ability to customize test discovery, make it a flexible and powerful testing framework.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
 			{
 				title: "Selenium",
 				knowledge:
@@ -235,13 +193,6 @@ export const languagesMetaData: ColumnData[] = [
 					"Helm is a package manager for Kubernetes that simplifies deployment by packaging manifests into reusable charts, enabling consistent, version-controlled infrastructure as code. I’ve used it both to rapidly scale resources in EKS clusters and to develop custom charts that ensure reliable, repeatable application deployments.",
 				proficiency: Capable,
 				description: Description.Proficient,
-			},
-			{
-				title: "Bash / Shell",
-				knowledge:
-					"BASH/Shell allows me to automate tasks and perform actions quickly and efficiently on the command line. I have used it to manage and manipulate files and directories, run scripts, and execute commands on remote servers.",
-				proficiency: Capable,
-				description: Description.Capable,
 			},
 		],
 	},
@@ -425,13 +376,6 @@ export const languagesMetaData: ColumnData[] = [
 				description: Description.Proficient,
 			},
 			{
-				title: "JIRA",
-				knowledge:
-					"The Jira REST API provides programmatic access to issues, workflows, and projects, enabling seamless automation and integration with external systems. I’m proficient at leveraging it to connect Jira with tools like GitHub, Backstage, AWS, and Microsoft Teams, creating tightly integrated workflows that streamline development and reduce manual overhead.",
-				proficiency: Capable,
-				description: Description.Capable,
-			},
-			{
 				title: "Git",
 				knowledge:
 					"Git allows for version control of code, which means I can track changes made to my code over time and easily revert back to previous versions if necessary. It also makes it easy to collaborate with other developers by allowing us to work on the same codebase without overwriting each other's changes. Overall, I find Git to be an invaluable tool for any developer, as it helps to streamline the development process and make it more efficient and effective.",
@@ -451,27 +395,6 @@ export const languagesMetaData: ColumnData[] = [
 					"After I feel confident with C# and dotNET I hope to explore game development with Unity.",
 				proficiency: Learning,
 				description: Description.Learning,
-			},
-			{
-				title: "USS",
-				knowledge:
-					"Along with Unity I have a strong understanding of the UI Toolkit and have used it to build scalable extensible user interfaces",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "UXML",
-				knowledge:
-					"Along with Unity I have a strong understanding of the UI Toolkit and have used UXML to build scalable extensible user interfaces ",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "JQuery",
-				knowledge:
-					"I've used Jquery on various legacy applications and understand it's a valuable tool for manipulating the DOM and adding interactivity to my web applications. However, it is important to consider the drawbacks of using Jquery, it can add a significant amount of weight to a page if many Jquery plugins are used, and it is not as performant as some newer JavaScript libraries and frameworks.",
-				proficiency: Capable,
-				description: Description.Capable,
 			},
 		],
 	},
