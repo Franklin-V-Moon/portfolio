@@ -1,6 +1,27 @@
 # World Map Overhaul
 
-Status: research and planning complete, no code written yet.
+Status: Phases 0 and 1 implemented on main (2026-07-19) — SVG map with capital
+dots live on /travel, old page/PNG removed. Phase 2 (interactivity) not started.
+
+Implementation notes (deviations from the original plan below):
+
+- Simplification used `topojson-simplify` in the generation script instead of a
+  mapshaper pipeline; quantile 0.05 gives 184KB raw / 63KB gzipped with every
+  small entity (Singapore, Bahrain, Maldives, Hong Kong, Macao, Palestine)
+  surviving. World-atlas spells it "Macao", not "Macau".
+- Pins are projected client-side by a 15-line closed-form Equal Earth function
+  (`src/travel/world-map/equalEarth.ts`) verified against d3-geo checkpoints
+  emitted by the generation script, so adding a trip never requires
+  regenerating geometry and the client still ships zero d3.
+- Phase 1 shipped a single `WorldMap.tsx` rather than the
+  MapCountries/MapPins split — the split can arrive with phase 2 state if
+  needed.
+- Pin cities chosen during implementation: China 2017 → Guangzhou (trip was
+  the south), China 2 → Beijing, Thailand 2 → Chiang Mai, Indonesia →
+  Jakarta, Israel → Jerusalem, Palestine → Ramallah, East India → Darjeeling,
+  Myanmar → Naypyidaw, Sri Lanka → Colombo.
+- `/travel/world-map` now 308-redirects to `/travel` via `next.config.js`.
+- The `.afphoto` design sources were kept in `public/travel/`.
 Related: `Enhancements.md` item 2 ("New world map concept") — this plan is the concrete version of that idea.
 
 ## Goal
@@ -268,24 +289,19 @@ desktop/tablet/mobile.
   hover-to-scrub video moments, auto-playing overlay pointing at countries, "skip
   to" location focus.
 
-## Open questions for Franklin
+## Open questions for Franklin (remaining after phase 1)
 
-1. Israel pin: Jerusalem or Tel Aviv?
-2. Indonesia: Jakarta (capital rule) or Denpasar (where the trip actually was)? Same
-   spirit for China 2017 (Beijing vs Guangzhou/Shaoguan) and Myanmar (Naypyidaw vs
-   Yangon).
-3. East India pin: Darjeeling or Kolkata?
-4. China 2 and Thailand 2: which hub cities?
-5. Should clicking a pin (phase 2) also offer a path to the trip page — e.g. the
+1. Any pin cities to swap? Defaults used: Jerusalem, Ramallah, Jakarta,
+   Guangzhou (China 2017), Beijing (China 2), Chiang Mai (Thailand 2),
+   Darjeeling, Naypyidaw. Changing one is a single edit in TravelMetaData.
+2. Should clicking a pin (phase 2) also offer a path to the trip page — e.g. the
    place label doubles as a link to `/travel/[link]`, or a second click navigates?
    The trailer alone plays a video but gives no route to the full experience.
-6. Mobile density: the Gulf cluster (Kuwait, Bahrain, UAE, Oman) and
-   HK/Macau/Taipei will nearly overlap at phone widths. Acceptable for phase 1, or
-   should we plan dot merging/slight zoom-on-tap from the start?
-7. Keep the `.afphoto` design source files in `public/travel/` or archive them out
-   of the repo?
-8. New social/og image: render one from the new map, or keep it out of scope?
-9. Palestine pin: Ramallah or Bethlehem?
-10. Phase 2 labels: city name only, or "City — Trip Title (Year)"?
-11. Any desire for a subtle entrance animation (countries fade/draw in on first
-    load), or keep the map completely static for Lighthouse?
+3. Mobile density: the Gulf cluster and HK/Macau/Taipei nearly overlap at phone
+   widths (confirmed in phase 1 screenshots). Acceptable, or plan dot
+   merging/slight zoom-on-tap for phase 2?
+4. New social/og image: render one from the new map, or keep it out of scope?
+   (The old og:image URLs on /travel are expired GitHub JWT links.)
+5. Phase 2 labels: city name only, or "City — Trip Title (Year)"?
+6. Any desire for a subtle entrance animation (countries fade/draw in on first
+   load), or keep the map completely static for Lighthouse?
