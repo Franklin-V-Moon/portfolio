@@ -113,42 +113,6 @@
 	}
 }
 
-.freeMap {
-	overflow: hidden;
-	touch-action: manipulation;
-}
-
-.mapImage {
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none; /* Safari */
-	-khtml-user-select: none; /* Konqueror HTML */
-	-moz-user-select: none; /* Old versions of Firefox */
-	-ms-user-select: none; /* Internet Explorer/Edge */
-	user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-	-webkit-user-drag: none; /* Prevent dragging on iOS */
-	pointer-events: none; /* Block all mouse/touch events on the element */
-	overscroll-behavior-y: contain;
-}
-.mapGesture {
-	text-align: center;
-	margin-top: 100px;
-	color: $brightGrey;
-}
-
-.mapTitle {
-	text-align: center;
-	font-weight: bold;
-	font-size: 30px;
-	margin-top: 50px;
-
-	@extend .defaultYellowGradient;
-}
-
-.mapReturnContainer {
-	color: $brightGrey;
-	margin: 0 0 30px 5%;
-}
-
 .videoToggleContainer {
 	color: $brightGrey;
 	filter: drop-shadow(0px 0px 0.5px #000000);
