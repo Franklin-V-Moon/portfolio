@@ -53,6 +53,26 @@ for (const arc of simplified.arcs) {
 const allCountries = simplified.objects
 	.countries as GeometryCollection<{ name: string }>;
 
+const russia = allCountries.geometries.find(
+	(geometry) => (geometry.properties as { name: string }).name === "Russia",
+);
+const russiaArcIndices = new Set<number>();
+const collectArcIndices = (arcs: unknown) => {
+	if (typeof arcs === "number") {
+		russiaArcIndices.add(arcs < 0 ? ~arcs : arcs);
+	} else if (Array.isArray(arcs)) {
+		arcs.forEach(collectArcIndices);
+	}
+};
+collectArcIndices((russia as unknown as { arcs: unknown }).arcs);
+for (const index of russiaArcIndices) {
+	for (const point of simplified.arcs[index]) {
+		if (point[0] < -30) {
+			point[0] = 179.999;
+		}
+	}
+}
+
 const countriesObject = {
 	...allCountries,
 	geometries: allCountries.geometries.filter(

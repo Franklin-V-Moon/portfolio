@@ -22,6 +22,13 @@ Implementation notes (deviations from the original plan below):
   from the generated JSON, so future pins in that region stay aligned. The
   shift box starts at longitude -177.5 so Fiji's antimeridian-crossing polygon
   is untouched (verified no tearing).
+- Russia's antimeridian overflow (Chukotka's western-hemisphere tip, Wrangel
+  Island's far half, Big Diomede) is clamped to longitude 179.999 in the
+  generation script so Russia renders entirely on the right edge with a clean
+  vertical cut at the seam, instead of bleeding onto the map's left side
+  (Franklin, 2026-07-19: "keep it clean even if not realistic"). The clamp
+  only touches arcs referenced by Russia's geometry, so US islands in the same
+  longitude band (St. Lawrence, Little Diomede) are unaffected.
 - Phase 1 shipped a single `WorldMap.tsx` rather than the
   MapCountries/MapPins split — the split can arrive with phase 2 state if
   needed.
