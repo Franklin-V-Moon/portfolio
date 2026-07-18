@@ -1,7 +1,5 @@
 import geometry from "../../generated/worldMapGeometry.json";
 
-const RADIANS = Math.PI / 180;
-
 const shiftLonLat = (lon: number, lat: number): [number, number] => {
 	const {
 		lonMin,
@@ -25,8 +23,5 @@ export const projectToMap = (
 	const [lon, lat] = shiftLonLat(longitude, latitude);
 	const { scale, translateX, translateY } = geometry.projection;
 
-	return [
-		translateX + scale * lon * RADIANS,
-		translateY - scale * lat * RADIANS,
-	];
+	return [translateX + scale * lon, translateY - scale * lat];
 };

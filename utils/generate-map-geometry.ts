@@ -1,18 +1,19 @@
 import fs from "fs";
 import path from "path";
-import { geoEquirectangular, geoPath } from "d3-geo";
+import { geoPath, geoTransform } from "d3-geo";
 import { feature, mesh } from "topojson-client";
 import { presimplify, quantile, simplify } from "topojson-simplify";
 import type { FeatureCollection, Geometry } from "geojson";
 import type { Topology, GeometryCollection } from "topojson-specification";
 
 const SIMPLIFY_QUANTILE = 0.05;
-const VIEWBOX_WIDTH = 1000;
+const WORLD_WIDTH = 1000;
+const UNITS_PER_DEGREE = WORLD_WIDTH / 360;
 
 const pacificShift = {
 	lonMin: -177.5,
 	lonMax: -125,
-	latMin: -45,
+	latMin: -40,
 	latMax: 45,
 	targetLon: -100,
 	closerFactor: 0.35,
@@ -53,26 +54,6 @@ for (const arc of simplified.arcs) {
 const allCountries = simplified.objects
 	.countries as GeometryCollection<{ name: string }>;
 
-const russia = allCountries.geometries.find(
-	(geometry) => (geometry.properties as { name: string }).name === "Russia",
-);
-const russiaArcIndices = new Set<number>();
-const collectArcIndices = (arcs: unknown) => {
-	if (typeof arcs === "number") {
-		russiaArcIndices.add(arcs < 0 ? ~arcs : arcs);
-	} else if (Array.isArray(arcs)) {
-		arcs.forEach(collectArcIndices);
-	}
-};
-collectArcIndices((russia as unknown as { arcs: unknown }).arcs);
-for (const index of russiaArcIndices) {
-	for (const point of simplified.arcs[index]) {
-		if (point[0] < -30) {
-			point[0] = 179.999;
-		}
-	}
-}
-
 const countriesObject = {
 	...allCountries,
 	geometries: allCountries.geometries.filter(
@@ -81,16 +62,85 @@ const countriesObject = {
 	),
 };
 
+const ringsOfGeometry = (geometry: (typeof countriesObject.geometries)[0]) => {
+	if (geometry.type === "Polygon") {
+		return geometry.arcs;
+	}
+	if (geometry.type === "MultiPolygon") {
+		return geometry.arcs.flat(1);
+	}
+	return [];
+};
+
+const arcIndex = (ringArc: number) => (ringArc < 0 ? ~ringArc : ringArc);
+
+const ringLons = (ring: number[]) =>
+	ring.flatMap((ringArc) =>
+		simplified.arcs[arcIndex(ringArc)].map((point) => point[0]),
+	);
+
+const unwrappedArcs = new Set<number>();
+const unwrapRing = (ring: number[]) => {
+	for (const ringArc of ring) {
+		const index = arcIndex(ringArc);
+		if (unwrappedArcs.has(index)) continue;
+		unwrappedArcs.add(index);
+		for (const point of simplified.arcs[index]) {
+			if (point[0] < -30) {
+				point[0] += 360;
+			}
+		}
+	}
+};
+
+for (const geometry of countriesObject.geometries) {
+	const isRussia =
+		(geometry.properties as { name: string }).name === "Russia";
+	for (const ring of ringsOfGeometry(geometry)) {
+		const lons = ringLons(ring);
+		const crossesSeam =
+			lons.some((lon) => lon > 170) && lons.some((lon) => lon < -170);
+		const russiaWestFragment = isRussia && lons.every((lon) => lon < -30);
+		if (crossesSeam || russiaWestFragment) {
+			unwrapRing(ring);
+		}
+	}
+}
+
+let latMax = -Infinity;
+let latMin = Infinity;
+const usedArcs = new Set<number>();
+for (const geometry of countriesObject.geometries) {
+	for (const ring of ringsOfGeometry(geometry)) {
+		for (const ringArc of ring) {
+			usedArcs.add(arcIndex(ringArc));
+		}
+	}
+}
+for (const index of usedArcs) {
+	for (const point of simplified.arcs[index]) {
+		latMax = Math.max(latMax, point[1]);
+		latMin = Math.min(latMin, point[1]);
+	}
+}
+
+const projectPoint = (lon: number, lat: number): [number, number] => [
+	(lon + 180) * UNITS_PER_DEGREE,
+	(latMax - lat) * UNITS_PER_DEGREE,
+];
+
+const projection = geoTransform({
+	point(lon, lat) {
+		const [x, y] = projectPoint(lon, lat);
+		this.stream.point(x, y);
+	},
+});
+const pathGenerator = geoPath(projection);
+
 const countriesCollection = feature(
 	simplified,
 	countriesObject,
 ) as FeatureCollection<Geometry, { name: string }>;
-
-const projection = geoEquirectangular().fitWidth(
-	VIEWBOX_WIDTH,
-	countriesCollection,
-);
-const pathGenerator = geoPath(projection);
 
 const roundPath = (d: string | null) =>
 	(d ?? "").replace(/\d+\.\d+/g, (value) => {
@@ -98,7 +148,7 @@ const roundPath = (d: string | null) =>
 		return rounded.endsWith(".0") ? rounded.slice(0, -2) : rounded;
 	});
 
-const [, [, maxY]] = pathGenerator.bounds(countriesCollection);
+const [, [maxX, maxY]] = pathGenerator.bounds(countriesCollection);
 
 const checkpoints = [
 	[0, 0],
@@ -111,20 +161,20 @@ const checkpoints = [
 	[-149.57, -17.54],
 ].map((lonLat) => ({
 	lonLat,
-	xy: (projection(shiftLonLat(lonLat[0], lonLat[1])) as [number, number]).map(
-		(value) => Number(value.toFixed(4)),
+	xy: projectPoint(...shiftLonLat(lonLat[0], lonLat[1])).map((value) =>
+		Number(value.toFixed(4)),
 	),
 }));
 
 const geometry = {
 	viewBox: {
-		width: VIEWBOX_WIDTH,
+		width: Number(maxX.toFixed(1)),
 		height: Number(maxY.toFixed(1)),
 	},
 	projection: {
-		scale: Number(projection.scale().toFixed(6)),
-		translateX: Number(projection.translate()[0].toFixed(6)),
-		translateY: Number(projection.translate()[1].toFixed(6)),
+		scale: UNITS_PER_DEGREE,
+		translateX: 180 * UNITS_PER_DEGREE,
+		translateY: Number((latMax * UNITS_PER_DEGREE).toFixed(6)),
 	},
 	pacificShift,
 	checkpoints,

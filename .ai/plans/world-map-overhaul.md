@@ -23,12 +23,21 @@ Implementation notes (deviations from the original plan below):
   shift box starts at longitude -177.5 so Fiji's antimeridian-crossing polygon
   is untouched (verified no tearing).
 - Russia's antimeridian overflow (Chukotka's western-hemisphere tip, Wrangel
-  Island's far half, Big Diomede) is clamped to longitude 179.999 in the
-  generation script so Russia renders entirely on the right edge with a clean
-  vertical cut at the seam, instead of bleeding onto the map's left side
-  (Franklin, 2026-07-19: "keep it clean even if not realistic"). The clamp
-  only touches arcs referenced by Russia's geometry, so US islands in the same
-  longitude band (St. Lawrence, Little Diomede) are unaffected.
+  Island's far half, Big Diomede) is unwrapped by +360 degrees so the full
+  peninsula renders connected past the map's old right edge instead of
+  bleeding onto the left side (Franklin, 2026-07-19). To allow longitudes
+  beyond 180, the generation script uses a raw linear transform via
+  d3's geoTransform rather than geoEquirectangular (identical output for an
+  equirectangular map, but no longitude wrapping or antimeridian clipping);
+  any ring that crosses the seam (Russia mainland, Wrangel, Fiji) is detected
+  generically and unwrapped, ring by ring, so nothing smears across the map.
+  The viewBox is now 1027.1x394.5 — the world spans x 0..1000 and the tip
+  occupies the overflow. US islands near the seam (St. Lawrence, Little
+  Diomede, western Aleutians) are single-side rings and stay on the left as
+  before.
+- Fixing a self-inflicted wart found during this change: the Pacific shift box
+  originally reached latitude -45 and caught New Zealand's Chatham Islands,
+  pushing them to 65S and stretching the map. The box now stops at -40.
 - Phase 1 shipped a single `WorldMap.tsx` rather than the
   MapCountries/MapPins split — the split can arrive with phase 2 state if
   needed.
