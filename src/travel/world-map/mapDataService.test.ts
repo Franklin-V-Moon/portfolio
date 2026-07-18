@@ -1,6 +1,6 @@
 import geometry from "../../generated/worldMapGeometry.json";
 import { travelVideoMetaData } from "../../datasources/TravelMetaData";
-import { projectToMap } from "./equalEarth";
+import { projectToMap } from "./projection";
 import { allMapPins } from "./mapDataService";
 
 describe("allMapPins", () => {

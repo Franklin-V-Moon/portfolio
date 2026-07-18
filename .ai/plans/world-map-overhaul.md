@@ -9,10 +9,19 @@ Implementation notes (deviations from the original plan below):
   mapshaper pipeline; quantile 0.05 gives 184KB raw / 63KB gzipped with every
   small entity (Singapore, Bahrain, Maldives, Hong Kong, Macao, Palestine)
   surviving. World-atlas spells it "Macao", not "Macau".
-- Pins are projected client-side by a 15-line closed-form Equal Earth function
-  (`src/travel/world-map/equalEarth.ts`) verified against d3-geo checkpoints
+- Pins are projected client-side by a closed-form projection function
+  (`src/travel/world-map/projection.ts`) verified against d3-geo checkpoints
   emitted by the generation script, so adding a trip never requires
   regenerating geometry and the client still ships zero d3.
+- Projection changed after phase 1 review (Franklin, 2026-07-19): Equal Earth
+  was replaced with Equirectangular, and eastern-Pacific landmasses (Hawaii,
+  French Polynesia, Cook Islands, Samoa/Tonga side of the seam, etc.) are
+  shifted 35% closer to the Americas and 21 degrees south as a pseudo-inset to
+  reduce the empty left-side ocean. The shift is defined once in the generation
+  script (`pacificShift`, applied to the topology arcs) and mirrored at runtime
+  from the generated JSON, so future pins in that region stay aligned. The
+  shift box starts at longitude -177.5 so Fiji's antimeridian-crossing polygon
+  is untouched (verified no tearing).
 - Phase 1 shipped a single `WorldMap.tsx` rather than the
   MapCountries/MapPins split — the split can arrive with phase 2 state if
   needed.
@@ -106,7 +115,9 @@ into the exact container the PNG occupies today with zero layout shift.
 
 1. **Engine:** hand-rolled `d3-geo` SVG (precompute variant preferred, see above).
 2. **Projection:** Equal Earth (`geoEqualEarth`), full world, Antarctica removed.
-   Aspect ratio ~2.1:1, close to the current PNG's 2.05:1.
+   Aspect ratio ~2.1:1, close to the current PNG's 2.05:1. (Superseded after
+   phase 1: now Equirectangular with a Pacific inset shift — see
+   implementation notes above.)
 3. **Non-country entries:** pin the visited hub city with explicit coordinates —
    Iraqi Kurdistan → Erbil, East India → Darjeeling or Kolkata (TBC), Hong Kong →
    Hong Kong, Macau → Macau, Palestine → Ramallah or Bethlehem (TBC). Border

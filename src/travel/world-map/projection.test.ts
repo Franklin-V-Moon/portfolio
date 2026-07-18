@@ -1,5 +1,5 @@
 import geometry from "../../generated/worldMapGeometry.json";
-import { projectToMap } from "./equalEarth";
+import { projectToMap } from "./projection";
 
 describe("projectToMap", () => {
 	it.each(geometry.checkpoints)(

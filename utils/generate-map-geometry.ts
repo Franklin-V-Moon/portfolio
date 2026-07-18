@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { geoEqualEarth, geoPath } from "d3-geo";
+import { geoEquirectangular, geoPath } from "d3-geo";
 import { feature, mesh } from "topojson-client";
 import { presimplify, quantile, simplify } from "topojson-simplify";
 import type { FeatureCollection, Geometry } from "geojson";
@@ -9,12 +9,47 @@ import type { Topology, GeometryCollection } from "topojson-specification";
 const SIMPLIFY_QUANTILE = 0.05;
 const VIEWBOX_WIDTH = 1000;
 
+const pacificShift = {
+	lonMin: -177.5,
+	lonMax: -125,
+	latMin: -45,
+	latMax: 45,
+	targetLon: -100,
+	closerFactor: 0.35,
+	lowerDegrees: 21,
+};
+
+const shiftLonLat = (lon: number, lat: number): [number, number] => {
+	const {
+		lonMin,
+		lonMax,
+		latMin,
+		latMax,
+		targetLon,
+		closerFactor,
+		lowerDegrees,
+	} = pacificShift;
+	if (lon < lonMin || lon > lonMax || lat < latMin || lat > latMax) {
+		return [lon, lat];
+	}
+	return [lon + closerFactor * (targetLon - lon), lat - lowerDegrees];
+};
+
 const world = require("world-atlas/countries-50m.json") as Topology<{
 	countries: GeometryCollection<{ name: string }>;
 }>;
 
 const weighted = presimplify(world);
 const simplified = simplify(weighted, quantile(weighted, SIMPLIFY_QUANTILE));
+
+for (const arc of simplified.arcs) {
+	for (const point of arc) {
+		const [lon, lat] = shiftLonLat(point[0], point[1]);
+		point[0] = lon;
+		point[1] = lat;
+	}
+}
+
 const allCountries = simplified.objects
 	.countries as GeometryCollection<{ name: string }>;
 
@@ -31,7 +66,10 @@ const countriesCollection = feature(
 	countriesObject,
 ) as FeatureCollection<Geometry, { name: string }>;
 
-const projection = geoEqualEarth().fitWidth(VIEWBOX_WIDTH, countriesCollection);
+const projection = geoEquirectangular().fitWidth(
+	VIEWBOX_WIDTH,
+	countriesCollection,
+);
 const pathGenerator = geoPath(projection);
 
 const roundPath = (d: string | null) =>
@@ -49,9 +87,11 @@ const checkpoints = [
 	[44.01, 36.19],
 	[73.51, 4.18],
 	[174.78, -41.29],
+	[-157.86, 21.31],
+	[-149.57, -17.54],
 ].map((lonLat) => ({
 	lonLat,
-	xy: (projection(lonLat as [number, number]) as [number, number]).map(
+	xy: (projection(shiftLonLat(lonLat[0], lonLat[1])) as [number, number]).map(
 		(value) => Number(value.toFixed(4)),
 	),
 }));
@@ -66,6 +106,7 @@ const geometry = {
 		translateX: Number(projection.translate()[0].toFixed(6)),
 		translateY: Number(projection.translate()[1].toFixed(6)),
 	},
+	pacificShift,
 	checkpoints,
 	countries: countriesCollection.features.map((countryFeature) => ({
 		name: countryFeature.properties.name,
