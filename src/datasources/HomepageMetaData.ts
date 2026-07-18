@@ -95,24 +95,24 @@ export const workExperienceMetaData = [
 			{
 				location: "Bangkok, Thailand",
 				title: "Cloud DevOps Engineer",
-				subRole: "Low-Cost Airline",
+				subRole: "International Airline",
 				period: "2023 - 2025",
 			},
 			{
 				title: "Software Engineer",
-				subRole: "Low-Cost Airline",
+				subRole: "International Airline",
 				period: "2022 - 2023",
 			},
 			{
 				location: "Melbourne, Australia",
 				title: "Graduate Developer",
 				subRole: "Employment Marketplace",
-				period: "2021 - 2022",
+				period: "2021",
 			},
 			{
 				title: "Intern Software Developer",
 				subRole: "Non-Profit Platform",
-				period: "2019 - 2021",
+				period: "2019",
 			},
 			{
 				title: "Intern Business Analyst",
@@ -134,7 +134,7 @@ export const workExperienceMetaData = [
 			},
 			{
 				title: "Remote Hardware Technician",
-				subRole: "Low-Cost Airline",
+				subRole: "International Airline",
 				period: "2017 - 2019",
 			},
 		],

@@ -2,10 +2,6 @@
 
 # Major Features
 
-## 0. Subtitles
-
-## 1. Play trailer on video thumbnails on hover (TBD)
-
 ## 2. New world map concept (TBD)
 
 - New more interactive map with same visual style
@@ -16,11 +12,4 @@
 - Automatically play trailers for countries on the map with a little overlay
   video player that points to those countries
 
-## 4. New Parallax
-
 ## 5. AI Twin
-
-## 6. Homepage overhaul
-
-- Overhaul skills because listing specific skills is obsolete but good for
-  scrapers and AI scanners
