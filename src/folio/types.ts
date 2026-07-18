@@ -15,8 +15,3 @@ export type MetaData = {
 export interface ColumnData extends MetaData {
 	data: MetaData[];
 }
-
-export type FolioData = {
-	title: string;
-	data: MetaData[];
-};

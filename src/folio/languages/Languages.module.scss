@@ -36,19 +36,19 @@
 }
 
 .cardTitle {
+	background: none;
 	border: none;
 	padding: 0;
 	outline: inherit;
 	text-align: left;
 	display: block;
-	font-size: 1.5em;
+	font-size: 1.17em;
 	font-weight: bold;
 	font-family: inherit;
+	color: $white;
 
 	cursor: pointer;
 	margin-bottom: 18px;
-
-	@extend .defaultDarkBlueGradient;
 }
 
 .chipContainer {

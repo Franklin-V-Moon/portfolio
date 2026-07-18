@@ -1,13 +1,8 @@
 import { Dialog } from "@mui/material";
 import type { NextPage } from "next";
 import { useState } from "react";
-import {
-	cloudMetaData,
-	toolsMetaData,
-} from "../datasources/SkillsMetaData";
 import { FolioModal } from "./modal/FolioModal";
 import { Languages } from "./languages/Languages";
-import { FolioColumn } from "./folio-column/FolioColumn";
 import { MetaData } from "./types";
 import { slideTransition } from "../guides/components/filter/filterAnimations";
 
@@ -36,18 +31,6 @@ export const Folio: NextPage = () => {
 			</div>
 
 			<Languages handleOpenModal={handleOpenModal} />
-			<div className={styles.columnsContainer}>
-				<FolioColumn
-					title='Tools'
-					metaData={toolsMetaData}
-					handleOpenModal={handleOpenModal}
-				/>
-				<FolioColumn
-					title='Cloud'
-					metaData={cloudMetaData}
-					handleOpenModal={handleOpenModal}
-				/>
-			</div>
 		</div>
 	);
 };

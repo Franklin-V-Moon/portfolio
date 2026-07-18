@@ -1,4 +1,4 @@
-import { ColumnData, Proficiency, FolioData } from "../folio/types";
+import { ColumnData, Proficiency } from "../folio/types";
 
 const { Learning, Capable, Proficient, HighlyProficient } = Proficiency;
 
@@ -246,6 +246,171 @@ export const languagesMetaData: ColumnData[] = [
 		],
 	},
 	{
+		title: "Tools",
+		knowledge:
+			"The design and platform tools I reach for daily, spanning interface prototyping, video, photo and print post-production, and the developer platforms I use to ship and distribute software.",
+		proficiency: Proficient,
+		description: Description.Proficient,
+		data: [
+			{
+				title: "Figma",
+				knowledge:
+					"Figma is a collaborative design tool for prototyping and designing user interfaces.  I've used it to generate various projects for analysis and also regularly use it for work when I assist Experience Designers with prototyping.",
+				proficiency: HighlyProficient,
+				description: Description.HighlyProficient,
+			},
+			{
+				title: "Davinci Resolve",
+				knowledge:
+					"Davinci Resolve is a post-production tool that allows users to edit, color correct, and finish video projects. I regularly work on various projects involving music videos and documentaries which require a deep knowledge of the software.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "Blender",
+				knowledge:
+					"Blender is a 3D graphics software that is used for creating and manipulating 3D models, animations, and visual effects in post-production. I've used it for over a decade now to add an extra 'spice' to my video projects and to 3D print.",
+				proficiency: Capable,
+				description: Description.Capable,
+			},
+			{
+				title: "Photoshop / Affinity Photo ",
+				knowledge:
+					"Photoshop and Affinity Photo are graphics editing software that allows users to manipulate and enhance images and graphics. I've used it for over a decade to correct color, remove noise and to create various imagery, much of which you can see on this site.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "After Effects",
+				knowledge:
+					"Adobe After Effects is a tool for creating and editing motion graphics and visual effects for video and film. I primarily use it to add moving typography and for transitions but have also completed entire animations in 2D and 3D space.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "InDesign",
+				knowledge:
+					"Adobe InDesign is a tool used for creating and designing professional documents such as brochures. I've used it as a volunteer to generate various reports, newsletters and magazines. ",
+				proficiency: HighlyProficient,
+				description: Description.HighlyProficient,
+			},
+			{
+				title: "Illustrator",
+				knowledge:
+					"Adobe Illustrator is a vector graphics editor used for creating and editing digital graphics and designs. Similar to photoshop, I've used it to generate stills and even motion graphic sprites of various needs, often for websites by taking advantage of the power of SVGs.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "Premiere",
+				knowledge:
+					"Adobe Premiere is a video editing software that allows users to create and edit professional-quality video projects. I regularly work on various projects involving music videos and documentaries which require a deep knowledge of the software.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "Apple Developer",
+				knowledge:
+					"Apple Developer is a suite of tools and resources provided by Apple for developing and distributing software for the company's platforms, including iOS, iPadOS, macOS, watchOS, and tvOS. I've worked on projects where it was an integral part of the release process and required me to understand how it functioned, how to use the provided indicators and also how to debug.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "Vercel",
+				knowledge:
+					"Vercel is a cloud platform for hosting websites and web applications, allowing developers to deploy their projects with a global network of edge servers for low latency and high performance. I have used it to deploy this very site as it meshes well with NextJS, also maintained by Vercel",
+				proficiency: Capable,
+				description: Description.Capable,
+			},
+		],
+	},
+	{
+		title: "Cloud",
+		knowledge:
+			"Comfortable deploying and operating workloads across AWS and Google Cloud, backed by CI/CD platforms that keep everything tested, visible and continuously delivered.",
+		proficiency: Capable,
+		description: Description.Proficient,
+		data: [
+			{
+				title: "EKS",
+				knowledge:
+					"I'm comfortable setting up and interfacing with AWS Elastic Kubernetes Service both self managed and auto-mode, including provisioning clusters, deploying containerized applications with Kubernetes manifests, and managing deployments and scaling using kubectl.",
+				proficiency: Capable,
+				description: Description.Proficient,
+			},
+			{
+				title: "EC2",
+				knowledge:
+					"My experience with EC2 covers all the essentials, from provisioning resources in diverse instance types and regions, to implementing auto-scaling for dynamic workloads, and configuring autoscaling groups for high availability.",
+				proficiency: Capable,
+				description: Description.HighlyProficient,
+			},
+			{
+				title: "Lambda",
+				knowledge:
+					"I've used lambda functions to solve a range or challenges including for small repetitive pipeline build tasks all the way to using it as an entire backend to avoid cold starts for infrequently used webapps.",
+				proficiency: Proficient,
+				description: Description.Capable,
+			},
+			{
+				title: "RDS & DynamoDB",
+				knowledge:
+					"I'm proficient with AWS RDS and DynamoDB, setting up and maintaining databases with various budget concerns, handling automated backups and read replicas, and tuning performance for scalability and high availability across multiple environments, keeping track of costs.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "Firebase",
+				knowledge:
+					"Google Firebase is a platform that provides a variety of tools and services for building mobile and web applications, including a real-time database, user authentication, hosting, and analytics. I've used it to push data to client devices instead of using sockets and intend to keep learning it as it's an awesome solution for backend problems.",
+				proficiency: Learning,
+				description: Description.Learning,
+			},
+			{
+				title: "ArgoCD",
+				knowledge:
+					"Using ArgoCD to deploy manifests to various types of kubernetes clusters. Includes configuring the platform via HELMs and managing secrets upfront. I can use various debugging tools within ArgoCD to effectively diagnose issues in a cluster.",
+				proficiency: Capable,
+				description: Description.Proficient,
+			},
+			{
+				title: "CircleCI",
+				knowledge:
+					"CircleCI is a continuous integration and delivery platform that helps development teams build, test, and deploy their code rapidly and reliably. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "GoCD",
+				knowledge:
+					"GoCD is a continuous delivery platform that helps organizations automate and track the build, test, and release process for their software projects, enabling them to deliver high-quality software faster and more reliably. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
+				proficiency: Capable,
+				description: Description.Capable,
+			},
+			{
+				title: "Buildkite",
+				knowledge:
+					"Buildkite is a tool for continuous integration and continuous delivery that allows users to build, test, and deploy their software projects automatically, ensuring that their code is always up to date and in a deployable state. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "Travis CI",
+				knowledge:
+					"Travis CI is a continuous integration tool that allows developers to automatically build, test, and deploy their software projects, typically as part of a larger development workflow. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+			{
+				title: "Github Actions",
+				knowledge:
+					"GitHub Actions is a tool that allows users to automate processes and workflows within a GitHub repository, such as building and deploying code, running tests, and integrating with external services. I often use this to easily deploy smaller projects and ones where using less services are a priority.",
+				proficiency: Proficient,
+				description: Description.Proficient,
+			},
+		],
+	},
+	{
 		title: "Misc.",
 		knowledge:
 			"Various languages that I'm fully capable of working in. I understand them well and have significant real world world experience with each of them.",
@@ -307,266 +472,6 @@ export const languagesMetaData: ColumnData[] = [
 					"I've used Jquery on various legacy applications and understand it's a valuable tool for manipulating the DOM and adding interactivity to my web applications. However, it is important to consider the drawbacks of using Jquery, it can add a significant amount of weight to a page if many Jquery plugins are used, and it is not as performant as some newer JavaScript libraries and frameworks.",
 				proficiency: Capable,
 				description: Description.Capable,
-			},
-		],
-	},
-];
-
-export const toolsMetaData: FolioData[] = [
-	{
-		title: "Dev",
-		data: [
-			{
-				title: "Ubuntu",
-				knowledge:
-					"Daily experience using Linux-based operating systems for both personal use (Editing, gaming, daily productivity) and professional use (Servers, testing pipelines etc).",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "Figma",
-				knowledge:
-					"Figma is a collaborative design tool for prototyping and designing user interfaces.  I've used it to generate various projects for analysis and also regularly use it for work when I assist Experience Designers with prototyping.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "Postman",
-				knowledge:
-					"API platforms are tools that allow developers to test and debug APIs but many have not delved deeper into environment configuration, sharing and packaging like I have.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "Github",
-				knowledge:
-					"I have used Github to host my own personal projects as well as contribute to open source projects. It's a core tool all devs need to know these days and I'm comfortable with it",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-		],
-	},
-	{
-		title: "Design",
-		data: [
-			{
-				title: "Davinci Resolve",
-				knowledge:
-					"Davinci Resolve is a post-production tool that allows users to edit, color correct, and finish video projects. I regularly work on various projects involving music videos and documentaries which require a deep knowledge of the software.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Blender",
-				knowledge:
-					"Blender is a 3D graphics software that is used for creating and manipulating 3D models, animations, and visual effects in post-production. I've used it for over a decade now to add an extra 'spice' to my video projects and to 3D print.",
-				proficiency: Capable,
-				description: Description.Capable,
-			},
-			{
-				title: "Photoshop / Affinity Photo ",
-				knowledge:
-					"Photoshop and Affinity Photo are graphics editing software that allows users to manipulate and enhance images and graphics. I've used it for over a decade to correct color, remove noise and to create various imagery, much of which you can see on this site.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "After Effects",
-				knowledge:
-					"Adobe After Effects is a tool for creating and editing motion graphics and visual effects for video and film. I primarily use it to add moving typography and for transitions but have also completed entire animations in 2D and 3D space.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "InDesign",
-				knowledge:
-					"Adobe InDesign is a tool used for creating and designing professional documents such as brochures. I've used it as a volunteer to generate various reports, newsletters and magazines. ",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "Illustrator",
-				knowledge:
-					"Adobe Illustrator is a vector graphics editor used for creating and editing digital graphics and designs. Similar to photoshop, I've used it to generate stills and even motion graphic sprites of various needs, often for websites by taking advantage of the power of SVGs.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Premiere",
-				knowledge:
-					"Adobe Premiere is a video editing software that allows users to create and edit professional-quality video projects. I regularly work on various projects involving music videos and documentaries which require a deep knowledge of the software.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "XD",
-				knowledge:
-					"Adobe XD is a design and prototyping tool used to create user interfaces and user experiences for websites and mobile applications. I've used it to generate various projects for analysis and also regularly use it for work when I assist Experience Designers with prototyping.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-		],
-	},
-	{
-		title: "Other",
-		data: [
-			{
-				title: "Google Search Console",
-				knowledge:
-					"Google Search Console is a web service that provides insights into how Google indexes and ranks your site, offering tools to monitor performance, identify technical issues, and optimize visibility in search results. I’m confident in leveraging it to diagnose SEO challenges, refine keyword strategies, and ensure content is consistently aligned with best practices for discoverability.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "Apple Developer",
-				knowledge:
-					"Apple Developer is a suite of tools and resources provided by Apple for developing and distributing software for the company's platforms, including iOS, iPadOS, macOS, watchOS, and tvOS, used alongside Android App Distribution where I've worked on projects where it was an integral part of the release process and required me to understand how it functioned, how to use the provided indicators and also how to debug.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Heroku",
-				knowledge:
-					"Heroku is a cloud platform that enables developers to build, run, and operate applications entirely in the cloud. I've used it to deploy various backends and micro services as it's super simple to get started with and reliable.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Vercel",
-				knowledge:
-					"Vercel is a cloud platform for hosting websites and web applications, allowing developers to deploy their projects with a global network of edge servers for low latency and high performance. I have used it to deploy this very site as it meshes well with NextJS, also maintained by Vercel",
-				proficiency: Capable,
-				description: Description.Capable,
-			},
-		],
-	},
-];
-
-export const cloudMetaData: FolioData[] = [
-	{
-		title: "Amazon AWS",
-		data: [
-			{
-				title: "EKS",
-				knowledge:
-					"I'm comfortable setting up and interfacing with AWS Elastic Kubernetes Service both self managed and auto-mode, including provisioning clusters, deploying containerized applications with Kubernetes manifests, and managing deployments and scaling using kubectl.",
-				proficiency: Capable,
-				description: Description.Proficient,
-			},
-			{
-				title: "EC2",
-				knowledge:
-					"My experience with EC2 covers all the essentials, from provisioning resources in diverse instance types and regions, to implementing auto-scaling for dynamic workloads, and configuring autoscaling groups for high availability.",
-				proficiency: Capable,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "ECR",
-				knowledge:
-					"From crafting secure repositories to streamlining image management and automating deployments, I'm confident navigating the full spectrum of AWS ECR tasks",
-				proficiency: Capable,
-				description: Description.Capable,
-			},
-			{
-				title: "Route53",
-				knowledge:
-					"I'm confident using Route53 for domain registration, managing hosted zones, configuring record types and implementing health checks for higher availability.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Lambda",
-				knowledge:
-					"I've used lambda functions to solve a range or challenges including for small repetitive pipeline build tasks all the way to using it as an entire backend to avoid cold starts for infrequently used webapps.",
-				proficiency: Proficient,
-				description: Description.Capable,
-			},
-			{
-				title: "CloudFront",
-				knowledge:
-					"I have a solid understanding of what Cloudfront is capable of and how to best utilise its features. Primarily used it as a front end for APIs and video streaming services",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Transcribe",
-				knowledge:
-					"I'm highly proficient with AWS Transcribe, leveraging it programmatically to convert large volumes of audio into accurate, structured text and integrating it into automated pipelines for real-time and batch transcription use cases.",
-				proficiency: HighlyProficient,
-				description: Description.HighlyProficient,
-			},
-			{
-				title: "RDS & DynamoDB",
-				knowledge:
-					"I'm proficient with AWS RDS and DynamoDB, setting up and maintaining databases with various budget concerns, handling automated backups and read replicas, and tuning performance for scalability and high availability across multiple environments, keeping track of costs.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-		],
-	},
-	{
-		title: "Google Cloud",
-		data: [
-			{
-				title: "Firebase",
-				knowledge:
-					"Google Firebase is a platform that provides a variety of tools and services for building mobile and web applications, including a real-time database, user authentication, hosting, and analytics. I've used it to push data to client devices instead of using sockets and intend to keep learning it as it's an awesome solution for backend problems.",
-				proficiency: Learning,
-				description: Description.Learning,
-			},
-			{
-				title: "Android App Distribution",
-				knowledge:
-					"Android App Distribution is a process by which Android apps are made available for users to download and install on their devices via the google play store. I've worked on projects where it was an integral part of the release process and required me to understand how it functioned, how to use the provided indicators and also how to debug.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-		],
-	},
-	{
-		title: "CI/CD",
-		data: [
-			{
-				title: "ArgoCD",
-				knowledge:
-					"Using ArgoCD to deploy manifests to various types of kubernetes clusters. Includes configuring the platform via HELMs and managing secrets upfront. I can use various debugging tools within ArgoCD to effectively diagnose issues in a cluster.",
-				proficiency: Capable,
-				description: Description.Proficient,
-			},
-			{
-				title: "CircleCI",
-				knowledge:
-					"CircleCI is a continuous integration and delivery platform that helps development teams build, test, and deploy their code rapidly and reliably. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "GoCD",
-				knowledge:
-					"GoCD is a continuous delivery platform that helps organizations automate and track the build, test, and release process for their software projects, enabling them to deliver high-quality software faster and more reliably. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
-				proficiency: Capable,
-				description: Description.Capable,
-			},
-			{
-				title: "Buildkite",
-				knowledge:
-					"Buildkite is a tool for continuous integration and continuous delivery that allows users to build, test, and deploy their software projects automatically, ensuring that their code is always up to date and in a deployable state. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Travis CI",
-				knowledge:
-					"Travis CI is a continuous integration tool that allows developers to automatically build, test, and deploy their software projects, typically as part of a larger development workflow. I've used it on multiple projects to handle testing requirements and is an excellent tool to create visibility of code status.",
-				proficiency: Proficient,
-				description: Description.Proficient,
-			},
-			{
-				title: "Github Actions",
-				knowledge:
-					"GitHub Actions is a tool that allows users to automate processes and workflows within a GitHub repository, such as building and deploying code, running tests, and integrating with external services. I often use this to easily deploy smaller projects and ones where using less services are a priority.",
-				proficiency: Proficient,
-				description: Description.Proficient,
 			},
 		],
 	},
