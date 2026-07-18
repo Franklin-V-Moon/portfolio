@@ -1,5 +1,5 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import { PageContainer } from "../../src/global/PageContainer";
 import { Footer } from "../../utils/footer/Footer";
@@ -18,7 +18,6 @@ import {
 } from "../../src/travel/travelDataService";
 import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
 import { VideoLibrary } from "../../src/travel/VideoLibrary";
-import { ButtonBase, styled } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { useHasMounted } from "../../utils/useHasMounted";
@@ -43,31 +42,16 @@ const sortFunctions = {
 	[SortBy.Funniest]: funniestOnly,
 };
 
-const InvisibleImageButton = styled(ButtonBase)(({ theme }) => ({
-	position: "absolute",
-	top: 0,
-	left: 0,
-	right: 0,
-	bottom: 0,
-	backgroundColor: "transparent",
-	padding: 0,
-	border: "none",
-	"&:hover, &.Mui-focusVisible": {
-		zIndex: 1,
-		"& .MuiImage-root": {
-			transform: "scale(1.01)",
-			transition: theme.transitions.create("transform", {
-				duration: theme.transitions.duration.shortest,
-			}),
-		},
-		"& .MuiTouchRipple-root": {
-			opacity: 0.15,
-		},
+const WorldMap = dynamic(
+	() =>
+		import("../../src/travel/world-map/WorldMap").then(
+			(module) => module.WorldMap,
+		),
+	{
+		ssr: false,
+		loading: () => <div className={styles.mapPlaceholder} />,
 	},
-	"& .MuiTouchRipple-root": {
-		color: "rgba(255, 255, 255, 0.3)",
-	},
-}));
+);
 
 const Travel = ({
 	initialSortBy,
@@ -117,10 +101,6 @@ const Travel = ({
 	const handleSearchingTextChange = (value: string) => {
 		setSearchingText(value);
 		setSortSelection(value ? SortBy.Searching : SortBy.Newest);
-	};
-
-	const handleOpenBlankPage = () => {
-		router.push("/travel/world-map");
 	};
 
 	const jsonLd = {
@@ -178,22 +158,8 @@ const Travel = ({
 			</Head>
 
 			<PageContainer>
-				<div style={{ position: "relative", width: "100%", height: "auto" }}>
-					<Image
-						src='/travel/WorldDotted.png'
-						alt='A dotted world map marking all countries visited by Franklin Von Moon'
-						width={3840}
-						height={1878}
-						sizes='100vw'
-						className={styles.worldMap}
-						style={{ width: "100%", height: "auto" }}
-						priority
-					/>
-					<InvisibleImageButton
-						focusRipple
-						onClick={handleOpenBlankPage}
-						aria-label='Open interactive world map'
-					/>
+				<div className={styles.worldMap}>
+					<WorldMap />
 				</div>
 
 				<div className={styles.directoryContainer}>

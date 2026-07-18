@@ -1,0 +1,51 @@
+@use "../../../themes/colors.module" as *;
+@use "../../../themes/breakpoints" as *;
+
+.map {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1000 / 446.7;
+}
+
+.country {
+	fill: #1a2026;
+}
+
+.borders {
+	fill: none;
+	stroke: rgba($dimmerWhite, 0.3);
+	stroke-width: 0.6px;
+	stroke-linejoin: round;
+}
+
+.coastline {
+	fill: none;
+	stroke: rgba($white, 0.55);
+	stroke-width: 1px;
+	stroke-linejoin: round;
+}
+
+.pin {
+	fill: $defaultYellow;
+	r: 6px;
+	filter: drop-shadow(0 0 3px rgba(255, 235, 59, 0.6));
+	transform-box: fill-box;
+	transform-origin: center;
+	transition: transform 200ms ease-out;
+
+	@include breakpoint(medium) {
+		r: 3.5px;
+	}
+
+	&:hover {
+		transform: scale(1.6);
+		filter: drop-shadow(0 0 5px rgba(255, 235, 59, 0.9));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.pin {
+		transition: none;
+	}
+}
