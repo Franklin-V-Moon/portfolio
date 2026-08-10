@@ -3336,7 +3336,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		backupLink:
 			"https://drive.google.com/drive/folders/11N29YAqMzBw8FpRz4ar-qyZrfLQT4Zz7?usp=sharing",
-		newestVideo: false,
 		extras: {
 			deductCountryCount: 1,
 			countries: ["Thailand"],
@@ -3481,7 +3480,69 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			tags: ["Phillip Sgardelis", "Claire Dubouilh Marino"],
 		},
 	},
-	// {
+	{
+		title: "Chile",
+		year: 2025,
+		hostedLink: "chile",
+		link: "chile",
+		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DRFaEMhCVpj/?hl=en&img_index=1",
+		],
+		backupLink: "https://drive.google.com/drive/folders/1NyjeA9I-S61_Mpt0JSw9Demi2dL5Mvtu?usp=sharing",
+		extras: {
+			countries: ["Chile"],
+			trailer: "chiletrailer",
+			scorecard: {
+				affordability: [2],
+				food: [2],
+				hospitality: [2],
+				safety: [3],
+				accessibility: [4],
+				video: [3],
+				beauty: [10]
+			},
+			finalScore: 3,
+			summary: [ "From the Andes to the Pacific in a few short hours, Chile one perplexingly unique destination",
+				"We arrived just in time for the Day of the Dead halloween festivities but left plenty of time for the nature",
+				"From river rapids to tranquil lake districts to summits and stories of great explorers, Chile has everything you need for a peaceful escape"
+			 ],
+			challenges: [ "It's very costly and the food is terrible, making cooking your only option even if you;re not on a budget", 
+				"It can be quite challenging to meet other backpackers in Patagonia, due to the aforementioned costs and distances betwen locations"
+			 ],
+			dos: [ "Hike" ],
+			donts: [ "Hold your phone in your hand in Santiago", ],
+			advice: {
+				travelLength: "1 - 2 Weeks",
+				currency: "Chilean Peso CLP",
+				season: "Nov - March",
+				dailyBudget: "200usd",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/americas/chile",
+				advice: Advisory.Level2,
+			},
+			music: [
+				{
+					title: "DESPECHÁ - ROSALÍA",
+					link: "https://music.youtube.com/watch?v=dN3y8kVNplA&si=QmTp4Z86XCj-YL7E",
+				},
+				{
+					title: "Dreams - Phil Beaudreau",
+					link: "https://music.youtube.com/watch?v=TO38nXZKXFs&si=wX-l1UGDA5rUlk0U",
+				},
+				{
+					title: "Dame Un Break - Rawayana",
+					link: "https://music.youtube.com/watch?v=Ul2sbfWeXos&si=I43JsXeOBm6gZ0F9",
+				},
+				{
+					title: "The Force Theme x Main Theme - Samuel Kim",
+					link: "https://music.youtube.com/watch?v=GWxa_oJSaEI&si=u5j6vRWmxla2zsBW",
+				},
+			],
+		},
+	},
+		// {
 	// 	title: "",
 	// 	year: ,
 	// 	hostedLink: "",
