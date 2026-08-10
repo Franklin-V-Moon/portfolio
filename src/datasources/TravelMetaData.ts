@@ -3491,6 +3491,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		backupLink: "https://drive.google.com/drive/folders/1NyjeA9I-S61_Mpt0JSw9Demi2dL5Mvtu?usp=sharing",
 		extras: {
+			subtitles: ["English"],
 			countries: ["Chile"],
 			trailer: "chiletrailer",
 			scorecard: {
