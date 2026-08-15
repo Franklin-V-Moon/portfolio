@@ -3590,7 +3590,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			donts: [ "Travel too fast or too slow, Expect days here you do absolutely nothing", ],
 			advice: {
 				travelLength: "3-5 days each for Uruguay & Paraguay, 1 - 2 weeks for Argentina",
-				currency: "Uruguayan Peso UYU, Argentine Peso ARS, Paraguayan guaraní PYG",
+				currency: "Uruguayan Peso UYU, Argentine Peso ARS, Paraguayan Guaraní PYG",
 				season: "Oct - November",
 				dailyBudget: "$100usd per day Argentina/Uruguay, $25usd per day Paraguay",
 			},
