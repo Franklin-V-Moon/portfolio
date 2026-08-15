@@ -3543,84 +3543,66 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 		},
 	},
-		// {
-	// 	title: "",
-	// 	year: ,
-	// 	hostedLink: "",
-	// 	link: "",
-	// 	restricted: false,
-	// 	instagramLinks: [
-	// 		"",
-	//      "",
-	// 		"",
-	//      "",
-	// 	],
-	// 	reelLinks: [""],
-	// 	backupLink: "",
-	// 	newestVideo: true,
-	// 	extras: {
-	// 		countries: [ ""],
-	//		trailer: "",
-	// 		scorecard: {
-	// 			affordability: [],
-	// 			food: [],
-	//			hospitality: [],
-	// 			safety: [],
-	// 			accessibility: [],
-	// 			video: [],
-	// 		},
-	// 		finalScore: 7,
-	// 		summary: [ "" ],
-	// 		challenges: [ "" ],
-	// 		dos: [ "" ],
-	// 		donts: [ "" ],
-	// 		advice: {
-	// 			travelLength: "",
-	// 			currency: "",
-	// 			season: "",
-	// 			dailyBudget: "",
-	// 		},
-	// 		travelAdvisory: {
-	// 			link: "",
-	// 			advice: Advisory.Level1,
-	// 		},
-	// 		music: [
-	// 			{
-	// 				title: "",
-	// 				link: "",
-	// 			},
-	// 			{
-	// 				title: "",
-	// 				link: "",
-	// 			},
-	// 		],
-	// 		extraLinks: [
-	// 			{
-	// 				title: "",
-	// 				link: "",
-	// 			},
-	// 			{
-	// 				title: "",
-	// 				link: "",
-	// 			},
-	// 		],
-	// 		extraVideos: [
-	// 			{
-	// 				title: "",
-	// 				hostedLink: "",
-	// 			},
-	// 		],
-	// highlights: [
-	// 	{
-	// 		title: "",
-	// 		timecode: 123,
-	// 	},
-	// 	{
-	// 		title: "",
-	// 		timecode: 123,
-	// 	},
-	// ],
-	// tags: [""],
-	// 	},
-	// },
+		{
+		title: "Uruguay, Argentina & Paraguay",
+		year: 2025,
+		hostedLink: "uruguayargentinaparaguay",
+		link: "uruguay-argentina-paraguay",
+		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DR99x3CCWJ_/?hl=en&img_index=1",
+			"https://www.instagram.com/p/DSL-zrbFQ6u/?hl=en&img_index=1"
+		],
+		backupLink: "https://drive.google.com/drive/folders/1jZN1uMllh6OUNtzwmq5kcbXzmyJJejrM?usp=sharing",
+		extras: {
+			subtitles: ["English", "Spanish"],
+			countries: ["Uruguay", "Argentina", "Paraguay"],
+			trailer: "uruguayargentinaparaguaytrailer",
+			scorecard: {
+				affordability: [2, 5, 9],
+				food: [2, 5, 3],
+				hospitality: [2, 4, 6 ],
+				safety: [7, 7, 7],
+				accessibility: [2, 7, 8],
+				video: [3, 5, 2],
+				beauty: [4, 7, 4]
+			},
+			finalScore: 5,
+			summary: [ "A 3-part trip, From Argentina and it's baby-brother Uruguay to the remote and curious state of Paraguay",
+				"We explored the mega-city of Buenos Aires, the falls of Iguazu and the Jesuit ruins along the way",
+				"The surprise was Salta, a desolate and rocky mountain scape far inland and hard to reach, turned out to be an absolute blast and full of fun"
+			 ],
+			challenges: [ "All three of these countries are more 'do it slow and immerse in the culture', which isn't easy if you want to see and do a lot in a day", 
+				"Getting in and around these places is especially a hassle, hostels are often booked up even off-season and there isn;t a whole lot of infrastructure to make use of"
+			 ],
+			dos: [ "Try the steak and get yourself some leather kit", "Try and experiment with different styles of 'Mate', the local drink" ],
+			donts: [ "Travel too fast or too slow, Expect days here you do absolutely nothing", ],
+			advice: {
+				travelLength: "3-5 days each for Uruguay & Paraguay, 1 - 2 weeks for Argentina",
+				currency: "Uruguayan Peso UYU, Argentine Peso ARS, Paraguayan guaraní PYG",
+				season: "Oct - November",
+				dailyBudget: "$100usd per day Argentina/Uruguay, $25usd per day Paraguay",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/americas/argentina",
+				advice: Advisory.Level1,
+			},
+			music: [
+				{
+					title: "Boskie Buenos - Maanam",
+					link: "https://music.youtube.com/watch?v=Z2dcY56PQmE&si=Rh02dumokIXO50GF",
+				},
+				{
+					title: "Driving To Nowhere - Nathan Evans",
+					link: "https://music.youtube.com/watch?v=KRIebx-_ryg&si=Kjd13wWwoQ_GxtTG",
+				},
+				{
+					title: "Porfa no te vayas - Beret & Morat",
+					link: "https://music.youtube.com/watch?v=_EOuntUHw6M&si=T54UDBactE0SvjJP",
+				},
+				
+			],
+		},
+	},
+
 ];
