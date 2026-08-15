@@ -3492,7 +3492,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		backupLink: "https://drive.google.com/drive/folders/1NyjeA9I-S61_Mpt0JSw9Demi2dL5Mvtu?usp=sharing",
 		extras: {
-			subtitles: ["English"],
+			subtitles: ["English", "Spanish"],
 			countries: ["Chile"],
 			trailer: "chiletrailer",
 			scorecard: {
@@ -3615,11 +3615,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			highlights: [
 				{
-					title: "Kaming Mate",
-					timecode: 120,
+					title: "Making Mate",
+					timecode: 121,
 				},
 				{
-					title: "Making Mate",
+					title: "Jesuit Ruins",
 					timecode: 331,
 				},
 				{
