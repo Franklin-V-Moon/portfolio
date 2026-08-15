@@ -3548,7 +3548,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					timecode: 160,
 				},
 				{
-					title: "Summiting Villarica Volcano",
+					title: "Hiking Torres del Paine",
 					timecode: 492,
 				},
 			],
