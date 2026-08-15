@@ -3476,6 +3476,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					title: "Bonus: Ha Giang Loop",
 					timecode: 1827,
 				},
+				
 			],
 			tags: ["Phillip Sgardelis", "Claire Dubouilh Marino"],
 		},
@@ -3541,6 +3542,16 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					link: "https://music.youtube.com/watch?v=GWxa_oJSaEI&si=u5j6vRWmxla2zsBW",
 				},
 			],
+			highlights: [
+				{
+					title: "Summiting Villarica Volcano",
+					timecode: 160,
+				},
+				{
+					title: "Summiting Villarica Volcano",
+					timecode: 492,
+				},
+			],
 		},
 	},
 		{
@@ -3601,6 +3612,20 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 					link: "https://music.youtube.com/watch?v=_EOuntUHw6M&si=T54UDBactE0SvjJP",
 				},
 				
+			],
+			highlights: [
+				{
+					title: "Kaming Mate",
+					timecode: 120,
+				},
+				{
+					title: "Making Mate",
+					timecode: 331,
+				},
+				{
+					title: "Iguazu Falls",
+					timecode: 410,
+				},
 			],
 		},
 	},
