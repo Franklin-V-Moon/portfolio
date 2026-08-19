@@ -3648,16 +3648,16 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			scorecard: {
 				affordability: [8],
 				food: [3],
-				hospitality: [4],
-				safety: [7],
+				hospitality: [5],
+				safety: [8],
 				accessibility: [5],
 				video: [10],
-				beauty: [8]
+				beauty: [9]
 			},
-			finalScore: 9,
+			finalScore: 8,
 			summary: [ "Bolivia is a land of contrasts, from the high-altitude salt flats to the lush Amazon basin, offering a unique blend of natural beauty and cultural richness.",
 				"Surprisngly easy to get around and with a lot of infrastructure for tourists, Bolivia is a great place to explore on a budget",
-				"Many people take there time here to hike challenging mountains, study Spanish or even volunteer"
+				"Many people take their time here to hike challenging mountains, study Spanish or even volunteer"
 			 ],
 			challenges: [ "The altitude can be a challenge, especially in places like La Paz and the Uyuni Salt Flats", 
 				"The roads can be rough and travel times longer than expected, so plan accordingly"

@@ -113,7 +113,7 @@ export const VideoPlayer = ({
 					controls
 					pip
 					playerRef={playerRef}
-					volume={0.3}
+					volume={0.6}
 					height='100%'
 					width='100%'
 					id='player'
