@@ -3629,5 +3629,89 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 		},
 	},
+{
+		title: "Bolivia",
+		year: 2025,
+		hostedLink: "bolivia",
+		link: "bolivia",
+		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DSh0b1AFQI2/?hl=en&img_index=1",
+			"https://www.instagram.com/p/DS1Mzw0lez7/?hl=en&img_index=1",
+			"https://www.instagram.com/p/DTQFxntFYxr/?hl=en&img_index=1"
+		],
+		backupLink: "https://drive.google.com/drive/folders/1LuecLyWrw9CoojduClP297H2i_gfXtX3?usp=sharing",
+		extras: {
+			subtitles: ["English", "Spanish"],
+			countries: ["Bolivia"],
+			trailer: "boliviatrailer",
+			scorecard: {
+				affordability: [8],
+				food: [3],
+				hospitality: [4],
+				safety: [7],
+				accessibility: [5],
+				video: [10],
+				beauty: [8]
+			},
+			finalScore: 9,
+			summary: [ "Bolivia is a land of contrasts, from the high-altitude salt flats to the lush Amazon basin, offering a unique blend of natural beauty and cultural richness.",
+				"Surprisngly easy to get around and with a lot of infrastructure for tourists, Bolivia is a great place to explore on a budget",
+				"Many people take there time here to hike challenging mountains, study Spanish or even volunteer"
+			 ],
+			challenges: [ "The altitude can be a challenge, especially in places like La Paz and the Uyuni Salt Flats", 
+				"The roads can be rough and travel times longer than expected, so plan accordingly"
+			 ],
+			dos: [ "Study spanish at one of the many language schools" ],
+			advice: {
+				travelLength: "2 weeks",
+				currency: "Bolivian Boliviano BOB",
+				season: "May - October",
+				dailyBudget: "$15usd",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/americas/bolivia",
+				advice: Advisory.Level2,
+			},
+			music: [
+				{
+					title: "BAILE INoLVIDABLE - Bad Bunny",
+					link: "https://music.youtube.com/watch?v=JseJETvMtHY&si=kXePOmlJlz6OMZCi",
+				},
+				{
+					title: "Revenge - A Minecraft Parody of Usher's DJ Got Us Fallin' In Love - CaptainSparklez",
+					link: "",
+				},
+				{
+					title: "Feliz Navidad - José Feliciano",
+					link: "https://music.youtube.com/watch?v=jj-oTtHTwVY&si=NqwUOxl5m3mqyYqN",
+				},
+				{
+					title: "Boom Clap - Charli xcx",
+					link: "https://music.youtube.com/watch?v=Jzcbkbb-AUM&si=hUVb2Be_pEzk3YRU",
+				},
+				
+			],
+			highlights: [
+				{
+					title: "Mining with Dynamite",
+					timecode: 290,
+				},
+				{
+					title: "Ayahuasca",
+					timecode: 315,
+				},
+				{
+					title: "Lolita Wrestling",
+					timecode: 616,
+				},
+				{
+					title: "Death Road",
+					timecode: 638,
+				},
+				
+			],
+		},
+	},
 
 ];
