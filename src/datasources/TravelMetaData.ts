@@ -3713,5 +3713,73 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 		},
 	},
-
+{
+		title: "Peru",
+		year: 2026,
+		hostedLink: "peru",
+		link: "peru",
+		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DTsNIPaFWED/?hl=en&img_index=1",
+			"https://www.instagram.com/p/DURkdvviT3-/?hl=en&img_index=1",
+		],
+		backupLink: "https://drive.google.com/drive/folders/1cs_L_9qx12OdXwvqXnjy1ER_J2rSPcNp?usp=drive_link",
+		extras: {
+			subtitles: ["English"],
+			countries: ["Peru"],
+			trailer: "perutrailer",
+			scorecard: {
+				affordability: [6],
+				food: [7],
+				hospitality: [4],
+				safety: [7],
+				accessibility: [8],
+				video: [3],
+				beauty: [7]
+			},
+			finalScore: 5,
+			summary: [ "Peru is a country of rich history and diverse landscapes, from the ancient ruins of Machu Picchu to the vibrant streets of Lima.",
+				"Traveling through Peru offers a mix of cultural experiences, culinary delights, and breathtaking natural beauty.",
+				"Whether you're exploring the Amazon rainforest or hiking the Inca Trail, Peru has something for every traveler."
+			 ],
+			challenges: [ "Altitude sickness can be a concern in high-altitude areas like Cusco and Puno",
+			 ],
+			advice: {
+				travelLength: "2 weeks",
+				currency: "Peruvian Sol PEN",
+				season: "May - September",
+				dailyBudget: "$30-50usd",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/americas/peru",
+				advice: Advisory.Level2,
+			},
+			music: [
+				{
+					title: "Emperor's New Groove - A Perfect World",
+					link: "https://music.youtube.com/watch?v=Y3rJtFCljmo&si=5adWJ0hV1Wv3bUfR",
+				},
+				{
+					title: "Freed From Desire - Phil Jay, Molella, & Gala",
+					link: "https://music.youtube.com/watch?v=p3l7fgvrEKM&si=gvAkVh8g-BRYDf4v",
+				},
+				{
+					title: "Wonders Of The New World (From The Road To El Dorado Soundtrack)",
+					link: "https://music.youtube.com/watch?v=U40XAI95MZo&si=zN1pCLJ0NQTWc7if",
+				},
+				
+			],
+			highlights: [
+				{
+					title: "Nazca Lines",
+					timecode: 65,
+				},
+				{
+					title: "Machu Picchu",
+					timecode: 427,
+				},
+				
+			],
+		},
+	},
 ];
