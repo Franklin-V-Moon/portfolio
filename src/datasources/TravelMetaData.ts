@@ -3782,4 +3782,72 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 		},
 	},
+	{
+		title: "Ecuador",
+		year: 2026,
+		hostedLink: "ecuador",
+		link: "ecuador",
+		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DVKPrlXiHXz/?hl=en&img_index=1"
+		],
+		backupLink: "https://drive.google.com/drive/folders/1_z42IUV-lTD6v_mkrG_27rm2WAFBDs9L?usp=drive_link",
+		extras: {
+			subtitles: ["English", "Spanish", "French"],
+			countries: ["Ecuador"],
+			trailer: "ecuadortrailer",
+			scorecard: {
+				affordability: [5],
+				food: [5],
+				hospitality: [7],
+				safety: [4],
+				accessibility: [5],
+				video: [8],
+				beauty: [5]
+			},
+			finalScore: 6,
+			summary: [ "Ecuador is a country of rich history and diverse landscapes, from the ancient ruins of Machu Picchu to the vibrant streets of Lima.",
+				"Traveling through Ecuador offers a mix of cultural experiences, culinary delights, and breathtaking natural beauty.",
+				"Whether you're exploring the Amazon rainforest or hiking the Inca Trail, Ecuador has something for every traveler."
+			 ],
+			challenges: [ "Theft on busses and in cities is a concern, so always be vigilant with your belongings",
+			 ],
+			 dos: ["Ceviche is a must-try, and the local markets are great for fresh produce and souvenirs", "Carnaval is a unique cultural experience, especially in the city of Guaranda"],
+			advice: {
+				travelLength: "2-3 weeks",
+				currency: "United States Dollar USD",
+				season: "June - September",
+				dailyBudget: "$20-40usd",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/americas/ecuador",
+				advice: Advisory.Level2,
+			},
+			music: [
+				{
+					title: "In The Water - Pete McCredie",
+					link: "https://music.youtube.com/watch?v=hRNOtV-2tfg&si=uzKM6W17HIHRoLEx",
+				},
+				{
+					title: "Schmackofatz - 2homiedawgs",
+					link: "https://music.youtube.com/watch?v=mTJfm7QHu1o&si=TW1b0aWJPeaCDH3E",
+				},
+				{
+					title: "How Far We've Come - Matchbox Twenty",
+					link: "https://music.youtube.com/watch?v=4jh5NlZooKk&si=TkT2wBSnLdH28j93",
+				},
+				{
+					title: "Las +593 - Machaka",
+					link: "https://music.youtube.com/watch?v=a7khClhyExU&si=LHP0jvd5cYWT8GFu",
+				},
+				
+			],
+			highlights: [
+				{
+					title: "Galapagos Diving",
+					timecode: 90,
+				},
+			],
+		},
+	},
 ];
