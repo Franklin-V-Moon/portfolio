@@ -3806,9 +3806,9 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [5]
 			},
 			finalScore: 6,
-			summary: [ "Ecuador is a country of rich history and diverse landscapes, from the ancient ruins of Machu Picchu to the vibrant streets of Lima.",
+			summary: [ "Ecuador is a country of rich history and diverse landscapes, from the vibrant biodiversity of the Galapagos Islands to the rapid rivers of banos",
 				"Traveling through Ecuador offers a mix of cultural experiences, culinary delights, and breathtaking natural beauty.",
-				"Whether you're exploring the Amazon rainforest or hiking the Inca Trail, Ecuador has something for every traveler."
+				"Whether you're canyoneering or hiking, Ecuador has something for every traveler."
 			 ],
 			challenges: [ "Theft on busses and in cities is a concern, so always be vigilant with your belongings",
 			 ],
