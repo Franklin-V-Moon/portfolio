@@ -389,7 +389,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/16ekQGT90_76BCrX_mbiN3JDhnKrMG1-2?usp=sharing",
 		restricted: false,
 		extras: {
-			subtitles: ["English"],
+			subtitles: ["English", "Ukrainian"],
 			countries: ["Japan"],
 			trailer: "japantrailer",
 			scorecard: {
@@ -3805,7 +3805,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [8],
 				beauty: [5]
 			},
-			finalScore: 10,
+			finalScore: 6,
 			summary: [ "Ecuador is a country of rich history and diverse landscapes, from the vibrant biodiversity of the Galapagos Islands to the rapid rivers of banos",
 				"Traveling through Ecuador offers a mix of cultural experiences, culinary delights, and breathtaking natural beauty.",
 				"Whether you're canyoneering or hiking, Ecuador has something for every traveler."
