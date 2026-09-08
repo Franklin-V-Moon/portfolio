@@ -3850,4 +3850,97 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 		},
 	},
+	{
+		title: "Venezuela",
+		year: 2026,
+		hostedLink: "venezuela",
+		link: "venezuela",
+		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DX5oWM_FQef/?hl=en&img_index=1"
+		],
+		backupLink: "https://drive.google.com/drive/folders/1jA-PqwyqePkKYA2aF7AEGurzXw-k2Pky?usp=drive_link",
+		extras: {
+			subtitles: ["English", "Spanish",],
+			countries: ["Venezuela"],
+			trailer: "venezuelatrailer",
+			scorecard: {
+				affordability: [5],
+				food: [6],
+				hospitality: [10],
+				safety: [8],
+				accessibility: [4],
+				video: [10],
+				beauty: [8]
+			},
+			finalScore: 9,
+			summary: [ "Venezuela is a nation with such potential, with a tumultuous recent events to its epic revolutionary history, and a culture that is vibrant and welcoming.",
+				"Traveling through Venezuela you really get to meet locals like nowhere else, insane tasty yet very unhealthy food, and breathtaking natural beauty.",
+				"Whether you're exploring the Angel Falls or sun baking on Margarita Island, Now is probably the best time to visit this unbelievably beautiful country, before the world catches on"
+			 ],
+			challenges: [ "Police and military are very present, and can be intimidating, they will lie, cheat and steal far more than any criminal",
+			 ],
+			 dos: ["Approach locals, say yes to offers and be open to new experiences", "Have a flexible schedule, things can change quickly and you need to be able to adapt", "Use Whatsapp and Airbnb to book most hotels and experiences"],
+			 donts: ["Forget to bring plenty of crisp USD, its near impossible to withdraw cash or use cards, and the local currency is worthless"],
+			advice: {
+				travelLength: "4-6 weeks",
+				currency: "United States Dollar USD & Venezuelan Bolívar VES",
+				season: "May - September",
+				dailyBudget: "$50-80usd",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/americas/venezuela",
+				advice: Advisory.Level4,
+			},
+			music: [
+				{
+					title: "Veneka - Rawayana & Akapellah",
+					link: "https://music.youtube.com/watch?v=Roi4GRReQ7Q&si=AWciM56Ihlr7deUh",
+				},
+				{
+					title: "Punkrocker (As featured in Superman) (feat. Iggy Pop) -Teddybears",
+					link: "https://music.youtube.com/watch?v=s_s-sXX4Kt4&si=KKfUnd7XDz2Ot5ml",
+				},
+				{
+					title: "Plead The Fifth - Cooper Alan",
+					link: "https://music.youtube.com/watch?v=69B2QoEAQxA&si=Hkm2fxMYJjoE7bdX",
+				},
+				{
+					title: "Memories Can Weigh You Down - Michael Giacchino",
+					link: "https://music.youtube.com/watch?v=RM--9ENP9wA&si=UZn54akeRUQar6TY",
+				},
+				{
+					title: "The Spirit Of Adventure - Michael Giacchino",
+					link: "https://music.youtube.com/watch?v=hN5DKM72O_s&si=FCvXzlt_AX8Yz1Ma",
+				},
+				
+			],
+			highlights: [
+				{
+					title: "Maduro's Kidnapping",
+					timecode: 78,
+				},
+				{
+					title: "Purple Hearts Festival",
+					timecode: 156,
+				},
+				{
+					title: "Caracas Clubbing",
+					timecode: 187,
+				},
+				{
+					title: "German Colony",
+					timecode: 276,
+				},
+				{
+					title: "Margarita Island",
+					timecode: 516,
+				},
+				{
+					title: "Angel Falls",
+					timecode: 690,
+				},
+			],
+		},
+	},
 ];
