@@ -3943,88 +3943,88 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 		},
 	},
-	{
-		title: "Panama & Colombia",
-		year: 2026,
-		hostedLink: "panamacolombia",
-		link: "panama-colombia",
-		restricted: false,
-		instagramLinks: [
-			"https://www.instagram.com/p/DaIUaiYCYwN/?hl=en&img_index=1",
-			"https://www.instagram.com/p/DZLnoRTifrT/?hl=en&img_index=1",
-			"https://www.instagram.com/p/DXBkhz0Dv6e/?hl=en&img_index=1",
+	// {
+	// 	title: "Panama & Colombia",
+	// 	year: 2026,
+	// 	hostedLink: "panamacolombia",
+	// 	link: "panama-colombia",
+	// 	restricted: false,
+	// 	instagramLinks: [
+	// 		"https://www.instagram.com/p/DaIUaiYCYwN/?hl=en&img_index=1",
+	// 		"https://www.instagram.com/p/DZLnoRTifrT/?hl=en&img_index=1",
+	// 		"https://www.instagram.com/p/DXBkhz0Dv6e/?hl=en&img_index=1",
 			
-		],
-		backupLink: "https://drive.google.com/drive/folders/1is17v_EFKUVtGZWz2qxVhqry6djBXS3g?usp=drive_link",
-		extras: {
-			subtitles: ["English", "Spanish",],
-			countries: ["Panama", "Colombia"],
-			trailer: "panamacolombiatrailer",
-			scorecard: {
-				affordability: [4, 5],
-				food: [3, 5],
-				hospitality: [3, 7],
-				safety: [6, 6],
-				accessibility: [7, 8],
-				video: [7, 7],
-				beauty: [6, 6]
-			},
-			finalScore: 7,
-			summary: [ "Panama, a unique strip separating oceans and continents, with unique and special activities to try",
-				"Colombia, a country of endless rhythm and spirit, culture and recent history with some of the brightest smiles and happiest laughter on earth",
-				"Not nearly as dangerous as they say, it's come a long way in the past few years but in many places, still exactly the same"
-			],
-			challenges: [ "Theft and gangs are still very much a thing but just dont make yourself an easy target and you'll be totally fine, theyre often better than the police",
-			 ],
-			 dos: ["Dance classes in Cali, Salsa Celena is an amazing experience worth atleast a week and a few hours per day", "Paragliding is also atleast woeth doing in Cali or Bucharamanga. It's affordable and worth learning if youve got atleast 5 days"],
-			 donts: ["Tayrona is a bit of a touristic wash thats best for people who just want peace and quiet but not much worth experiencing. It's Instagram, sitting with a pina colada or a steady hike"],
-			advice: {
-				travelLength: "4-6 weeks",
-				currency: "United States Dollar USD & Colombian Peso COP",
-				season: "May - September",
-				dailyBudget: "$30-80usd",
-			},
-			travelAdvisory: {
-				link: "https://www.smartraveller.gov.au/destinations/americas/colombia",
-				advice: Advisory.Level3,
-			},
-			music: [
-				{
-					title: "Panama - Van Halen",
-					link: "https://music.youtube.com/watch?v=YRFKU6QvBJY&si=6qCcNGgcJhVmbk4R",
-				},
-				{
-					title: "Zoo - Shakira",
-					link: "https://music.youtube.com/watch?v=WTRm-Yr5Foo&si=2g6fmcUcFDSyWvup",
-				},
-				{
-					title: "Disparo Al Corazón - Dani J",
-					link: "https://music.youtube.com/watch?v=8eF_zzyZ8dc&si=EY2x-D3xc2nDCYes",
-				},
-				{
-					title: "Sexo Con Ropa - Romeo Santos",
-					link: "https://music.youtube.com/watch?v=QQPflyEabL4&si=hkMk9OOAFG6IyL8K",
-				},
-				{
-					title: "Niveles - Pinto Picasso",
-					link: "https://music.youtube.com/watch?v=jnbccHeVUz0&si=jWijf7vplYzmJvHQ",
-				},
-				{
-					title: "New Suite from Top Gun: Maverick - Ashton Gleckman",
-					link: "https://music.youtube.com/watch?v=N9_33wENW7Q&si=xoq_9DSml9uZuXOk",
-				}
+	// 	],
+	// 	backupLink: "https://drive.google.com/drive/folders/1is17v_EFKUVtGZWz2qxVhqry6djBXS3g?usp=drive_link",
+	// 	extras: {
+	// 		subtitles: ["English", "Spanish",],
+	// 		countries: ["Panama", "Colombia"],
+	// 		trailer: "panamacolombiatrailer",
+	// 		scorecard: {
+	// 			affordability: [4, 5],
+	// 			food: [3, 5],
+	// 			hospitality: [3, 7],
+	// 			safety: [6, 6],
+	// 			accessibility: [7, 8],
+	// 			video: [7, 7],
+	// 			beauty: [6, 6]
+	// 		},
+	// 		finalScore: 7,
+	// 		summary: [ "Panama, a unique strip separating oceans and continents, with unique and special activities to try",
+	// 			"Colombia, a country of endless rhythm and spirit, culture and recent history with some of the brightest smiles and happiest laughter on earth",
+	// 			"Not nearly as dangerous as they say, it's come a long way in the past few years but in many places, still exactly the same"
+	// 		],
+	// 		challenges: [ "Theft and gangs are still very much a thing but just dont make yourself an easy target and you'll be totally fine, theyre often better than the police",
+	// 		 ],
+	// 		 dos: ["Dance classes in Cali, Salsa Celena is an amazing experience worth atleast a week and a few hours per day", "Paragliding is also atleast woeth doing in Cali or Bucharamanga. It's affordable and worth learning if youve got atleast 5 days"],
+	// 		 donts: ["Tayrona is a bit of a touristic wash thats best for people who just want peace and quiet but not much worth experiencing. It's Instagram, sitting with a pina colada or a steady hike"],
+	// 		advice: {
+	// 			travelLength: "4-6 weeks",
+	// 			currency: "United States Dollar USD & Colombian Peso COP",
+	// 			season: "May - September",
+	// 			dailyBudget: "$30-80usd",
+	// 		},
+	// 		travelAdvisory: {
+	// 			link: "https://www.smartraveller.gov.au/destinations/americas/colombia",
+	// 			advice: Advisory.Level3,
+	// 		},
+	// 		music: [
+	// 			{
+	// 				title: "Panama - Van Halen",
+	// 				link: "https://music.youtube.com/watch?v=YRFKU6QvBJY&si=6qCcNGgcJhVmbk4R",
+	// 			},
+	// 			{
+	// 				title: "Zoo - Shakira",
+	// 				link: "https://music.youtube.com/watch?v=WTRm-Yr5Foo&si=2g6fmcUcFDSyWvup",
+	// 			},
+	// 			{
+	// 				title: "Disparo Al Corazón - Dani J",
+	// 				link: "https://music.youtube.com/watch?v=8eF_zzyZ8dc&si=EY2x-D3xc2nDCYes",
+	// 			},
+	// 			{
+	// 				title: "Sexo Con Ropa - Romeo Santos",
+	// 				link: "https://music.youtube.com/watch?v=QQPflyEabL4&si=hkMk9OOAFG6IyL8K",
+	// 			},
+	// 			{
+	// 				title: "Niveles - Pinto Picasso",
+	// 				link: "https://music.youtube.com/watch?v=jnbccHeVUz0&si=jWijf7vplYzmJvHQ",
+	// 			},
+	// 			{
+	// 				title: "New Suite from Top Gun: Maverick - Ashton Gleckman",
+	// 				link: "https://music.youtube.com/watch?v=N9_33wENW7Q&si=xoq_9DSml9uZuXOk",
+	// 			}
 				
-			],
-			highlights: [
-				{
-					title: "Dance School",
-					timecode: 516,
-				},
-				{
-					title: "Paraglide School",
-					timecode: 660,
-				},
-			],
-		},
-	},
+	// 		],
+	// 		highlights: [
+	// 			{
+	// 				title: "Dance School",
+	// 				timecode: 516,
+	// 			},
+	// 			{
+	// 				title: "Paraglide School",
+	// 				timecode: 660,
+	// 			},
+	// 		],
+	// 	},
+	// },
 ];
