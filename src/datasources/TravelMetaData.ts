@@ -3961,15 +3961,15 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			countries: ["Panama", "Colombia"],
 			trailer: "panamaandcolombia",
 			scorecard: {
-				affordability: [4, 5],
-				food: [3, 5],
-				hospitality: [3, 7],
+				affordability: [3, 5],
+				food: [2, 4],
+				hospitality: [2, 6],
 				safety: [6, 6],
-				accessibility: [7, 8],
-				video: [7, 7],
-				beauty: [6, 6]
+				accessibility: [6, 8],
+				video: [6, 7],
+				beauty: [5, 5]
 			},
-			finalScore: 7,
+			finalScore: 5,
 			summary: [ "Panama, a unique strip separating oceans and continents, with unique and special activities to try",
 				"Colombia, a country of endless rhythm and spirit, culture and recent history with some of the brightest smiles and happiest laughter on earth",
 				"Not nearly as dangerous as they say, it's come a long way in the past few years but in many places, still exactly the same"
@@ -4023,6 +4023,66 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				{
 					title: "Paraglide School",
 					timecode: 660,
+				},
+			],
+		},
+	},
+	{
+		title: "Andorra & Monaco",
+		year: 2026,
+		hostedLink: "andorramonaco",
+		link: "andorra-and-monaco",
+		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DasyF_8ie4T/?hl=en&img_index=1"
+			
+		],
+		backupLink: "https://drive.google.com/drive/folders/1Navq7J3vwo4pUTwCrQcl4iYMULgIvoqi?usp=drive_link",
+		extras: {
+			subtitles: ["English", "French",],
+			countries: ["Andorra", "Monaco"],
+			trailer: "andorramonacotrailer",
+			scorecard: {
+				affordability: [1, 1],
+				food: [7, 5],
+				hospitality: [3, 1],
+				safety: [10, 10],
+				accessibility: [4, 10],
+				video: [2, 2],
+				beauty: [7, 3]
+			},
+			finalScore: 3,
+			summary: [ "Andorra, a small principality nestled in the Pyrenees mountains, a place I honestly didn;t know existed until a few years ago.",
+				"Monaco on the other hand, is neat for a few hours but really not my vibe or anyone who's in my salary ranges vibe",
+				"Despite the title, I spent most of my time transiting between these countries through France (Not reflected in these scores), but not nearly long enough, France deserves it's own video, tbd"
+			],
+			 dos: ["Visit Monaco from Nice, it's a short train ride and you can see the sights in a few hours"],
+			 donts: ["Shell out big bucks for the Monaco F1, you can easily just walk around. You're only paying for the seat"],
+			advice: {
+				travelLength: "2 days Andorra, 1 day Monaco",
+				currency: "Euro EUR",
+				season: "Year Round",
+				dailyBudget: "$100-200usd",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/europe/france",
+				advice: Advisory.Level2,
+			},
+			music: [
+				{
+					title: "The Fate of Ophelia - Taylor Swift",
+					link: "https://music.youtube.com/watch?v=7nVctvQVz0U&si=pVLqJJyXTMfjHdeY",
+				},
+				{
+					title: "Someone Like Me - ISHAN",
+					link: "https://music.youtube.com/watch?v=r16sVSMe8iQ&si=rY361Guphjtln7d6",
+				},
+				
+			],
+			highlights: [
+				{
+					title: "Formula One",
+					timecode: 157,
 				},
 			],
 		},
