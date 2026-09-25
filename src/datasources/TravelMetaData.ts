@@ -4155,7 +4155,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 			highlights: [
 				{
-					title: "Soviet Mud Health Resort",
+					title: "Soviet Mud Resort",
 					timecode: 40,
 				},
 				{
