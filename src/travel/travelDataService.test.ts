@@ -86,7 +86,7 @@ describe("funniestOnly()", () => {
 	it("returns at most a single 'Bangers' group", () => {
 		const result = funniestOnly();
 		expect(result.length).toBeLessThanOrEqual(1);
-		result.forEach((group) => expect(group.heading).toBe("Bangers"));
+		result.forEach((group) => expect(group.heading).toBe("Most Entertaining"));
 	});
 });
 

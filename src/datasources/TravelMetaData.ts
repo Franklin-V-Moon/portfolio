@@ -2549,11 +2549,11 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				affordability: [10],
 				food: [5],
 				hospitality: [10],
-				safety: [4],
-				accessibility: [4],
-				video: [8],
+				safety: [3],
+				accessibility: [3],
+				video: [7],
 			},
-			finalScore: 7,
+			finalScore: 5,
 			summary: [
 				"Pakistan is a culturally rich, predominantly Muslim nation with a complex history, currently navigating extremely challenging economic and political headwinds, but somehow manages to break the scale on what hospitality can be",
 				"We visited the 4 major cities to discover an alarming amount of diversity from the Punjabs to the Pashtuns with endless languages in-between",
@@ -3131,7 +3131,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				accessibility: [2],
 				video: [8],
 			},
-			finalScore: 4,
+			finalScore: 5,
 			summary: [
 				"Mongolia is a vast, sparsely populated country known for its nomadic culture and endless steppes.",
 				"We visited during Naadam festival, a traditional celebration featuring the three manly sports of horse racing, wrestling, and archery.",
@@ -3629,6 +3629,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			],
 		},
 	},
+	
 {
 		title: "Bolivia",
 		year: 2025,
@@ -3715,7 +3716,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 	},
 {
 		title: "Peru",
-		year: 2026,
+		year: 2025,
 		hostedLink: "peru",
 		link: "peru",
 		restricted: false,
@@ -4052,9 +4053,9 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [7, 3]
 			},
 			finalScore: 3,
-			summary: [ "Andorra, a small principality nestled in the Pyrenees mountains, a place I honestly didn;t know existed until a few years ago.",
-				"Monaco on the other hand, is neat for a few hours but really not my vibe or anyone who's in my salary ranges vibe",
-				"Despite the title, I spent most of my time transiting between these countries through France (Not reflected in these scores), but not nearly long enough, France deserves it's own video, tbd"
+			summary: [ "Andorra, a small principality nestled in the Pyrenees mountains, a place I honestly didn't know existed until a few years ago, but its a treat.",
+				"Monaco on the other hand, is neat for a few hours but really not my vibe or anyone who comes from my salary range",
+				"Despite the title, I spent most of my time transiting between these countries through France (Not reflected in these scores), but not nearly long enough, France deserves it's own video"
 			],
 			 dos: ["Visit Monaco from Nice, it's a short train ride and you can see the sights in a few hours"],
 			 donts: ["Shell out big bucks for the Monaco F1, you can easily just walk around. You're only paying for the seat"],
@@ -4083,6 +4084,103 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				{
 					title: "Formula One",
 					timecode: 157,
+				},
+			],
+		},
+	},
+	
+	{
+		title: "Ukraine",
+		year: 2026,
+		hostedLink: "ukraine",
+		link: "ukraine",
+		restricted: false,
+		instagramLinks: [
+			"https://www.instagram.com/p/DbsS5bsiL9F/?hl=en&img_index=1"
+			
+		],
+		backupLink: "https://drive.google.com/drive/folders/1ySClQUjIaTBuF2pCHfW0BbR9kc4qVr6i?usp=sharing",
+		extras: {
+			subtitles: ["English", "Ukrainian",],
+			countries: ["Ukraine"],
+			trailer: "ukrainetrailer",
+			scorecard: {
+				affordability: [9],
+				food: [9],
+				hospitality: [7],
+				safety: [5],
+				accessibility: [7],
+				video: [8],
+				beauty: [5]
+			},
+			finalScore: 8,
+			summary: [ "Ukraine is a vast Eastern European nation marked by golden-domed historic cities, rolling Carpathian peaks, and centuries of rich cultural heritage.",
+				"Visitors encounter exceptional warmth and hospitality, from the cobblestone streets of Lviv to deep-rooted culinary and architectural traditions.",
+				"While visiting today demands mindful awareness of current regional realities, exploring Ukraine offers a profoundly authentic journey through history, beauty, and enduring strength."
+			],
+			 dos: ["Drive to the mountains and book a Chan! I woodfired hottub with river dip we couldn't do because we didn't book ahead",
+				"Don't miss visiting the missile silo near Pervomaisk. Truely a once in a lifetime experience",
+				"Go for a rave at 4pm, itll stopes around 11pm so you'll get to vibe and have a great nights sleep too"
+			 ],
+			 donts: ["Install the air raid alert app. It goes off near constantly, bypassing your settings and often for alerts on the other side of the country"],
+			 challenges: [ "Naturally, border crossing are a nightmare, and the country is still in a state of war, so be prepared for 10+ hour delays",],
+			advice: {
+				travelLength: "2-3 weeks",
+				currency: "Ukrainian Hryvnia UAH",
+				season: "May - September",
+				dailyBudget: "$30-50usd",
+			},
+			travelAdvisory: {
+				link: "https://www.smartraveller.gov.au/destinations/europe/ukraine",
+				advice: Advisory.Level4,
+			},
+			music: [
+				{
+					title: "Полуничка - Дядя Жора & СолоХа",
+					link: "https://music.youtube.com/watch?v=9I3hM44VTDs&si=hINmej2hzH7129tH",
+				},
+				{
+					title: "Eastern Europe Don't Have Roads - Uamee",
+					link: "https://music.youtube.com/watch?v=jt_y_z65qQU&si=bnEe_WSe5YAQX_JC",
+				},
+				{
+					title: "Teresa & Maria - Alyona alyona & Jerry Heil",
+					link: "https://music.youtube.com/watch?v=Xr__T6pX1no&si=z1u_uHyMFDPnaQtD",
+				},
+				{
+					title: "Судно (Борис Рыжий) - Molchat Doma",
+					link: "https://music.youtube.com/watch?v=s1ATTIQrmIQ&si=ezuQC8akebNBGwCx",
+				},
+				
+			],
+			highlights: [
+				{
+					title: "Soviet Mud Health Resort",
+					timecode: 40,
+				},
+				{
+					title: "No Middle Aged Men",
+					timecode: 217,
+				},
+				{
+					title: "Worlds Longest Escalator",
+					timecode: 339,
+				},
+				{
+					title: "War Effort Fundraising",
+					timecode: 407,
+				},
+				{
+					title: "Memorial to the Fallen",
+					timecode: 462,
+				},
+				{
+					title: "Drone Interception",
+					timecode: 500,
+				},
+				{
+					title: "Launching a Tactical Nuke",
+					timecode: 651,
 				},
 			],
 		},
