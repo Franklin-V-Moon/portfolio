@@ -57,12 +57,16 @@ describe("buildVideoJsonLd", () => {
 	});
 
 	it("builds the page url and content url from the video link and hosted link", () => {
-		const { pageUrl, jsonLd } = buildVideoJsonLd({ metaData });
+		const { pageUrl, ogImage, jsonLd } = buildVideoJsonLd({ metaData });
 
 		expect(pageUrl).toBe("https://franklin-v-moon.dev/travel/japan-2023");
+		expect(ogImage).toBe(
+			"https://franklin-v-moon.dev/travel/posters/japan-2023.png",
+		);
 		expect(jsonLd.embedUrl).toBe(
 			"https://franklin-v-moon.dev/travel/japan-2023#player",
 		);
+		expect(jsonLd.thumbnailUrl).toEqual([ogImage]);
 		expect(jsonLd.contentUrl).toContain("japan-2023.mp4");
 	});
 });

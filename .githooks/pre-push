@@ -1,0 +1,13 @@
+#!/bin/sh
+
+printf '\nRunning project tests before push...\n\n'
+
+yarn test --runInBand
+test_status=$?
+
+if [ "$test_status" -ne 0 ]; then
+	printf '\n ---Tests failed, so the push was stopped---\n'
+	exit "$test_status"
+fi
+
+printf '\n ---All tests passed!; continuing push---\n'

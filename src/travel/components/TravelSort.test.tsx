@@ -22,7 +22,7 @@ describe("TravelSort", () => {
 		expect(screen.getByRole("menuitem", { name: "Worst" })).toBeDefined();
 		expect(screen.getByRole("menuitem", { name: "Food" })).toBeDefined();
 		expect(screen.getByRole("menuitem", { name: "Danger" })).toBeDefined();
-		expect(screen.getByRole("menuitem", { name: "Funniest" })).toBeDefined();
+		expect(screen.getByRole("menuitem", { name: "Entertaining" })).toBeDefined();
 	});
 
 	it("never renders Searching as a menu item", async () => {
@@ -54,13 +54,13 @@ describe("TravelSort", () => {
 		expect(setSortMetaDataBy).toHaveBeenCalledWith(SortBy.Best);
 	});
 
-	it("calls setSortMetaDataBy with Funniest when Funniest is clicked", async () => {
+	it("calls setSortMetaDataBy with Funniest when Entertaining is clicked", async () => {
 		const setSortMetaDataBy = jest.fn();
 		render(<TravelSort setSortMetaDataBy={setSortMetaDataBy} />);
 
 		fireEvent.click(screen.getByRole("button", { name: "Sort By" }));
 		fireEvent.click(
-			await screen.findByRole("menuitem", { name: "Funniest" }),
+			await screen.findByRole("menuitem", { name: "Entertaining" }),
 		);
 
 		expect(setSortMetaDataBy).toHaveBeenCalledWith(SortBy.Funniest);
