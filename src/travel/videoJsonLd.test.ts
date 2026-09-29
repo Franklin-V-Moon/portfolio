@@ -61,7 +61,7 @@ describe("buildVideoJsonLd", () => {
 
 		expect(pageUrl).toBe("https://franklin-v-moon.dev/travel/japan-2023");
 		expect(ogImage).toBe(
-			"https://franklin-v-moon.dev/travel/posters/japan-2023.png",
+			"https://franklin-v-moon.dev/travel/posters/social/japan-2023.jpg",
 		);
 		expect(jsonLd.embedUrl).toBe(
 			"https://franklin-v-moon.dev/travel/japan-2023#player",

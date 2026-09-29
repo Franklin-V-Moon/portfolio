@@ -7,9 +7,11 @@
 		"node": ">=24"
 	},
 	"scripts": {
-		"dev": "NODE_OPTIONS=--no-deprecation yarn && next dev --webpack",
+		"dev": "NODE_OPTIONS=--no-deprecation yarn && yarn generate-travel-social-posters && next dev --webpack",
 		"test": "jest",
 		"build": "next build --webpack",
+		"prebuild": "yarn generate-travel-social-posters",
+		"generate-travel-social-posters": "node utils/generate-travel-social-posters.js",
 		"export-meta": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' ts-node utils/export-meta.ts",
 		"postbuild": "yarn export-meta && next-sitemap --config next-sitemap-config.js",
 		"start": "next start",
@@ -37,7 +39,8 @@
 		"react-player": "^2.16.0",
 		"react-social-media-embed": "^2.5.13",
 		"react-typing-effect": "^2.0.5",
-		"sass": "^1.77.8"
+		"sass": "^1.77.8",
+		"sharp": "^0.34.5"
 	},
 	"devDependencies": {
 		"@testing-library/dom": "^10.0.0",

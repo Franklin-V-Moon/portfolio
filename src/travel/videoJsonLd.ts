@@ -20,16 +20,14 @@ export const buildVideoJsonLd = ({
 	const description =
 		extras?.summary?.[0] ?? `${title} — travel video from ${year}.`;
 	const pageUrl = `https://franklin-v-moon.dev/travel/${link}`;
-	const ogImage = `https://franklin-v-moon.dev/travel/posters/${hostedLink}.png`;
+	const ogImage = `https://franklin-v-moon.dev/travel/posters/social/${hostedLink}.jpg`;
 
 	const jsonLd = {
 		"@context": "https://schema.org",
 		"@type": "VideoObject",
 		name: `${title} — Travel Video`,
 		description,
-		thumbnailUrl: [
-			`https://franklin-v-moon.dev/travel/posters/${hostedLink}.png`,
-		],
+		thumbnailUrl: [ogImage],
 		contentUrl: `${publicCDNVideoUrl}${hostedLink}.mp4`,
 		embedUrl: `${pageUrl}#player`,
 		uploadDate: new Date(Number(year), 0, 1).toISOString(),
