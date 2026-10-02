@@ -1,4 +1,4 @@
-// Country IDs match the numeric id fields in world-atlas/countries-50m.json; search by properties.name.
+// Country IDs come from world-atlas/countries-50m.json
 // Geo dots can be added using https://geojson.io/
 
 import { Advisory } from "./../travel/types";

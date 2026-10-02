@@ -15,10 +15,6 @@ const travelMetaData = requireSitemapMeta("TravelMetaData.json");
 const guideMetaData = requireSitemapMeta("GuideMetaData.json");
 const assetMetaData = requireSitemapMeta("AssetMetaData.json");
 const siteUrl = "https://franklin-v-moon.dev";
-
-// Shared fallback for content types with no per-item "last updated" field
-// (travel only has a `year`, and the base static routes aren't individual
-// content items) — reflects when this sitemap was actually generated.
 const buildLastmod = new Date().toISOString();
 
 const normalizeSlug = (slug) => {

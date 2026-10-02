@@ -111,6 +111,7 @@ const buildDots = (): WorldDot[] => {
 			coordinates: video.extras?.dots ?? [],
 		})),
 		...worldMapOnlyDots.map(({ country, dots }) => ({
+			link: undefined,
 			countries: [country],
 			coordinates: dots,
 		})),

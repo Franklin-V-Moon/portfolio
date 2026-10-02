@@ -66,18 +66,17 @@ export const useSubtitleUrlSync = (
 		if (!textTracks) return;
 
 		const handleChange = () => {
-			// Browsers don't fire a "change" event for the automatic default
-			// track selection — only for an explicit mode change, whether from
-			// the user or from us applying the URL's initial value. So every
-			// event this listener sees is worth reflecting in the URL, even
-			// when it lands back on the default language.
 			const activeLanguage = getShowingLanguage(textTracks);
+			const currentUrlParams = Object.fromEntries(
+				new URLSearchParams(window.location.search).entries(),
+			);
 
 			router.replace(
 				{
 					pathname: router.pathname,
 					query: {
 						...router.query,
+						...currentUrlParams,
 						[SUBTITLES_QUERY_PARAM]: activeLanguage ?? NONE_PARAM_VALUE,
 					},
 				},

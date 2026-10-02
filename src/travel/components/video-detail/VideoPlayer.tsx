@@ -93,8 +93,9 @@ export const VideoPlayer = ({
 	const handleCopyToClipboardWithTimecode = async () => {
 		if (playerRef.current) {
 			const currentTime = await playerRef.current.getCurrentTime();
-			const baseUrl = window.location.href.split("?")[0];
-			const newUrl = `${baseUrl}?timecode=${Math.floor(currentTime)}`;
+			const shareUrl = new URL(window.location.href);
+			shareUrl.searchParams.set("timecode", String(Math.floor(currentTime)));
+			const newUrl = shareUrl.toString();
 
 			try {
 				await navigator.clipboard.writeText(newUrl);
