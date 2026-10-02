@@ -22,7 +22,7 @@
 ### 2. Add a country video row for clicked dots
 
 - [x] Track explicit dot click/tap activation separately from hover-only country previews.
-- [x] For an activated country, find every travel record whose `extras.countries` includes that country; use the shared country-ID mapping so aliases resolve consistently.
+- [x] For an activated country, find every travel record whose `extras.countries` contains the selected numeric `id`.
 - [x] Show every matching record in ascending year order visually (older first, newer last). Shared-country records appear for each tagged country, such as Thailand then Thailand 2 for Thailand.
 - [x] Render a poster-only `VideoLibrary` row above the directory controls and every existing sorted or filtered video group.
 - [x] Keep country posters side by side on all screen sizes and place the scorecard directly after them; size the scorecard to stay no taller than the posters.
@@ -41,4 +41,4 @@ The row appears only after a dot is clicked or tapped. It then follows subsequen
 - `VideoScorecard` is shared with the travel detail page; the country row uses only the newest matching record’s scorecard and animates its bars.
 - `VideoLibrary` has an opt-in horizontal layout for the country row; other libraries keep their existing grid layout.
 - The country-row scorecard parent has 5px top and bottom and 10px left padding; multiple-poster mobile rows use no left padding and reserve 195px for the scorecard, while single-poster mobile rows cap poster width at 145px. The two-poster desktop column does not grow and push the scorecard right. Below 600px, labels, legend text, and final-score text use about half-size type and bar stacks use half height without overflowing their track. Country bars stay touching within each score category; category rows have vertical gaps, desktop bars end at the divider width, and ratings below 3 hide their in-bar text.
-- Shared country IDs are mapped in `src/travel/countryIds.ts` for map dot assignment and clicked-country video matching.
+- Each `extras.countries` entry stores its display name and numeric map ID in `src/datasources/TravelMetaData.ts`; map dots and clicked-country video matching use those IDs directly.

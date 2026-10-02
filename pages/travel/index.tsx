@@ -32,7 +32,6 @@ import {
 	parseSortByFromQuery,
 } from "../../src/travel/urlQuery";
 import WorldMap from "../../src/travel/components/world-map/WorldMap";
-import { getTravelCountryId } from "../../src/travel/countryIds";
 
 const sortFunctions = {
 	[SortBy.Newest]: allNewestFirst,
@@ -58,7 +57,7 @@ const Travel = ({
 		: initialSortBy ?? SortBy.Newest;
 
 	const [sortSelection, setSortSelection] = useState(initialSortSelection);
-	const [clickedCountryId, setClickedCountryId] = useState<string | null>(null);
+	const [clickedCountryId, setClickedCountryId] = useState<number | null>(null);
 
 	const hasMounted = useHasMounted();
 
@@ -95,13 +94,13 @@ const Travel = ({
 		return travelVideoMetaData
 			.filter((video) =>
 				video.extras?.countries?.some(
-					(country) => getTravelCountryId(country) === clickedCountryId,
+					(country) => country.id === clickedCountryId,
 				),
 			)
 			.sort((first, second) => second.year - first.year);
 	}, [clickedCountryId]);
 
-	const handleDotClick = useCallback((countryId: string) => {
+	const handleDotClick = useCallback((countryId: number) => {
 		setClickedCountryId(countryId);
 	}, []);
 
@@ -110,7 +109,7 @@ const Travel = ({
 	}, []);
 
 	const handleCountrySelectionChange = useCallback(
-		(countryId: string | null) => {
+		(countryId: number | null) => {
 			if (!countryId) {
 				setClickedCountryId(null);
 				return;

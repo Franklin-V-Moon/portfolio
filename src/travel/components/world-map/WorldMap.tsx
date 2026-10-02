@@ -21,7 +21,7 @@ import styles from "./WorldMap.module.scss";
 
 type CountryProperties = { name: string };
 type CountryFeature = Feature<Polygon | MultiPolygon, CountryProperties>;
-type CountryId = string;
+type CountryId = number;
 type WorldDot = {
 	id: string;
 	latitude: number;
@@ -32,70 +32,6 @@ type WorldDot = {
 	travelLink?: string;
 };
 
-const countryIdsByName: Record<string, CountryId> = {
-	Afghanistan: "004",
-	Andorra: "020",
-	Argentina: "032",
-	Armenia: "051",
-	Azerbaijan: "031",
-	Bahrain: "048",
-	Bangladesh: "050",
-	Bhutan: "064",
-	Bolivia: "068",
-	Brunei: "096",
-	Cambodia: "116",
-	Chile: "152",
-	China: "156",
-	Colombia: "170",
-	Cyprus: "196",
-	"East India": "356",
-	Ecuador: "218",
-	Fiji: "242",
-	Georgia: "268",
-	Greece: "300",
-	"Hong Kong": "344",
-	India: "356",
-	Indonesia: "360",
-	Iran: "364",
-	"Iraqi Kurdistan": "368",
-	Israel: "376",
-	Japan: "392",
-	Jordan: "400",
-	Kuwait: "414",
-	Laos: "418",
-	Lebanon: "422",
-	Macau: "446",
-	Malaysia: "458",
-	Maldives: "462",
-	Monaco: "492",
-	Mongolia: "496",
-	Myanmar: "104",
-	Nepal: "524",
-	"New Zealand": "554",
-	Oman: "512",
-	Pakistan: "586",
-	Palestine: "275",
-	Panama: "591",
-	Paraguay: "600",
-	Peru: "604",
-	Philippines: "608",
-	"Saudi Arabia": "682",
-	Singapore: "702",
-	"South Korea": "410",
-	"Sri Lanka": "144",
-	Syria: "760",
-	Taiwan: "158",
-	Thailand: "764",
-	"Timor-Leste": "626",
-	Turkey: "792",
-	Ukraine: "804",
-	"United Arab Emirates": "784",
-	Uruguay: "858",
-	Venezuela: "862",
-	Vietnam: "704",
-};
-
-const getCountryId = (name: string) => countryIdsByName[name] ?? countryIdsByName[name[0]?.toUpperCase() + name.slice(1)];
 const getFeatureId = (country: CountryFeature) => String(country.id).padStart(3, "0");
 const millerRaw = (longitude: number, latitude: number): [number, number] => [
 	longitude,
@@ -120,7 +56,7 @@ const parseCoordinate = (coordinate: string) => {
 const findLatestVideo = (countryId: CountryId) =>
 	travelVideoMetaData
 		.filter((video) =>
-			video.extras?.countries?.some((country) => getCountryId(country) === countryId),
+			video.extras?.countries?.some((country) => country.id === countryId),
 		)
 		.sort((first, second) => second.year - first.year)[0];
 
@@ -159,15 +95,15 @@ const buildDots = (): WorldDot[] => {
 		const coordinates = video.extras?.dots ?? [];
 		if (!coordinates.length || !sourceCountries.length) return;
 
-		const candidates = sourceCountries
-			.map((name) => ({ name, id: getCountryId(name) }))
-			.filter((country): country is { name: string; id: string } => Boolean(country.id));
+		const candidates = sourceCountries;
 
 		coordinates.forEach((coordinate, index) => {
 			const parsed = parseCoordinate(coordinate);
 			if (!parsed) return;
 			const containingCountry = candidates.find((candidate) => {
-				const countryFeature = countries.features.find((entry) => getFeatureId(entry) === candidate.id);
+				const countryFeature = countries.features.find(
+					(entry) => getFeatureId(entry) === String(candidate.id).padStart(3, "0"),
+				);
 				return countryFeature && geoContains(countryFeature, [parsed.longitude, parsed.latitude]);
 			});
 			const assignedCountry = containingCountry ?? candidates[0];
@@ -191,7 +127,15 @@ const buildDots = (): WorldDot[] => {
 
 const dots = buildDots();
 
-const WorldMap = () => {
+const WorldMap = ({
+	onDotClick,
+	onCountrySelectionChange,
+	onRandomDotSelection,
+}: {
+	onDotClick?: (countryId: CountryId) => void;
+	onCountrySelectionChange?: (countryId: CountryId | null) => void;
+	onRandomDotSelection?: () => void;
+}) => {
 	const prefersReducedMotion = usePrefersReducedMotion();
 	const [selectedCountry, setSelectedCountry] = useState<WorldDot | null>(null);
 	const [selectedDotId, setSelectedDotId] = useState<string | null>(null);
@@ -225,8 +169,11 @@ const WorldMap = () => {
 		return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 	}, [path]);
 	const selectedCountryFeature = countries.features.find(
-		(country) => getFeatureId(country) === selectedCountry?.countryId,
+		(country) => getFeatureId(country) === String(selectedCountry?.countryId).padStart(3, "0"),
 	);
+	useEffect(() => {
+		onCountrySelectionChange?.(selectedCountry?.countryId ?? null);
+	}, [onCountrySelectionChange, selectedCountry?.countryId]);
 
 	const nextVideo = selectedCountry?.trailer
 		? `${publicCDNVideoUrl}${selectedCountry.trailer}.mp4`
@@ -363,11 +310,17 @@ const WorldMap = () => {
 					return;
 				}
 				const randomDot = dots[Math.floor(Math.random() * dots.length)];
-				if (randomDot) selectDotRef.current(randomDot);
+				if (randomDot) {
+					onRandomDotSelection?.();
+					selectDotRef.current(randomDot);
+				}
 				return;
 			}
 			const randomDot = dots[Math.floor(Math.random() * dots.length)];
-			if (randomDot) selectDotRef.current(randomDot);
+			if (randomDot) {
+				onRandomDotSelection?.();
+				selectDotRef.current(randomDot);
+			}
 		}, 20000);
 	};
 	selectDotRef.current = selectDot;
@@ -503,6 +456,7 @@ const WorldMap = () => {
 									onClick={(event) => {
 										event.stopPropagation();
 										selectDot(dot, true);
+										onDotClick?.(dot.countryId);
 									}}>
 									<circle className={styles.dotHitArea} r='15' />
 									<circle className={styles.dot} r='4.5' />
@@ -517,38 +471,40 @@ const WorldMap = () => {
 				<div className={styles.countryInfoContent}>
 					<h2 className={styles.countryTitle} aria-live='polite'>
 						{outgoingTitle && <span className={`${styles.titleText} ${styles.titleOutgoing}`}>{outgoingTitle}</span>}
-						{countryTitle && <span key={selectedCountry?.countryId} className={`${styles.titleText} ${styles.titleIncoming}`}>{countryTitle}</span>}
+						{countryTitle && <span key={countryTitle} className={`${styles.titleText} ${styles.titleIncoming}`}>{countryTitle}</span>}
 					</h2>
-					{selectedCountry?.travelLink && (
-						<Button
-							component={Link}
-							href={`/travel/${selectedCountry.travelLink}`}
-							variant='outlined'
-							endIcon={<PlayArrowRoundedIcon />}
-											className={styles.watchNow}
-											sx={{
-								marginLeft: "2px",
-								marginTop: "10px",
-								minWidth: "44.8px",
-								padding: "3.5px 10.5px",
-								fontSize: "0.67375rem",
-								borderColor: "var(--travel-map-accent)",
-								color: "var(--travel-map-accent)",
-								textTransform: "none",
-								"&:hover": {
+					<div className={styles.watchNowSlot}>
+						{selectedCountry?.travelLink && (
+							<Button
+								component={Link}
+								href={`/travel/${selectedCountry.travelLink}`}
+								variant='outlined'
+								endIcon={<PlayArrowRoundedIcon />}
+								className={styles.watchNow}
+								sx={{
+									marginLeft: "2px",
+									marginTop: "10px",
+									minWidth: "44.8px",
+									padding: "3.5px 10.5px",
+									fontSize: "0.67375rem",
 									borderColor: "var(--travel-map-accent)",
-									backgroundColor: "color-mix(in srgb, var(--travel-map-accent) 12%, transparent)",
-								},
-								"& .MuiButton-endIcon": {
-									marginLeft: "5.6px",
-								},
-								"& .MuiButton-endIcon > *:nth-of-type(1)": {
-									fontSize: "0.9rem",
-								},
-							}}>
-							Watch Now
-						</Button>
-					)}
+									color: "var(--travel-map-accent)",
+									textTransform: "none",
+									"&:hover": {
+										borderColor: "var(--travel-map-accent)",
+										backgroundColor: "color-mix(in srgb, var(--travel-map-accent) 12%, transparent)",
+									},
+									"& .MuiButton-endIcon": {
+										marginLeft: "5.6px",
+									},
+									"& .MuiButton-endIcon > *:nth-of-type(1)": {
+										fontSize: "0.9rem",
+									},
+								}}>
+								Watch Now
+							</Button>
+						)}
+					</div>
 				</div>
 			</div>
 		</div>

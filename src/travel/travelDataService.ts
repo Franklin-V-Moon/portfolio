@@ -81,8 +81,8 @@ export function allCountriesList() {
 	enhancedTravelVideoMetaData().forEach((video) => {
 		if (video.extras && video.extras.countries) {
 			video.extras.countries.forEach((country) => {
-				if (!countries.includes(country)) {
-					countries.push(country);
+				if (!countries.includes(country.name)) {
+					countries.push(country.name);
 				}
 			});
 		}
@@ -294,7 +294,7 @@ export const searchResult = (searchTerm: string) => {
 
 		if (video.extras?.countries) {
 			for (const country of video.extras.countries) {
-				if (country.toLowerCase().includes(lowerSearchTerm)) {
+				if (country.name.toLowerCase().includes(lowerSearchTerm)) {
 					results[0].grouping.push(video);
 					matched = true;
 					break;
