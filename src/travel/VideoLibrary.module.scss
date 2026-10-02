@@ -62,6 +62,14 @@
 	}
 }
 
+.loadingContainer.horizontalLoadingContainer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	margin-top: 0;
+}
+
 .videoCardImage {
 	border-radius: 0.325rem;
 	box-shadow: $defaultShadow;

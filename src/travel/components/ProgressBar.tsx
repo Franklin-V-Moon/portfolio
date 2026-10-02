@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { LinearProgress, Tooltip, Zoom } from "@mui/material";
 import styles from "../index.module.scss";
 import {
@@ -8,10 +9,27 @@ import {
 export const ProgressBar = ({
 	title,
 	scores,
+	animateBars = false,
+	startBarAnimation = false,
+	compact = false,
+	denseOnMobile = false,
+	halfBarsOnMobile = false,
 }: {
 	title: string;
 	scores: number[];
+	animateBars?: boolean;
+	startBarAnimation?: boolean;
+	compact?: boolean;
+	denseOnMobile?: boolean;
+	halfBarsOnMobile?: boolean;
 }) => {
+	const [barsStarted, setBarsStarted] = useState(false);
+	useEffect(() => {
+		if (!animateBars || !startBarAnimation || barsStarted) return;
+		const frame = requestAnimationFrame(() => setBarsStarted(true));
+		return () => cancelAnimationFrame(frame);
+	}, [animateBars, barsStarted, startBarAnimation]);
+
 	const scoreKeyData: Record<string, { title: string; tooltip: string }> = {
 		beauty: {
 			title: "Beauty",
@@ -60,21 +78,28 @@ export const ProgressBar = ({
 				title={scoreKeyData[title].tooltip}
 				followCursor
 				key={`score item ${title}`}>
-				<div className={styles.scoreItemContainer}>
-					<h4 className={styles.scoreTitle}> {scoreKeyData[title].title}</h4>
+				<div className={`${styles.scoreItemContainer} ${compact ? styles.compactScoreItem : ""} ${denseOnMobile ? styles.denseMobileScoreItem : ""}`}>
+					<h4 className={`${styles.scoreTitle} ${compact ? styles.compactScoreTitle : ""} ${denseOnMobile ? styles.denseMobileScoreTitle : ""}`}>
+						{scoreKeyData[title].title}
+					</h4>
 
-					<div className={styles.scoreBarsWrapper}>
+					<div className={`${styles.scoreBarsWrapper} ${compact ? styles.compactScoreBars : ""} ${denseOnMobile ? styles.denseMobileScoreBars : ""}`}>
 						{scores.map((countryScore, countryIndex) => (
 							<LinearProgress
 								variant='determinate'
-								value={countryScore === 1 ? 10 : countryScore * 10}
-								className={styles.scoreBar}
+								value={animateBars && !barsStarted ? 0 : countryScore === 1 ? 10 : countryScore * 10}
+								className={`${styles.scoreBar} ${compact ? styles.compactScoreBar : ""} ${denseOnMobile ? styles.denseMobileScoreBar : ""}`}
 								sx={{
 									height: `${24 / scores.length}px`,
+									minHeight: 0,
+									...(compact && halfBarsOnMobile
+										? { "@media (max-width: 599px)": { height: `${12 / scores.length}px` } }
+										: {}),
 									"& .MuiLinearProgress-bar": {
 										background: `linear-gradient(to right, ${scorecardColorsPrimary[countryIndex]}, ${scorecardColorsSecondary[countryIndex]})`,
 										borderRadius: "20px",
 										borderTop: "0.5px solid white",
+										transition: animateBars ? "transform 900ms cubic-bezier(0.16, 1, 0.3, 1)" : undefined,
 									},
 								}}
 								key={`country score index ${countryIndex}`}

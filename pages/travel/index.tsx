@@ -17,7 +17,8 @@ import {
 } from "../../src/travel/travelDataService";
 import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
 import { VideoLibrary } from "../../src/travel/VideoLibrary";
-import { useEffect, useMemo, useState } from "react";
+import { CountryVideoLibrary } from "../../src/travel/CountryVideoLibrary";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { useHasMounted } from "../../utils/useHasMounted";
 import { SortBy } from "../../src/travel/types";
@@ -31,6 +32,7 @@ import {
 	parseSortByFromQuery,
 } from "../../src/travel/urlQuery";
 import WorldMap from "../../src/travel/components/world-map/WorldMap";
+import { getTravelCountryId } from "../../src/travel/countryIds";
 
 const sortFunctions = {
 	[SortBy.Newest]: allNewestFirst,
@@ -56,6 +58,7 @@ const Travel = ({
 		: initialSortBy ?? SortBy.Newest;
 
 	const [sortSelection, setSortSelection] = useState(initialSortSelection);
+	const [clickedCountryId, setClickedCountryId] = useState<string | null>(null);
 
 	const hasMounted = useHasMounted();
 
@@ -85,6 +88,36 @@ const Travel = ({
 					.reduce((sum, group) => sum + group.grouping.length, 0),
 			})),
 		[sortedMetaData],
+	);
+
+	const countryVideos = useMemo(() => {
+		if (!clickedCountryId) return [];
+		return travelVideoMetaData
+			.filter((video) =>
+				video.extras?.countries?.some(
+					(country) => getTravelCountryId(country) === clickedCountryId,
+				),
+			)
+			.sort((first, second) => second.year - first.year);
+	}, [clickedCountryId]);
+
+	const handleDotClick = useCallback((countryId: string) => {
+		setClickedCountryId(countryId);
+	}, []);
+
+	const handleRandomDotSelection = useCallback(() => {
+		setClickedCountryId(null);
+	}, []);
+
+	const handleCountrySelectionChange = useCallback(
+		(countryId: string | null) => {
+			if (!countryId) {
+				setClickedCountryId(null);
+				return;
+			}
+			setClickedCountryId((current) => current ? countryId : current);
+		},
+		[],
 	);
 
 	const handleSearchingTextChange = (value: string) => {
@@ -147,7 +180,16 @@ const Travel = ({
 			</Head>
 
 			<PageContainer>
-				<WorldMap />
+				<WorldMap
+					onDotClick={handleDotClick}
+					onCountrySelectionChange={handleCountrySelectionChange}
+					onRandomDotSelection={handleRandomDotSelection}
+				/>
+
+				<CountryVideoLibrary
+					active={Boolean(clickedCountryId && countryVideos.length)}
+					videoMetaData={countryVideos}
+				/>
 
 				<div className={styles.directoryContainer}>
 					<div className={styles.countriesBeenContainer}>

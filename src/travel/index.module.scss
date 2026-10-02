@@ -5,6 +5,182 @@
 	margin-bottom: 2.5rem;
 }
 
+.countryLibraryContainer {
+	margin-bottom: 80px;
+}
+
+.countryLibraryLayout {
+	display: flex;
+	flex-direction: row; margin-bottom: 16px;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	justify-content: flex-start;
+	gap: 12px;
+}
+
+.countryLibraryPosters {
+	min-width: 0;
+	max-width: 100%;
+}
+
+.countryLibraryLayoutSingle .countryLibraryPosters {
+	flex: 0 1 220px;
+}
+
+.countryLibraryLayoutMultiple .countryLibraryPosters {
+	flex: 0 1 430px;
+}
+
+.countryLibraryScorecard {
+	flex: 0 1 150px;
+	min-width: 150px;
+	box-sizing: border-box;
+	padding: 5px 0 5px 10px;
+
+	@include breakpoint(small) {
+		flex-basis: 280px;
+		min-width: 250px;
+	}
+}
+
+.countryLibraryLayout .countryLibraryScorecard {
+	margin-bottom: 0;
+	display: flex;
+	min-height: 0;
+
+	@include breakpoint(medium) {
+		flex-basis: 400px;
+		min-width: 320px;
+	}
+
+	@include breakpoint(small) {
+		.compactScoreItem .compactScoreTitle {
+			width: 105px;
+		}
+
+		.compactScoreItem .compactScoreBars {
+			width: 40%;
+		}
+	}
+}
+
+.countryLibraryLayout .countryLibraryScorecard .compactScoreItem .compactScoreBars {
+	width: calc(100% - 110px);
+}
+
+@include breakpoint(medium) {
+	.countryLibraryLayout .countryLibraryScorecard .compactScoreItem .compactScoreBars {
+		width: calc(83% - 110px);
+	}
+}
+
+.compactScoreItem {
+	flex: 1 1 12px;
+	min-height: 0;
+	display: flex;
+	align-items: center;
+}
+
+.compactScoreItem .compactScoreTitle {
+	width: 95px;
+	height: auto;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+}
+
+.compactScoreItem .compactScoreBars {
+	width: 30%;
+	height: 24px;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.compactScoreItem .compactScoreBar {
+	margin: 0 0 0 4px;
+	flex: 0 0 auto;
+}
+
+.compactScoreItem {
+	margin-bottom: 3px;
+}
+
+.finalScoreBarWrapper .compactFinalScoreBar {
+	margin: 0;
+}
+
+@media (max-width: 599px) {
+	.countryLibraryScorecard {
+		flex: 0 1 180px;
+		min-width: 0;
+	}
+
+	.countryLibraryLayoutMultiple .countryLibraryScorecard {
+		flex: 0 0 195px;
+		padding-left: 0;
+	}
+
+	.countryLibraryLayoutSingle .countryLibraryPosters {
+		flex: 0 0 145px;
+	}
+
+	.compactScoreItem.denseMobileScoreItem .denseMobileScoreTitle {
+		width: 64px;
+		font-size: 0.5rem;
+		height: auto;
+		display: flex;
+		align-items: center;
+	}
+
+	.countryLibraryLayout .countryLibraryScorecard .compactScoreItem .denseMobileScoreBars {
+		width: calc(100% - 68px);
+	}
+
+	.compactScoreItem .denseMobileScoreBar {
+		width: calc(100% - 3px);
+		margin-left: 0;
+	}
+
+	.countryLibraryLayout .countryLibraryScorecard .compactScoreItem .denseMobileScoreBars {
+		height: 12px;
+		min-height: 12px;
+		overflow: hidden;
+	}
+}
+
+.countryLibraryAnimation {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition-property: grid-template-rows;
+	transition-timing-function: ease-in-out;
+
+	@include breakpoint(medium) {
+		position: relative;
+		top: -25px;
+	}
+}
+
+.countryLibraryExpanded {
+	grid-template-rows: 1fr;
+}
+
+.countryLibraryContent {
+	min-height: 0;
+	overflow: hidden;
+	opacity: 0;
+}
+
+.countryLibraryVisible {
+	opacity: 1;
+}
+
+.countryLibraryFade {
+	transition-property: opacity;
+	transition-timing-function: ease-in-out;
+}
+
 .directoryContainer {
 	width: 100%;
 	padding: 0 3px 15px 0;

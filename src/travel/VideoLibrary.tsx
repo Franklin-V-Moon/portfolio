@@ -11,9 +11,11 @@ const PRIORITY_IMAGE_COUNT = 6;
 export const VideoLibrary = ({
 	videoMetaData,
 	startIndex = 0,
+	horizontal = false,
 }: {
 	videoMetaData: TravelVideoMetaData[];
 	startIndex?: number;
+	horizontal?: boolean;
 }) => {
 	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [loading, setLoading] = useState({ state: false, index: -1 });
@@ -31,8 +33,10 @@ export const VideoLibrary = ({
 			spacing={1.25}
 			style={{
 				margin: 0,
-				padding: "0 40px 0 20px",
-				justifyContent: isSmallScreen ? "space-between" : "",
+				padding: horizontal ? "0 0 0 20px" : "0 40px 0 20px",
+				width: horizontal ? "100%" : undefined,
+				flexWrap: horizontal ? "nowrap" : undefined,
+				justifyContent: horizontal ? "flex-start" : isSmallScreen ? "space-between" : "",
 			}}>
 			{[...videoMetaData].reverse().map((dataItem, displayIndex) => {
 				const href = `/travel/${dataItem.link}`;
@@ -40,14 +44,15 @@ export const VideoLibrary = ({
 				return (
 					<Grid
 						key={`Video card of ${dataItem.title}`}
-						size={{ xs: isSmallScreen ? 6 : false }}>
+						size={{ xs: horizontal ? false : isSmallScreen ? 6 : false }}
+						style={horizontal ? { flex: "1 1 0", minWidth: 0, maxWidth: 200 } : undefined}>
 						<div
 							style={{
 								animation: `fadeIn ${displayIndex + 5}00ms ease-in-out`,
 								opacity: 1,
 							}}>
 							<CardActionArea
-								className={styles.videoCardContainer}
+								className={`${styles.videoCardContainer} ${horizontal ? styles.horizontalVideoCardContainer : ""}`}
 								component='a'
 								href={href}
 								onClick={(e) => {
@@ -81,10 +86,14 @@ export const VideoLibrary = ({
 									width={200}
 									sizes='(max-width: 500px) 50vw, 200px'
 									priority={globalIndex < PRIORITY_IMAGE_COUNT}
-									style={{ width: "100%", height: "auto" }}
+									style={{
+										width: "100%",
+										height: "auto",
+										display: horizontal ? "block" : undefined,
+									}}
 								/>
 
-								<div className={styles.loadingContainer}>
+								<div className={`${styles.loadingContainer} ${horizontal ? styles.horizontalLoadingContainer : ""}`}>
 									{loading.state && loading.index === displayIndex && (
 										<LinearProgress color='inherit' />
 									)}

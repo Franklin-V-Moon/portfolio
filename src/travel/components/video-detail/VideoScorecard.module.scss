@@ -8,6 +8,88 @@
 	flex-direction: column;
 }
 
+.compactScorecard {
+	height: 100%;
+	min-height: 0;
+	margin-bottom: 0;
+
+	h2 {
+		display: none;
+	}
+
+	.finalScoreDiv {
+		margin-top: 10px;
+	}
+
+	.finalScoreContainer {
+		width: 100%;
+		margin: 18px 0 3px;
+		align-items: center;
+	}
+
+	.finalScoreTitle {
+		width: 95px;
+		height: auto;
+		display: flex;
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		line-height: 1;
+	}
+
+	.finalScoreBarWrapper {
+		width: calc(100% - 99px);
+		height: 24px;
+		margin: 0 0 0 4px;
+	}
+
+	@include breakpoint(small) {
+		.finalScoreTitle {
+			width: 105px;
+		}
+
+		.finalScoreBarWrapper {
+			width: calc(100% - 109px);
+		}
+	}
+
+	@include breakpoint(medium) {
+		.finalScoreBarWrapper {
+			width: calc(83% - 109px);
+		}
+	}
+}
+
+@media (max-width: 599px) {
+	.denseMobileScorecard {
+		.denseMobileLegendText {
+			padding: 0 4px 6px 0 !important;
+			font-size: 0.5rem;
+		}
+
+		.finalScoreContainer {
+			margin-top: 9px;
+		}
+
+		.finalScoreTitle {
+			width: 64px;
+			font-size: 0.5rem;
+		}
+
+		.finalScoreBarWrapper {
+			width: calc(100% - 68px);
+		}
+
+		.finalScoreDigit {
+			font-size: 0.5rem;
+		}
+	}
+
+	.finalScoreBarWrapper.halfBarsOnMobile {
+		height: 12px;
+	}
+}
+
 .scorecardLegend {
 	display: flex;
 	flex-direction: row;
@@ -69,8 +151,8 @@
 	margin: 0;
 }
 
-.finalScoreTitle {
-	padding: 10px 0 0 0;
+	.finalScoreTitle {
+		padding: 10px 0 0 0;
 	margin-left: 10px;
 
 	@include breakpoint(medium) {
