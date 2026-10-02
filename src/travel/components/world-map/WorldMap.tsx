@@ -5,17 +5,18 @@ import CircularProgress from "@mui/material/CircularProgress";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import { geoContains, geoPath, geoProjection } from "d3-geo";
 import { select } from "d3-selection";
-import { zoom, zoomTransform } from "d3-zoom";
-import type { ZoomBehavior } from "d3-zoom";
-import { feature, mesh } from "topojson-client";
+import { zoom, zoomIdentity, zoomTransform } from "d3-zoom";
+import type { ZoomBehavior, ZoomTransform } from "d3-zoom";
+import { feature, merge, mesh } from "topojson-client";
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
 import type {
 	GeometryCollection as TopologyGeometryCollection,
 	GeometryObject as TopologyGeometryObject,
+	MultiPolygon as TopologyMultiPolygon,
+	Polygon as TopologyPolygon,
 	Topology,
 } from "topojson-specification";
 import worldAtlas from "world-atlas/countries-50m.json";
-import worldLandAtlas from "world-atlas/land-110m.json";
 import { publicCDNVideoUrl, travelVideoMetaData } from "../../../datasources/TravelMetaData";
 import { usePrefersReducedMotion } from "../../../../utils/usePrefersReducedMotion";
 import styles from "./WorldMap.module.scss";
@@ -25,6 +26,7 @@ type CountryFeature = Feature<Polygon | MultiPolygon, CountryProperties>;
 type CountryId = number;
 type WorldDot = {
 	id: string;
+	sourceVideoLink: string;
 	latitude: number;
 	longitude: number;
 	countryId: CountryId;
@@ -38,6 +40,12 @@ const millerRaw = (longitude: number, latitude: number): [number, number] => [
 	longitude,
 	1.25 * Math.log(Math.tan(Math.PI / 4 + 0.4 * latitude)),
 ];
+const getFrostedLandTransform = (transform: ZoomTransform, rect: DOMRect) => {
+	const scale = Math.min(rect.width / 1200, rect.height / 590);
+	const offsetX = (rect.width - 1200 * scale) / 2;
+	const offsetY = (rect.height - 590 * scale) / 2;
+	return `translate(${offsetX + transform.x * scale - offsetX * transform.k}px, ${offsetY + transform.y * scale - offsetY * transform.k}px) scale(${transform.k})`;
+};
 
 const parseCoordinate = (coordinate: string) => {
 	const values = coordinate.split(",").map((value) => value.trim());
@@ -80,14 +88,14 @@ const countries = feature(landTopology, countriesObject) as FeatureCollection<
 	Polygon | MultiPolygon,
 	CountryProperties
 >;
-const meshCountries = countriesObject as unknown as TopologyGeometryObject;
+const countryGeometryCollection = countriesObject as TopologyGeometryCollection;
+const meshCountries = countryGeometryCollection as unknown as TopologyGeometryObject;
 const countryBorders = mesh(landTopology, meshCountries, (first, second) => first !== second);
 const landOutline = mesh(landTopology, meshCountries, (first, second) => first === second);
-const coarseLandTopology = worldLandAtlas as unknown as Topology;
-const coarseLand = feature(
-	coarseLandTopology,
-	coarseLandTopology.objects.land as TopologyGeometryObject,
-) as Feature<Polygon | MultiPolygon>;
+const landMass = merge(
+	landTopology,
+	countryGeometryCollection.geometries as Array<TopologyPolygon | TopologyMultiPolygon>,
+);
 
 const buildDots = (): WorldDot[] => {
 	const mapDots: WorldDot[] = [];
@@ -118,6 +126,7 @@ const buildDots = (): WorldDot[] => {
 			const latestVideo = findLatestVideo(assignedCountry.id);
 			mapDots.push({
 				id: `${video.link}-${index}`,
+				sourceVideoLink: video.link,
 				...parsed,
 				countryId: assignedCountry.id,
 				country: assignedCountry.name,
@@ -133,6 +142,18 @@ const buildDots = (): WorldDot[] => {
 };
 
 const dots = buildDots();
+const randomVideoDots = travelVideoMetaData
+	.filter((video) => video.extras?.dots?.length && video.extras.trailer)
+	.map((video) => ({
+		dots: dots.filter(
+			(dot) => dot.sourceVideoLink === video.link && Boolean(dot.trailer),
+		),
+	}))
+	.filter(({ dots: videoDots }) => videoDots.length > 0);
+const getRandomDot = () => {
+	const video = randomVideoDots[Math.floor(Math.random() * randomVideoDots.length)];
+	return video?.dots[Math.floor(Math.random() * video.dots.length)];
+};
 
 const WorldMap = ({
 	onDotClick,
@@ -148,6 +169,7 @@ const WorldMap = ({
 	const [selectedDotId, setSelectedDotId] = useState<string | null>(null);
 	const [autoSelectedDotId, setAutoSelectedDotId] = useState<string | null>(null);
 	const [dimOtherDots, setDimOtherDots] = useState(false);
+	const [showZoomOut, setShowZoomOut] = useState(false);
 	const [activeVideoSource, setActiveVideoSource] = useState<string | null>(null);
 	const [warmVideoSources, setWarmVideoSources] = useState<string[]>([]);
 	const [videoReady, setVideoReady] = useState(false);
@@ -175,7 +197,7 @@ const WorldMap = ({
 	);
 	const path = useMemo(() => geoPath(projection), [projection]);
 	const landMaskImage = useMemo(() => {
-		const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 590"><path fill="white" d="${path(coarseLand) ?? ""}"/></svg>`;
+		const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 590"><path fill="white" d="${path(landMass) ?? ""}"/></svg>`;
 		return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 	}, [path]);
 	const selectedCountryFeature = selectedCountry
@@ -183,6 +205,14 @@ const WorldMap = ({
 				(country) => getFeatureId(country) === String(selectedCountry.countryId).padStart(3, "0"),
 			)
 		: undefined;
+	const orderedDots = useMemo(
+		() =>
+			[...dots].sort(
+				(first, second) =>
+					Number(first.id === selectedDotId) - Number(second.id === selectedDotId),
+			),
+		[selectedDotId],
+	);
 	useEffect(() => {
 		onCountrySelectionChange?.(selectedCountry?.countryId ?? null);
 	}, [onCountrySelectionChange, selectedCountry?.countryId]);
@@ -250,20 +280,19 @@ const WorldMap = ({
 
 	useEffect(() => {
 		if (!mapSvgRef.current || !mapContentRef.current) return;
+		const svg = mapSvgRef.current;
 		const behavior = zoom<SVGSVGElement, unknown>()
-			.scaleExtent([1, 8])
+			.scaleExtent([1, Infinity])
 			.translateExtent([[0, 0], [1200, 590]])
 			.filter(function (event) {
 				return event.type === "wheel" || (!event.button && (event.type !== "mousedown" || zoomTransform(this).k > 1));
 			})
 			.on("zoom", (event) => {
+				setShowZoomOut(event.transform.k >= 2);
 				mapContentRef.current?.setAttribute("transform", event.transform.toString());
 				const rect = mapSvgRef.current?.getBoundingClientRect();
 				if (rect) {
-					frostedLandRef.current?.style.setProperty(
-						"transform",
-						`translate(${event.transform.x * rect.width / 1200}px, ${event.transform.y * rect.height / 590}px) scale(${event.transform.k})`,
-					);
+					frostedLandRef.current?.style.setProperty("transform", getFrostedLandTransform(event.transform, rect));
 				}
 				dotLayerRef.current?.querySelectorAll<SVGGElement>(`.${styles.dotTarget}`).forEach((dot) => {
 					const x = dot.dataset.x;
@@ -272,10 +301,13 @@ const WorldMap = ({
 				});
 			});
 		zoomBehaviorRef.current = behavior;
-		const selection = select(mapSvgRef.current);
+		const selection = select(svg);
 		selection.call(behavior).on("dblclick.zoom", null);
+		const preventPageZoom = (event: WheelEvent) => event.preventDefault();
+		svg.addEventListener("wheel", preventPageZoom, { passive: false });
 		return () => {
 			selection.on(".zoom", null);
+			svg.removeEventListener("wheel", preventPageZoom);
 		};
 	}, []);
 
@@ -286,7 +318,7 @@ const WorldMap = ({
 			if (!frostedLandRef.current) return;
 			const transform = zoomTransform(svg);
 			const rect = svg.getBoundingClientRect();
-			frostedLandRef.current.style.transform = `translate(${transform.x * rect.width / 1200}px, ${transform.y * rect.height / 590}px) scale(${transform.k})`;
+			frostedLandRef.current.style.transform = getFrostedLandTransform(transform, rect);
 		};
 		updateTransform();
 		const observer = new ResizeObserver(updateTransform);
@@ -330,14 +362,14 @@ const WorldMap = ({
 					selectDotRef.current(hoveredDot);
 					return;
 				}
-				const randomDot = dots[Math.floor(Math.random() * dots.length)];
+				const randomDot = getRandomDot();
 				if (randomDot) {
 					onRandomDotSelection?.();
 					selectDotRef.current(randomDot, false, true);
 				}
 				return;
 			}
-			const randomDot = dots[Math.floor(Math.random() * dots.length)];
+			const randomDot = getRandomDot();
 			if (randomDot) {
 				onRandomDotSelection?.();
 				selectDotRef.current(randomDot, false, true);
@@ -348,7 +380,7 @@ const WorldMap = ({
 
 	useEffect(() => {
 		idleSelectionTimer.current = setTimeout(() => {
-			const randomDot = dots[Math.floor(Math.random() * dots.length)];
+			const randomDot = getRandomDot();
 			if (randomDot) selectDotRef.current(randomDot, false, true);
 		}, 5000);
 		return () => {
@@ -384,7 +416,8 @@ const WorldMap = ({
 				onPointerDownCapture={(event) => {
 					if (
 						event.target instanceof Element &&
-						!event.target.closest(`.${styles.dotTarget}`)
+						!event.target.closest(`.${styles.dotTarget}`) &&
+						!event.target.closest(`.${styles.zoomOutButton}`)
 					) {
 						clearSelection();
 					}
@@ -392,7 +425,8 @@ const WorldMap = ({
 				onClickCapture={(event) => {
 					if (
 						event.target instanceof Element &&
-						!event.target.closest(`.${styles.dotTarget}`)
+						!event.target.closest(`.${styles.dotTarget}`) &&
+						!event.target.closest(`.${styles.zoomOutButton}`)
 					) {
 						clearSelection();
 					}
@@ -477,7 +511,7 @@ const WorldMap = ({
 					<g
 						ref={dotLayerRef}
 						className={`${styles.dotLayer} ${dimOtherDots ? styles.dotLayerDimmed : ""}`}>
-						{dots.map((dot) => {
+						{orderedDots.map((dot) => {
 							const position = projection([dot.longitude, dot.latitude]);
 							if (!position) return null;
 							return (
@@ -501,14 +535,38 @@ const WorldMap = ({
 										selectDot(dot, true);
 										onDotClick?.(dot.countryId);
 									}}>
-									<circle className={styles.dotHitArea} r='4.5' />
-									<circle className={styles.dot} r='4.5' />
+									<circle className={styles.dotHitArea} r='3.6' />
+									<circle className={styles.dot} r='3.6' />
 								</g>
 							);
 						})}
 					</g>
 				</g>
 			</svg>
+			{showZoomOut && (
+				<Button
+					className={styles.zoomOutButton}
+					variant='outlined'
+					onClick={() => {
+						if (mapSvgRef.current && zoomBehaviorRef.current) {
+							select(mapSvgRef.current).call(zoomBehaviorRef.current.transform, zoomIdentity);
+						}
+					}}
+					sx={{
+						borderColor: "rgba(255, 255, 255, 0.45)",
+						color: "rgba(255, 255, 255, 0.75)",
+						textTransform: "none",
+						backgroundColor: "transparent",
+						"&:hover": {
+							borderColor: "rgba(255, 255, 255, 0.75)",
+							color: "#fff",
+							backgroundColor: "transparent",
+						},
+					}}
+				>
+					Zoom Out
+				</Button>
+			)}
 			</div>
 			<div className={styles.countryInfo}>
 				<div className={styles.countryInfoContent}>

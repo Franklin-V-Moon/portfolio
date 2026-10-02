@@ -42,6 +42,14 @@
 	touch-action: none;
 }
 
+.zoomOutButton {
+	position: absolute !important;
+	top: 12px;
+	right: 12px;
+	z-index: 4;
+	pointer-events: auto;
+}
+
 .ocean {
 	fill: $darkBackground;
 }
@@ -144,7 +152,8 @@
 }
 
 .dotLayerDimmed .dotTarget:not(.dotSelected) .dot {
-	opacity: 0.4;
+	fill: color-mix(in srgb, var(--travel-map-accent) 55%, #000);
+	stroke: none;
 }
 
 .dotTarget {
@@ -160,17 +169,33 @@
 .dot {
 	fill: var(--travel-map-accent);
 	stroke: rgba(0, 0, 0, 0.65);
-	stroke-width: 1px;
+	stroke-width: 0.48px;
 	vector-effect: non-scaling-stroke;
 	transition: r 160ms ease, filter 160ms ease, opacity 160ms ease;
-	filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.75));
 	pointer-events: none;
 }
 
 .dotTarget:hover .dot,
 .dotSelected .dot {
-	r: 6px;
+	r: 4.8px;
 	filter: drop-shadow(0 0 5px var(--travel-map-accent));
+}
+
+.dotLayerDimmed .dotTarget:not(.dotSelected):hover .dot {
+	fill: var(--travel-map-accent);
+	stroke: rgba(0, 0, 0, 0.65);
+	stroke-width: 0.48px;
+	r: 4.8px;
+	filter: drop-shadow(0 0 5px var(--travel-map-accent));
+}
+
+.dotLayerDimmed .dotTarget.dotSelected .dot {
+	r: 3.6px;
+	filter: drop-shadow(0 0 8px var(--travel-map-accent)) drop-shadow(0 0 16px var(--travel-map-accent));
+}
+
+.dotLayerDimmed .dotTarget.dotPulsing .dot {
+	r: 4.68px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -181,13 +206,11 @@
 	@keyframes dotPulse {
 		0%,
 		100% {
-			r: 4.5px;
-			filter: drop-shadow(0 0 3px var(--travel-map-accent));
+			filter: drop-shadow(0 0 6px var(--travel-map-accent)) drop-shadow(0 0 12px var(--travel-map-accent));
 		}
 
 		50% {
-			r: 7px;
-			filter: drop-shadow(0 0 9px var(--travel-map-accent));
+			filter: drop-shadow(0 0 12px var(--travel-map-accent)) drop-shadow(0 0 24px var(--travel-map-accent));
 		}
 	}
 }
