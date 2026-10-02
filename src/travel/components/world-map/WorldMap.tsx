@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import { geoContains, geoPath, geoProjection } from "d3-geo";
 import { select } from "d3-selection";
@@ -106,7 +107,13 @@ const buildDots = (): WorldDot[] => {
 				);
 				return countryFeature && geoContains(countryFeature, [parsed.longitude, parsed.latitude]);
 			});
-			const assignedCountry = containingCountry ?? candidates[0];
+			const assignedCountry =
+				containingCountry ??
+				(candidates.length === coordinates.length
+					? candidates[index]
+					: candidates.length === 1
+						? candidates[0]
+						: undefined);
 			if (!assignedCountry) return;
 			const latestVideo = findLatestVideo(assignedCountry.id);
 			mapDots.push({
@@ -143,6 +150,7 @@ const WorldMap = ({
 	const [warmVideoSources, setWarmVideoSources] = useState<string[]>([]);
 	const [videoReady, setVideoReady] = useState(false);
 	const [videoFadingOut, setVideoFadingOut] = useState(false);
+	const [watchNowLoading, setWatchNowLoading] = useState(false);
 	const [countryTitle, setCountryTitle] = useState("");
 	const [outgoingTitle, setOutgoingTitle] = useState("");
 	const idleSelectionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -174,6 +182,10 @@ const WorldMap = ({
 	useEffect(() => {
 		onCountrySelectionChange?.(selectedCountry?.countryId ?? null);
 	}, [onCountrySelectionChange, selectedCountry?.countryId]);
+
+	useEffect(() => {
+		setWatchNowLoading(false);
+	}, [selectedCountry?.countryId]);
 
 	const nextVideo = selectedCountry?.trailer
 		? `${publicCDNVideoUrl}${selectedCountry.trailer}.mp4`
@@ -479,7 +491,21 @@ const WorldMap = ({
 								component={Link}
 								href={`/travel/${selectedCountry.travelLink}`}
 								variant='outlined'
-								endIcon={<PlayArrowRoundedIcon />}
+								endIcon={watchNowLoading ? undefined : <PlayArrowRoundedIcon />}
+								loading={watchNowLoading}
+								loadingPosition='end'
+								loadingIndicator={<CircularProgress size={14} sx={{ color: "var(--travel-map-accent)" }} />}
+								onClick={(event) => {
+									if (
+										event.button === 0 &&
+										!event.metaKey &&
+										!event.ctrlKey &&
+										!event.shiftKey &&
+										!event.altKey
+									) {
+										setWatchNowLoading(true);
+									}
+								}}
 								className={styles.watchNow}
 								sx={{
 									marginLeft: "2px",
@@ -490,6 +516,10 @@ const WorldMap = ({
 									borderColor: "var(--travel-map-accent)",
 									color: "var(--travel-map-accent)",
 									textTransform: "none",
+									"&.Mui-disabled": {
+										borderColor: "var(--travel-map-accent)",
+										color: "var(--travel-map-accent)",
+									},
 									"&:hover": {
 										borderColor: "var(--travel-map-accent)",
 										backgroundColor: "color-mix(in srgb, var(--travel-map-accent) 12%, transparent)",

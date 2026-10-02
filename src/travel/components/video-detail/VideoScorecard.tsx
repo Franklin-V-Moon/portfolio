@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { LinearProgress } from "@mui/material";
 import { scorecardColorsPrimary } from "../../../datasources/TravelMetaData";
 import { ProgressBar } from "../ProgressBar";
-import { Extras, TravelCountry } from "../../types";
+import type { Extras, ScorecardVariant, TravelCountry } from "../../types";
 import indexStyles from "../../index.module.scss";
+import scorecardStyles from "../Scorecard.module.scss";
 import styles from "./VideoScorecard.module.scss";
 
 export const VideoScorecard = ({
@@ -12,23 +13,16 @@ export const VideoScorecard = ({
 	countries,
 	animateBars = false,
 	startBarAnimation = false,
-	compact = false,
-	denseOnMobile = false,
-	halfBarsOnMobile = false,
-	finalScoreLabel = "Final Score",
-	hideLowFinalScoreText = false,
+	variant = "default",
 }: {
 	scorecard: NonNullable<Extras["scorecard"]>;
 	finalScore: number;
 	countries?: TravelCountry[];
 	animateBars?: boolean;
 	startBarAnimation?: boolean;
-	compact?: boolean;
-	denseOnMobile?: boolean;
-	halfBarsOnMobile?: boolean;
-	finalScoreLabel?: string;
-	hideLowFinalScoreText?: boolean;
+	variant?: ScorecardVariant;
 }) => {
+	const countryRow = variant === "country-row";
 	const [barsStarted, setBarsStarted] = useState(false);
 	useEffect(() => {
 		if (!animateBars || !startBarAnimation || barsStarted) return;
@@ -40,14 +34,14 @@ export const VideoScorecard = ({
 	const finalScoreFillPercent = Math.max(finalScore * 10, 16);
 
 	return (
-		<div className={`${styles.scorecardContainer} ${compact ? styles.compactScorecard : ""} ${denseOnMobile ? styles.denseMobileScorecard : ""}`}>
+		<div className={`${styles.scorecardContainer} ${countryRow ? `${styles.countryRowScorecard} ${scorecardStyles.countryRowScorecard}` : ""}`}>
 			<h2>Scores</h2>
 			{countries && countries.length > 1 && (
 				<div className={styles.scorecardLegend}>
-						{countries.map((country, index) => (
+					{countries.map((country, index) => (
 						<div className={styles.legendItem} key={country.id}>
 							<h5
-								className={denseOnMobile ? styles.denseMobileLegendText : ""}
+								className={countryRow ? styles.countryRowLegendText : ""}
 								style={{
 									color: `${scorecardColorsPrimary[index]}`,
 									padding: "0 20px 12px 0",
@@ -65,23 +59,21 @@ export const VideoScorecard = ({
 					scores={scores}
 					animateBars={animateBars}
 					startBarAnimation={startBarAnimation}
-					compact={compact}
-					denseOnMobile={denseOnMobile}
-					halfBarsOnMobile={halfBarsOnMobile}
+					variant={variant}
 					key={title}
 				/>
 			))}
 			<div className={styles.finalScoreDiv} />
 			<div className={styles.finalScoreContainer}>
 				<h4 className={`${indexStyles.scoreTitle} ${styles.finalScoreTitle}`}>
-					{finalScoreLabel}
+					{countryRow ? "Score" : "Final Score"}
 				</h4>
 
-				<div className={`${styles.finalScoreBarWrapper} ${halfBarsOnMobile ? styles.halfBarsOnMobile : ""}`}>
+				<div className={styles.finalScoreBarWrapper}>
 					<LinearProgress
 						variant='determinate'
 						value={animateBars && !barsStarted ? 0 : finalScoreFillPercent}
-						className={`${indexStyles.scoreBar} ${compact ? indexStyles.compactFinalScoreBar : ""} ${denseOnMobile ? indexStyles.denseMobileFinalScoreBar : ""} ${styles.finalScore}`}
+						className={`${indexStyles.scoreBar} ${countryRow ? scorecardStyles.countryRowFinalScoreBar : ""} ${styles.finalScore}`}
 						sx={{
 							"& .MuiLinearProgress-bar": {
 								background:
@@ -93,7 +85,7 @@ export const VideoScorecard = ({
 						}}
 					/>
 
-					{!(hideLowFinalScoreText && finalScore < 3) && (
+					{!(countryRow && finalScore < 3) && (
 						<h4
 							className={styles.finalScoreDigit}
 							style={{ width: `${finalScoreFillPercent}%` }}>

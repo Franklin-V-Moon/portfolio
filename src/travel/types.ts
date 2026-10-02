@@ -35,6 +35,8 @@ export type TravelCountry = {
 	id: number;
 };
 
+export type ScorecardVariant = "default" | "country-row";
+
 export type Extras = {
 	countries?: TravelCountry[];
 	dots?: string[];

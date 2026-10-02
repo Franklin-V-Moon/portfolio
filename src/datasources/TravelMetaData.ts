@@ -2718,7 +2718,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/13u7UC_NTr1cXDKtclfhxyl-nokepTDjW?usp=sharing",
 		extras: {
 			subtitles: ["English", "French"],
-			countries: [{ name: "afghanistan", id: 4 }],
+			countries: [{ name: "Afghanistan", id: 4 }],
 			dots: ["34.5553, 69.2075"],
 			trailer: "afghanistantrailer",
 			scorecard: {
@@ -3012,7 +3012,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		backupLink:
 			"https://drive.google.com/drive/folders/1jS1RladwBgOPzbq58GO8oHMkTeNdjtUY?usp=sharing",
 		extras: {
-			countries: [{ name: "myanmar", id: 104 }],
+			countries: [{ name: "Myanmar", id: 104 }],
 			dots: ["19.7633, 96.0785"],
 			trailer: "myanmartrailer",
 			scorecard: {
@@ -3185,7 +3185,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://www.instagram.com/p/DNjBVcvzM6-/?hl=en&img_index=1",
 		],
 		extras: {
-			countries: [{ name: "mongolia", id: 496 }],
+			countries: [{ name: "Mongolia", id: 496 }],
 			dots: ["47.9184, 106.9177"],
 			trailer: "mongoliatrailer",
 			scorecard: {

@@ -1,0 +1,70 @@
+@use "../../../themes/breakpoints" as *;
+
+.countryRowScorecard .countryRowScoreItem {
+	flex: 1 1 12px;
+	min-height: 0;
+	display: flex;
+	align-items: center;
+	margin-bottom: 3px;
+}
+
+.countryRowScorecard .countryRowScoreTitle {
+	width: 95px;
+	height: auto;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+}
+
+.countryRowScorecard .countryRowScoreBars {
+	width: calc(100% - 110px);
+	height: 24px;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.countryRowScorecard .countryRowScoreBar {
+	margin: 0 0 0 4px;
+	flex: 0 0 auto;
+}
+
+.countryRowScorecard .countryRowFinalScoreBar {
+	margin: 0;
+}
+
+@include breakpoint(small) {
+	.countryRowScorecard .countryRowScoreTitle {
+		width: 105px;
+	}
+
+	.countryRowScorecard .countryRowScoreBars {
+		width: calc(100% - 110px);
+	}
+}
+
+@include breakpoint(medium) {
+	.countryRowScorecard .countryRowScoreBars {
+		width: calc(83% - 110px);
+	}
+}
+
+@media (max-width: 599px) {
+	.countryRowScorecard .countryRowScoreTitle {
+		width: 64px;
+		font-size: 0.5rem;
+	}
+
+	.countryRowScorecard .countryRowScoreBars {
+		width: calc(100% - 68px);
+		height: 12px;
+		min-height: 12px;
+		overflow: hidden;
+	}
+
+	.countryRowScorecard .countryRowScoreBar {
+		width: calc(100% - 3px);
+		margin-left: 0;
+	}
+}

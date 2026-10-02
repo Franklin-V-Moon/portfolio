@@ -82,11 +82,7 @@ export const CountryVideoLibrary = ({
 										scorecard={mostRecentVideo.extras.scorecard}
 										finalScore={mostRecentVideo.extras.finalScore}
 										countries={mostRecentVideo.extras.countries}
-										compact
-										finalScoreLabel='Score'
-										hideLowFinalScoreText
-										denseOnMobile
-										halfBarsOnMobile
+										variant='country-row'
 										animateBars
 										startBarAnimation={phase !== "expanding"}
 									/>

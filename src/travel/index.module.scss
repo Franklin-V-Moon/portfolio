@@ -52,63 +52,6 @@
 		flex-basis: 400px;
 		min-width: 320px;
 	}
-
-	@include breakpoint(small) {
-		.compactScoreItem .compactScoreTitle {
-			width: 105px;
-		}
-
-		.compactScoreItem .compactScoreBars {
-			width: 40%;
-		}
-	}
-}
-
-.countryLibraryLayout .countryLibraryScorecard .compactScoreItem .compactScoreBars {
-	width: calc(100% - 110px);
-}
-
-@include breakpoint(medium) {
-	.countryLibraryLayout .countryLibraryScorecard .compactScoreItem .compactScoreBars {
-		width: calc(83% - 110px);
-	}
-}
-
-.compactScoreItem {
-	flex: 1 1 12px;
-	min-height: 0;
-	display: flex;
-	align-items: center;
-}
-
-.compactScoreItem .compactScoreTitle {
-	width: 95px;
-	height: auto;
-	line-height: 1;
-	display: flex;
-	align-items: center;
-}
-
-.compactScoreItem .compactScoreBars {
-	width: 30%;
-	height: 24px;
-	align-self: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.compactScoreItem .compactScoreBar {
-	margin: 0 0 0 4px;
-	flex: 0 0 auto;
-}
-
-.compactScoreItem {
-	margin-bottom: 3px;
-}
-
-.finalScoreBarWrapper .compactFinalScoreBar {
-	margin: 0;
 }
 
 @media (max-width: 599px) {
@@ -124,29 +67,6 @@
 
 	.countryLibraryLayoutSingle .countryLibraryPosters {
 		flex: 0 0 145px;
-	}
-
-	.compactScoreItem.denseMobileScoreItem .denseMobileScoreTitle {
-		width: 64px;
-		font-size: 0.5rem;
-		height: auto;
-		display: flex;
-		align-items: center;
-	}
-
-	.countryLibraryLayout .countryLibraryScorecard .compactScoreItem .denseMobileScoreBars {
-		width: calc(100% - 68px);
-	}
-
-	.compactScoreItem .denseMobileScoreBar {
-		width: calc(100% - 3px);
-		margin-left: 0;
-	}
-
-	.countryLibraryLayout .countryLibraryScorecard .compactScoreItem .denseMobileScoreBars {
-		height: 12px;
-		min-height: 12px;
-		overflow: hidden;
 	}
 }
 

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { LinearProgress, Tooltip, Zoom } from "@mui/material";
-import styles from "../index.module.scss";
+import indexStyles from "../index.module.scss";
+import scorecardStyles from "./Scorecard.module.scss";
+import type { ScorecardVariant } from "../types";
 import {
 	scorecardColorsPrimary,
 	scorecardColorsSecondary,
@@ -11,18 +13,15 @@ export const ProgressBar = ({
 	scores,
 	animateBars = false,
 	startBarAnimation = false,
-	compact = false,
-	denseOnMobile = false,
-	halfBarsOnMobile = false,
+	variant = "default",
 }: {
 	title: string;
 	scores: number[];
 	animateBars?: boolean;
 	startBarAnimation?: boolean;
-	compact?: boolean;
-	denseOnMobile?: boolean;
-	halfBarsOnMobile?: boolean;
+	variant?: ScorecardVariant;
 }) => {
+	const countryRow = variant === "country-row";
 	const [barsStarted, setBarsStarted] = useState(false);
 	useEffect(() => {
 		if (!animateBars || !startBarAnimation || barsStarted) return;
@@ -78,21 +77,21 @@ export const ProgressBar = ({
 				title={scoreKeyData[title].tooltip}
 				followCursor
 				key={`score item ${title}`}>
-				<div className={`${styles.scoreItemContainer} ${compact ? styles.compactScoreItem : ""} ${denseOnMobile ? styles.denseMobileScoreItem : ""}`}>
-					<h4 className={`${styles.scoreTitle} ${compact ? styles.compactScoreTitle : ""} ${denseOnMobile ? styles.denseMobileScoreTitle : ""}`}>
+				<div className={`${indexStyles.scoreItemContainer} ${countryRow ? scorecardStyles.countryRowScoreItem : ""}`}>
+					<h4 className={`${indexStyles.scoreTitle} ${countryRow ? scorecardStyles.countryRowScoreTitle : ""}`}>
 						{scoreKeyData[title].title}
 					</h4>
 
-					<div className={`${styles.scoreBarsWrapper} ${compact ? styles.compactScoreBars : ""} ${denseOnMobile ? styles.denseMobileScoreBars : ""}`}>
+					<div className={`${indexStyles.scoreBarsWrapper} ${countryRow ? scorecardStyles.countryRowScoreBars : ""}`}>
 						{scores.map((countryScore, countryIndex) => (
 							<LinearProgress
 								variant='determinate'
 								value={animateBars && !barsStarted ? 0 : countryScore === 1 ? 10 : countryScore * 10}
-								className={`${styles.scoreBar} ${compact ? styles.compactScoreBar : ""} ${denseOnMobile ? styles.denseMobileScoreBar : ""}`}
+								className={`${indexStyles.scoreBar} ${countryRow ? scorecardStyles.countryRowScoreBar : ""}`}
 								sx={{
 									height: `${24 / scores.length}px`,
 									minHeight: 0,
-									...(compact && halfBarsOnMobile
+									...(countryRow
 										? { "@media (max-width: 599px)": { height: `${12 / scores.length}px` } }
 										: {}),
 									"& .MuiLinearProgress-bar": {
