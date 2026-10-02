@@ -22,6 +22,7 @@ import {
 	travelVideoMetaData,
 	worldMapOnlyDots,
 } from "../../../datasources/TravelMetaData";
+import { Advisory } from "../../types";
 import { usePrefersReducedMotion } from "../../../../utils/usePrefersReducedMotion";
 import styles from "./WorldMap.module.scss";
 
@@ -169,6 +170,21 @@ const getRandomDot = () => {
 	const video = randomVideoDots[Math.floor(Math.random() * randomVideoDots.length)];
 	return video?.dots[Math.floor(Math.random() * video.dots.length)];
 };
+const level4CountryIds = new Set(
+	travelVideoMetaData
+		.filter((video) => video.extras?.travelAdvisory?.advice === Advisory.Level4)
+		.flatMap((video) => video.extras?.countries?.map(({ id }) => id) ?? []),
+);
+const getInitialRandomDot = () => {
+	const eligibleCountryIds = [...new Set(
+		dots
+			.filter((dot) => level4CountryIds.has(dot.countryId) && dot.trailer)
+			.map((dot) => dot.countryId),
+	)];
+	const countryId = eligibleCountryIds[Math.floor(Math.random() * eligibleCountryIds.length)];
+	const countryDots = dots.filter((dot) => dot.countryId === countryId && dot.trailer);
+	return countryDots[Math.floor(Math.random() * countryDots.length)];
+};
 
 const WorldMap = ({
 	onDotClick,
@@ -303,20 +319,21 @@ const WorldMap = ({
 				if (event.type === "wheel") {
 					return event.deltaY <= 0 || zoomTransform(this).k > 1;
 				}
+				if (event.type === "touchstart") {
+					return event.touches.length > 1 || zoomTransform(this).k > 1;
+				}
 				return !event.button && (event.type !== "mousedown" || zoomTransform(this).k > 1);
 			})
 			.on("zoom", (event) => {
 				setShowZoomOut(event.transform.k >= 2);
+				svg.style.touchAction = event.transform.k > 1 ? "none" : "pan-y";
 				mapContentRef.current?.setAttribute("transform", event.transform.toString());
+				const dotSizeScale = Math.max(1, event.transform.k / 4) / event.transform.k;
+				dotLayerRef.current?.style.setProperty("--dot-size-scale", String(dotSizeScale));
 				const rect = mapSvgRef.current?.getBoundingClientRect();
 				if (rect) {
 					frostedLandRef.current?.style.setProperty("transform", getFrostedLandTransform(event.transform, rect));
 				}
-				dotLayerRef.current?.querySelectorAll<SVGGElement>(`.${styles.dotTarget}`).forEach((dot) => {
-					const x = dot.dataset.x;
-					const y = dot.dataset.y;
-					if (x && y) dot.setAttribute("transform", `translate(${x}, ${y}) scale(${1 / event.transform.k})`);
-				});
 			});
 		zoomBehaviorRef.current = behavior;
 		const selection = select(svg);
@@ -353,20 +370,7 @@ const WorldMap = ({
 		};
 	}, [selectedCountry, countryTitle]);
 
-	const selectDot = (dot: WorldDot, lock = false, dimOthers = lock) => {
-		if (lockedDotIdRef.current && !lock) {
-			hoveredDotRef.current = dot;
-			return;
-		}
-		if (lock) {
-			lockedDotIdRef.current = dot.id;
-		}
-		setAutoSelectedDotId(dimOthers && !lock ? dot.id : null);
-		setDimOtherDots(dimOthers);
-		setSelectedDotId(dot.id);
-		setSelectedCountry((current) =>
-			current?.countryId === dot.countryId ? current : dot,
-		);
+	const restartIdleSelectionTimer = () => {
 		if (idleSelectionTimer.current) clearTimeout(idleSelectionTimer.current);
 		idleSelectionTimer.current = setTimeout(() => {
 			if (lockedDotIdRef.current) {
@@ -391,11 +395,27 @@ const WorldMap = ({
 			}
 		}, 20000);
 	};
+	const selectDot = (dot: WorldDot, lock = false, dimOthers = lock) => {
+		if (lockedDotIdRef.current && !lock) {
+			hoveredDotRef.current = dot;
+			return;
+		}
+		if (lock) {
+			lockedDotIdRef.current = dot.id;
+		}
+		setAutoSelectedDotId(dimOthers && !lock ? dot.id : null);
+		setDimOtherDots(dimOthers);
+		setSelectedDotId(dot.id);
+		setSelectedCountry((current) =>
+			current?.countryId === dot.countryId ? current : dot,
+		);
+		restartIdleSelectionTimer();
+	};
 	selectDotRef.current = selectDot;
 
 	useEffect(() => {
 		idleSelectionTimer.current = setTimeout(() => {
-			const randomDot = getRandomDot();
+			const randomDot = getInitialRandomDot();
 			if (randomDot) selectDotRef.current(randomDot, false, true);
 		}, 5000);
 		return () => {
@@ -428,7 +448,11 @@ const WorldMap = ({
 				className={styles.worldMap}
 				role='group'
 				aria-label='Interactive map of countries visited'
+				onPointerDownCapture={restartIdleSelectionTimer}
+				onPointerMoveCapture={restartIdleSelectionTimer}
+				onWheelCapture={restartIdleSelectionTimer}
 				onClickCapture={(event) => {
+					restartIdleSelectionTimer();
 					if (
 						event.target instanceof Element &&
 						!event.target.closest(`.${styles.dotTarget}`) &&
@@ -522,11 +546,9 @@ const WorldMap = ({
 							if (!position) return null;
 							return (
 								<g
-									key={dot.id}
-									className={`${styles.dotTarget} ${selectedDotId === dot.id ? styles.dotSelected : ""} ${autoSelectedDotId === dot.id ? styles.dotPulsing : ""}`}
-									data-x={position[0].toFixed(3)}
-									data-y={position[1].toFixed(3)}
-									aria-hidden='true'
+								key={dot.id}
+								className={`${styles.dotTarget} ${selectedDotId === dot.id ? styles.dotSelected : ""} ${autoSelectedDotId === dot.id ? styles.dotPulsing : ""}`}
+								aria-hidden='true'
 									focusable='false'
 									transform={`translate(${position[0].toFixed(3)}, ${position[1].toFixed(3)})`}
 									onPointerEnter={(event) => {
@@ -549,11 +571,13 @@ const WorldMap = ({
 					</g>
 				</g>
 			</svg>
+			</div>
 			{showZoomOut && (
 				<Button
 					className={styles.zoomOutButton}
 					variant='outlined'
 					onClick={() => {
+						restartIdleSelectionTimer();
 						if (mapSvgRef.current && zoomBehaviorRef.current) {
 							select(mapSvgRef.current).call(zoomBehaviorRef.current.transform, zoomIdentity);
 						}
@@ -573,7 +597,6 @@ const WorldMap = ({
 					Zoom Out
 				</Button>
 			)}
-			</div>
 			<div className={styles.countryInfo}>
 				<div className={styles.countryInfoContent}>
 					<h2 className={styles.countryTitle} aria-live='polite'>

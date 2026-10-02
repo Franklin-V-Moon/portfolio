@@ -107,6 +107,8 @@
 }
 
 .directoryContainer {
+	position: relative;
+	z-index: 3;
 	width: 100%;
 	padding: 0 3px 15px 0;
 	display: flex;

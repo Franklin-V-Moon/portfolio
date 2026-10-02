@@ -32,7 +32,8 @@ export const LockedVideo = ({ metaData }: { metaData: TravelVideoMetaData }) => 
 					{unlockButton}
 					<Trailer
 						trailer={extras.trailer}
-						ctaLabel='CLICK/TAP TO UNLOCK'
+						ctaLabel='TAP TO UNLOCK'
+						ctaLabelDesktop='CLICK TO UNLOCK'
 						onReady={() => setIsTrailerReady(true)}
 					/>
 				</VideoFrame>

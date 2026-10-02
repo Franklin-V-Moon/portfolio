@@ -44,3 +44,17 @@
 		top: 56%;
 	}
 }
+
+.trailerCTADesktop {
+	display: none;
+}
+
+@include breakpoint(medium) {
+	.trailerCTAMobile {
+		display: none;
+	}
+
+	.trailerCTADesktop {
+		display: inline;
+	}
+}

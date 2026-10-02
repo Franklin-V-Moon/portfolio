@@ -1267,7 +1267,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			countries: [
 				{ name: "Kuwait", id: 414 },
-				{ name: "Iraqi Kurdistan", id: 368 },
+				{ name: "Iraq", id: 368 },
 			],
 			dots: [
 				"29.3764459, 47.9700175",
@@ -1603,7 +1603,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			},
 			travelAdvisory: {
 				link: "https://www.smartraveller.gov.au/destinations/middle-east/iran",
-				advice: Advisory.Level4,
+				advice: Advisory.Level3,
 			},
 			highlights: [
 				{
@@ -3456,7 +3456,16 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: [{ name: "Mongolia", id: 496 }],
-			dots: ["47.9184, 106.9177"],
+			dots: [
+				"47.9122723, 106.8651249",
+				"46.4002568, 108.3067598",
+				"45.1204193, 110.0269982",
+				"45.3251452, 107.4204577",
+				"44.6396657, 106.8810967",
+				"43.7423573, 105.059116",
+				"44.6262084, 102.8807901",
+				"43.6902462, 102.5681994",
+			],
 			trailer: "mongoliatrailer",
 			scorecard: {
 				beauty: [8],

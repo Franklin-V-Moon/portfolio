@@ -3,7 +3,7 @@ import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import { TravelVideoMetaData } from "./types";
 import { CardActionArea, Grid, LinearProgress } from "@mui/material";
 import styles from "./VideoLibrary.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import router from "next/router";
 
 const PRIORITY_IMAGE_COUNT = 6;
@@ -18,12 +18,22 @@ export const VideoLibrary = ({
 	horizontal?: boolean;
 }) => {
 	const [loading, setLoading] = useState({ state: false, index: -1 });
+	const [hasMounted, setHasMounted] = useState(false);
+
+	useEffect(() => {
+		setHasMounted(true);
+	}, []);
 
 	return (
 		<Grid
 			container
 			spacing={1.25}
-			sx={horizontal ? undefined : { justifyContent: { xs: "center", sm: "flex-start" } }}
+			sx={horizontal ? undefined : {
+				justifyContent: {
+					xs: videoMetaData.length % 2 === 1 ? "flex-start" : "center",
+					sm: "flex-start",
+				},
+			}}
 			style={{
 				margin: horizontal ? 0 : "0 auto",
 				padding: horizontal ? "0 0 0 20px" : "0 20px",
@@ -67,7 +77,7 @@ export const VideoLibrary = ({
 									<h5 className={styles.newestVideo}>LATEST VIDEO</h5>
 								)}
 
-								{dataItem.previouslyWatched && dataItem.backupLink && (
+								{hasMounted && dataItem.previouslyWatched && dataItem.backupLink && (
 									<div className={styles.watched}>
 										<DoneRoundedIcon
 											style={{ height: "2.5rem", width: "2.5rem" }}

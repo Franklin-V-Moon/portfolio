@@ -30,6 +30,10 @@
 	.worldMapContainer {
 		margin-bottom: 18px;
 	}
+
+	.landOutline {
+		stroke-width: 0.2px;
+	}
 }
 
 .mapSvg {
@@ -39,7 +43,7 @@
 	height: 100%;
 	overflow: hidden;
 	z-index: 2;
-	touch-action: none;
+	touch-action: pan-y;
 }
 
 .zoomOutButton {
@@ -48,6 +52,15 @@
 	right: 12px;
 	z-index: 4;
 	pointer-events: auto;
+}
+
+@media (pointer: coarse) and (orientation: landscape) {
+	.zoomOutButton {
+		position: fixed !important;
+		top: auto !important;
+		right: max(12px, env(safe-area-inset-right)) !important;
+		bottom: max(12px, env(safe-area-inset-bottom)) !important;
+	}
 }
 
 .ocean {
@@ -161,12 +174,14 @@
 }
 
 .dotHitArea {
+	r: calc(3.6px * var(--dot-size-scale, 1));
 	fill: transparent;
 	stroke: transparent;
 	pointer-events: all;
 }
 
 .dot {
+	r: calc(3.6px * var(--dot-size-scale, 1));
 	fill: var(--travel-map-accent);
 	stroke: rgba(0, 0, 0, 0.65);
 	stroke-width: 0.48px;
@@ -177,7 +192,7 @@
 
 .dotTarget:hover .dot,
 .dotSelected .dot {
-	r: 4.8px;
+	r: calc(4.8px * var(--dot-size-scale, 1));
 	filter: drop-shadow(0 0 5px var(--travel-map-accent));
 }
 
@@ -185,17 +200,17 @@
 	fill: var(--travel-map-accent);
 	stroke: rgba(0, 0, 0, 0.65);
 	stroke-width: 0.48px;
-	r: 4.8px;
+	r: calc(4.8px * var(--dot-size-scale, 1));
 	filter: drop-shadow(0 0 5px var(--travel-map-accent));
 }
 
 .dotLayerDimmed .dotTarget.dotSelected .dot {
-	r: 3.6px;
+	r: calc(3.6px * var(--dot-size-scale, 1));
 	filter: drop-shadow(0 0 8px var(--travel-map-accent)) drop-shadow(0 0 16px var(--travel-map-accent));
 }
 
 .dotLayerDimmed .dotTarget.dotPulsing .dot {
-	r: 4.68px;
+	r: calc(4.68px * var(--dot-size-scale, 1));
 }
 
 @media (prefers-reduced-motion: no-preference) {
