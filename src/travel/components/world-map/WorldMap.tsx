@@ -146,6 +146,8 @@ const WorldMap = ({
 	const prefersReducedMotion = usePrefersReducedMotion();
 	const [selectedCountry, setSelectedCountry] = useState<WorldDot | null>(null);
 	const [selectedDotId, setSelectedDotId] = useState<string | null>(null);
+	const [autoSelectedDotId, setAutoSelectedDotId] = useState<string | null>(null);
+	const [dimOtherDots, setDimOtherDots] = useState(false);
 	const [activeVideoSource, setActiveVideoSource] = useState<string | null>(null);
 	const [warmVideoSources, setWarmVideoSources] = useState<string[]>([]);
 	const [videoReady, setVideoReady] = useState(false);
@@ -154,7 +156,7 @@ const WorldMap = ({
 	const [countryTitle, setCountryTitle] = useState("");
 	const [outgoingTitle, setOutgoingTitle] = useState("");
 	const idleSelectionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-	const selectDotRef = useRef<(dot: WorldDot) => void>(() => {});
+	const selectDotRef = useRef<(dot: WorldDot, lock?: boolean, dimOthers?: boolean) => void>(() => {});
 	const lockedDotIdRef = useRef<string | null>(null);
 	const hoveredDotRef = useRef<WorldDot | null>(null);
 	const mapSvgRef = useRef<SVGSVGElement | null>(null);
@@ -176,9 +178,11 @@ const WorldMap = ({
 		const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 590"><path fill="white" d="${path(coarseLand) ?? ""}"/></svg>`;
 		return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 	}, [path]);
-	const selectedCountryFeature = countries.features.find(
-		(country) => getFeatureId(country) === String(selectedCountry?.countryId).padStart(3, "0"),
-	);
+	const selectedCountryFeature = selectedCountry
+		? countries.features.find(
+				(country) => getFeatureId(country) === String(selectedCountry.countryId).padStart(3, "0"),
+			)
+		: undefined;
 	useEffect(() => {
 		onCountrySelectionChange?.(selectedCountry?.countryId ?? null);
 	}, [onCountrySelectionChange, selectedCountry?.countryId]);
@@ -302,12 +306,16 @@ const WorldMap = ({
 		};
 	}, [selectedCountry, countryTitle]);
 
-	const selectDot = (dot: WorldDot, lock = false) => {
+	const selectDot = (dot: WorldDot, lock = false, dimOthers = lock) => {
 		if (lockedDotIdRef.current && !lock) {
 			hoveredDotRef.current = dot;
 			return;
 		}
-		if (lock) lockedDotIdRef.current = dot.id;
+		if (lock) {
+			lockedDotIdRef.current = dot.id;
+		}
+		setAutoSelectedDotId(dimOthers && !lock ? dot.id : null);
+		setDimOtherDots(dimOthers);
 		setSelectedDotId(dot.id);
 		setSelectedCountry((current) =>
 			current?.countryId === dot.countryId ? current : dot,
@@ -316,6 +324,7 @@ const WorldMap = ({
 		idleSelectionTimer.current = setTimeout(() => {
 			if (lockedDotIdRef.current) {
 				lockedDotIdRef.current = null;
+				setDimOtherDots(false);
 				const hoveredDot = hoveredDotRef.current;
 				if (hoveredDot) {
 					selectDotRef.current(hoveredDot);
@@ -324,14 +333,14 @@ const WorldMap = ({
 				const randomDot = dots[Math.floor(Math.random() * dots.length)];
 				if (randomDot) {
 					onRandomDotSelection?.();
-					selectDotRef.current(randomDot);
+					selectDotRef.current(randomDot, false, true);
 				}
 				return;
 			}
 			const randomDot = dots[Math.floor(Math.random() * dots.length)];
 			if (randomDot) {
 				onRandomDotSelection?.();
-				selectDotRef.current(randomDot);
+				selectDotRef.current(randomDot, false, true);
 			}
 		}, 20000);
 	};
@@ -340,7 +349,7 @@ const WorldMap = ({
 	useEffect(() => {
 		idleSelectionTimer.current = setTimeout(() => {
 			const randomDot = dots[Math.floor(Math.random() * dots.length)];
-			if (randomDot) selectDotRef.current(randomDot);
+			if (randomDot) selectDotRef.current(randomDot, false, true);
 		}, 5000);
 		return () => {
 			if (idleSelectionTimer.current) clearTimeout(idleSelectionTimer.current);
@@ -350,6 +359,8 @@ const WorldMap = ({
 	useEffect(() => {
 		const unlockDot = () => {
 			lockedDotIdRef.current = null;
+			setAutoSelectedDotId(null);
+			setDimOtherDots(false);
 		};
 		document.addEventListener("click", unlockDot, true);
 		return () => document.removeEventListener("click", unlockDot, true);
@@ -357,6 +368,9 @@ const WorldMap = ({
 
 	const clearSelection = () => {
 		lockedDotIdRef.current = null;
+		setAutoSelectedDotId(null);
+		setDimOtherDots(false);
+		hoveredDotRef.current = null;
 		setSelectedCountry(null);
 		setSelectedDotId(null);
 	};
@@ -367,7 +381,22 @@ const WorldMap = ({
 				className={styles.worldMap}
 				role='group'
 				aria-label='Interactive map of countries visited'
-				onClick={clearSelection}>
+				onPointerDownCapture={(event) => {
+					if (
+						event.target instanceof Element &&
+						!event.target.closest(`.${styles.dotTarget}`)
+					) {
+						clearSelection();
+					}
+				}}
+				onClickCapture={(event) => {
+					if (
+						event.target instanceof Element &&
+						!event.target.closest(`.${styles.dotTarget}`)
+					) {
+						clearSelection();
+					}
+				}}>
 			{warmVideoSources.map((source) => {
 				const isActive = source === activeVideoSource;
 				return (
@@ -445,14 +474,16 @@ const WorldMap = ({
 							/>
 						)}
 					</g>
-					<g ref={dotLayerRef} className={styles.dotLayer}>
+					<g
+						ref={dotLayerRef}
+						className={`${styles.dotLayer} ${dimOtherDots ? styles.dotLayerDimmed : ""}`}>
 						{dots.map((dot) => {
 							const position = projection([dot.longitude, dot.latitude]);
 							if (!position) return null;
 							return (
 								<g
 									key={dot.id}
-									className={`${styles.dotTarget} ${selectedDotId === dot.id ? styles.dotSelected : ""}`}
+									className={`${styles.dotTarget} ${selectedDotId === dot.id ? styles.dotSelected : ""} ${autoSelectedDotId === dot.id ? styles.dotPulsing : ""}`}
 									data-x={position[0].toFixed(3)}
 									data-y={position[1].toFixed(3)}
 									aria-hidden='true'
@@ -470,7 +501,7 @@ const WorldMap = ({
 										selectDot(dot, true);
 										onDotClick?.(dot.countryId);
 									}}>
-									<circle className={styles.dotHitArea} r='15' />
+									<circle className={styles.dotHitArea} r='4.5' />
 									<circle className={styles.dot} r='4.5' />
 								</g>
 							);
@@ -526,6 +557,9 @@ const WorldMap = ({
 									},
 									"& .MuiButton-endIcon": {
 										marginLeft: "5.6px",
+									},
+									"& .MuiButton-loadingIndicator": {
+										right: "6.5px",
 									},
 									"& .MuiButton-endIcon > *:nth-of-type(1)": {
 										fontSize: "0.9rem",

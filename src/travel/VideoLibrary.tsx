@@ -3,7 +3,7 @@ import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import { TravelVideoMetaData } from "./types";
 import { CardActionArea, Grid, LinearProgress } from "@mui/material";
 import styles from "./VideoLibrary.module.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import router from "next/router";
 
 const PRIORITY_IMAGE_COUNT = 6;
@@ -17,26 +17,21 @@ export const VideoLibrary = ({
 	startIndex?: number;
 	horizontal?: boolean;
 }) => {
-	const [isSmallScreen, setIsSmallScreen] = useState(false);
 	const [loading, setLoading] = useState({ state: false, index: -1 });
-
-	useEffect(() => {
-		const checkScreenSize = () => setIsSmallScreen(window.innerWidth < 500);
-		checkScreenSize();
-		window.addEventListener("resize", checkScreenSize);
-		return () => window.removeEventListener("resize", checkScreenSize);
-	}, []);
 
 	return (
 		<Grid
 			container
 			spacing={1.25}
+			sx={horizontal ? undefined : { justifyContent: { xs: "center", sm: "flex-start" } }}
 			style={{
-				margin: 0,
-				padding: horizontal ? "0 0 0 20px" : "0 40px 0 20px",
-				width: horizontal ? "100%" : undefined,
+				margin: horizontal ? 0 : "0 auto",
+				padding: horizontal ? "0 0 0 20px" : "0 20px",
+				width: "100%",
+				maxWidth: horizontal ? undefined : 1080,
+				boxSizing: "border-box",
 				flexWrap: horizontal ? "nowrap" : undefined,
-				justifyContent: horizontal ? "flex-start" : isSmallScreen ? "space-between" : "",
+				justifyContent: horizontal ? "flex-start" : undefined,
 			}}>
 			{[...videoMetaData].reverse().map((dataItem, displayIndex) => {
 				const href = `/travel/${dataItem.link}`;
@@ -44,8 +39,10 @@ export const VideoLibrary = ({
 				return (
 					<Grid
 						key={`Video card of ${dataItem.title}`}
-						size={{ xs: horizontal ? false : isSmallScreen ? 6 : false }}
-						style={horizontal ? { flex: "1 1 0", minWidth: 0, maxWidth: 200 } : undefined}>
+						size={horizontal ? false : { xs: 6, sm: 2.4 }}
+						style={horizontal
+							? { flex: "1 1 0", minWidth: 0, maxWidth: 200 }
+							: { display: "flex", justifyContent: "center", maxWidth: 200 }}>
 						<div
 							style={{
 								animation: `fadeIn ${displayIndex + 5}00ms ease-in-out`,

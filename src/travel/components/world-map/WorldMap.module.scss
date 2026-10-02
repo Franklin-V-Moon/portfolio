@@ -143,6 +143,10 @@
 	color: var(--travel-map-accent);
 }
 
+.dotLayerDimmed .dotTarget:not(.dotSelected) .dot {
+	opacity: 0.4;
+}
+
 .dotTarget {
 	cursor: pointer;
 }
@@ -158,7 +162,7 @@
 	stroke: rgba(0, 0, 0, 0.65);
 	stroke-width: 1px;
 	vector-effect: non-scaling-stroke;
-	transition: r 160ms ease, filter 160ms ease;
+	transition: r 160ms ease, filter 160ms ease, opacity 160ms ease;
 	filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.75));
 	pointer-events: none;
 }
@@ -167,6 +171,25 @@
 .dotSelected .dot {
 	r: 6px;
 	filter: drop-shadow(0 0 5px var(--travel-map-accent));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.dotTarget.dotPulsing .dot {
+		animation: dotPulse 1.8s ease-in-out infinite;
+	}
+
+	@keyframes dotPulse {
+		0%,
+		100% {
+			r: 4.5px;
+			filter: drop-shadow(0 0 3px var(--travel-map-accent));
+		}
+
+		50% {
+			r: 7px;
+			filter: drop-shadow(0 0 9px var(--travel-map-accent));
+		}
+	}
 }
 
 .countryInfo {
@@ -186,6 +209,10 @@
 		margin: 0;
 		z-index: 3;
 	}
+
+	@include breakpoint(large) {
+		left: calc(clamp(12px, 1.5vw, 22px) + 36px);
+	}
 }
 
 .countryInfoContent {
@@ -197,6 +224,12 @@
 	@include breakpoint(small) {
 		position: relative;
 		transform: none;
+	}
+}
+
+@media (max-width: 599px) {
+	.countryInfoContent {
+		padding-left: 5px;
 	}
 }
 

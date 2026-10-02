@@ -228,11 +228,7 @@ const Travel = ({
 						<div className={styles.yearHeadingContainer}>
 							<div className={styles.yearHeading}>
 								<NavigateNextRoundedIcon
-									style={{
-										color: "yellow",
-										height: "2.5rem",
-										width: "2.5rem",
-									}}
+									className={styles.yearHeadingIcon}
 								/>
 								<h2 className={styles.yearHeadingText}>
 									{metaData.heading === "Tags" ? (

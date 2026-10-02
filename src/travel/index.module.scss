@@ -10,12 +10,17 @@
 }
 
 .countryLibraryLayout {
+	position: relative;
 	display: flex;
 	flex-direction: row; margin-bottom: 16px;
 	flex-wrap: nowrap;
 	align-items: stretch;
 	justify-content: flex-start;
 	gap: 12px;
+
+	@include breakpoint(large) {
+		left: 36px;
+	}
 }
 
 .countryLibraryPosters {
@@ -204,23 +209,31 @@
 }
 
 .yearHeadingContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-
-	@include breakpoint(small) {
-		padding-right: 4.688rem;
-	}
+	width: 100%;
 }
 
 .yearHeading {
+	position: relative;
 	display: flex;
 	flex-direction: row;
+	width: 100%;
+	max-width: 1080px;
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.yearHeadingIcon {
+	position: absolute;
+	left: -20px;
+	color: yellow;
+	height: 2.5rem;
+	width: 2.5rem;
 }
 
 .yearHeadingText {
 	display: inline-block;
-	margin: 0.125rem 0 0 0;
+	margin: 0.125rem 0 0;
 }
 
 .year {
