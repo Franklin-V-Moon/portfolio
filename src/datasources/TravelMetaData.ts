@@ -112,6 +112,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		restricted: false,
 		extras: {
 			countries: ["Nepal"],
+			dots: ["27.7172, 85.3240"],
 			trailer: "nepaltrailer",
 			scorecard: {
 				beauty: [10],
@@ -178,6 +179,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		restricted: true,
 		extras: {
 			countries: ["Indonesia"],
+			dots: ["-6.2088, 106.8456"],
 			trailer: "baliindonesiatrailer",
 			scorecard: {
 				beauty: [7],
@@ -242,6 +244,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		restricted: false,
 		extras: {
 			countries: ["Malaysia", "Singapore"],
+			dots: ["3.1390, 101.6869", "1.3521, 103.8198"],
 			trailer: "malaysiasingaporetrailer",
 			scorecard: {
 				beauty: [3, 6],
@@ -318,6 +321,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["New Zealand"],
+			dots: ["-41.2866, 174.7756"],
 			trailer: "newzealandtrailer",
 			scorecard: {
 				beauty: [8],
@@ -391,6 +395,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "Ukrainian"],
 			countries: ["Japan"],
+			dots: ["35.6762, 139.6503"],
 			trailer: "japantrailer",
 			scorecard: {
 				beauty: [8],
@@ -565,6 +570,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["South Korea"],
+			dots: ["37.5665, 126.9780"],
 			trailer: "southkoreatrailer",
 			scorecard: {
 				beauty: [5],
@@ -641,6 +647,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["United Arab Emirates"],
+			dots: ["24.4539, 54.3773"],
 			trailer: "uaetrailer",
 			scorecard: {
 				beauty: [4],
@@ -715,6 +722,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Fiji"],
+			dots: ["-18.1248, 178.4501"],
 			trailer: "fijitrailer",
 			scorecard: {
 				beauty: [3],
@@ -786,6 +794,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Cambodia", "Laos", "Vietnam"],
+			dots: ["11.5564, 104.9282", "17.9757, 102.6331", "21.0285, 105.8542"],
 			trailer: "cambodialaosvietnamtrailer",
 			scorecard: {
 				beauty: [2, 4, 6],
@@ -882,6 +891,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Taiwan", "Hong Kong", "Macau"],
+			dots: ["25.0330, 121.5654", "22.3193, 114.1694", "22.1987, 113.5439"],
 			trailer: "taiwanhongkongmacautrailer",
 			scorecard: {
 				beauty: [6, 5, 2],
@@ -963,6 +973,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["India"],
+			dots: ["28.6139, 77.2090"],
 			trailer: "indiatrailer",
 			scorecard: {
 				beauty: [3],
@@ -1054,6 +1065,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Oman"],
+			dots: ["23.5880, 58.3829"],
 			trailer: "omantrailer",
 			scorecard: {
 				beauty: [3],
@@ -1121,6 +1133,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Kuwait", "Iraqi Kurdistan"],
+			dots: ["29.3759, 47.9774", "36.1911, 44.0092"],
 			trailer: "kuwaitiraqikurdistantrailer",
 			scorecard: {
 				beauty: [1, 3],
@@ -1199,6 +1212,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Jordan"],
+			dots: ["31.9539, 35.9106"],
 			trailer: "jordantrailer",
 			scorecard: {
 				beauty: [3],
@@ -1290,6 +1304,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Saudi Arabia", "Bahrain"],
+			dots: ["24.7136, 46.6753", "26.2285, 50.5860"],
 			trailer: "saudiarabiabahraintrailer",
 			scorecard: {
 				beauty: [1, 1],
@@ -1372,6 +1387,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Iran"],
+			dots: ["35.6892, 51.3890"],
 			trailer: "irantrailer",
 			scorecard: {
 				beauty: [3],
@@ -1494,6 +1510,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Armenia", "Georgia", "Azerbaijan"],
+			dots: ["40.1792, 44.4991", "41.7151, 44.8271", "40.4093, 49.8671"],
 			trailer: "armeniageorgiaazerbaijantrailer",
 			scorecard: {
 				beauty: [5, 6, 2],
@@ -1609,6 +1626,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Greece"],
+			dots: ["37.9838, 23.7275"],
 			trailer: "greecetrailer",
 			scorecard: {
 				beauty: [6],
@@ -1702,6 +1720,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		reelLinks: ["https://www.instagram.com/reel/C_cuUwoigGb/?hl=en"],
 		extras: {
 			countries: ["Turkey"],
+			dots: ["39.9334, 32.8597"],
 			trailer: "turkeytrailer",
 			scorecard: {
 				beauty: [4],
@@ -1790,6 +1809,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		reelLinks: ["https://www.instagram.com/reel/C_lNBtKCH0H/?hl=en"],
 		extras: {
 			countries: ["Lebanon"],
+			dots: ["33.8938, 35.5018"],
 			trailer: "lebanontrailer",
 			scorecard: {
 				beauty: [3],
@@ -1862,6 +1882,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		reelLinks: ["https://www.instagram.com/reel/DAGBpdVCaEJ/?hl=en"],
 		extras: {
 			countries: ["Syria"],
+			dots: ["33.5138, 36.2765"],
 			trailer: "syriatrailer",
 			scorecard: {
 				beauty: [7],
@@ -1956,6 +1977,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["Cyprus"],
+			dots: ["35.1856, 33.3823"],
 			trailer: "cyprustrailer",
 			scorecard: {
 				beauty: [4],
@@ -2022,6 +2044,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		reelLinks: ["https://www.instagram.com/reel/DASgqv-CzW-/?hl=en"],
 		extras: {
 			countries: ["Israel", "Palestine"],
+			dots: ["31.7683, 35.2137", "31.9038, 35.2034"],
 			trailer: "israelpalestinetrailer",
 			scorecard: {
 				beauty: [4, 3],
@@ -2114,6 +2137,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1B2LnxZODyNkqD3TKdZg9PBc0qe0fvXbA?usp=sharing",
 		extras: {
 			countries: ["Philippines", "Brunei"],
+			dots: ["14.5995, 120.9842", "4.9031, 114.9398"],
 			trailer: "philippinesbruneitrailer",
 			scorecard: {
 				beauty: [3, 3],
@@ -2182,6 +2206,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1maUl4djBYlTRbgBo7WrUQYfB8Xdc0mrT?usp=sharing",
 		extras: {
 			countries: ["Timor-Leste"],
+			dots: ["-8.5569, 125.5603"],
 			trailer: "timorlestetrailer",
 			scorecard: {
 				beauty: [3],
@@ -2273,6 +2298,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1_D1GjrhBz6rtuw8-4xNWFXlxmUi5axpZ?usp=sharing",
 		extras: {
 			countries: ["Bangladesh"],
+			dots: ["23.8103, 90.4125"],
 			trailer: "bangladeshtrailer",
 			scorecard: {
 				beauty: [1],
@@ -2372,6 +2398,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1p724j3uqLAlkelWtiekMf1LUhbpzw-Jb?usp=sharing",
 		extras: {
 			countries: ["East India", "Bhutan"],
+			dots: ["27.4728, 89.6390"],
 			trailer: "bhutaneastindiatrailer",
 			deductCountryCount: 1,
 			scorecard: {
@@ -2462,6 +2489,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1z5GgatabgWeQEKrbZkZZDSOCS_xuEV6r?usp=sharing",
 		extras: {
 			countries: ["Maldives", "Sri Lanka"],
+			dots: ["4.1755, 73.5093", "6.8941, 79.9025"],
 			trailer: "maldivessrilankatrailer",
 			scorecard: {
 				beauty: [5, 3],
@@ -2543,6 +2571,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/14vEAX2n-dlTqZ59ywDNLbIte6FeClEV4?usp=sharing",
 		extras: {
 			countries: ["Pakistan"],
+			dots: ["33.6844, 73.0479"],
 			trailer: "pakistantrailer",
 			scorecard: {
 				beauty: [3],
@@ -2656,6 +2685,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "French"],
 			countries: ["afghanistan"],
+			dots: ["34.5553, 69.2075"],
 			trailer: "afghanistantrailer",
 			scorecard: {
 				beauty: [4],
@@ -2949,6 +2979,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1jS1RladwBgOPzbq58GO8oHMkTeNdjtUY?usp=sharing",
 		extras: {
 			countries: ["myanmar"],
+			dots: ["19.7633, 96.0785"],
 			trailer: "myanmartrailer",
 			scorecard: {
 				beauty: [4],
@@ -3121,6 +3152,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		],
 		extras: {
 			countries: ["mongolia"],
+			dots: ["47.9184, 106.9177"],
 			trailer: "mongoliatrailer",
 			scorecard: {
 				beauty: [8],
@@ -3220,6 +3252,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 			"https://drive.google.com/drive/folders/1go-otWd7v6xXLtbt0UFKk5_ZtEZRgjEH?usp=sharing",
 		extras: {
 			countries: ["China"],
+			dots: ["39.9042, 116.4074"],
 			trailer: "china2trailer",
 			scorecard: {
 				beauty: [7],
@@ -3339,6 +3372,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			deductCountryCount: 1,
 			countries: ["Thailand"],
+			dots: ["13.7563, 100.5018"],
 			trailer: "thailand2trailer",
 			scorecard: {
 				affordability: [8],
@@ -3494,6 +3528,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "Spanish"],
 			countries: ["Chile"],
+			dots: ["-33.4489, -70.6693"],
 			trailer: "chiletrailer",
 			scorecard: {
 				affordability: [2],
@@ -3568,6 +3603,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "Spanish"],
 			countries: ["Uruguay", "Argentina", "Paraguay"],
+			dots: ["-34.9011, -56.1645", "-34.6037, -58.3816", "-25.2637, -57.5759"],
 			trailer: "uruguayargentinaparaguaytrailer",
 			scorecard: {
 				affordability: [2, 5, 9],
@@ -3645,6 +3681,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "Spanish"],
 			countries: ["Bolivia"],
+			dots: ["-19.0196, -65.2619"],
 			trailer: "boliviatrailer",
 			scorecard: {
 				affordability: [8],
@@ -3728,6 +3765,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English"],
 			countries: ["Peru"],
+			dots: ["-12.0464, -77.0428"],
 			trailer: "perutrailer",
 			scorecard: {
 				affordability: [6],
@@ -3796,6 +3834,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "Spanish", "French"],
 			countries: ["Ecuador"],
+			dots: ["-0.1807, -78.4678"],
 			trailer: "ecuadortrailer",
 			scorecard: {
 				affordability: [5],
@@ -3864,6 +3903,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "Spanish",],
 			countries: ["Venezuela"],
+			dots: ["10.4806, -66.9036"],
 			trailer: "venezuelatrailer",
 			scorecard: {
 				affordability: [5],
@@ -3960,6 +4000,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "Spanish",],
 			countries: ["Panama", "Colombia"],
+			dots: ["8.9824, -79.5199", "4.7110, -74.0721"],
 			trailer: "panamaandcolombia",
 			scorecard: {
 				affordability: [3, 5],
@@ -4042,6 +4083,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "French",],
 			countries: ["Andorra", "Monaco"],
+			dots: ["42.5063, 1.5218", "43.7384, 7.4246"],
 			trailer: "andorramonacotrailer",
 			scorecard: {
 				affordability: [1, 1],
@@ -4103,6 +4145,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 		extras: {
 			subtitles: ["English", "Ukrainian",],
 			countries: ["Ukraine"],
+			dots: ["50.4501, 30.5234"],
 			trailer: "ukrainetrailer",
 			scorecard: {
 				affordability: [9],

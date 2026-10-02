@@ -32,6 +32,7 @@ export type TravelVideoMetaData = {
 
 export type Extras = {
 	countries?: string[];
+	dots?: string[];
 	trailer?: string;
 	deductCountryCount?: number;
 	scorecard?: {
