@@ -17,7 +17,11 @@ import type {
 	Topology,
 } from "topojson-specification";
 import worldAtlas from "world-atlas/countries-50m.json";
-import { publicCDNVideoUrl, travelVideoMetaData } from "../../../datasources/TravelMetaData";
+import {
+	publicCDNVideoUrl,
+	travelVideoMetaData,
+	worldMapOnlyDots,
+} from "../../../datasources/TravelMetaData";
 import { usePrefersReducedMotion } from "../../../../utils/usePrefersReducedMotion";
 import styles from "./WorldMap.module.scss";
 
@@ -26,7 +30,7 @@ type CountryFeature = Feature<Polygon | MultiPolygon, CountryProperties>;
 type CountryId = number;
 type WorldDot = {
 	id: string;
-	sourceVideoLink: string;
+	sourceVideoLink?: string;
 	latitude: number;
 	longitude: number;
 	countryId: CountryId;
@@ -99,9 +103,20 @@ const landMass = merge(
 
 const buildDots = (): WorldDot[] => {
 	const mapDots: WorldDot[] = [];
-	travelVideoMetaData.forEach((video) => {
-		const sourceCountries = video.extras?.countries ?? [];
-		const coordinates = video.extras?.dots ?? [];
+	const sources = [
+		...travelVideoMetaData.map((video) => ({
+			link: video.link,
+			countries: video.extras?.countries ?? [],
+			coordinates: video.extras?.dots ?? [],
+		})),
+		...worldMapOnlyDots.map(({ country, dots }) => ({
+			countries: [country],
+			coordinates: dots,
+		})),
+	];
+	sources.forEach((video) => {
+		const sourceCountries = video.countries;
+		const coordinates = video.coordinates;
 		if (!coordinates.length || !sourceCountries.length) return;
 
 		const candidates = sourceCountries;
@@ -125,7 +140,7 @@ const buildDots = (): WorldDot[] => {
 			if (!assignedCountry) return;
 			const latestVideo = findLatestVideo(assignedCountry.id);
 			mapDots.push({
-				id: `${video.link}-${index}`,
+				id: `${video.link ?? `map-${assignedCountry.id}`}-${index}`,
 				sourceVideoLink: video.link,
 				...parsed,
 				countryId: assignedCountry.id,
@@ -282,10 +297,13 @@ const WorldMap = ({
 		if (!mapSvgRef.current || !mapContentRef.current) return;
 		const svg = mapSvgRef.current;
 		const behavior = zoom<SVGSVGElement, unknown>()
-			.scaleExtent([1, Infinity])
+			.scaleExtent([1, 20])
 			.translateExtent([[0, 0], [1200, 590]])
 			.filter(function (event) {
-				return event.type === "wheel" || (!event.button && (event.type !== "mousedown" || zoomTransform(this).k > 1));
+				if (event.type === "wheel") {
+					return event.deltaY <= 0 || zoomTransform(this).k > 1;
+				}
+				return !event.button && (event.type !== "mousedown" || zoomTransform(this).k > 1);
 			})
 			.on("zoom", (event) => {
 				setShowZoomOut(event.transform.k >= 2);
@@ -303,11 +321,8 @@ const WorldMap = ({
 		zoomBehaviorRef.current = behavior;
 		const selection = select(svg);
 		selection.call(behavior).on("dblclick.zoom", null);
-		const preventPageZoom = (event: WheelEvent) => event.preventDefault();
-		svg.addEventListener("wheel", preventPageZoom, { passive: false });
 		return () => {
 			selection.on(".zoom", null);
-			svg.removeEventListener("wheel", preventPageZoom);
 		};
 	}, []);
 
@@ -413,15 +428,6 @@ const WorldMap = ({
 				className={styles.worldMap}
 				role='group'
 				aria-label='Interactive map of countries visited'
-				onPointerDownCapture={(event) => {
-					if (
-						event.target instanceof Element &&
-						!event.target.closest(`.${styles.dotTarget}`) &&
-						!event.target.closest(`.${styles.zoomOutButton}`)
-					) {
-						clearSelection();
-					}
-				}}
 				onClickCapture={(event) => {
 					if (
 						event.target instanceof Element &&
