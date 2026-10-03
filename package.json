@@ -7,10 +7,11 @@
 		"node": ">=24"
 	},
 	"scripts": {
-		"dev": "NODE_OPTIONS=--no-deprecation yarn && yarn generate-travel-social-posters && next dev --webpack",
+		"dev": "NODE_OPTIONS=--no-deprecation yarn && yarn generate-travel-social-posters && yarn copy-maplibre-worker && next dev --webpack",
+		"copy-maplibre-worker": "node utils/copy-maplibre-worker.js",
 		"test": "jest",
 		"build": "next build --webpack",
-		"prebuild": "yarn validate-travel-metadata && yarn generate-travel-social-posters",
+		"prebuild": "yarn validate-travel-metadata && yarn generate-travel-social-posters && yarn copy-maplibre-worker",
 		"validate-travel-metadata": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' ts-node utils/validate-travel-metadata.ts",
 		"generate-travel-social-posters": "node utils/generate-travel-social-posters.js",
 		"export-meta": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"CommonJS\",\"moduleResolution\":\"node\"}' ts-node utils/export-meta.ts",
@@ -31,6 +32,7 @@
 		"d3-selection": "^3.0.0",
 		"d3-zoom": "^3.0.0",
 		"date-fns": "^3.6.0",
+		"maplibre-gl": "^6.11.2",
 		"next": "^16.2.10",
 		"notion-client": "^7.10.0",
 		"notion-types": "^7.10.0",

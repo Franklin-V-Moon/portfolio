@@ -15,6 +15,7 @@
 # production
 /build
 /public/travel/posters/social/
+/public/travel-map/
 
 # misc
 .DS_Store

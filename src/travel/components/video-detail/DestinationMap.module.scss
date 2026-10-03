@@ -1,0 +1,108 @@
+@use "../../../../themes/colors.module" as *;
+
+.destinationSection {
+	width: 100%;
+	min-width: 0;
+	padding: 40px 40px 0 0;
+}
+
+.map {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	height: clamp(280px, 30vw, 380px);
+	background: $darkBackground;
+	overflow: hidden;
+	color: $white;
+	font: 12px/20px Arial, Helvetica, sans-serif;
+	-webkit-tap-highlight-color: transparent;
+
+	:global(.maplibregl-canvas-container),
+	:global(.maplibregl-canvas) {
+		position: absolute;
+		inset: 0;
+	}
+
+	:global(.maplibregl-canvas) {
+		display: block;
+	}
+
+	:global(.maplibregl-marker) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		will-change: transform;
+	}
+
+	:global(.maplibregl-ctrl-bottom-right) {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	:global(.maplibregl-ctrl) {
+		float: right;
+		clear: both;
+		margin: 10px;
+		pointer-events: auto;
+	}
+
+	:global(.maplibregl-ctrl-attrib) {
+		background: rgba(17, 17, 17, 0.82);
+		color: rgba(255, 255, 255, 0.72);
+	}
+
+	:global(.maplibregl-ctrl.maplibregl-ctrl-attrib) {
+		margin: 4px;
+		padding: 0;
+	}
+
+	:global(.maplibregl-ctrl-attrib.maplibregl-compact) {
+		position: relative;
+		min-height: 20px;
+		padding: 2px 24px 2px 0;
+		border-radius: 12px;
+		box-sizing: content-box;
+	}
+
+	:global(.maplibregl-ctrl-attrib.maplibregl-compact .maplibregl-ctrl-attrib-inner) {
+		display: none;
+	}
+
+	:global(.maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner) {
+		display: block;
+	}
+
+	:global(.maplibregl-ctrl-attrib-button) {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 24px;
+		height: 24px;
+		border: 0;
+		background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M4 10a6 6 0 1 0 12 0 6 6 0 1 0-12 0m5-3a1 1 0 1 0 2 0 1 1 0 1 0-2 0m0 3a1 1 0 1 1 2 0v3a1 1 0 1 1-2 0'/%3E%3C/svg%3E") center / 24px no-repeat;
+		filter: invert(1);
+		cursor: pointer;
+	}
+
+	:global(.maplibregl-ctrl-attrib-inner) {
+		padding: 0 5px;
+	}
+
+	:global(.maplibregl-ctrl-attrib a) {
+		color: $white;
+	}
+}
+
+@media (max-width: 599px) {
+	.destinationSection {
+		padding: 40px 24px 0 0;
+	}
+
+	.map {
+		height: 280px;
+	}
+}

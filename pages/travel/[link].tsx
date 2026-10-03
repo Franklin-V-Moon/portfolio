@@ -20,7 +20,7 @@ import { useState } from "react";
 import { useHasMounted } from "../../utils/useHasMounted";
 import { VideoPlayer } from "../../src/travel/components/video-detail/VideoPlayer";
 import { LockedVideo } from "../../src/travel/components/video-detail/LockedVideo";
-import { VideoSummary } from "../../src/travel/components/video-detail/VideoSummary";
+import { DestinationMap } from "../../src/travel/components/video-detail/DestinationMap";
 import { VideoScorecard } from "../../src/travel/components/video-detail/VideoScorecard";
 import { TravelAdvice } from "../../src/travel/components/video-detail/TravelAdvice";
 import { ChallengesDosDonts } from "../../src/travel/components/video-detail/ChallengesDosDonts";
@@ -111,14 +111,21 @@ const VideoContent = ({
 					{extras && (
 						<>
 							<div className={styles.extrasContainer}>
-								{extras.summary && <VideoSummary summary={extras.summary} />}
-
 								{extras.scorecard && typeof extras.finalScore === "number" && (
 									<VideoScorecard
 										scorecard={extras.scorecard}
 										finalScore={extras.finalScore}
 										countries={extras.countries}
 									/>
+								)}
+
+								{extras.countries?.length ? (
+									<DestinationMap
+										countries={extras.countries}
+										dots={extras.dots}
+									/>
+								) : (
+									extras.summary && <p>{extras.summary.join(" ")}</p>
 								)}
 							</div>
 
