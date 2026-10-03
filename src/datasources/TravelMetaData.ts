@@ -75,11 +75,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [1],
 			},
 			finalScore: 4,
-			summary: [
-				"I spent a semester studying at Shaoguan University, we traveled the south from Guangzhou to Changsha, cultivating my initial love for travel.",
-				"China is one of those few countries which are absolutely enormous, you could travel it for years and still barely scratch the surface.",
-				"Each province boasts a unique history and culture spanning millennia. However, I found food quality concerning and the Great Firewall significantly hindered basic tasks like travel planning.",
-			],
 			challenges: [
 				"Many hotels refuse to check foreigners in, often based on skin color",
 				"Google and Facebook services are blocked by the government which includes Gmail, Play Store, Maps, Instagram and Youtube",
@@ -173,11 +168,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [1],
 			},
 			finalScore: 5,
-			summary: [
-				"Nepal, a landlocked nation nestled in the Himalayas, offers a breathtaking blend of natural beauty and cultural richness.",
-				"From the towering peaks of Everest to the serene temples of Kathmandu, the country provides a diverse experience that captivates every traveler.",
-				"While its political landscape has faced challenges and its infrastructure can be demanding, the warmth of the Nepali people and the profound spiritual atmosphere make it a truly unforgettable destination.",
-			],
 			challenges: [
 				"Getting around is difficult, except flying. Don't drive cross country unless you're mentally prepared for it.",
 			],
@@ -246,11 +236,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [4],
 			},
 			finalScore: 5,
-			summary: [
-				"Bali, an Indonesian gem, offers a unique blend of serene landscapes and vibrant cultural experiences.",
-				"From the tranquil rice terraces of Ubud to the bustling beaches of Seminyak, the island caters to both relaxation and adventure. ",
-				"Though tourism has brought significant changes, the island's deep-rooted Hindu traditions and artistic heritage remain palpable, offering a glimpse into a culture that gracefully balances modernity and tradition.",
-			],
 			challenges: [
 				"Taxis are really scammy and scummy. Don't trust them, secure a price in advance and avoid at all costs..",
 			],
@@ -314,11 +299,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [3, 3],
 			},
 			finalScore: 4,
-			summary: [
-				"Malaysia is a simple yet multi-cultural destination blending Chinese, Indian and Arabic cultures all into one fairly unassuming package.",
-				"Singapore is an impressive hub of commerce and efficiency you don't see often. It is what Hong Kong wishes it still was and continues to thrive and attracts the best minds from Asia into one concentrated pinhead.",
-				"We had a very short vacation but we made the most of it by drinking, hanging out and checking out the local attractions from the rainbow steps in Kuala Lumpur to the Gardens By the Bay.",
-			],
 			challenges: [
 				"Malaysia is fairly boring over all, nothing really happens so it's good to travel fast and bring some buddies.",
 			],
@@ -397,11 +377,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [6],
 			},
 			finalScore: 4,
-			summary: [
-				"New Zealand offers a breathtaking escape into nature's grandeur, from the soaring peaks of the Southern Alps to the serene shores of its countless lakes and fjords.",
-				"This island nation, far removed from the world's geopolitical fray, provides a tranquil and immersive experience, where Maori culture and modern Kiwi life blend seamlessly.",
-				"Whether you're seeking adrenaline-pumping adventures or quiet moments of reflection amidst stunning landscapes, New Zealand delivers a unique and unforgettable journey.",
-			],
 			challenges: [
 				"Renting a car when you're under 25 is a headache. Double check you can hire it ahead of time.",
 			],
@@ -478,11 +453,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [8],
 			},
 			finalScore: 9,
-			summary: [
-				"Japan, a land of captivating contrasts, seamlessly blends ancient traditions with futuristic innovation.",
-				"From serene temples nestled amidst cherry blossoms to the neon-lit streets of bustling Tokyo, the island nation offers a unique cultural tapestry.",
-				"Whether you're drawn to the tranquility of a traditional tea ceremony, the exhilarating energy of anime culture, or the sublime beauty of its natural landscapes, Japan promises an unforgettable journey into a world where harmony and dynamism coexist.",
-			],
 			dos: [
 				"Make your own custom cup of noodles in Osaka.",
 				"Hit up a PokeStore if you're into Pokemon.",
@@ -576,11 +546,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [5],
 			},
 			finalScore: 8,
-			summary: [
-				"Thailand is a land of vibrant contrasts, where ancient temples stand alongside bustling modern cities, and tranquil beaches meet lush jungles.",
-				"From the serene northern hills dotted with elephant sanctuaries and traditional villages to the lively southern islands offering world-class diving and nightlife, the country offers a diverse tapestry of experiences.",
-				"While known for its warm hospitality and delicious cuisine, Thailand also grapples with complex political dynamics and social issues, making it a fascinating destination that blends cultural richness with contemporary challenges.",
-			],
 			challenges: [
 				"Police corruption is rampant and sometimes unavoidable. Always be ready to pay a bribe or get done for something you didn't do.",
 			],
@@ -649,11 +614,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [7],
 			},
 			finalScore: 7,
-			summary: [
-				"South Korea is a nation of rapid transformation, where ancient traditions meet a hyper-modern, tech-driven society, creating a captivating blend of experiences.",
-				"From the bustling streets of Seoul, a city that never sleeps, to the serene beauty of its mountainous landscapes and historic temples, South Korea offers a diverse tapestry of culture and adventure.",
-				"While it navigates the complexities of its geopolitical position, the warmth and resilience of its people, coupled with its dynamic cultural scene, make it a truly compelling destination.",
-			],
 			challenges: [
 				"Hostels can be a bit hit or miss, make sure to remain flexible if the scene isn't for you.",
 				"The night life in Seoul is amazing but getting home late can be a real slog, make sure to plan ahead.",
@@ -730,11 +690,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [4],
 			},
 			finalScore: 4,
-			summary: [
-				"The United Arab Emirates presents a fascinating blend of futuristic ambition and traditional Arabian heritage, crafting an experience that feels both luxurious and culturally rich.",
-				"From the towering skyscrapers of Dubai to the serene deserts of Abu Dhabi, the nation offers a diverse array of experiences, where opulent malls and cutting-edge architecture coexist with ancient forts and Bedouin traditions.",
-				"While the rapid development and artificial islands might raise questions about sustainability, the UAE still manages to showcase a unique vision of a modern Arabian nation, offering a glimpse into a region where innovation and tradition intertwine.",
-			],
 			challenges: [
 				"Getting around can be a challenge as the cities are completely built around cars. There is a metro but it's cramped and expensive.",
 			],
@@ -805,11 +760,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [3],
 			},
 			finalScore: 3,
-			summary: [
-				"Fiji, a South Pacific paradise, offers a unique blend of vibrant culture and stunning natural beauty.",
-				"From the warm, welcoming smiles of the locals to the breathtaking coral reefs and lush rainforests, Fiji provides an escape into a world of tranquility and adventure. Whether you're seeking relaxation on pristine beaches or thrilling water sports,",
-				"Fiji's diverse islands promise an unforgettable experience steeped in rich traditions and breathtaking landscapes.",
-			],
 			challenges: [
 				"It's quite difficult getting around without a guide or tour especially the main island, which is why most people buy a package holiday.",
 			],
@@ -897,11 +847,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [5, 5, 5],
 			},
 			finalScore: 6,
-			summary: [
-				"Cambodia, Laos, and Vietnam, each a jewel of Southeast Asia, bear the marks of tumultuous histories, yet today offer distinct and captivating experiences.",
-				"From the serene temples of Angkor Wat in Cambodia to the tranquil Mekong River flowing through Laos, and the bustling streets of Hanoi in Vietnam, these nations present a tapestry of cultural richness and natural beauty.",
-				"While each country carries the weight of past conflicts, they now extend warm hospitality, inviting travelers to explore their diverse landscapes, savor their unique cuisines, and witness the resilience of their people.",
-			],
 			challenges: [
 				"Travellers often don't realize you need a visa for Vietnam. Try to get it early, if not you can pay for corrupt officials to expedite your application but it's often a few hundred USD.",
 				"It can be a headache to get to train street in Hanoi, keep trying. Theirs always a cop looking away if you pick your moment.",
@@ -1009,11 +954,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [6, 6, 6],
 			},
 			finalScore: 6,
-			summary: [
-				"These 3 nations makeup not-China, each has had a controversial recent history and could be the flashpoint for future conflict but today they stand still with a unique Chinese twist worth experiencing.",
-				"Taiwan is a wonderful place worth taking it slow and simply enjoying, from hiking to biking, from drinking to festivals - It has plenty to do and see.",
-				"Hong Kong is sadly losing its identity but still has much to offer, the night life is incredible and its recent history easy to get lost in.",
-			],
 			challenges: [
 				"Due to the expensive housing, many of the hostels are filled with locals which leads to a hostel culture devoid of friendship and connections",
 			],
@@ -1112,11 +1052,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [7],
 			},
 			finalScore: 7,
-			summary: [
-				"What a brilliant a diverse nation, no two areas here are the same so it's impossible to speak about any culture or rule for the entire nation as it varies completely.",
-				"If you want nature, peace and safety head south to Kerala. If you're after urban sprawl and endless activities, hit up Delhi in the north. Do you like mountains? head east to Darjeeling.",
-				"No two India experiences are the same and it's almost endless with places to go and things to see.",
-			],
 			challenges: [
 				"Safety is a concern depending on where you are. For example, in the denser poorer north i would recommend traveling alone as a woman. However in the south you'll find the population is dominantly women and so services and culture revolve more around keeping you safe.",
 				"You are guaranteed to get food poisoned at some point, simply allow flexibility in your schedule and pack plenty of medicine.",
@@ -1210,11 +1145,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [4],
 			},
 			finalScore: 4,
-			summary: [
-				"As far as rich petro-states go oman is probably the only great one. Rather than going the glitzy luxury fake route they decided to go for a more modest, comfortable and enriching feeling for their nation.",
-				"Getting around Oman is such a lovely therapeutic experience, it feels almost like meditating to drive along the 4 lane silky smooth highways with not a soul in sight.",
-				"If you want a Middle East experience that feels like it came from a Disney movie, this is it.",
-			],
 			challenges: [
 				"getting around by public transport is honestly an un-fun miserable experience, I highly recommend hiring a car.",
 			],
@@ -1290,11 +1220,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [2, 2],
 			},
 			finalScore: 3,
-			summary: [
-				"Kuwait is a classic Persian Gulf petro-state with all the things you'd expect from luxury malls to car dependant transport. But at-least the artificial islands they're building don't completely destroy the marine life.",
-				"Next door you'll find Iraq and the autonomous region of Iraqi Kurdistan which for all intents and purposes is a defacto independent country protected by the Peshmerga.",
-				"Recently ravaged by ISIS, the nation is still reeling and trying to find its footing, the Kurds in the north continue to fight for independence but even so you'll find them warm, inviting and above all relatively safe.",
-			],
 			challenges: [
 				"The Kuwaiti Dinar is the most expensive currency in the world due to their oil exports, don't come poor",
 				"The food is some of the worst I've ever experienced, getting a decent feed is hard and the chance of sickness quite high",
@@ -1377,11 +1302,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [7],
 			},
 			finalScore: 7,
-			summary: [
-				"The safest place in the Middle East, with something for literally everyone Jordan is a wonderful country to visit and have a lovely holiday",
-				"Sitting between several hostile powers you'd think Jordan to be dangerous but for decades now it's managed to remain a safe haven for refugees and tourists with plenty of warmth and hospitality to go around",
-				"It boasts some of the most attractive photogenic sites in the world from Wadi Rum with its heritage train experience to Petra, the great Nabataean city lost in time",
-			],
 			challenges: [
 				"Getting between major cities can be a struggle and bus time tables don't always align. I'd recommend hiring a car, not a tour guide",
 			],
@@ -1481,11 +1401,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [5, 5],
 			},
 			finalScore: 1,
-			summary: [
-				"Saudi Arabia, what a mess. I've never really disliked a country let alone hated one but Arabia somehow managed to be one of the worst weeks of travel in my life.",
-				"From the local men who openly beat their wives to having a rock thrown at my head for simply whistling while I walked down the highway (Apparently I was noise polluting the 8 lane freeway). I've never been to a place so hostile and closed off.",
-				"I'm still not sure if I liked Bahrain or not, but compared to Saudi it was like paradise. Here at least you're allowed to drink, there's fun things to do and people actually follow through when they say they'll do something. It's a cute little petro-state where fun can be found, compared to its neighbors.",
-			],
 			challenges: ["Everything in Saudi is a challenge"],
 			donts: [
 				"Book anything, they will just cancel 10 minutes before it's supposed to happen.",
@@ -1577,11 +1492,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [8],
 			},
 			finalScore: 7,
-			summary: [
-				"Iran has a reputation for being a regional destabilizing power, known to regularly detain tourists and violently cracking down on protests.",
-				"These are all valid concerns, but if you can stomach the fear and overcome these challenges, you'll get to formulate your own opinion and make up your own mind about the realities on the ground.",
-				"It's actually a fascinating land of ancient history, vibrant culture, and surprising hospitality, I experienced some incredible moments like being on German national TV, the friendliness of the soldiers and understood the hardships that come from a powerful nation ruled by an oppressive regime under debilitating sanctions.",
-			],
 			challenges: [
 				"Due to Sanctions you cannot use a visa card here, bring crisp USD/EUR and ensure you're getting the black market rate",
 				"Americans and brits must have a guide and be under constant supervision while traveling. other nationalities are completely free however",
@@ -1718,11 +1628,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [6, 8, 7],
 			},
 			finalScore: 7,
-			summary: [
-				"I spent a solid month exploring the 3 countries of the South-Caucasus, it was a surprise how good Georgia was  with its outstanding food and wine.",
-				"These 3 nations have a complex history, under Soviet rule they co-existed relatively peacefully. But today Armenia and Azerbaijan regularly clash and Georgia is currently partially occupied by Russia.",
-				"Azerbaijan feels like any other gulf petro state and in many ways is proud to be a Turkish puppet. Armenia has a tragic history but some of the most hopeful people you'll ever meet.",
-			],
 			challenges: [
 				"Getting around Azerbaijan can be quite a challenge, similar to Turkey the taxi drivers are very likely to scam and misdirect you at every chance",
 			],
@@ -1839,11 +1744,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [10],
 			},
 			finalScore: 9,
-			summary: [
-				"One of the most relaxed and gorgeous regions in the world. From the immense back alleys of Athens to the blue and white cliffs of the many islands, Greece is the perfect place to have fun, kick back and just enjoy life.",
-				"While not cheap or easy I managed to squeeze in a wonderful trip where I met some of the loveliest travelers and went on countless little adventures.",
-				"Everyone has an idea of what greece will be, somehow it exceeds those expectations and shows you new things you never knew you wanted.",
-			],
 			dos: [
 				"Checkout Crete. Raki here is untaxed and therefore cheaper than water, they literally give it away with every meal.",
 			],
@@ -1941,10 +1841,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [5],
 			},
 			finalScore: 5,
-			summary: [
-				"The bridge between worlds, Türkiye. Meeting and mixing Europe, the Middle East and the Caucuses.",
-				"Honestly I didn't spend enough time in Turkey and what I did do and see was a bit 'touristy'. Istanbul is one of those cities you could spend weeks alone, from its 'Europe side' and its 'Asia Side' you can experience a great mesh of foods, lifestyles and fun experiences.",
-			],
 			challenges: [
 				"Taxi drivers in Turkey are something else. Never trust the driver, if you know they're going the wrong way don't be afraid to jump out and if they decide to double the agreed-upon price after you've arrived, expect the confrontation to become physical.",
 			],
@@ -2038,11 +1934,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [2],
 			},
 			finalScore: 3,
-			summary: [
-				"Heading through to Syria I had to checkout Lebanon, sometimes nicknamed 'The Switzerland of the Middle East' for its previous reputation to discreetly store one's wealth.",
-				"Sadly at time of filming Lebanon has fallen far. Infested with Hezbollah, an Iran-backed terror organization that sudo-controls the government without any of the benefits a functioning government would provide. They destabilize the whole nation and ensure it's stuck in constant conflict internally and externally.",
-				"Even so, the Lebanese press on as some of the kindest and most hospital folks you'll ever meet. Kind, open-minded and fantastic cooks.",
-			],
 			challenges: [
 				"Hezbollah forces are dotted around the country and in Beirut. Generally they'll leave you alone but you'll find that their presence gets in the way of whatever you're trying to do.",
 			],
@@ -2121,11 +2012,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [10],
 			},
 			finalScore: 10,
-			summary: [
-				"Experiencing Syria during the Assad regime was an actual unforgettable experience, the week I spent in Syria might be the most impactful week of my life.",
-				"Each and every aspect of this tragic yet resilient country stands out. The people still have so much pride and hope, everyone is wonderful, the history immense and the food to die for.",
-				"Damascus has gone down as my favorite city, it's so rich and vibrant. Homs and Hama while devastated from decades of war still have so much to offer. Aleppo and Palmyra with its recent ISIS occupation could alone be traveled for weeks without learning everything that's just happened.",
-			],
 			dos: ["Eat and drink everything."],
 			donts: [
 				"The Kim Jong-il park while fascinating is literally just a patch of grass.",
@@ -2221,11 +2107,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [3],
 			},
 			finalScore: 4,
-			summary: [
-				"An island nation divided, where ancient ruins meet sun-drenched coastlines with everything you love and hate from its nearest neighbors.",
-				"The Greek Cypriot and Turkish Cypriot communities of Cyprus are a living testament to the island's complex recent history where the UN buffer lines creates an incredibly strange atmosphere yet life goes on in paradise.",
-				"I explored a few cities and mostly 'lived it up' aboard cruises and wind surfing, the south feels much more like a Greek island and the north more like a forgotten wasteland from Fallout with countless ghost towns covered in bullet holes.",
-			],
 			challenges: [
 				"Each side of Cyprus uses different currencies, the south uses Euros and the north the Turkish Lira.",
 			],
@@ -2303,11 +2184,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [8, 8],
 			},
 			finalScore: 8,
-			summary: [
-				"We witnessed firsthand the tangible realities of the Israeli-Palestinian conflict, including the separation barrier and its impact on daily life.",
-				"Israel & Palestine have diverse religious and political narratives shaping the region's complex recent history. growing up a Christian, it was fascinating to see the real locations from the Bible and even more so, that they always had a gift shop next door.",
-				"It's a surreal experience to travel this region, with so many concerning and surprising facts it can be heart breaking to visit but something I believe everyone should try at-least once.",
-			],
 			challenges: [
 				"Israeli border security is fierce. Many travelers are fine, but if you're solo it's likely you will be searched and questioned for hours. Leave extra time.",
 			],
@@ -2405,11 +2281,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [6, 6],
 			},
 			finalScore: 6,
-			summary: [
-				"The Philippines, an archipelago of over 7,000 islands offering a diverse landscape of beaches, volcanoes, rain forests and infinite diving.",
-				"Nearby Brunei is a tiny oil-rich sultanate known for its mosques, tree canopies and Venetian-style river villages.",
-				"Steering clear of Manila due to its scammy and congested nature, we explored chaotic Cebu by scooter and snorkelled around its gorgeous coast. While the food in both countries is quite bad (Philippines voted worst in the world recently) we did enjoy the nightlife and punchy red horse beers.",
-			],
 			challenges: [
 				"Manilla is a hellish city with some truly awful congestion. Many taxi scams exist, particularly the 'airport bus' that you can never rely on.",
 			],
@@ -2474,11 +2345,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [8],
 			},
 			finalScore: 6,
-			summary: [
-				"One of the world's youngest countries, least traveled and with a truly tragic recent history. Riding through the street you attract a lot of eyeballs followed with a constant stream of 'hello''s, 'hi's and 'where are you from?'.",
-				"The infrastructure here is extremely basic with most roads made of only dirt/mud and the 4th slowest cellular network globally.",
-				"What it lacks in amenities it makes up for in ecology, by being relatively untouched it has the worlds most bio-diverse coral reefs surrounding the ex-prison island of Atauro.",
-			],
 			challenges: [
 				"There is almost no tourism infrastructure except for dive centers.",
 				"The roads are almost nonexistent with potholes regularly swallowing up whole motorbikes. It's fun but ensure ample time and energy",
@@ -2571,11 +2437,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [10],
 			},
 			finalScore: 6,
-			summary: [
-				"Bangladesh is a very unique country, blending some of the best and worst of experiences into a captivating yet daunting adventure.",
-				"Home to the world's largest mangrove forest, the Sundarbans. The worlds longest uninterrupted sea beach, Cox bazaar and a fascinating textiles industry, we had a blast but also, would never go back.",
-				"If you're into 'Yes theory' then this is the country for you, it has stunning nature and a type of local you've never met before, Everything here is a challenge but rewarding nonetheless.",
-			],
 			challenges: [
 				"The food is straight-up not fit for animal nor human consumption. Everything, even KFC, gave me food poisoning. Stick to Oreos and potato crisps.",
 				"Getting around is very hard, you can't really book anything online and there's no such thing as a schedule. Just ask around until a solution presents itself but that does mean you can commute in crazy unexpected ways.",
@@ -2682,11 +2543,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [7, 7],
 			},
 			finalScore: 5,
-			summary: [
-				"We hiked and rode our way through a less-traveled section of the Himalayas, everywhere you look is stunning architecture and color.",
-				"There are few countries like Bhutan. Nestled 2500m in the mountains it's a bastion of peace and long term thinking. They impose an expensive daily Sustainable Development Fee (SDF) on tourists which is what makes it one of the least visited countries on earth.",
-				"We also got to enjoy the celebrations of Diwali in the East-Indian region of Darjeeling, surprisingly it felt more like new years with endless screaming fireworks and fire crackers.",
-			],
 			challenges: [
 				"Bhutan essentially forces tourists to hire a guide and driver. Technically you can explore Paro and Thimphu without one but you MUST fly in to the airport, don't try to get there via car.",
 			],
@@ -2783,11 +2639,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [5, 5],
 			},
 			finalScore: 3,
-			summary: [
-				"We joined a friend for 2025 New Years, enroute had a stopover in The Maldives for a bit sun and aquatic fun.",
-				"The Maldives was once an expensive and exclusive destination but since 2022 they allow tourists to lodge on the normal non-resort islands which dramatically cuts costs. Multiple budget friendly tour companies have emerged since but the food remains deplorable.",
-				"After their credit default, Sri Lanka has focused intensely on its tourism industry which has made it a fantastic attractive destination to backpack. It's affordable and beautiful. Safety is top notch making it the ideal first taste of South Asia.",
-			],
 			challenges: [
 				"The Maldives is exceptionally hard to travel freely, there are many 'gotchas' like ferries needing pre-booking or not running on certain days.",
 			],
@@ -2872,11 +2723,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [7],
 			},
 			finalScore: 5,
-			summary: [
-				"Pakistan is a culturally rich, predominantly Muslim nation with a complex history, currently navigating extremely challenging economic and political headwinds, but somehow manages to break the scale on what hospitality can be",
-				"We visited the 4 major cities to discover an alarming amount of diversity from the Punjabs to the Pashtuns with endless languages in-between",
-				"This country is not for new travellers but if you're seeking one of the most rewarding and enriching experiences, you'll probably never find a better option",
-			],
 			challenges: [
 				"Due to security concerns it's common local police forces will try to 'escort' you around. In reality they will nag you to just go back to your hotel so they can play on their phones. It's free but a highly annoying 'service' that you can't opt out of once they start following you",
 				"Getting cash is hard, the only bank that reliably worked for me was Standard Charter",
@@ -2994,11 +2840,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [7],
 			},
 			finalScore: 6,
-			summary: [
-				"Afghanistan is a country caught between worlds. On the one hand, you have the overbearing Taliban with strict sharia law and frankly nonsense rulings.",
-				"On the other, you have the wonderful people, each have a story that will squeeze your heart but also a personality that will put a smile on your face.",
-				"Beyond the government, Afghanistan has an incredible amount of history and unique traditions to experience, it's somewhere every seasoned traveller should attempt to visit.",
-			],
 			challenges: [
 				"The Visa for Afghanistan is a huge headache with ever changes requirements. The easiest way currently is at the Peshawar consulate or on arrival at the Tajik border.",
 				"It's illegal for foreigners to take a bus or enter a locals home, the loophole is to hitchike where you can still get close with locals and also where you need to be.",
@@ -3295,11 +3136,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [8],
 			},
 			finalScore: 8,
-			summary: [
-				"Myanmar, a land of ancient Buddhist traditions and breathtaking landscapes, finds itself gripped by a tragic military junta that has brutally suppressed democratic aspirations and plunged the nation into turmoil.",
-				"Yet, amidst this darkness, the resilient spirit of the Burmese people shines through, their warmth and cultural richness a stark contrast to the oppressive regime.",
-				"For the intrepid traveler, Myanmar still offers glimpses of remarkable temples and vibrant cultures, though a visit comes with a heavy awareness of the ongoing struggle for freedom.",
-			],
 			challenges: [
 				"Getting around is quite painful as only a few select busses will allow a small amount of foreigners aboard, getting tickets last minute is a gamble. Trains completely ban foreigners.",
 				"Double the time estimates for getting places.",
@@ -3477,11 +3313,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [8],
 			},
 			finalScore: 5,
-			summary: [
-				"Mongolia is a vast, sparsely populated country known for its nomadic culture and endless steppes.",
-				"We visited during Naadam festival, a traditional celebration featuring the three manly sports of horse racing, wrestling, and archery.",
-				"Surviving with no modern amenities and a fun Mongolian diet requires an incredible amount of grit but wow is this place worth it for the view.",
-			],
 			challenges: ["Roads and English do not really exist"],
 			dos: [
 				"Prepare various entertainments for the many long drives, you will spend most of your days driving",
@@ -3596,11 +3427,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				video: [7],
 			},
 			finalScore: 6,
-			summary: [
-				"From the Great Wall snaking across wind-scoured ridges to the Terracotta Warriors staring through two millennia, China pairs grand history with serene peaks, delicious tea breaks, and smooth satisfying high speed rail.",
-				"But you’ll also find shoulder-to-shoulder crowds and “ancient” streets polished into theme parks, where the experience is curated and even the night market feels algorithmically optimized.",
-				"The whole country runs like it’s already the year 3025. Brilliantly frictionless or mildly dystopian, depending on your mood.",
-			],
 			challenges: [
 				"English is very rare with middle-aged and above, google translate is a bit of a joke so get ready to play charades",
 				"The QR codes are no joke, setup the apps like WeChat or AliPay early and enjoy the sometimes streamlined but frustrating experience of doing everything through a broken app",
@@ -3760,11 +3586,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [8],
 			},
 			finalScore: 8,
-			summary: [
-				"Sun-kissed beaches, ancient golden temples, bustling street food markets brimming with exotic flavors, and lush jungles hiding hidden waterfalls, all woven together in the land of smiles.",
-				"Here for 2 years on a long-term assignment I got to see and do it all.",
-				"It really is the gateway to Asia I think everyone should visit once in their life, there's a reason Thailand is one of the most popular tourist destinations in the world.",
-			],
 			challenges: [
 				"Police are something different, not a worry if you have cash in your pocket but just hope you don't need their help",
 			],
@@ -3930,10 +3751,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [10]
 			},
 			finalScore: 3,
-			summary: [ "From the Andes to the Pacific in a few short hours, Chile one perplexingly unique destination",
-				"We arrived just in time for the Day of the Dead halloween festivities but left plenty of time for the nature",
-				"From river rapids to tranquil lake districts to summits and stories of great explorers, Chile has everything you need for a peaceful escape"
-			 ],
 			challenges: [ "It's very costly and the food is terrible, making cooking your only option even if you;re not on a budget", 
 				"It can be quite challenging to meet other backpackers in Patagonia, due to the aforementioned costs and distances betwen locations"
 			 ],
@@ -4025,10 +3842,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [4, 7, 4]
 			},
 			finalScore: 5,
-			summary: [ "A 3-part trip, From Argentina and it's baby-brother Uruguay to the remote and curious state of Paraguay",
-				"We explored the mega-city of Buenos Aires, the falls of Iguazu and the Jesuit ruins along the way",
-				"The surprise was Salta, a desolate and rocky mountain scape far inland and hard to reach, turned out to be an absolute blast and full of fun"
-			 ],
 			challenges: [ "All three of these countries are more 'do it slow and immerse in the culture', which isn't easy if you want to see and do a lot in a day", 
 				"Getting in and around these places is especially a hassle, hostels are often booked up even off-season and there isn;t a whole lot of infrastructure to make use of"
 			 ],
@@ -4117,10 +3930,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [9]
 			},
 			finalScore: 8,
-			summary: [ "Bolivia is a land of contrasts, from the high-altitude salt flats to the lush Amazon basin, offering a unique blend of natural beauty and cultural richness.",
-				"Surprisngly easy to get around and with a lot of infrastructure for tourists, Bolivia is a great place to explore on a budget",
-				"Many people take their time here to hike challenging mountains, study Spanish or even volunteer"
-			 ],
 			challenges: [ "The altitude can be a challenge, especially in places like La Paz and the Uyuni Salt Flats", 
 				"The roads can be rough and travel times longer than expected, so plan accordingly"
 			 ],
@@ -4214,10 +4023,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [7]
 			},
 			finalScore: 5,
-			summary: [ "Peru is a country of rich history and diverse landscapes, from the ancient ruins of Machu Picchu to the vibrant streets of Lima.",
-				"Traveling through Peru offers a mix of cultural experiences, culinary delights, and breathtaking natural beauty.",
-				"Whether you're exploring the Amazon rainforest or hiking the Inca Trail, Peru has something for every traveler."
-			 ],
 			challenges: [ "Altitude sickness can be a concern in high-altitude areas like Cusco and Puno",
 			 ],
 			advice: {
@@ -4298,10 +4103,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [5]
 			},
 			finalScore: 6,
-			summary: [ "Ecuador is a country of rich history and diverse landscapes, from the vibrant biodiversity of the Galapagos Islands to the rapid rivers of banos",
-				"Traveling through Ecuador offers a mix of cultural experiences, culinary delights, and breathtaking natural beauty.",
-				"Whether you're canyoneering or hiking, Ecuador has something for every traveler."
-			 ],
 			challenges: [ "Theft on busses and in cities is a concern, so always be vigilant with your belongings",
 			 ],
 			 dos: ["Ceviche is a must-try, and the local markets are great for fresh produce and souvenirs", "Carnaval is a unique cultural experience, especially in the city of Guaranda"],
@@ -4385,10 +4186,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [8]
 			},
 			finalScore: 9,
-			summary: [ "Venezuela is a nation with such potential, with a tumultuous recent events to its epic revolutionary history, and a culture that is vibrant and welcoming.",
-				"Traveling through Venezuela you really get to meet locals like nowhere else, insane tasty yet very unhealthy food, and breathtaking natural beauty.",
-				"Whether you're exploring the Angel Falls or sun baking on Margarita Island, Now is probably the best time to visit this unbelievably beautiful country, before the world catches on"
-			 ],
 			challenges: [ "Police and military are very present, and can be intimidating, they will lie, cheat and steal far more than any criminal",
 			 ],
 			 dos: ["Approach locals, say yes to offers and be open to new experiences", "Have a flexible schedule, things can change quickly and you need to be able to adapt", "Use Whatsapp and Airbnb to book most hotels and experiences"],
@@ -4510,10 +4307,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [5, 5]
 			},
 			finalScore: 5,
-			summary: [ "Panama, a unique strip separating oceans and continents, with unique and special activities to try",
-				"Colombia, a country of endless rhythm and spirit, culture and recent history with some of the brightest smiles and happiest laughter on earth",
-				"Not nearly as dangerous as they say, it's come a long way in the past few years but in many places, still exactly the same"
-			],
 			challenges: [ "Theft and gangs are still very much a thing but just dont make yourself an easy target and you'll be totally fine, theyre often better than the police",
 			 ],
 			 dos: ["Dance classes in Cali, Salsa Celena is an amazing experience worth atleast a week and a few hours per day", "Paragliding is also atleast woeth doing in Cali or Bucharamanga. It's affordable and worth learning if youve got atleast 5 days"],
@@ -4596,10 +4389,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [7, 3]
 			},
 			finalScore: 3,
-			summary: [ "Andorra, a small principality nestled in the Pyrenees mountains, a place I honestly didn't know existed until a few years ago, but its a treat.",
-				"Monaco on the other hand, is neat for a few hours but really not my vibe or anyone who comes from my salary range",
-				"Despite the title, I spent most of my time transiting between these countries through France (Not reflected in these scores), but not nearly long enough, France deserves it's own video"
-			],
 			 dos: ["Visit Monaco from Nice, it's a short train ride and you can see the sights in a few hours"],
 			 donts: ["Shell out big bucks for the Monaco F1, you can easily just walk around. You're only paying for the seat"],
 			advice: {
@@ -4667,10 +4456,6 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				beauty: [5]
 			},
 			finalScore: 8,
-			summary: [ "Ukraine is a vast Eastern European nation marked by golden-domed historic cities, rolling Carpathian peaks, and centuries of rich cultural heritage.",
-				"Visitors encounter exceptional warmth and hospitality, from the cobblestone streets of Lviv to deep-rooted culinary and architectural traditions.",
-				"While visiting today demands mindful awareness of current regional realities, exploring Ukraine offers a profoundly authentic journey through history, beauty, and enduring strength."
-			],
 			 dos: ["Drive to the mountains and book a Chan! I woodfired hottub with river dip we couldn't do because we didn't book ahead",
 				"Don't miss visiting the missile silo near Pervomaisk. Truely a once in a lifetime experience",
 				"Go for a rave at 4pm, itll stopes around 11pm so you'll get to vibe and have a great nights sleep too"

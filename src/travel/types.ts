@@ -52,7 +52,6 @@ export type Extras = {
 		video: number[];
 	};
 	finalScore?: number;
-	summary?: string[];
 	challenges?: string[];
 	dos?: string[];
 	donts?: string[];

@@ -15,10 +15,9 @@ export const buildVideoJsonLd = ({
 	metaData: TravelVideoMetaData;
 	durationISO?: string;
 }) => {
-	const { title, year, hostedLink, link, extras } = metaData;
+	const { title, year, hostedLink, link } = metaData;
 
-	const description =
-		extras?.summary?.[0] ?? `${title} — travel video from ${year}.`;
+	const description = `${title} — travel video from ${year}.`;
 	const pageUrl = `https://franklin-v-moon.dev/travel/${link}`;
 	const ogImage = `https://franklin-v-moon.dev/travel/posters/social/${hostedLink}.jpg`;
 

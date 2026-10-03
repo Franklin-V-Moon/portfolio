@@ -119,13 +119,11 @@ const VideoContent = ({
 									/>
 								)}
 
-								{extras.countries?.length ? (
+								{extras.countries?.length && (
 									<DestinationMap
-										countries={extras.countries}
-										dots={extras.dots}
-									/>
-								) : (
-									extras.summary && <p>{extras.summary.join(" ")}</p>
+									countries={extras.countries}
+									dots={extras.dots}
+								/>
 								)}
 							</div>
 

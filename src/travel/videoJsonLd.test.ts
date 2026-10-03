@@ -24,21 +24,10 @@ describe("buildVideoJsonLd", () => {
 		restricted: false,
 	};
 
-	it("falls back to a generated description when no summary is present", () => {
+	it("generates a description from the video title and year", () => {
 		const { description } = buildVideoJsonLd({ metaData });
 
 		expect(description).toBe("Japan — travel video from 2023.");
-	});
-
-	it("uses the first summary sentence as the description when present", () => {
-		const { description } = buildVideoJsonLd({
-			metaData: {
-				...metaData,
-				extras: { summary: ["A trip through Tokyo and Kyoto."] },
-			},
-		});
-
-		expect(description).toBe("A trip through Tokyo and Kyoto.");
 	});
 
 	it("omits duration from the jsonLd when durationISO is not provided", () => {
