@@ -4296,7 +4296,7 @@ export const travelVideoMetaData: TravelVideoMetaData[] = [
 				"8.7318763, -82.5786777",
 				"8.1984251, -81.5942716",
 			],
-			trailer: "panamaandcolombia",
+			trailer: "panamaandcolombiatrailer",
 			scorecard: {
 				affordability: [3, 5],
 				food: [2, 4],
