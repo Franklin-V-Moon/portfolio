@@ -3,7 +3,7 @@
 .destinationSection {
 	width: 100%;
 	min-width: 0;
-	padding: 40px 40px 0 0;
+	padding-top: 40px;
 }
 
 .map {
@@ -98,10 +98,6 @@
 }
 
 @media (max-width: 599px) {
-	.destinationSection {
-		padding: 40px 24px 0 0;
-	}
-
 	.map {
 		height: 280px;
 	}

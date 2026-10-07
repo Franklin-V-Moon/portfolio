@@ -23,6 +23,20 @@ export const forYouMetaData: ForYouMetaData[] = [
 
 export const volunteeringMetaData = [
 	{
+		logo: "river",
+		agency: "Casa CarpeDM River Project",
+		title: "Activity Volunteer and Videographer",
+		location: "Quito, Ecuador",
+		year: "2026",
+	},
+	{
+		logo: "weave",
+		agency: "Women’s Education for Advancement and Empowerment (WEAVE)",
+		title: "Digital Literacy & Coding Instructor",
+		location: "Myawaddy, Myanmar",
+		year: "2024-2025",
+	},
+	{
 		logo: "melbourne-amep",
 		agency: "Adult English Migrant Program",
 		title: "Refugee Social Support Coach",

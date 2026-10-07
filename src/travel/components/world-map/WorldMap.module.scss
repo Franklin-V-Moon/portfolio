@@ -26,6 +26,21 @@
 	contain: layout;
 }
 
+.worldMapLoading {
+	overflow: hidden;
+}
+
+.backgroundMap {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+
+	path {
+		fill: #313131;
+	}
+}
+
 @media (max-width: 599px) {
 	.worldMapContainer {
 		margin-bottom: 18px;
@@ -171,6 +186,26 @@
 
 .dotTarget {
 	cursor: pointer;
+}
+
+.dotRevealing {
+	animation: dotReveal 140ms ease-out both;
+}
+
+@keyframes dotReveal {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dotRevealing {
+		animation: none;
+	}
 }
 
 .dotHitArea {
