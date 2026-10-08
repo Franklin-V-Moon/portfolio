@@ -188,6 +188,14 @@
 	cursor: pointer;
 }
 
+.dotTargetSelectedBase .dot {
+	opacity: 0;
+}
+
+.dotSelectedOverlay {
+	pointer-events: none;
+}
+
 .dotRevealing {
 	animation: dotReveal 140ms ease-out both;
 }
@@ -227,8 +235,8 @@
 
 .dotTarget:hover .dot,
 .dotSelected .dot {
-	r: calc(4.8px * var(--dot-size-scale, 1));
-	filter: drop-shadow(0 0 5px var(--travel-map-accent));
+	r: calc(6.24px * var(--dot-size-scale, 1));
+	filter: drop-shadow(0 0 7px var(--travel-map-accent));
 }
 
 .dotLayerDimmed .dotTarget:not(.dotSelected):hover .dot {
@@ -240,12 +248,12 @@
 }
 
 .dotLayerDimmed .dotTarget.dotSelected .dot {
-	r: calc(3.6px * var(--dot-size-scale, 1));
-	filter: drop-shadow(0 0 8px var(--travel-map-accent)) drop-shadow(0 0 16px var(--travel-map-accent));
+	r: calc(6.08px * var(--dot-size-scale, 1));
+	filter: drop-shadow(0 0 11.2px var(--travel-map-accent)) drop-shadow(0 0 22.4px var(--travel-map-accent));
 }
 
 .dotLayerDimmed .dotTarget.dotPulsing .dot {
-	r: calc(4.68px * var(--dot-size-scale, 1));
+	r: calc(6.08px * var(--dot-size-scale, 1));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -256,11 +264,11 @@
 	@keyframes dotPulse {
 		0%,
 		100% {
-			filter: drop-shadow(0 0 6px var(--travel-map-accent)) drop-shadow(0 0 12px var(--travel-map-accent));
+			filter: drop-shadow(0 0 8.4px var(--travel-map-accent)) drop-shadow(0 0 16.8px var(--travel-map-accent));
 		}
 
 		50% {
-			filter: drop-shadow(0 0 12px var(--travel-map-accent)) drop-shadow(0 0 24px var(--travel-map-accent));
+			filter: drop-shadow(0 0 16.8px var(--travel-map-accent)) drop-shadow(0 0 33.6px var(--travel-map-accent));
 		}
 	}
 }

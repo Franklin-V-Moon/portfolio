@@ -34,7 +34,7 @@ export const volunteeringMetaData = [
 		agency: "Women’s Education for Advancement and Empowerment (WEAVE)",
 		title: "Digital Literacy & Coding Instructor",
 		location: "Myawaddy, Myanmar",
-		year: "2024-2025",
+		year: "2024 - 2025",
 	},
 	{
 		logo: "melbourne-amep",

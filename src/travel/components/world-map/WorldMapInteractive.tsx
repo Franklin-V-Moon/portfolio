@@ -304,6 +304,9 @@ const WorldMap = ({
 		() => new Set(dots.slice(0, visibleDotCount).map((dot) => dot.id)),
 		[visibleDotCount],
 	);
+	const selectedVisibleDot = selectedDotId
+		? dots.find((dot) => dot.id === selectedDotId && visibleDotIds.has(dot.id))
+		: undefined;
 	useEffect(() => {
 		const bordersFrame = requestAnimationFrame(() => {
 			setMapStage(1);
@@ -316,7 +319,7 @@ const WorldMap = ({
 		const startedAt = performance.now();
 		let frame = 0;
 		const revealDots = (now: number) => {
-			const progress = Math.min((now - startedAt) / 900, 1);
+			const progress = Math.min((now - startedAt) / 2000, 1);
 			setVisibleDotCount(Math.ceil(dots.length * progress));
 			if (progress < 1) frame = requestAnimationFrame(revealDots);
 		};
@@ -614,7 +617,7 @@ const WorldMap = ({
 							return (
 								<g
 								key={dot.id}
-									className={`${styles.dotTarget} ${styles.dotRevealing} ${selectedDotId === dot.id ? styles.dotSelected : ""} ${autoSelectedDotId === dot.id ? styles.dotPulsing : ""}`}
+								className={`${styles.dotTarget} ${styles.dotRevealing} ${selectedDotId === dot.id ? styles.dotTargetSelectedBase : ""}`}
 								aria-hidden='true'
 									focusable='false'
 									transform={`translate(${position[0].toFixed(3)}, ${position[1].toFixed(3)})`}
@@ -635,6 +638,22 @@ const WorldMap = ({
 								</g>
 							);
 						})}
+						{selectedVisibleDot && (() => {
+							const position = projection([
+								selectedVisibleDot.longitude,
+								selectedVisibleDot.latitude,
+							]);
+							if (!position) return null;
+							return (
+								<g
+									className={`${styles.dotTarget} ${styles.dotSelected} ${styles.dotSelectedOverlay} ${autoSelectedDotId === selectedVisibleDot.id ? styles.dotPulsing : ""}`}
+									aria-hidden='true'
+									focusable='false'
+									transform={`translate(${position[0].toFixed(3)}, ${position[1].toFixed(3)})`}>
+									<circle className={styles.dot} r='3.6' />
+								</g>
+							);
+						})()}
 					</g>}
 				</g>
 			</svg>
