@@ -103,7 +103,7 @@ export const workExperienceMetaData = [
 			{
 				location: "Bucharest, Romania",
 				title: "Full Stack Software Engineer",
-				subRole: "Consulting Firm",
+				subRole: "Luxury Automaker",
 				period: "2026 - Present",
 			},
 			{

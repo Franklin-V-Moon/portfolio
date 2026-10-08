@@ -300,14 +300,6 @@ const WorldMap = ({
 				(country) => getFeatureId(country) === String(selectedCountry.countryId).padStart(3, "0"),
 			)
 		: undefined;
-	const orderedDots = useMemo(
-		() =>
-			[...dots].sort(
-				(first, second) =>
-					Number(first.id === selectedDotId) - Number(second.id === selectedDotId),
-			),
-		[selectedDotId],
-	);
 	const visibleDotIds = useMemo(
 		() => new Set(dots.slice(0, visibleDotCount).map((dot) => dot.id)),
 		[visibleDotCount],
@@ -616,7 +608,7 @@ const WorldMap = ({
 					{mapStage >= 2 && <g
 						ref={dotLayerRef}
 						className={`${styles.dotLayer} ${dimOtherDots ? styles.dotLayerDimmed : ""}`}>
-						{orderedDots.filter((dot) => visibleDotIds.has(dot.id)).map((dot) => {
+						{dots.filter((dot) => visibleDotIds.has(dot.id)).map((dot) => {
 							const position = projection([dot.longitude, dot.latitude]);
 							if (!position) return null;
 							return (
